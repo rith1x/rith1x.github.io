@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+*{
+    box-sizing: border-box;
+    font-family: 'Patrick Hand', cursive;
+    margin: 0;
+    padding: 0;
+    transition: all ease-in-out 0.3ms;
+}
+body{
+    background-color: #ffffff;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px ;
+}
+.trivia-box{
+    /* border: solid 1px #ff0; */
+    padding: 21px;
+    border-radius: 31px;
+    margin-top: 50px;
+    background: #ffffff;
+box-shadow:  0 0 10px #e5e5e5;
+    width: 500px;
+    /* margin: 0 auto; */
+}
+#options{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 5em;
+    gap: 6px;
+    margin-top: 50px;
+}
+#options div{
+    display: flex;
+    /* border: solid 1px #f00; */
+    box-shadow:  0 0 8px #e5e5e5;
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+.diffgen{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* border: solid 1px #f0f; */
+}
+.diffgen p{
+    color: #fff;
+    border-radius: 6px;
+    text-align: center;
+    padding-inline: 8px;
+    padding-block: 2px;
+
+    font-size: 16px;
+}
+.diffgen p:first-child{
+    background-color: #4158d0;
+    text-transform: uppercase;
+}
+.diffgen p:last-child{
+    background-color: rgb(0, 158, 182);
+}
+
+.field{
+    height: 40px;
+    width: 100%;
+    position: relative;
+  }
+  .field input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    font-size: 17px;
+    padding-left: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .field input:focus,
+  form .field input:valid{
+    border-color: #4158d0;
+  }
+  
+  .setting{
+    display: flex;
+    margin-top: 50px;
+    height: 40px;
+    align-items: flex-start;
+    justify-content: space-between;
+    /* border: #4158d0 solid 1px; */
+  }
+  .setting select{
+    background-color: none;
+    border: solid 1px #e0e0e0;
+    padding-block: 5px;
+    width: 100%;
+    padding-inline: 10px ;
+  }
+  .setting button{
+    background-color: #000000;
+    border: solid 1px #e0e0e0;
+    padding-block: 6px;
+    color: #fff;
+
+    padding-inline: 10px ;
+  }
+  .endnote{
+    opacity: 0.7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  .htmll{
+    color: #ffffff;
+    background-color: #ff1f07;
+    padding-inline: 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    /* border: solid 1px #000; */
+  }
+  .css{
+    color: #ffffff;
+    background-color: #4158d0;
+    padding-inline: 6px;
+    text-transform: uppercase;
+    /* border: solid 1px #000; */
+
+    border-radius: 4px;margin-inline: 5px;
+  }
+  .js{
+    color: #000;
+    background-color: #ffff00;
+    padding-inline: 6px;
+    text-transform: uppercase;
+    /* border: solid 1px #000; */
+    border-radius: 4px;
+  }
+  a{
+    text-decoration: none;
+    color: #4158d0;
+  }
