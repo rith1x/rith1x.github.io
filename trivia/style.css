@@ -20,8 +20,9 @@ body{
     margin-top: 50px;
     background: #ffffff;
 box-shadow:  0 0 10px #e5e5e5;
-    max-width: 400px;
-    margin: 0 5%;
+    width: 80%;
+    
+    margin: 0 auto;
 }
 #options{
     display: grid;
