@@ -12,7 +12,7 @@
   "categories": ["quiz", "boredom"],
   "icons": [
     {
-      "src": "icon.png",
+      "src": "logo.png",
       "sizes": "500x500",
       "type": "image/png"
     }
