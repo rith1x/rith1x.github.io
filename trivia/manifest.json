@@ -1,14 +1,14 @@
 {
   "name": "mini - Trivia Quiz",
   "short_name": "Quizzz",
-  "start_url": "/",
+  "start_url": "https://rith1x.github.io/trivia/",
   "display": "standalone",
   "orientation": "portrait",
   "dir": "ltr",
   "lang": "en",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
-  "scope": "/",
+  "scope": "https://rith1x.github.io/trivia/",
   "categories": ["quiz", "boredom"],
   "icons": [
     {
