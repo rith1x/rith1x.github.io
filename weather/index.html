@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weathr App</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=pally@400,1&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="city-name">
+                <input type="text" id="city" placeholder="Enter the City">
+            </div>
+            <div class="settings">
+    <button onclick="fetchloc()"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </div>
+        <div class="sub">
+            <div class="mbox">
+            <span class="locbox"><i class="fa-solid fa-location-arrow"></i> <p id="location"></p> </span>
+            <h1 id="weather"><span id="weacel"></span></h1>
+            <span id="feels"></span>
+            <p class="weatxt"><span id="weee"></span> <span id="minmax"></span></p>
+        </div>
+    </div>
+        <div class="dayn">
+            <div class="day1">
+                <span class="txtem" id="tem1"></span>
+                <span id="dfd">
+                    <p id="d1max"></p>
+                    <p id="d1min"></p>
+                </span>
+                <span id="d1d"></span>
+
+            </div>
+            <div class="day2">
+                <span class="txtem" id="tem2">
+
+                </span>
+                <span id="dfd">
+                    <p id="d2max"></p>
+                    <p id="d2min"></p>
+                </span>
+                <span id="d2d"></span>
+            </div>
+            <div class="day3">
+                <span class="txtem" id="tem3"></span>
+                <span id="dfd">
+                    
+                    <p id="d3max"></p>
+                    <p id="d3min"></p>
+                </span>
+                <span id="d3d"></span>
+
+            </div>        
+        </div>
+        <div class="otr">
+            <div class="otrx1">
+                <span>
+                    <p>Humidity</p>
+                </span>
+                <span>
+                    <p id="humidity"></p>
+                </span>
+            </div>
+            <div class="otrx2">
+                <span>
+                    <p>Cloud Cover</p>
+                </span>
+                <span>
+                    <p id="cloudcover"></p>
+                </span>
+            </div>
+            <div class="otrx3">
+                <span>
+                    <p>Wind Direction</p>
+                </span>
+                <span class="toii">
+                    <span id="windeg">
+                        <i class="fa-solid fa-arrow-down"></i>
+                    </span>
+                    <p id="winspeed"></p>
+                </span>
+            </div>
+            <div class="otrx4">
+                <span>
+                    <p>Moon Phase</p>
+                </span>
+                <span>
+                    <p id="moonphase"></p>
+                </span>
+            </div>
+            <div class="otrx5">
+                <span>
+                    <p>Pressure</p>
+                </span>
+                <span>
+                    <p id="pressure"></p>
+                </span>
+            </div>
+            
+        </div>
+        <div class="endnote">
+            <p>Api by wttr<br>
+            Used HTML + CSS + JS<br>
+            Mini-Project by</p><br>
+            <a href="https://www.linkedin.com/in/kiruthikkumar/"><span id="name">Kiruthik Kumar<i style="padding-left: 5px;font-size: 0.8em;" class="fa-solid fa-arrow-up-right-from-square"></i></span></a>
+        </div>
+        <div class="filler"></div>
+    </div>
+</body>
+</html>

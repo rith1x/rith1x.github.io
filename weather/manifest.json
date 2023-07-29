@@ -1,0 +1,20 @@
+{
+  "name": "Weather ⛅",
+  "short_name": "Weather ⛅",
+  "start_url": "https://rith1x.github.io/weather/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "ltr",
+  "lang": "en",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "scope": "https://rith1x.github.io/weather/",
+  "categories": ["quiz", "boredom"],
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    }
+  ]  
+}
