@@ -1,138 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weathr App</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js"></script>
 
-<meta name="title" content="Weathr" />
-<meta name="description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <title>Weathr App</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="app.js"></script>
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://rith1x.github.io/weather/" />
-<meta property="og:title" content="Weathr" />
-<meta property="og:description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
-<meta property="og:image" content="banner.png" />
+        <meta name="title" content="Weathr" />
+        <meta name="description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
 
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content="https://rith1x.github.io/weather/" />
-<meta property="twitter:title" content="Weathr" />
-<meta property="twitter:description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
-<meta property="twitter:image" content="banner.png" />
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rith1x.github.io/weather/" />
+        <meta property="og:title" content="Weathr" />
+        <meta property="og:description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
+        <meta property="og:image" content="banner.png" />
 
-    <link rel="manifest" href="manifest.json">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://rith1x.github.io/weather/" />
+        <meta property="twitter:title" content="Weathr" />
+        <meta property="twitter:description" content="A Simple Weather Forecasting using wttr.in JSON REST API." />
+        <meta property="twitter:image" content="banner.png" />
 
-</head>
-<body>
-    <div class="container">
-        <div class="navbar">
-            <div class="city-name">
-                <input type="text" id="city" placeholder="Enter the City">
+        <link rel="manifest" href="manifest.json">
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="city-name">
+                    <input type="text" id="city" placeholder="Enter the City">
+                </div>
+                <div class="settings">
+                    <button aria-label="Search" onclick="fetchloc()"><svg class="svg-inline--fa fa-magnifying-glass"
+                            aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass"
+                            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+                            </path>
+                        </svg></button>
+                </div>
             </div>
-            <div class="settings">
-    <button aria-label="Search" onclick="fetchloc()"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg></button>
-            </div>
-        </div>
-        <div class="sub" id="panes">
-            <div class="mbox">
-            <span class="locbox"><svg class="svg-inline--fa fa-location-arrow" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="location-arrow" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8H224V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z"></path></svg><p id="location"></p> </span>
-            <h1 lux="09" id="weather"><span id="weacel"></span></h1>
-            <span id="image">
-                <img id="wemg" src="" alt="">
-            </span>
-            <span lux="10" id="feels"></span>
-            <p lux="11" class="weatxt"><span id="weee"></span> <span id="minmax"></span></p>
-        </div>
-    </div>
-        <div class="dayn">
-            <div class="day1">
-                <span class="txtem" id="tem1"></span>
-                <span id="dfd">
-                    <p id="d1max"></p>
-                    <p id="d1min"></p>
-                </span>
-                <span id="d1d"></span>
-
-            </div>
-            <div class="day2">
-                <span class="txtem" id="tem2">
-
-                </span>
-                <span id="dfd">
-                    <p id="d2max"></p>
-                    <p id="d2min"></p>
-                </span>
-                <span id="d2d"></span>
-            </div>
-            <div class="day3">
-                <span class="txtem" id="tem3"></span>
-                <span id="dfd">
-                    
-                    <p id="d3max"></p>
-                    <p id="d3min"></p>
-                </span>
-                <span id="d3d"></span>
-
-            </div>        
-        </div>
-        <div class="otr">
-            <div class="otrx1">
-                <span>
-                    <p>Humidity</p>
-                </span>
-                <span>
-                    <p id="humidity"></p>
-                </span>
-            </div>
-            <div class="otrx2">
-                <span>
-                    <p>Cloud Cover</p>
-                </span>
-                <span>
-                    <p id="cloudcover"></p>
-                </span>
-            </div>
-            <div class="otrx3">
-                <span>
-                    <p>Wind Direction</p>
-                </span>
-                <span class="toii">
-                    <span id="windeg">
-                        <svg class="svg-inline--fa fa-arrow-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg>
+            <div class="sub" id="panes">
+                <div class="mbox">
+                    <span class="locbox"><svg class="svg-inline--fa fa-location-arrow" aria-hidden="true"
+                            focusable="false" data-prefix="fas" data-icon="location-arrow" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8H224V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z">
+                            </path>
+                        </svg>
+                        <p id="location"></p>
                     </span>
-                    <p id="winspeed"></p>
-                </span>
+                    <h1 lux="09" id="weather"><span id="weacel"></span></h1>
+                    <span id="image">
+                        <img id="wemg" src="" alt="">
+                    </span>
+                    <span lux="10" id="feels"></span>
+                    <p lux="11" class="weatxt"><span id="weee"></span> <span id="minmax"></span></p>
+                </div>
             </div>
-            <div class="otrx4">
-                <span>
-                    <p>Moon Phase</p>
-                </span>
-                <span>
-                    <p id="moonphase"></p>
-                </span>
-            </div>
-            <div class="otrx5">
-                <span>
-                    <p>Pressure</p>
-                </span>
-                <span>
-                    <p id="pressure"></p>
-                </span>
-            </div>
-            
-        </div>
-        <div class="endnote">
-            <p>Api by wttr<br>
-            Used HTML + CSS + JS<br>
-            Mini-Project by</p><br>
-            <a href="https://www.linkedin.com/in/kiruthikkumar/"><span id="name">Kiruthik Kumar<i style="padding-left: 5px;font-size: 0.8em;" class="fa-solid fa-arrow-up-right-from-square"></i></span></a>
-        </div>
-        <div class="filler"></div>
-    </div>
+            <div class="dayn">
+                <div class="day1">
+                    <span class="txtem" id="tem1"></span>
+                    <span id="dfd">
+                        <p id="d1max"></p>
+                        <p id="d1min"></p>
+                    </span>
+                    <span id="d1d"></span>
 
-</body>
+                </div>
+                <div class="day2">
+                    <span class="txtem" id="tem2">
+
+                    </span>
+                    <span id="dfd">
+                        <p id="d2max"></p>
+                        <p id="d2min"></p>
+                    </span>
+                    <span id="d2d"></span>
+                </div>
+                <div class="day3">
+                    <span class="txtem" id="tem3"></span>
+                    <span id="dfd">
+
+                        <p id="d3max"></p>
+                        <p id="d3min"></p>
+                    </span>
+                    <span id="d3d"></span>
+
+                </div>
+            </div>
+            <div class="otr">
+                <div class="otrx1">
+                    <span>
+                        <p>Humidity</p>
+                    </span>
+                    <span>
+                        <p id="humidity"></p>
+                    </span>
+                </div>
+                <div class="otrx2">
+                    <span>
+                        <p>Cloud Cover</p>
+                    </span>
+                    <span>
+                        <p id="cloudcover"></p>
+                    </span>
+                </div>
+                <div class="otrx3">
+                    <span>
+                        <p>Wind Direction</p>
+                    </span>
+                    <span class="toii">
+                        <span id="windeg">
+                            <svg class="svg-inline--fa fa-arrow-down" aria-hidden="true" focusable="false"
+                                data-prefix="fas" data-icon="arrow-down" role="img" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 384 512" data-fa-i2svg="">
+                                <path fill="currentColor"
+                                    d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z">
+                                </path>
+                            </svg>
+                        </span>
+                        <p id="winspeed"></p>
+                    </span>
+                </div>
+                <div class="otrx4">
+                    <span>
+                        <p>Moon Phase</p>
+                    </span>
+                    <span>
+                        <p id="moonphase"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
+                        <p>Pressure</p>
+                    </span>
+                    <span>
+                        <p id="pressure"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
+                        <p>Sunrise</p>
+                    </span>
+                    <span>
+                        <p id="sunrise"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
+                        <p>Sunset</p>
+                    </span>
+                    <span>
+                        <p id="sunset"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
+                        <p>Moonrise</p>
+                    </span>
+                    <span>
+                        <p id="moonrise"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
+                        <p>Moonset</p>
+                    </span>
+                    <span>
+                        <p id="moonset"></p>
+                    </span>
+                </div>
+
+            </div>
+            <div class="endnote">
+                <p>Api by wttr<br>
+                    Used HTML + CSS + JS<br>
+                    Mini-Project by</p><br>
+                <a href="https://www.linkedin.com/in/kiruthikkumar/"><span id="name">Kiruthik Kumar</span></a>
+            </div>
+            <div class="filler"></div>
+        </div>
+
+    </body>
+
 </html>
