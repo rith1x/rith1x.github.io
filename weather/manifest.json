@@ -12,9 +12,9 @@
   "categories": ["quiz", "boredom"],
   "icons": [
     {
-      "src": "img/dcloudy.svg",
+      "src": "logo.png",
       "sizes": "500x500",
-      "type": "image/svg"
+      "type": "image/png"
     }
   ]  
 }
