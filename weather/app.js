@@ -55,7 +55,7 @@ authDomain();
         document.getElementById('d1d').textContent = "Today";
         document.getElementById('d2min').innerHTML = d2min + '<sup>°C</sup>';
         document.getElementById('d2max').innerHTML = d2max + '<sup>°C</sup>';
-        document.getElementById('sd2d').textContent = "Tomorrow";
+        document.getElementById('d2d').textContent = "Tomorrow";
         document.getElementById('tem2').innerHTML = d2tem + '<sup>°C</sup>';
         document.getElementById('d3min').innerHTML = d3min + '<sup>°C</sup>';
         document.getElementById('d3max').innerHTML = d3max + '<sup>°C</sup>';
