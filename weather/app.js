@@ -77,20 +77,28 @@ authDomain();
         const wemg = document.getElementById('wemg');
         console.log(wcd);
         
-        // function boxBgchange() {
-        // const hourss = new Date().getHours();
-        // const chkdns = hourss > 6 && hourss < 18;
-        //     if(chkdns === true){
-        // const boxbg = document.getElementById('panes');
-        //       boxbg.style.backgroundImage = "linear-gradient(315deg, #045de9 0%, #09c6f9 74%)";
-        //       } else {
-        // const boxbg = document.getElementById('panes');
-        // boxbg.style.backgroundImage = "linear-gradient(315deg, #36096d 0%, #37d5d6 74%)";
+        function boxBgchange() {
+        const hourss = new Date().getHours();
+        const chkdns = hourss > 6 && hourss < 18;
+            if(chkdns === true){
+        const boxbg = document.getElementById('panes');
+              boxbg.style.backgroundImage = "linear-gradient(315deg, #045de9 0%, #09c6f9 74%)";
+              const colorChg = document.querySelector('[lux="09"]');
+              const colorChg2 = document.querySelector('[lux="10"]');
+              const colorChg3= document.querySelector('[lux="11"]');
 
-        //         boxbg = "img/ncloudy.svg";
-        //       }
-        //     }
-        //     boxBgchange();
+              colorChg.style.color = "#ffffff";
+              colorChg2.style.color = "#ffffff";
+              colorChg3.style.color = "#ffffff";
+
+              } else {
+        const boxbg = document.getElementById('panes');
+        boxbg.style.backgroundImage = "linear-gradient(315deg, #36096d 0%, #37d5d6 74%)";
+
+                boxbg = "img/ncloudy.svg";
+              }
+            }
+            boxBgchange();
 
         function getimgSrc() {
           if (wcd == 116 || wcd == 119){
