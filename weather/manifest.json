@@ -7,14 +7,14 @@
   "dir": "ltr",
   "lang": "en",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#000080",
   "scope": "https://rith1x.github.io/weather/",
   "categories": ["quiz", "boredom"],
   "icons": [
     {
-      "src": "logo.png",
+      "src": "img/dcloudy.svg",
       "sizes": "500x500",
-      "type": "image/png"
+      "type": "image/svg"
     }
   ]  
 }
