@@ -1,26 +1,3 @@
-
-function authDomain() {
-  fetch("https://api.jsonbin.io/v3/b/64c099379d312622a3850298?meta=false ")
-    .then(response => response.json())
-    .then(data => {
-      authGet = data;
-      const authKey = authGet.weathrApp;
-      const yourKey = "iGeiDOmqtygYGit";
-      const authApi = authKey.key;
-      if (authApi === yourKey && authKey.service === "true") {
-        console.log("Authenticated Successfully");
-        localStorage.setItem('location', 'Salem,Tamilnadu');
-        getWeather()
-      }
-      else {
-        document.body.innerHTML = '';
-        document.body.innerHTML = '<h1>Authentication Unsuccessful, Contact Developer!</h1>';
-      }
-    });
-}
-authDomain();
-
-
 function fetchWeather(theURL) {
   fetch(theURL)
     .then(response => response.json())
@@ -139,12 +116,6 @@ function fetchWeather(theURL) {
       getimgSrc();
     })
 }
-
-
-
-
-
-
 function getWeather() {
   const baseUrl = "https://wttr.in/";
   const location = localStorage.getItem('location');
@@ -157,3 +128,4 @@ function fetchloc() {
   localStorage.setItem('location', locationip);
   getWeather();
 }
+ getWeather();
