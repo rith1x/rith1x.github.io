@@ -128,4 +128,5 @@ function fetchloc() {
   localStorage.setItem('location', locationip);
   getWeather();
 }
+localStorage.setItem('location','Salem,Tamilnadu');
  getWeather();
