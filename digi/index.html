@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="clk">
+            <div id="hr"></div>
+            <span class="isto">:</span>
+            <div id="mi"></div>
+            <span class="isto">:</span>
+
+            <div id="se"></div>
+        </div>
+    </div>
+    <style>
+        @font-face {
+            font-family: moo;
+            src: url(font.ttf);
+        }
+        *{
+            box-sizing: border-box;
+            padding: 0;
+            font-family: moo;
+            margin: 0;
+            /* border: solid 1px #0f0; */
+        }
+        body{
+            background-color: #292929;
+        }
+        .container{
+            width: 100%;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            font-weight: 500;
+            color: #ff00006a;
+            text-shadow: 0 0 5px ;
+            font-size: 50px;
+        }
+        .clk{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 200px;
+            padding-inline: 15px;
+            height: 80px;
+            background: #292929;
+box-shadow:  6px 6px 18px #1e1e1e,
+             -6px -6px 18px #343434;
+             border-radius: 21px;
+
+        }
+        .isto{
+            width: 15px;
+            display: flex;
+            margin-top: -20px;
+            align-items: center;
+            justify-content: flex-start;
+
+        }
+        .clk div{
+            /* border: solid 1px #f00; */
+            background-color: transparent;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+    </style>
+    <script>
+        function domer(){
+        var today = new Date();
+        var hrs = today.getHours();
+        var min = today.getMinutes();
+        var sec = today.getSeconds();
+        document.getElementById('hr').textContent = hrs;
+        document.getElementById('mi').textContent = min;
+        document.getElementById('se').textContent = sec;
+
+        setTimeout(domer,1000);
+        }
+        domer()
+    </script>
+</body>
+</html>
