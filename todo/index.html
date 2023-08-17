@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- To-do List Project using HTML CSS JS -->
+    <!-- Single file, this file contains internal CSS, Js -->
+    <!-- used js localStorage for storing data  -->
+    <!-- VERSION 1.0 -->
+    
+    <!-- By Kiruthik Kumar R  -->
+    <!-- Linkedin- @kiruthikkumar -->
+    <!-- Github - @rith1x -->
+
+    <div class="navy" id="sub">
+      <span class="titl">
+        <h1>Settings</h1>
+        <section class="setclose" onclick="closeNav()">
+          <i class="fa-solid fa-close"></i>
+        </section>
+      </span>
+      <div class="opt">
+        <span>Mode</span>
+        <span>
+          <select name="" id="mode">
+            <option value="L">Light</option>
+            <option value="D">Dark</option>
+          </select>
+        </span>
+      </div>
+      <div class="opt">
+        <span>Accent Color</span>
+        <span>
+          <select name="" id="accent">
+            <option value="#a633cc">Purple</option>
+            <option value="#33a6cc">Indigo</option>
+            <option value="#33cc80">Green</option>
+            <option value="#59cc33">Lime</option>
+            <option value="#cccc33">Yellow</option>
+            <option value="#cc8033">Orange</option>
+            <option value="#cca633">Gold</option>
+            <option value="#cc3359">Red</option>
+          </select>
+        </span>
+      </div>
+      <div class="opt">
+        <span>Font</span>
+        <span>
+          <select name="" id="font">
+            <option class="p" value="Patrick Hand">Patrick Hand</option>
+            <option class="u" value="Ubuntu">Ubuntu</option>
+            <option class="n" value="Nunito Sans">Nunito Sans</option>
+            <option class="k" value="Kalam">Kalam</option>
+          </select>
+        </span>
+      </div>
+      <div class="opt">
+        <span>Clear List</span>
+        <span>
+          <button class="clear" onclick="clearStorage()">Clear</button>
+        </span>
+      </div>
+      <div class="opt x3" id="axy1" onclick="updateSettings()"> Save settings </div>
+    </div>
+    <div class="container" id="main">
+      <div class="nav">
+        <div class="icon" onclick="openNav()" id="icon">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+        <div class="appname">Things to do <i class="fa-solid fa-check"></i>
+        </div>
+      </div>
+      <div id="taskie"></div>
+      <div class="add-item-form">
+        <div class="field">
+          <label class="float" id="lbl" for="todo">New Task</label>
+          <input type="text" name="" id="todo" required>
+        </div>
+        <div class="field">
+          <button onclick="addTask()" id="axy2" id="todosubmit">Add Task</button>
+        </div>
+      </div>
+      <p class="cpy">A mini project by <a id="axy3" href="https://in.linkedin.com/in/kiruthikkumar">Kiruthik Kumar</a> - v1.0 </p>
+    </div>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Kalam&family=Nunito+Sans:opsz@6..12&family=Patrick+Hand&family=Ubuntu&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+        font-family: Nunito Sans;
+        margin: 0;
+      }
+
+      .p {
+        font-family: 'Patrick Hand';
+      }
+
+      .u {
+        font-family: 'Ubuntu';
+      }
+
+      .n {
+        font-family: 'Nunito Sans';
+      }
+
+      .k {
+        font-family: 'Kalam';
+      }
+
+      .titl {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navy {
+        width: 330px;
+        aspect-ratio: 1 / 1;
+        inset: 0;
+        position: fixed;
+        margin: auto;
+        visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: left;
+        z-index: 20;
+        border-radius: 21px;
+        padding: 15px;
+        box-shadow: 0 0 20px -10px #33333370;
+        transition: box-shadow 3s ease-in-out;
+        background-color: #ffffff;
+
+        && div {
+          height: 40px;
+          background-color: transparent;
+          box-shadow: 0 0 5px -3px;
+          border-radius: 6px;
+          padding-inline: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          && button.clear {
+            padding-inline: 6px;
+            padding-block: 2px;
+            border-radius: 3px;
+            cursor: pointer;
+            background-color: rgb(230, 8, 8);
+          }
+
+          && select {
+            border: none;
+          }
+        }
+
+        && .x3 {
+          background-color: #057242;
+          color: #fff;
+          height: 30px;
+          justify-content: center;
+          cursor: pointer;
+        }
+      }
+
+      .nav {
+        height: 60px;
+        background-color: transparent;
+        backdrop-filter: blur(9px);
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: 10px;
+      }
+
+      .icon {
+        height: 100%;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        justify-content: center;
+      }
+
+      .cpy {
+        position: absolute;
+        margin: 3px auto;
+        font-size: 10px;
+        color: #000000;
+        bottom: 0;
+      }
+
+      .cpy a {
+        text-decoration: none;
+        color: #057242;
+      }
+
+      .setclose {
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container {
+        max-width: 400px;
+        height: 100dvh;
+        z-index: 2;
+        overflow: hidden;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 20px -10px #33333370;
+      }
+
+      .container * {
+        z-index: 2;
+      }
+
+      #taskie {
+        height: 100%;
+        overflow-y: scroll;
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-block: 30px;
+      }
+
+      *::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      *::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        margin-block: 5px;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 6px #057242;
+      }
+
+      #taskie div {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        box-shadow: 0 0 5px -3px;
+      }
+
+      .add-item-form {
+        /* position: fixed; */
+        background-color: transparent;
+        width: 100%;
+        box-shadow: 0 0 20px -10px #67676750;
+        border-radius: 21px 21px 0 0;
+        padding: 20px;
+        height: 23dvh;
+      }
+
+      .field {
+        height: 40px;
+        margin-bottom: 20px;
+      }
+
+      .field input {
+        width: 100%;
+        height: 100%;
+        font-size: 1em;
+        background: transparent;
+        border: solid 1px;
+        border-radius: 6px;
+        padding-left: 10px;
+      }
+
+      label {
+        position: absolute;
+        color: #000;
+        background-color: #ffffff;
+        padding-inline: 5px;
+        margin-top: -10px;
+        margin-left: 10px;
+      }
+
+      button {
+        width: 100%;
+        height: 100%;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        background-color: #057242;
+      }
+    </style>
+    <script>
+      function updateTheme() {
+        const font = localStorage.getItem('font');
+        const mode = localStorage.getItem('mode');
+        const accent = localStorage.getItem('accent');
+        console.log(font);
+        console.log(mode);
+        console.log(accent);
+        document.body.style.fontFamily = font;
+        document.getElementById('axy1').style.backgroundColor = accent;
+        document.getElementById('axy2').style.backgroundColor = accent;
+        document.getElementById('axy3').style.color = "#000000";
+        if (mode == 'L') {
+          document.body.style.backgroundColor = "#ffffff";
+          document.getElementById('main').style.backgroundColor = '#ffffff';
+          document.getElementById('lbl').style.backgroundColor = '#ffffff';
+          const allElements = document.querySelectorAll('*');
+          allElements.forEach(element => {
+            element.style.color = "#000000";
+          });
+        } else if (mode == 'D') {
+          document.body.style.backgroundColor = "#1f1f1f";
+          document.getElementById('sub').style.backgroundColor = '#1f1f1f';
+          document.getElementById('main').style.backgroundColor = '#1f1f1f';
+          document.getElementById('lbl').style.backgroundColor = '#1f1f1f';
+          const allElements = document.querySelectorAll('*');
+          allElements.forEach(element => {
+            element.style.color = accent;
+          });
+          document.getElementById('axy1').style.color = "#000000";
+          document.getElementById('axy2').style.color = "#000000";
+        }
+      }
+      updateTheme();
+
+      function addTask() {
+        const todoInput = document.getElementById('todo');
+        const todoText = todoInput.value.trim();
+        if (todoText === '') {
+          return;
+        }
+        const existingTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        existingTodos.push(todoText);
+        localStorage.setItem('todos', JSON.stringify(existingTodos));
+        todoInput.value = '';
+        displayTodos();
+      }
+
+      function displayTodos() {
+        const todoList = document.getElementById('taskie');
+        const existingTodos = JSON.parse(localStorage.getItem('todos')) || [];
+        todoList.innerHTML = '';
+        existingTodos.forEach(todo => {
+          const li = document.createElement('div');
+          li.textContent = todo;
+          todoList.appendChild(li);
+        });
+      }
+      displayTodos();
+
+      function openNav() {
+        document.getElementById('sub').style.visibility = "visible";
+      }
+
+      function closeNav() {
+        document.getElementById('sub').style.visibility = "hidden";
+      }
+
+      function clearStorage() {
+        localStorage.removeItem('todos');
+        window.location.reload();
+      }
+
+      function updateSettings() {
+        const font = document.getElementById('font').value;
+        const mode = document.getElementById('mode').value;
+        const accent = document.getElementById('accent').value;
+        localStorage.setItem('mode', mode);
+        localStorage.setItem('font', font);
+        localStorage.setItem('accent', accent);
+        window.location.reload();
+      }
+      // This is Version 1, Thank You!!!
+    </script>
+  </body>
+</html>
