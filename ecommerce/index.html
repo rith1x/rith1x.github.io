@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+  <title>Eastside</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=stardom@400&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="loader.css">
+  <script async src="observer.js"></script>
+  <script async src="viewproducts.js"></script>
+  <script async src="cart.js"></script>
+</head>
+
+<body style="background: #e6e6dd;">
+  <div id="loader" class="loader loader-bouncing is-active"></div>
+  <div class="header">
+    <span class="logo"> <img class="logo" src="logo.png" alt="FashKid"> </span>
+    <span class="links">
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="" class="nav-link">Home</a>
+      <a href="cart.html" class="nav-link">Cart <span id="cartitemss"></span></a>
+    </span>
+  </div>
+  <div class="container">
+    <div class="box " id="main">
+      <h1 class="browse-products" id="browse-products">Deals & Offers </h1>
+      <div class="coverPageSlide"></div>
+      <h1 class="browse-products" id="browse-products">Selected Fashion Garments</h1>
+      <div id="products" class="products"></div>
+    </div>
+  </div>
+  <div class="nav" id="nav">
+    <a href="contact.html" class="nav-link">
+      <i id="fafa" class="fa-solid fa-phone"></i>
+      <p>Contact</p>
+    </a>
+    <a href="#main" class="nav-link">
+      <i id="fafa" class="fa-solid fa-house"></i>
+      <p>Home</p>
+    </a>
+    <a href="cart.html" class="nav-link">
+      <i id="fafa" class="fa-solid fa-cart-shopping"></i>
+      <span class="nav-flexer">
+        <p>Cart</p><span id="cartitems"></span>
+      </span>
+    </a>
+  </div>
+</body>
+
+</html>

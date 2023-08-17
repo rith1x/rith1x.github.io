@@ -1,0 +1,51 @@
+{
+  "name": "Thulir Home Care Products",
+  "short_name": "Thulir",
+  "description": "Thulir Home Care Products for all your needs",
+  "lang": "en-US",
+  "start_url": "./",
+  "scope": "./",
+  "theme_color": "#181c25",
+  "background_color": "#181c25",
+  "display": "standalone",
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "edge_side_panel": {},
+  "icons": [
+    
+    {
+      "src": "img/icon512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/image1.png",
+      "sizes": "1280x720",
+      "platform": "wide",
+      "label": "SNS"
+    },
+    {
+      "src": "img/image2.png",
+      "sizes": "1280x720",
+      "platform": "wide",
+      "label": "Never Miss a College Event!"
+    },
+    {
+      "src": "img/image3.png",
+      "sizes": "1280x720",
+      "label": "Maximize your Learning Potential Here!"
+    },
+    {
+      "src": "img/image4.png",
+      "sizes": "1280x720",
+      "label": "Stay Informed! Stay Ahead Here!!"
+    },
+    {
+      "src": "img/image5.png",
+      "sizes": "1280x720",
+      "label": "Unlock Your Academic Potential Here!"
+    }
+  ]
+}

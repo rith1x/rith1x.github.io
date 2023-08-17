@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    <script defer src="cart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="my-cart">
+        <span class="mycart-header">
+        <button class="my-cart-button" id="cartBack">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <h2 class="cart-head">My Cart</h2>
+        <span class="EmptyCart"><button onclick="clearCart()">Empty Cart</button></span>
+      </span>
+      <div id="my-cart-items"></div>
+      <div class="cart-item"><span>Grand Total</span><span id="gdtl"></span></div>
+
+
+
+<button class="cart-form-open-btn" onclick="openForm()">Checkout</button>      
+     
+    
+      
+    <dialog>
+            <span class="headclose"><h1>Enter Your Details</h1> <button onclick="closeForm()">×</button></span>  
+            <div class="inputz">
+            <input required type="text" placeholder="Enter Your Name" id="nameInput">
+            <input required type="text" placeholder="Enter Your Address" id="addressInput">
+            <input required type="number" placeholder="Enter Your Pincode" id="pincodeInput">
+            </div>
+            <div class="checkout">
+
+            <button id="sendButton" class="chkot">Checkout <i id="fafaX" class="wink fa-solid fa-cart-shopping"></i></button>
+
+            </div>
+
+         
+      </dialog>
+
+
+
+      </div>
+</body>
+</html>

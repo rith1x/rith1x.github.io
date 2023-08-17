@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageHead"></title>
+
+  <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style.css">
+  <script defer src="observer.js"></script>
+
+  <script defer src="product.js"></script>
+
+  <script defer src="viewproducts.js"></script>
+</head>
+
+<body style="background-color: #e6e6dd;" >
+
+  <div class="box" id="product">
+    <span class="cty">
+      <button id="backButton">
+        <svg class="svg-inline--fa fa-arrow-left" aria-hidden="true" focusable="false" data-prefix="fas"
+          data-icon="arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor"
+            d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z">
+          </path>
+        </svg>
+      </button>
+    </span>
+    <div class="mgbox">
+      <span>
+        <div class="previewbox">
+          <div class="prev">
+            <img class="mySlides" src="https://placehold.jp/000000/ffffff/150x150.png?text=Product-image+1"
+              style="width:100%;display:none">
+            <img class="mySlides" src="https://placehold.jp/000000/ffffff/150x150.png?text=Product-image+2" style="width:100%">
+            <img class="mySlides" src="https://placehold.jp/000000/ffffff/150x150.png?text=Product-image+3"
+              style="width:100%;display:none">
+          </div>
+          <div class="samp-1">
+            <img src="https://placehold.jp/000000/ffffff/150x150.png?text=Product+i1" onclick="currentDiv(1)">
+          </div>
+          <div class="samp-2">
+            <img src="https://placehold.jp/000000/ffffff/150x150.png?text=Product+i2" onclick="currentDiv(2)">
+          </div>
+          <div class="samp-3">
+            <img src="https://placehold.jp/000000/ffffff/150x150.png?text=Product+i3" onclick="currentDiv(3)">
+          </div>
+        </div>
+      </span>
+      <span>
+        <span class="namewish">
+          <h1 id="productName"></h1>
+        </span>
+        <span class="cost">
+
+          <p id="productPrice"></p>
+          <p id="productMrp"></p>
+
+          <p id="savePrice"></p>
+
+
+
+        </span>
+        <span id="productReview"></span>
+        <h2 class="desc">Description</h2>
+        <p id="productDesc"></p>
+        <span>
+          <h2 class="desc">Key Features</h2>
+
+          <ul id="splFeat">
+            <li id="sp1"></li>
+            <li id="sp2"></li>
+            <li id="sp3"></li>
+            <li id="sp4"></li>
+            <li id="sp5"></li>
+          </ul>
+        </span>
+      </span>
+    </div>
+  </div>
+  <div id="atcbox" class="atcbox"><span><button class="buttonl" onclick="addToCart()" id="addToCartBtn">Add to Cart<i
+          id="fafafa" class="fa-solid fa-cart-shopping"></i></button></span></div>
+
+</body>
+
+</html>
