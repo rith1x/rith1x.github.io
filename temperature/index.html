@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Conversion</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="box">
+        <div class="option">
+            <div class="op1">
+                <select name="" id="from" style="appearance: none;">
+                    <option value="C">Celsius</option>
+                    <option value="F">Fahrenheit</option>
+                    <option value="K">Kelvin</option>
+                </select>
+            </div>
+            <div class="inter" onclick="interVal()">
+                <i class="fa-solid fa-right-left"></i>
+            </div>
+            <div class="op2">
+                <select name="" id="to" style="appearance: none;">
+                    <option value="F">Fahrenheit</option>
+                    <option value="C">Celsius</option>
+                    <option value="K">Kelvin</option>
+                </select>
+            </div>
+        </div>
+        <div class="inout">
+            <div class="out">
+                <h1 id="out">00</h1>
+            </div>
+            <div class="tri"></div>
+            <div class="in">
+                <input type="number" maxlength="3" name="" id="in" oninput="cal()" placeholder="Type Here">
+            </div>
+        </div>
+        <div class="attr">Project done by  <a target="_blank" href="https://www.linkedin.com/in/kiruthikkumar/"> &nbsp;Kiruthik Kumar</a></div>
+    </div>
+    <style>
+        
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Zodiak', serif;
+        }
+
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #000531;
+        }
+        .box{
+            max-width: 400px;
+            margin: 0 auto;
+            height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+        }
+        a{
+            text-decoration: none;
+            color:aqua;
+        }
+        .option{
+            width: calc(100% - 20px);
+            background-color: #f5f0f020;
+            display: flex;
+            padding: 10px;
+            height: 60px;
+            border-radius: 11px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .option div{
+            height: 100%;
+            && select{
+                height: 100%;
+                padding-inline: 25px;
+                border-radius: 11px;
+            font-weight: 500;
+
+                border: none;
+                background-color: #ffdad930;
+                color: #ffffff;
+                font-size: 16px;
+            }
+        }
+        .inter{
+            height: 100%;
+            aspect-ratio: 1/1;
+            display: flex;
+            border-radius: 11px;
+            color:#fff ;
+            background-color: #ffdad930;
+            align-items: center;
+            justify-content: center;
+        }
+        .attr{
+            height: 60px;
+
+            width: calc(100% - 20px);
+            display: flex;
+            border-radius: 11px;
+            color:#fff ;
+            background-color: #ffdad930;
+            align-items: center;
+            justify-content: center;
+        }
+        .in{
+            width: 100%;
+            border-radius: 11px;
+            aspect-ratio: 2 / 1;
+            && input{
+                border: none;
+                height: 100%;
+                width: 100%;
+                font-size: 30px;
+                font-weight: 600;
+                border-radius: 11px;
+                color: #fff;
+                background-color: transparent;
+                text-align: center;
+                appearance: none;
+            }
+        }
+        input:focus{
+                outline: none;
+            }
+        .out{
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            font-size: 2em;
+            padding: 20px;
+            justify-content: center;
+            border-radius: 11px;
+        }
+        .inout{
+            width: 100%;
+            height: fit-content;
+            padding: 10px;
+            display: flex;
+            background-color: transparent;
+            flex-direction: column;
+            gap: 5px;
+            border-radius:0 0 21px 21px;
+            && div {
+                overflow: hidden;
+                background-color: #ffdad920;
+                color: #fff;
+            }
+        }
+        option{
+            color: #000531;
+            padding-block: 20px;
+        }
+    </style>
+    <script>
+        function interVal() {
+            const from = document.getElementById('from');
+            const to = document.getElementById('to');
+            const a = from.value;
+            const b = to.value;
+            from.value = b;
+            to.value = a;
+        if (from.value == to.value){
+            if (from.value == 'C'){
+                to.value = 'F';
+            } else if (from.value == 'F'){
+                to.value ='C'
+            } else{
+                to.value = 'F'
+            }
+        }
+        }
+        function cal () {
+            const inp = document.getElementById('in').value;
+            const out = document.getElementById('out');
+            const frval = document.getElementById('from').value;
+            const toval = document.getElementById('to').value;
+            
+            if (frval == 'C'){
+                if (toval == 'F'){
+                    out.textContent = ((parseInt(inp) * (1.8) + 32).toFixed(2)) + ' °F';
+                } else if (toval == 'K') {
+                    out.textContent = ((parseInt(inp) + 273.15).toFixed(2)) + ' K';
+                } else {
+                    noop();
+                }
+            } else if (frval == 'F'){
+                if (toval == 'C'){
+                    out.textContent = (((parseInt(inp) - 32) * (5 / 9)).toFixed(2)) + ' °C';
+                } else if (toval == 'K') {
+                    out.textContent = (((parseInt(inp) - 32) * (5 / 9) + 273.15).toFixed(2)) + ' K';
+                } else {
+                    noop();
+                }
+            } else if (frval == 'K'){
+                if (toval == 'C'){
+                    out.textContent = ((parseInt(inp) - 273.15).toFixed(2)) + ' °C';
+                } else if (toval == 'F'){
+                    out.textContent= (((parseInt(inp) - 273.15) * (9/5) + 32).toFixed(2))  + ' °F';
+                    
+                } else {
+                    noop();
+                }
+            } else {
+                    noop();
+                }
+        }
+    
+function noop () {
+    console.log("Error");
+}
+
+</script>
+
+
+<!-- Coderscave Internship Project  -->
+<!-- By Kiruthik Kumar  -->
+<!-- beacons.ai/rith1x  -->
+</body>
+</html>
