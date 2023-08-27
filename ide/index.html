@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Code Editor</title>
+</head>
+<body>
+        <div id="output" class="output"></div>
+        <div id="coder" class="coder">
+            <div id="coderhe">
+                <span>Online Code Editor - Internship Project</span>
+                <span>  By <a target="_blank" href="https://www.linkedin.com/in/kiruthikkumar/">Kiruthik Kumar</a></span>
+            </div>
+            <span class="codings">
+                <textarea name="" id="incode" class="cody" oninput="debug()" placeholder="Write your code here..."></textarea>
+            </span>
+        </div>
+
+
+        <style>
+            *{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            .coder{
+                height: 350px;
+                width: 500px;
+                border-radius: 11px;
+                overflow: hidden;
+                position: absolute;
+                resize: both;
+                inset: 0;
+                /* margin: auto; */
+                z-index: 9;
+                background-color: #f1f1f1;
+                border: 1px solid #d3d3d3;
+            }
+            
+            #coderhe{
+                height: 25px;
+                width: 100%;
+                background-color: rgb(0, 67, 125);
+                cursor: move;
+                z-index: 15;
+                color: #fff;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-inline: 8px;
+                font-size: 12px;
+                font-family: sans-serif;
+            }
+            .cody{
+                background-color: transparent;
+                border: none;
+                width: 100%;
+                padding: 5px;
+
+                height: 100%;
+            }
+            .cody:focus{
+                outline: none;
+                font-family: monospace;
+                font-size: 15px;
+            }
+            #coderhe a{
+              text-decoration: none;
+              color: aqua;
+            }
+        </style>
+        <script>
+            dragElement(document.getElementById("coder"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "he")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "he").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+function debug() {
+    const code = document.getElementById('incode').value;
+    const oput = document.getElementById('output');
+
+    oput.innerHTML = code;
+}
+        </script>
+
+
+
+<!-- Coderscave Internship Project  -->
+<!-- By Kiruthik Kumar  -->
+<!-- beacons.ai/rith1x  -->
+</body>
+</html>
