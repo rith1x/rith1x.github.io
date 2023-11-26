@@ -53,22 +53,34 @@
 
 
             }
-            function validate(n) {
+
+            function lockOption(n) {
                 if (set[n] == randm) {
                     document.getElementById('rand').innerText = randm + ", Correct!";
                     document.getElementById('dis' + n).style.background = "#4dac50";
                     setTimeout(() => {
                         generateQn();
-                    }, 3000);
+                    }, 2000);
 
                 } else {
                     document.getElementById('rand').innerText = "Wrong!";
                     document.getElementById('dis' + n).style.background = "#f44238";
                     setTimeout(() => {
                         generateQn();
-                    }, 3000);
+                    }, 2000);
 
                 }
+            }
+            function validate(n) {
+                const aux = ["You Sure?", "Mhmm!?", "Let's See!", "OMG!", "Bold!!!", "Locked!!", "Jet Set!!", "Haha Locked!!", "Locked, LOL", "Laugh Latch"];
+                const complement = aux[Math.floor(Math.random() * aux.length)];
+                document.getElementById('rand').innerText = complement;
+
+                document.getElementById('dis' + n).style.background = "#fab900";
+                setTimeout(() => {
+                    lockOption(n);
+                }, 3000);
+
             }
 
             function shuffleArray(array) {
