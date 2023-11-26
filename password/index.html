@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Generator</title>
+
+        <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="box">
+
+                <div class="field">
+                    <input type="text" id="password"><button class="copy" onclick="copyPass()"><i
+                            class="fa-regular fa-copy"></i></button>
+                </div>
+                <button onclick="generatePassword()" class="pbx">Generate Password</button>
+
+
+                <div class="opts">
+                    <div>
+                        Length:<input type="range" name="" id="length" min="8" max="100" value="8"
+                            oninput="sliderNum()">
+                        <p id="slidex"></p>
+                    </div>
+                    <div>
+                        <input class="checkbox" type="checkbox" name="cl" id="caps" onchange="checkIt()" checked>
+                        <label class="switch" for="caps"></label>Include Capital Letters
+                    </div>
+                    <div>
+                        <input class="checkbox" type="checkbox" name="sl" id="smal" onchange="checkIt()">
+                        <label class="switch" for="smal"></label>Include Small Letters
+                    </div>
+                    <div>
+                        <input class="checkbox" type="checkbox" name="ns" id="nums" onchange="checkIt()">
+                        <label class="switch" for="nums"></label>Include Numbers
+                    </div>
+                    <div>
+                        <input class="checkbox" type="checkbox" name="ss" id="syms" onchange="checkIt()">
+                        <label class="switch" for="syms"></label>Include Symbols
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <script>
+            function sliderNum() {
+                let ranger = document.getElementById("length");
+                let para = document.getElementById("slidex");
+                para.innerText = ranger.value;
+            }
+            function checkIt() {
+                const pwElement = document.getElementById("password");
+
+                const caps = document.getElementById("caps");
+                const smal = document.getElementById("smal");
+                const nums = document.getElementById("nums");
+                const syms = document.getElementById("syms");
+                if (!caps.checked && !smal.checked && !nums.checked && !syms.checked) {
+                    pwElement.value = "Dont turn off all!";
+                } else {
+                    pwElement.value = "";
+                }
+            }
+            function generatePassword() {
+                const pwElement = document.getElementById("password");
+                const length = document.getElementById("length").value;
+                let chars = "";
+                const caps = document.getElementById("caps");
+                const smal = document.getElementById("smal");
+                const nums = document.getElementById("nums");
+                const syms = document.getElementById("syms");
+                if (caps.checked) {
+                    chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                }
+                if (smal.checked) {
+                    chars += "abcdefghijklmnopqrstuvwxyz";
+                }
+                if (nums.checked) {
+                    chars += "1234567890";
+                }
+                if (syms.checked) {
+                    chars += "+-=*/";
+                }
+
+
+                let generated = "";
+
+
+
+                while (length > generated.length) {
+                    generated += chars[Math.floor(Math.random() * chars.length)]
+
+                }
+                pwElement.value = generated;
+            }
+
+            function copyPass() {
+                const pwElement = document.getElementById("password");
+                pwElement.select();
+                document.execCommand("copy");
+
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                background-color: #fff;
+                font-family: 'Gantari', sans-serif;
+
+            }
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 10px;
+                box-shadow: 0 0 10px #33333350;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                align-items: center;
+                justify-content: center;
+
+
+            }
+
+            .opts {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+
+                gap: 10px;
+
+            }
+
+            .opts div {
+                display: flex;
+                width: 100%;
+                height: 50px;
+                padding-inline: 10px;
+                border-radius: 11px;
+                background-color: #ececec;
+                align-items: center;
+                gap: 10px;
+                justify-content: flex-start;
+            }
+
+            .opts div:first-child {
+                gap: 20px;
+
+            }
+
+            .field {
+                width: 100%;
+                display: flex;
+                position: relative;
+
+            }
+
+            #password {
+                width: 100%;
+                height: 50px;
+                border-radius: 11px;
+                border: solid 2px #000;
+                padding-left: 15px;
+                padding-right: 30px;
+                font-size: 25px;
+                font-family: monospace;
+
+            }
+
+            input[type="range"] {
+                accent-color: #000;
+            }
+
+            #password:focus {
+                outline: none;
+            }
+
+            .copy {
+                height: 40px;
+                width: 40px;
+                right: 5px;
+                top: 0;
+                bottom: 0;
+                margin-block: auto;
+
+                position: absolute;
+                font-size: 20px;
+                border: none;
+                border-radius: 6px;
+                background-color: #fff;
+            }
+
+            .pbx {
+                width: 100%;
+                height: 50px;
+                background-color: rgb(0, 0, 0);
+                border-radius: 11px;
+                color: #fff;
+                border: none;
+                padding-left: 15px;
+                font-size: 15px;
+            }
+
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 40px;
+                height: 20px;
+                background-color: #eee;
+                border-radius: 20px;
+            }
+
+            .switch::after {
+                content: '';
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background-color: white;
+                top: 1px;
+                box-shadow: 0 0 2px #aaa;
+                left: 1px;
+                transition: all 0.3s ease;
+            }
+
+            .checkbox:checked+.switch::after {
+                left: 21px;
+                content: '';
+            }
+
+            .checkbox:checked+.switch {
+                background-color: #60db53;
+            }
+
+            .checkbox:not(:checked)+.switch {
+                background-color: #aaaaaa;
+            }
+
+            .checkbox {
+                display: none;
+            }
+        </style>
+    </body>
+
+</html>
