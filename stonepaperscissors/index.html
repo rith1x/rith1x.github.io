@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="scorecard">
+                <h1>👤: <span id="uscore"></span></h1>
+                <h1>🤖: <span id="bscore"></span></h1>
+            </div>
+            <dic class="comment">
+                <h1 id="result"></h1>
+            </dic>
+            <div class="botoption">
+                <h1 id="bot"></h1>
+            </div>
+            <div class="options">
+                <button onclick="stonePaperScissors(0)">🪨</button>
+                <button onclick="stonePaperScissors(1)">📃</button>
+                <button onclick="stonePaperScissors(2)">✂️</button>
+
+            </div>
+
+
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                margin: 0 auto;
+            }
+
+            .scorecard {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-inline: 40px;
+                padding-block: 10px;
+
+
+                && h1 {
+                    text-align: left;
+                    width: 100%;
+                    font-size: 30px;
+                }
+            }
+
+            .botoption {
+                width: 100%;
+                aspect-ratio: 1 /1;
+                font-size: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .comment {
+                height: 60px;
+                width: 100%;
+                display: flex;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .options {
+                width: 100%;
+                height: 100px;
+                padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+
+                && button {
+                    width: 100%;
+                    height: 100%;
+                    font-size: 30px;
+                    background-color: transparent;
+                    border: solid 1px #bbbbbb;
+                    border-radius: 11px;
+                }
+            }
+        </style>
+        <script>
+            const objects = ["🪨", "📃", "✂️"];
+            let scoreU = 0;
+            let scoreB = 0;
+            function getRand() {
+                const randInd = Math.floor(Math.random() * objects.length);
+                return objects[randInd];
+            }
+            function scoreDisp() {
+                const uscore = document.getElementById("uscore");
+                const bscore = document.getElementById("bscore");
+                uscore.innerText = scoreU;
+                bscore.innerText = scoreB;
+            }
+            function stonePaperScissors(inde) {
+                const userIp = objects[inde];
+                const dispBot = document.getElementById("bot");
+                const botOption = getRand();
+                function trial() {
+                    const botOption = getRand();
+                };
+                if (userIp == botOption) {
+                    stonePaperScissors(inde);
+                }
+                const result = document.getElementById("result");
+                dispBot.innerText = botOption;
+                if (userIp == "🪨") {
+                    if (botOption == "📃") {
+                        result.innerText = "Bot Wins";
+                        scoreB += 1;
+                        scoreDisp();
+
+                    } else if (botOption == "✂️") {
+                        result.innerText = "User Wins";
+                        scoreU += 1;
+                        scoreDisp();
+
+                    } else {
+                        trial();
+                    }
+                } else if (userIp == "📃") {
+                    if (botOption == "✂️") {
+                        result.innerText = "Bot Wins";
+                        scoreB += 1;
+                        scoreDisp();
+                    } else if (botOption == "🪨") {
+                        result.innerText = "User Wins";
+                        scoreU += 1;
+                        scoreDisp();
+
+                    } else {
+                        trial();
+                    }
+                } else {
+                    if (botOption == "🪨") {
+                        result.innerText = "Bot Wins";
+                        scoreB += 1;
+                        scoreDisp();
+
+                    } else if (botOption == "📃") {
+                        result.innerText = "User Wins";
+                        scoreU += 1;
+                        scoreDisp();
+
+                    } else {
+                        trial();
+                    }
+                }
+            }
+        </script>
+    </body>
+
+</html>
