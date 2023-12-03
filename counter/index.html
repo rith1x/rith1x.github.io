@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Counter</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="setting">
+                <table>
+                    <tr>
+                        <td>Step Value: </td>
+                        <td> <input type="number" id="step" value="1"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Refresh rate (in ms):
+                        </td>
+                        <td>
+                            <input type="number" id="refresh" value="500">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Start Value:
+                        </td>
+                        <td>
+                            <input type="number" id="start" value="0">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            End Value:
+                        </td>
+                        <td>
+                            <input type="number" id="end" value="100">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button onclick="startTimer()">Run!!!</button>
+                        </td>
+                    </tr>
+                </table>
+
+
+
+
+            </div>
+
+            <h1 id="counter">
+
+            </h1>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .container {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-family: monospace;
+                text-align: end;
+                font-size: 8em;
+                width: 100%;
+                aspect-ratio: 1/1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 20px;
+                margin: 0 auto;
+            }
+
+            .setting {
+                font-family: sans-serif;
+                font-size: 0.9em;
+                padding: 20px;
+
+                && table {
+                    width: 100%;
+                }
+
+                && input {
+                    border: solid 1px #dcdcdc;
+                    padding: 3px;
+                    border-radius: 3px;
+                    width: 100%;
+                }
+
+                && td {
+                    padding-block: 2px;
+                }
+
+                && button {
+                    width: 100%;
+                    padding: 8px 0;
+                    border-radius: 3px;
+                    border: none;
+                    color: #fff;
+                    background-color: #4392d6;
+                }
+            }
+        </style>
+        <script>
+            function startTimer() {
+
+                const start = parseInt(document.getElementById("start").value);
+                const end = parseInt(document.getElementById("end").value);
+                const step = parseInt(document.getElementById("step").value);
+                const refresh = parseInt(document.getElementById("refresh").value);
+                const head = document.getElementById("counter");
+                let num = start;
+                function reloadEr() {
+                    num += step;
+                    head.innerText = num;
+                    if (num >= end) {
+                        clearInterval(timerInterval);
+                    }
+                }
+                const timerInterval = setInterval(reloadEr, refresh);
+
+
+            }
+            startTimer();
+        </script>
+    </body>
+
+</html>
