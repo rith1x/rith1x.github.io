@@ -292,6 +292,8 @@ a:focus {
 
 .slider_section .img_container .img-box img {
   width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .slider_section .carousel-control-prev,
