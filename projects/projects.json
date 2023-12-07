@@ -1,0 +1,134 @@
+[
+    {
+        "name": "Analog Clock using HTML CSS JS",
+        "link": "https://rith1x.github.io/clock",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/clock",
+        "description": "A simple analog clock  ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Number Counter",
+        "link": "https://rith1x.github.io/counter",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/counter",
+        "description": "A basic number counter ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Digital Clock",
+        "link": "https://rith1x.github.io/digi",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/digi",
+        "description": "A digital clock with a modern design",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Simple working ECommerce",
+        "link": "https://rith1x.github.io/ecommerce",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/ecommerce",
+        "description": "A minimalistic working eCommerce site  ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Simple Static IDE",
+        "link": "https://rith1x.github.io/ide",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/ide",
+        "description": "A static Integrated Development Environment (IDE) with basic features.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Password Generator",
+        "link": "https://rith1x.github.io/password",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/password",
+        "description": "A tool for generating secure passwords with customizable options.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Math.random() Quiz",
+        "link": "https://rith1x.github.io/random",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/random",
+        "description": "A quiz game using Math.random() for random questions.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Stone Paper Scissor Game 😁",
+        "link": "https://rith1x.github.io/stonepaperscissors",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/stonepaperscissors",
+        "description": "A fun game of Rock, Paper, Scissors with a cheerful emoji theme.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Temperature Converter",
+        "link": "https://rith1x.github.io/temperature",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/temperature",
+        "description": "A tool for converting temperatures between Celsius and Fahrenheit.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Mini Trivia - API based",
+        "link": "https://rith1x.github.io/trivia",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/trivia",
+        "description": "A mini trivia game fetching questions from an external API.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Todo",
+        "link": "https://rith1x.github.io/todo",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/todo",
+        "description": "A simple to-do list application for managing tasks.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Weather - API based",
+        "link": "https://rith1x.github.io/weather",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/weather",
+        "description": "A weather application providing information using an external API.",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    }
+]
