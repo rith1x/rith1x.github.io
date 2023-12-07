@@ -166,7 +166,7 @@ function constructMessage() {
   message += `Total Price:` + ' Rs.' + `${grandTotal}\n`;
   message += '-----\n';
   message += 'Thank You\n';
-  message += 'Thulir Home Care Products' + '```';
+  message += 'Eastside Fashion' + '```';
   return encodeURIComponent(message);
 }
 function sendWhatsAppMessage() {
