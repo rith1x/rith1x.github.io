@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Counter</title>
+
+        <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="num" id="num">
+                <h1 id="number">0</h1>
+            </div>
+            <div class="controls">
+                <button onclick="sub()" class="sub"> <i class="iddx fa-solid fa-circle-minus"></i><br>DECREASE</button>
+
+                <button onclick="add()" class="add"> <i class="iddx fa-solid fa-circle-plus"></i><br>INCREASE</button>
+                <button onclick="reset()" id="reset" class="reset"><i
+                        class="iddx fa-solid fa-arrow-rotate-right"></i>RESET</button>
+                <input type="number" value="1" id="increment">
+
+            </div>
+        </div>
+        <script>
+            let num = 0;
+
+            const number = document.getElementById('number');
+            function increment() {
+                const rand = parseInt(document.getElementById('increment').value);
+                return rand;
+            }
+            function add() {
+                num += increment();
+                number.innerText = num;
+            }
+            function sub() {
+                num -= increment();
+                number.innerText = num;
+            }
+            function reset() {
+                num = 0;
+                number.innerText = num;
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Gantari', sans-serif;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .container {
+                margin: 0 auto;
+                height: 100dvh;
+                max-width: 450px;
+                background-color: #f9f9f9;
+                padding: 15px;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .iddx {
+                color: #0047ab;
+                padding: 5px;
+                font-size: 21px;
+            }
+
+            .num {
+                width: 100%;
+                aspect-ratio: 1/1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 300%;
+                border-radius: 6px;
+                background-color: #eeeeee;
+
+            }
+
+            .controls {
+                height: 150px;
+                gap: 15px;
+                display: grid;
+
+                width: 100%;
+
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+
+
+                && button {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 6px;
+                    border: none;
+                    background-color: #eeeeee;
+                    font-size: 16px;
+                    padding: 10px;
+
+                }
+
+                && input {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 6px;
+                    border: none;
+                    text-align: center;
+                    background-color: #eeeeee;
+                    font-size: 16px;
+                    padding: 10px;
+                }
+
+            }
+
+            #reset {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </body>
+
+</html>
