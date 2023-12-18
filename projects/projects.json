@@ -22,6 +22,17 @@
         ]
     },
     {
+        "name": "Number Clicker",
+        "link": "https://rith1x.github.io/clicker",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/clicker",
+        "description": "A basic number Clicker ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
         "name": "Digital Clock",
         "link": "https://rith1x.github.io/digi",
         "github": "https://github.com/rith1x/rith1x.github.io/tree/main/digi",
