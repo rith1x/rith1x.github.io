@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Converter</title>
+
+        <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="field">
+                <button onclick="toggleD('length')">Show Length</button>
+                <div class="conv-length convy" id="length" style="height: 0px;">
+                    <div class="con">
+                        <div class="option">
+                            <div class="op1">
+                                <select name="" id="from-len" oninput="convlength()">
+                                    <option value="mm">millimeter (km)</option>
+                                    <option value="cm">centimeter (cm)</option>
+                                    <option value="dm">decimeter (dm)</option>
+                                    <option value="m">meter (m)</option>
+                                    <option value="dam">decameter (dam)</option>
+                                    <option value="hm">hectometer (hm)</option>
+                                    <option value="km">kilometer (km)</option>
+                                </select>
+                            </div>
+                            <div class="inter" onclick="interVal()">
+                                <i class="fa-solid fa-right-left"></i>
+                            </div>
+                            <div class="op2">
+                                <select name="" id="to-len" oninput="convlength()">
+                                    <option value="mm">millimeter (km)</option>
+                                    <option value="cm">centimeter (cm)</option>
+                                    <option value="dm">decimeter (dm)</option>
+                                    <option value="m">meter (m)</option>
+                                    <option value="dam">decameter (dam)</option>
+                                    <option value="hm">hectometer (hm)</option>
+                                    <option value="km">kilometer (km)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="conv-field">
+                            <h1 id="out-len">98.45</h1>
+                            <h2 id="unit-len">Cm</h2>
+                        </div>
+                        <div class="conv-field">
+                            <input type="number" placeholder="Enter value to convert" id="in-len"
+                                oninput="convlength()">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <button onclick="toggleD('power')">Show Power</button>
+                <div class="conv-length convy" id="power" style="height: 0px;">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, debitis. Error ab temporibus,
+                    corrupti, expedita magnam ex animi assumenda autem architecto, sunt hic pariatur veritatis sequi
+                    amet odit placeat reprehenderit ut. Sapiente tempora totam eum libero dolorem dolorum id tempore ab
+                    corrupti, modi magni est aliquam! Dolor tenetur at similique?
+                </div>
+            </div>
+
+        </div>
+        <script>
+            function convlength() {
+                const input = document.getElementById('in-len').value;
+                const iunit = document.getElementById('from-len').value;
+                const ounit = document.getElementById('to-len').value;
+                const output = document.getElementById('out-len');
+                const opunit = document.getElementById('unit-len');
+
+                let result;
+
+                if (iunit === 'mm' && ounit === 'cm') {
+                    result = input / 10;
+                } else if (iunit === 'mm' && ounit === 'dm') {
+                    result = input / 100;
+                } else if (iunit === 'mm' && ounit === 'm') {
+                    result = input / 1000;
+                } else if (iunit === 'mm' && ounit === 'dam') {
+                    result = input / 10000;
+                } else if (iunit === 'mm' && ounit === 'hm') {
+                    result = input / 100000;
+                } else if (iunit === 'mm' && ounit === 'km') {
+                    result = input / 1000000;
+                } else if (iunit === 'cm' && ounit === 'mm') {
+                    result = input * 10;
+                } else if (iunit === 'cm' && ounit === 'dm') {
+                    result = input / 10;
+                } else if (iunit === 'cm' && ounit === 'm') {
+                    result = input / 100;
+                } else if (iunit === 'cm' && ounit === 'dam') {
+                    result = input / 1000;
+                } else if (iunit === 'cm' && ounit === 'hm') {
+                    result = input / 10000;
+                } else if (iunit === 'cm' && ounit === 'km') {
+                    result = input / 100000;
+                } else if (iunit === 'dm' && ounit === 'mm') {
+                    result = input * 100;
+                } else if (iunit === 'dm' && ounit === 'cm') {
+                    result = input * 10;
+                } else if (iunit === 'dm' && ounit === 'm') {
+                    result = input / 10;
+                } else if (iunit === 'dm' && ounit === 'dam') {
+                    result = input / 100;
+                } else if (iunit === 'dm' && ounit === 'hm') {
+                    result = input / 1000;
+                } else if (iunit === 'dm' && ounit === 'km') {
+                    result = input / 10000;
+                } else if (iunit === 'm' && ounit === 'mm') {
+                    result = input * 1000;
+                } else if (iunit === 'm' && ounit === 'cm') {
+                    result = input * 100;
+                } else if (iunit === 'm' && ounit === 'dm') {
+                    result = input * 10;
+                } else if (iunit === 'm' && ounit === 'dam') {
+                    result = input / 10;
+                } else if (iunit === 'm' && ounit === 'hm') {
+                    result = input / 100;
+                } else if (iunit === 'm' && ounit === 'km') {
+                    result = input / 1000;
+                } else if (iunit === 'dam' && ounit === 'mm') {
+                    result = input * 10000;
+                } else if (iunit === 'dam' && ounit === 'cm') {
+                    result = input * 1000;
+                } else if (iunit === 'dam' && ounit === 'dm') {
+                    result = input * 100;
+                } else if (iunit === 'dam' && ounit === 'm') {
+                    result = input * 10;
+                } else if (iunit === 'dam' && ounit === 'hm') {
+                    result = input / 10;
+                } else if (iunit === 'dam' && ounit === 'km') {
+                    result = input / 100;
+                } else if (iunit === 'hm' && ounit === 'mm') {
+                    result = input * 100000;
+                } else if (iunit === 'hm' && ounit === 'cm') {
+                    result = input * 10000;
+                } else if (iunit === 'hm' && ounit === 'dm') {
+                    result = input * 1000;
+                } else if (iunit === 'hm' && ounit === 'm') {
+                    result = input * 100;
+                } else if (iunit === 'hm' && ounit === 'dam') {
+                    result = input * 10;
+                } else if (iunit === 'hm' && ounit === 'km') {
+                    result = input / 10;
+                } else if (iunit === 'km' && ounit === 'mm') {
+                    result = input * 1000000;
+                } else if (iunit === 'km' && ounit === 'cm') {
+                    result = input * 100000;
+                } else if (iunit === 'km' && ounit === 'dm') {
+                    result = input * 10000;
+                } else if (iunit === 'km' && ounit === 'm') {
+                    result = input * 1000;
+                } else if (iunit === 'km' && ounit === 'dam') {
+                    result = input * 100;
+                } else if (iunit === 'km' && ounit === 'hm') {
+                    result = input * 10;
+                } else {
+                    result = input;
+                }
+                output.innerText = result;
+                opunit.innerText = ounit;
+
+
+            }
+            function toggleD(cate) {
+                const divconvy = document.getElementById(cate);
+
+                if (divconvy.style.height === "0px") {
+                    divconvy.style.height = "250px";
+                    divconvy.style.opacity = "1";
+                    divconvy.style.marginTop = "3px";
+                } else {
+                    divconvy.style.height = "0px";
+                    divconvy.style.opacity = "0";
+                    divconvy.style.marginTop = "0px";
+                }
+            }
+
+
+            function interVal() {
+                const from = document.getElementById('from-len');
+                const to = document.getElementById('to-len');
+                if (from.value == to.value) {
+                    from.value = "m";
+                    to.value = "km";
+                } else {
+                    let temp = from.value;
+                    from.value = to.value;
+                    to.value = temp;
+                }
+                convlength();
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
+
+            .con {
+                width: 100%;
+                height: 250px;
+                background-color: #212121;
+                border-radius: 21px;
+
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                color: #fff;
+                justify-content: space-between;
+            }
+
+            body {
+                margin: 0;
+                font-family: 'Gantari';
+                padding: 0;
+                background-color: #000000;
+
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Gantari';
+
+            }
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                margin: 0 auto;
+                padding: 10px;
+                border: solid 1px #fff;
+            }
+
+            .field {
+                width: 100%;
+
+            }
+
+            .field button {
+                width: 100%;
+                height: 60px;
+                background-color: transparent;
+                /* border: solid 1px #f00; */
+                border: none;
+                color: #f0f;
+                border-radius: 11px 11px 0 0;
+            }
+
+            .field .convy {
+                height: 0px;
+                overflow: hidden;
+                transition: all 0.3s ease-in-out;
+                border-radius: 0 0 11px 11px;
+            }
+
+            .option {
+                width: 100%;
+                background-color: #303030;
+                display: flex;
+                padding: 10px;
+                height: 60px;
+                border-radius: 21px;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .option div {
+                height: 100%;
+
+                && select {
+                    height: 100%;
+                    padding-inline: 5px;
+                    border-radius: 11px;
+                    font-weight: 500;
+                    width: 100%;
+                    border: none;
+                    background-color: #424242;
+                    color: #ffffff;
+                    font-size: 16px;
+                }
+            }
+
+            .inter {
+                height: 100%;
+                aspect-ratio: 1/1;
+                display: flex;
+                border-radius: 11px;
+                color: #ffffff;
+                background-color: #424242;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .conv-field {
+                /* border: solid 1px #f00; */
+                display: flex;
+                align-items: end;
+                justify-content: center;
+                height: auto;
+                width: 100%;
+
+                && input {
+                    width: 96%;
+                    margin: 0 auto;
+                    height: 60px;
+                    border-radius: 21px 21px 0 0;
+                    border: none;
+                    background-color: #303030;
+                    color: #ffffff;
+                    font-size: 20px;
+                    padding: 20px;
+
+                }
+
+                && input::placeholder {
+                    color: #424242;
+                }
+
+                && input:focus {
+                    outline: none;
+                    border: none;
+                    box-shadow: 0 0 30px -10px #303030;
+                }
+            }
+        </style>
+    </body>
+
+</html>
