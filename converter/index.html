@@ -27,7 +27,7 @@
                                     <option value="km">kilometer </option>
                                 </select>
                             </div>
-                            <div class="inter" onclick="interVal()">
+                            <div class="inter" onclick="interVal('len')">
                                 <i class="fa-solid fa-right-left"></i>
                             </div>
                             <div class="op2">
@@ -54,13 +54,56 @@
                     </div>
                 </div>
             </div>
+
+            <div class="field">
+                <button onclick="toggleD('weight')" id="btn-weight">Weight</button>
+                <div class="conv-weight convy" id="weight" style="height: 0px;">
+                    <div class="con">
+                        <div class="option">
+                            <div class="op1">
+                                <select name="" id="from-wei" oninput="convweight()">
+                                    <option value="mg">milligrams </option>
+                                    <option value="cg">centigrams </option>
+                                    <option value="dg">decigrams</option>
+                                    <option value="g">grams</option>
+                                    <option value="dag">decagrams</option>
+                                    <option value="hg">hectograms</option>
+                                    <option value="kg">kilograms</option>
+                                </select>
+                            </div>
+                            <div class="inter" onclick="interVal('wei')">
+                                <i class="fa-solid fa-right-left"></i>
+                            </div>
+                            <div class="op2">
+                                <select name="" id="to-wei" oninput="convweight()">
+                                    <option value="mg">milligrams </option>
+                                    <option value="cg">centigrams </option>
+                                    <option value="dg">decigrams</option>
+                                    <option value="g">grams</option>
+                                    <option value="dag">decagrams</option>
+                                    <option value="hg">hectograms</option>
+                                    <option value="kg">kilograms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="conv-field">
+                            <h1 id="out-wei"></h1>
+                            <h2 id="unit-wei"></h2>
+                        </div>
+                        <div class="conv-field">
+                            <input type="number" placeholder="Enter value to convert" id="in-wei"
+                                oninput="convweight()">
+
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+
+
             <div class="field">
                 <button onclick="toggleD('power')" id="btn-power">Power</button>
                 <div class="conv-length convy" id="power" style="height: 0px;">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, debitis. Error ab temporibus,
-                    corrupti, expedita magnam ex animi assumenda autem architecto, sunt hic pariatur veritatis sequi
-                    amet odit placeat reprehenderit ut. Sapiente tempora totam eum libero dolorem dolorum id tempore ab
-                    corrupti, modi magni est aliquam! Dolor tenetur at similique?
                 </div>
             </div>
 
@@ -167,6 +210,112 @@
 
 
             }
+
+
+            
+function convweight() {
+    const input = document.getElementById('in-wei').value;
+    const iunit = document.getElementById('from-wei').value;
+    const ounit = document.getElementById('to-wei').value;
+    const output = document.getElementById('out-wei');
+    const opunit = document.getElementById('unit-wei');
+
+    let result;
+
+
+
+if (iunit === 'mg' && ounit === 'cg') {
+    result = input / 10;
+} else if (iunit === 'mg' && ounit === 'dg') {
+    result = input / 100;
+} else if (iunit === 'mg' && ounit === 'g') {
+    result = input / 1000;
+} else if (iunit === 'mg' && ounit === 'dag') {
+    result = input / 10000;
+} else if (iunit === 'mg' && ounit === 'hg') {
+    result = input / 100000;
+} else if (iunit === 'mg' && ounit === 'kg') {
+    result = input / 1000000;
+} else if (iunit === 'cg' && ounit === 'mg') {
+    result = input * 10;
+} else if (iunit === 'cg' && ounit === 'dg') {
+    result = input / 10;
+} else if (iunit === 'cg' && ounit === 'g') {
+    result = input / 100;
+} else if (iunit === 'cg' && ounit === 'dag') {
+    result = input / 1000;
+} else if (iunit === 'cg' && ounit === 'hg') {
+    result = input / 10000;
+} else if (iunit === 'cg' && ounit === 'kg') {
+    result = input / 100000;
+} else if (iunit === 'dg' && ounit === 'mg') {
+    result = input * 100;
+} else if (iunit === 'dg' && ounit === 'cg') {
+    result = input * 10;
+} else if (iunit === 'dg' && ounit === 'g') {
+    result = input / 10;
+} else if (iunit === 'dg' && ounit === 'dag') {
+    result = input / 100;
+} else if (iunit === 'dg' && ounit === 'hg') {
+    result = input / 1000;
+} else if (iunit === 'dg' && ounit === 'kg') {
+    result = input / 10000;
+} else if (iunit === 'g' && ounit === 'mg') {
+    result = input * 1000;
+} else if (iunit === 'g' && ounit === 'cg') {
+    result = input * 100;
+} else if (iunit === 'g' && ounit === 'dg') {
+    result = input * 10;
+} else if (iunit === 'g' && ounit === 'dag') {
+    result = input / 10;
+} else if (iunit === 'g' && ounit === 'hg') {
+    result = input / 100;
+} else if (iunit === 'g' && ounit === 'kg') {
+    result = input / 1000;
+} else if (iunit === 'dag' && ounit === 'mg') {
+    result = input * 10000;
+} else if (iunit === 'dag' && ounit === 'cg') {
+    result = input * 1000;
+} else if (iunit === 'dag' && ounit === 'dg') {
+    result = input * 100;
+} else if (iunit === 'dag' && ounit === 'g') {
+    result = input * 10;
+} else if (iunit === 'dag' && ounit === 'hg') {
+    result = input / 10;
+} else if (iunit === 'dag' && ounit === 'kg') {
+    result = input / 100;
+} else if (iunit === 'hg' && ounit === 'mg') {
+    result = input * 100000;
+} else if (iunit === 'hg' && ounit === 'cg') {
+    result = input * 10000;
+} else if (iunit === 'hg' && ounit === 'dg') {
+    result = input * 1000;
+} else if (iunit === 'hg' && ounit === 'g') {
+    result = input * 100;
+} else if (iunit === 'hg' && ounit === 'dag') {
+    result = input * 10;
+} else if (iunit === 'hg' && ounit === 'kg') {
+    result = input / 10;
+} else if (iunit === 'kg' && ounit === 'mg') {
+    result = input * 1000000;
+} else if (iunit === 'kg' && ounit === 'cg') {
+    result = input * 100000;
+} else if (iunit === 'kg' && ounit === 'dg') {
+    result = input * 10000;
+} else if (iunit === 'kg' && ounit === 'g') {
+    result = input * 1000;
+} else if (iunit === 'kg' && ounit === 'dag') {
+    result = input * 100;
+} else if (iunit === 'kg' && ounit === 'hg') {
+    result = input * 10;
+} else {
+    result = input;
+}
+output.innerText = result;
+                opunit.innerText = ounit;
+
+
+            }
             function toggleD(cate) {
                 const buttonId = `btn-${cate}`;
                 const divconvy = document.getElementById(cate);
@@ -186,17 +335,18 @@
             }
 
 
-            function interVal() {
-                const from = document.getElementById('from-len');
-                const to = document.getElementById('to-len');
-                if (from.value == to.value) {
-                    from.value = "m";
-                    to.value = "km";
-                } else {
+            function interVal(cate) {
+                const froms = `from-${cate}`;
+                const tos = `to-${cate}`;
+
+
+                const from = document.getElementById(froms);
+                const to = document.getElementById(tos);
+                
                     let temp = from.value;
                     from.value = to.value;
                     to.value = temp;
-                }
+                
                 convlength();
             }
         </script>
