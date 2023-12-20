@@ -12,19 +12,19 @@
     <body>
         <div class="container">
             <div class="field">
-                <button onclick="toggleD('length')">Show Length</button>
+                <button onclick="toggleD('length')" id="btn-length">Length</button>
                 <div class="conv-length convy" id="length" style="height: 0px;">
                     <div class="con">
                         <div class="option">
                             <div class="op1">
                                 <select name="" id="from-len" oninput="convlength()">
-                                    <option value="mm">millimeter (km)</option>
-                                    <option value="cm">centimeter (cm)</option>
-                                    <option value="dm">decimeter (dm)</option>
-                                    <option value="m">meter (m)</option>
-                                    <option value="dam">decameter (dam)</option>
-                                    <option value="hm">hectometer (hm)</option>
-                                    <option value="km">kilometer (km)</option>
+                                    <option value="mm">millimeter</option>
+                                    <option value="cm">centimeter</option>
+                                    <option value="dm">decimeter </option>
+                                    <option value="m">meter </option>
+                                    <option value="dam">decameter </option>
+                                    <option value="hm">hectometer </option>
+                                    <option value="km">kilometer </option>
                                 </select>
                             </div>
                             <div class="inter" onclick="interVal()">
@@ -32,19 +32,19 @@
                             </div>
                             <div class="op2">
                                 <select name="" id="to-len" oninput="convlength()">
-                                    <option value="mm">millimeter (km)</option>
-                                    <option value="cm">centimeter (cm)</option>
-                                    <option value="dm">decimeter (dm)</option>
-                                    <option value="m">meter (m)</option>
-                                    <option value="dam">decameter (dam)</option>
-                                    <option value="hm">hectometer (hm)</option>
-                                    <option value="km">kilometer (km)</option>
+                                    <option value="mm">millimeter </option>
+                                    <option value="cm">centimeter </option>
+                                    <option value="dm">decimeter</option>
+                                    <option value="m">meter</option>
+                                    <option value="dam">decameter</option>
+                                    <option value="hm">hectometer</option>
+                                    <option value="km">kilometer</option>
                                 </select>
                             </div>
                         </div>
                         <div class="conv-field">
-                            <h1 id="out-len">98.45</h1>
-                            <h2 id="unit-len">Cm</h2>
+                            <h1 id="out-len"></h1>
+                            <h2 id="unit-len"></h2>
                         </div>
                         <div class="conv-field">
                             <input type="number" placeholder="Enter value to convert" id="in-len"
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="field">
-                <button onclick="toggleD('power')">Show Power</button>
+                <button onclick="toggleD('power')" id="btn-power">Power</button>
                 <div class="conv-length convy" id="power" style="height: 0px;">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum, debitis. Error ab temporibus,
                     corrupti, expedita magnam ex animi assumenda autem architecto, sunt hic pariatur veritatis sequi
@@ -168,16 +168,20 @@
 
             }
             function toggleD(cate) {
+                const buttonId = `btn-${cate}`;
                 const divconvy = document.getElementById(cate);
-
+                const theBtn = document.getElementById(buttonId);
                 if (divconvy.style.height === "0px") {
                     divconvy.style.height = "250px";
                     divconvy.style.opacity = "1";
                     divconvy.style.marginTop = "3px";
+                    theBtn.classList.add("selectedbtn");
                 } else {
                     divconvy.style.height = "0px";
                     divconvy.style.opacity = "0";
                     divconvy.style.marginTop = "0px";
+                    theBtn.classList.remove("selectedbtn");
+
                 }
             }
 
@@ -203,8 +207,8 @@
                 width: 100%;
                 height: 250px;
                 background-color: #212121;
-                border-radius: 21px;
-
+                border-radius: 0 0 31px 31px;
+                padding: 10px;
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
@@ -228,28 +232,38 @@
                 font-family: 'Gantari';
 
             }
-
+            
             .container {
                 max-width: 450px;
                 height: 100dvh;
                 margin: 0 auto;
                 padding: 10px;
-                border: solid 1px #fff;
             }
 
             .field {
                 width: 100%;
+                background-color: transparent;
+                margin-top: 2px ;
+                border-radius: 31px;
 
             }
 
             .field button {
                 width: 100%;
                 height: 60px;
-                background-color: transparent;
-                /* border: solid 1px #f00; */
+                background-color: #212121;
+                color: #fff;
+                font-size: 21px;
+                text-align: center;
+                padding: 15px;
                 border: none;
-                color: #f0f;
-                border-radius: 11px 11px 0 0;
+                transition: all 0.3s ease-in-out;
+                border-radius: 11px;
+            }
+            button.selectedbtn{
+                border-radius: 31px 31px 0 0;
+
+
             }
 
             .field .convy {
@@ -267,14 +281,15 @@
                 height: 60px;
                 border-radius: 21px;
                 align-items: center;
+                gap: 10px;
                 justify-content: space-between;
             }
 
             .option div {
                 height: 100%;
-
                 && select {
                     height: 100%;
+                    width: 100%;
                     padding-inline: 5px;
                     border-radius: 11px;
                     font-weight: 500;
@@ -284,10 +299,18 @@
                     color: #ffffff;
                     font-size: 16px;
                 }
+                && select:focus{
+                    outline: none;
+
+                }
             }
+            .option div :not(.inter){
+                width: 100%;
+            }
+          
 
             .inter {
-                height: 100%;
+                height: 40px;
                 aspect-ratio: 1/1;
                 display: flex;
                 border-radius: 11px;
@@ -306,10 +329,10 @@
                 width: 100%;
 
                 && input {
-                    width: 96%;
+                    width: 100%;
                     margin: 0 auto;
                     height: 60px;
-                    border-radius: 21px 21px 0 0;
+                    border-radius: 21px;
                     border: none;
                     background-color: #303030;
                     color: #ffffff;
@@ -328,6 +351,7 @@
                     box-shadow: 0 0 30px -10px #303030;
                 }
             }
+            
         </style>
     </body>
 
