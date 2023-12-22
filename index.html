@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiruthik Kumar</title>
+</head>
+<body>
+    <div class="floater">
+        <div class="diamond">
+
+        </div>
+    </div>
+    <div class="masker">
+        <h1>Hello!</h1>
+    </div>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@700&display=swap');
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            margin: 0;
+            background-color: #000;
+        }
+        .floater{
+            height: 100dvh;
+            width: 100dvw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .diamond{
+            width: 25dvh;
+            border-radius: 5dvw;
+            rotate: 45deg;
+            height: 25dvw;
+            animation: rotator 4s infinite forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(30deg, #009fff, #ec2f4b);
+        }
+        @keyframes rotator {
+            0%{
+                rotate: 0deg;
+                border-radius: 50%;
+                width: 2dvw;
+                height: 2dvh;
+                box-shadow:0 0 20dvw #000, 0 0 0px 5px #000, 0 0 0 10px #009fff ;
+
+            }
+            50%{
+                rotate: 359deg;
+                border-radius: 5dvw;
+                height: 25dvh;
+                width: 25dvw;
+              
+                box-shadow:0 0 20dvw #009fff, 0 0 0px 5px #000, 0 0 0 10px #009fff ;
+            }
+            100%{
+                rotate: 0deg;
+                border-radius: 50%;
+                width: 5dvw;
+                height: 5dvh;
+            }
+        }
+       
+        .masker{
+            width: 100dvw;
+            height: 100dvh;
+            background-color: #00000030;
+            backdrop-filter: blur(7px);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .masker h1{
+            color: transparent;
+            background: linear-gradient(30deg,#fff,#0f0);
+            font-size: 6dvw;
+            background-clip: text;
+            text-align: center;
+            font-weight: 1000;
+            font-family: Gantari;
+            animation: show-text forwards 4s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes show-text {
+            0%{
+                opacity: 0;
+            background: #fff;
+            background-clip: text;
+
+            }
+            50%{
+                opacity: 1;
+
+            }
+            100%{
+                opacity: 0;
+            background: #0f0;;
+            background-clip: text;
+
+            }
+        }
+    </style>
+</body>
+</html>
