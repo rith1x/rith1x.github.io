@@ -9,6 +9,7 @@ body {
     padding: 0;
     margin: 0;
     background: black;
+    font-size: 14px;
 }
 
 .create-list {
@@ -43,8 +44,20 @@ body {
     position: relative;
     background-color: #fff;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: hidden scroll;
 }
+
+::-webkit-scrollbar {
+    background-color: #fff;
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #b0b0b0;
+    border-radius: 3px;
+}
+
+
 
 .grocery-list {
     padding: 15px;
@@ -56,9 +69,95 @@ body {
     background-color: #f7f7f7;
     width: 100%;
     border: solid 1px #cdcdcd;
-    height: 200px;
     margin-block: 17px;
+    padding: 15px;
     border-radius: 11px;
+}
+
+.list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+
+    border-bottom: solid 1px #dadada;
+}
+
+.list-head button {
+    padding: 0.5em;
+    background-color: transparent;
+    border: none;
+    color: rgb(233, 90, 90);
+    font-size: 1.2em;
+}
+
+.list-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-info p {
+    color: #a9a9a9;
+    font-size: 0.8em;
+}
+
+.list-items {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.item {
+    font-size: 1.2em;
+    border-bottom: solid 1px #a9a9a930;
+    padding-block: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-items div:last-child {
+    border-bottom: none;
+    padding: 0;
+
+}
+
+.item input {
+    background-color: transparent;
+    border: none;
+    font-size: 0.9em;
+    width: 100%;
+    padding-block: 7px;
+}
+
+.item button {
+    font-size: 1em;
+    padding: 3px;
+    border: none;
+    background-color: transparent;
+}
+
+.item:last-child button {
+    font-size: 1em;
+    padding-block: 7px;
+    aspect-ratio: 2/1;
+    background-color: transparent;
+    border: none;
+}
+
+.item input[type=text]:focus {
+    border: none;
+    outline: none;
+}
+
+.done {
+    color: #b0b0b0;
+    text-decoration: line-through;
+}
+
+.done svg {
+    color: #b0b0b0;
 }
 
 #add-icon {

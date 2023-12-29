@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiruthik Kumar</title>
@@ -12,105 +13,121 @@
             diam.style.filter = "none";
             masker.style.backdropFilter = "none";
             setTimeout(() => {
-                
-            masker.style.background = "#000000";
-            welc.style.display = "None";
-            document.body.style.overflow = "auto";
 
-            },2000);
+                masker.style.background = "#000000";
+                welc.style.display = "None";
+                document.body.style.overflow = "auto";
+
+            }, 2000);
         }
     </script>
     <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <div id="welcome-screen" style="display: block;">
-    <div class="floater">
-        <div class="diamond" id="dia">
+        <div class="floater">
+            <div class="diamond" id="dia">
 
+            </div>
+        </div>
+        <div class="masker" id="masker">
+            <h1>Hello!</h1>
+            <button onclick="hider()"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
-    <div class="masker" id="masker">
-        <h1>Hello!</h1>
-        <button onclick="hider()"><i class="fa-solid fa-arrow-right"></i></button>
-    </div>
-</div> 
     <style>
-        
         @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@700&display=swap');
-        *{
+
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        body{
+
+        body {
             margin: 0;
             background-color: #000;
-            cursor: url(cur1054.cur),auto;
+            cursor: url(cur1054.cur), auto;
             overflow: hidden;
         }
-        .floater{
+
+        .floater {
             height: 100dvh;
             width: 100dvw;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .diamond{
-            width:3dvw;
+
+        .diamond {
+            width: 3dvw;
             aspect-ratio: 1/1;
             border-radius: 50%;
             filter: blur(30px);
-            animation: rotator 4s 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.275),inflate 3s infinite forwards ease-in-out, rotate 10s infinite forwards ease-in-out;
+            animation: rotator 4s 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.275), inflate 3s infinite forwards ease-in-out, rotate 10s infinite forwards ease-in-out;
             animation-delay: 1s;
-            
+
             background: linear-gradient(30deg, #009fff, #ec2f4b);
         }
-        @keyframes rotate {
-            0%{
-                rotate: 0deg;
-            } 50%{
-                rotate: 359deg;
 
-            } 100%{
+        @keyframes rotate {
+            0% {
                 rotate: 0deg;
             }
-            
+
+            50% {
+                rotate: 359deg;
+
+            }
+
+            100% {
+                rotate: 0deg;
+            }
+
         }
+
         @keyframes inflate {
-            0%{
+            0% {
                 scale: 1;
                 border-radius: 0%;
             }
-            50%{
+
+            50% {
                 scale: 1.1;
                 border-radius: 50%;
             }
-            100%{
+
+            100% {
                 scale: 1;
                 border-radius: 0%;
 
             }
         }
+
         @keyframes rotator {
-            0%{
+            0% {
                 opacity: 0;
                 /* transform: translateY(-50%); */
             }
-            10%{
+
+            10% {
                 border-radius: 50%;
                 width: 2dvw;
                 /* box-shadow:0 0 20dvw #000, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
                 aspect-ratio: 1/1;
 
             }
-            100%{
+
+            100% {
                 border-radius: 0%;
                 opacity: 1;
                 width: 50dvw;
                 aspect-ratio: 1/1;
-              
+
                 /* box-shadow:0 0 20dvw #009fff, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
             }
+
             /* 90%{
                 rotate: 0deg;
                 border-radius: 50%;
@@ -118,10 +135,10 @@
                 opacity: 1;
                 aspect-ratio: 1/1;
             } */
-            
+
         }
-       
-        .masker{
+
+        .masker {
             width: 100dvw;
             height: 100dvh;
             background-color: #00000030;
@@ -134,9 +151,10 @@
             gap: 15px;
             align-items: center;
             justify-content: center;
-            
+
         }
-        .masker h1{
+
+        .masker h1 {
             color: #000;
             /* background: linear-gradient(30deg,#fff,#0f0); */
             font-size: 6dvw;
@@ -146,27 +164,30 @@
             font-family: Gantari;
             /* animation: show-text forwards 4s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275); */
         }
-        .masker button{
-            
+
+        .masker button {
+
             aspect-ratio: 1/1;
             border-radius: 50%;
             border: none;
-            padding: 2vdw;
-            font-size: 1.3em;
-            transition:all .2s ease-in-out;
+            padding: 1.5em;
+            font-size: 1.5em;
+            transition: all .2s ease-in-out;
             background-color: #00000020;
             /* animation-play-state: paused; */
-            
+
 
 
         }
-        .masker button:hover{
+
+        .masker button:hover {
             scale: 1.2;
             rotate: -45deg;
-            cursor: url(cur1030.cur),auto;
+            cursor: url(cur1030.cur), auto;
 
             /* animation-play-state: running; */
         }
+
         /* @keyframes show-text {
             0%{
                 opacity: 0;
@@ -187,4 +208,5 @@
         } */
     </style>
 </body>
+
 </html>
