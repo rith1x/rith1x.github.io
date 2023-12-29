@@ -141,5 +141,16 @@
             "CSS",
             "JavaScript"
         ]
+    },
+    {
+        "name": "Converter",
+        "link": "https://rith1x.github.io/converter",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/converter",
+        "description": "A Simple unit Converter. [under construction]",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
     }
 ]
