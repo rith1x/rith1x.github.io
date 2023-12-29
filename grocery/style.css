@@ -1,0 +1,160 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: black;
+}
+
+.create-list {
+    width: 40%;
+    aspect-ratio: 2/0.8;
+    border-radius: 60px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    display: flex;
+    transition: all .4s ease-in-out;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+    background-color: #040;
+}
+
+
+
+.create-list h1 {
+    font-size: 18px;
+    width: 100%;
+    padding-inline: 15px;
+    color: #fff;
+}
+
+
+
+.container {
+    height: 100dvh;
+    max-width: 450px;
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.grocery-list {
+    padding: 15px;
+    height: 100dvh;
+    width: 100%;
+}
+
+.list-div {
+    background-color: #f7f7f7;
+    width: 100%;
+    border: solid 1px #cdcdcd;
+    height: 200px;
+    margin-block: 17px;
+    border-radius: 11px;
+}
+
+#add-icon {
+    color: #fff;
+    height: 100%;
+}
+
+@keyframes iphonepop {
+    from {
+        scale: 0.9;
+
+    }
+
+    to {
+        scale: 1;
+        box-shadow: 0 0 0 100dvh #00000050;
+
+    }
+
+}
+
+.newList {
+    width: 84%;
+    aspect-ratio: 2 /0.8;
+    border: solid 1px #00000050;
+    background-color: #fff;
+    position: absolute;
+    padding: 20px;
+    animation: iphonepop 0.15s forwards ease-in;
+    inset: 0;
+    animation-iteration-count: 1;
+    animation-play-state: paused;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 25px;
+    margin: auto;
+}
+
+.newList .field {
+    width: 100%;
+    display: flex;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 25px;
+
+    border: solid 1px #00000060;
+
+
+}
+
+.newList .field input[type=text] {
+    width: 100%;
+    border-radius: 25px;
+    border: none;
+    padding-left: 1em;
+    font-size: 1em;
+}
+
+.newList .field input[type=text]:focus {
+    border: none;
+    outline: none;
+}
+
+.newList .field:focus-within {
+    border: solid 1px #000000ee;
+}
+
+.newList .field input[type="button"] {
+    padding-inline: 15px;
+    border-radius: 25px;
+    background-color: transparent;
+    font-size: 1em;
+    color: rgb(0, 108, 0);
+    border: none;
+
+}
+
+.newList .title-pop {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.title-pop button {
+    color: rgb(210, 0, 0);
+    font-size: 1em;
+    background-color: transparent;
+    padding: 5px 10px;
+    border: none;
+}
+
+.title-pop button:focus {
+    outline: none;
+    border: none;
+    text-decoration: underline;
+}
