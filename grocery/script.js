@@ -67,5 +67,10 @@ function createList() {
         "id": listId,
         "created": creationtime
     }
+    appendData(listId, newList);
 
+}
+function appendData(id, data) {
+    groceryData.groceryLists[id] = data;
+    localStorage.setItem('groceryData', JSON.stringify(groceryData));
 }
