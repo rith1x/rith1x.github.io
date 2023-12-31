@@ -14,7 +14,7 @@ body {
 
 .create-list {
     width: 50%;
-    aspect-ratio: 2/0.8;
+    aspect-ratio: 2/1;
     border-radius: 60px;
     position: absolute;
     right: 15px;
