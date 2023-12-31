@@ -280,7 +280,7 @@ body {
     box-shadow: 0 0 0 100dvh #00000025;
 
     position: absolute;
-    animation: iphonepop 0.15s forwards ease-in;
+    animation: iphonepop 0.3s forwards ease-in;
     inset: 0;
     animation-iteration-count: 1;
     animation-play-state: paused;
