@@ -194,10 +194,14 @@ const baseUrl = "https:\/\/rith1x.github.io/grocery/";
 //rith1x.github.io/grocery?n=bansy&i=apple,mango,grape&s=101
 const queries = "?id=" + listId + "-" + listName + "-" + listItems + "-" + itemState;
 
-const fullUrl = baseUrl + queries;
+const fullUrlx = baseUrl + queries;
 console.log(listItems);
 console.log(itemState);
 console.log(fullUrl);
+
+
+const fullUrl = fullUrlx.replace(/ /g, '_');
+
 
 const qrBase = "https:\/\/chart.googleapis.com/chart?cht=qr&chs=512x512&chl=";
 const masterQr = qrBase + fullUrl;
