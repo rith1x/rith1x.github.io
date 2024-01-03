@@ -1,3 +1,4 @@
+
 let groceryData;
 
 
@@ -67,7 +68,7 @@ function geTime() {
     }
     let finalTime = genhrs + ":" + genmin + ampm;
 
-    const stringer = now.getDate() + "/" + now.getMonth() + "/" + now.getFullYear() + " at " + finalTime;
+    const stringer = now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear() + " at " + finalTime;
     return stringer;
 }
 function createList() {
@@ -189,5 +190,11 @@ function itemCheck(id,key){
 
 
     
+}
+
+function queryCheck(){
+    const theUrl = window.location.href;
+    console.log(theUrl);
+    document.write(theUrl);
 }
 
