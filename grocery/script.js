@@ -1,4 +1,3 @@
-
 let groceryData;
 
 
@@ -14,7 +13,7 @@ function showlistpop() {
     document.getElementById('listname').focus();
     thEl.style.display = "flex";
     thEl.style.animationPlayState = "running";
-    
+
 }
 function closelistpop() {
     const thEl = document.getElementById('createlistpop');
@@ -112,13 +111,13 @@ function viewLists(){
         listCreated.innerText = currentList.created;
         listInfo.appendChild(listTitle);
         listInfo.appendChild(listCreated);
-        
+
         var listAction = document.createElement("div");
         listAction.className = "listAction";
         var listShare = document.createElement("button");
         listShare.setAttribute("onclick",`shareList('${currentList.id}')`);
         listShare.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i>';
-        
+
         var listDelete = document.createElement("button");
         listDelete.setAttribute("onclick",`deleteList('${currentList.id}')`);
         listDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -126,13 +125,13 @@ function viewLists(){
         listAction.appendChild(listShare);
         listAction.appendChild(listDelete);
         listHead.appendChild(listAction);
- 
+
         var listItems = document.createElement("div");
         listItems.className = "list-items";
 
         for (var k = 0; k < Object.keys(listData.groceryLists[currentListId].items).length; k++) {
             var currentItemName = Object.keys(listData.groceryLists[currentListId].items)[k];
-        
+
             var itemDiv = document.createElement("div");
             itemDiv.className = "item";
             var itemDivTxt = document.createElement("p");
@@ -140,7 +139,7 @@ function viewLists(){
             if (groceryData.groceryLists[currentList.id].items[currentItemName] === 1){
                 itemDiv.classList.add("done");
             }
-        
+
             var itemDivBtn = document.createElement("button");
 
             itemDivBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
@@ -160,12 +159,12 @@ function viewLists(){
         var listItemSbtn = document.createElement("button");
         listItemSbtn.setAttribute("onclick",`itemAdder('${currentList.id}')`);
         listItemSbtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
-        
+
         listItemS.appendChild(listItemSinput);
         listItemS.appendChild(listItemSbtn);
         listItems.appendChild(listItemS);
-        
-        
+
+
         listDiv.appendChild(listHead);
         listDiv.appendChild(listItems);
 
@@ -195,9 +194,6 @@ const baseUrl = "https:\/\/rith1x.github.io/grocery/";
 const queries = "?id=" + listId + "-" + listName + "-" + listItems + "-" + itemState;
 
 const fullUrlx = baseUrl + queries;
-console.log(listItems);
-console.log(itemState);
-console.log(fullUrl);
 
 
 const fullUrl = fullUrlx.replace(/ /g, '_');
@@ -219,9 +215,9 @@ function exportpop(qrsrc,txtsrc) {
     imgel.src = qrsrc;
     const urlBox = document.getElementById('shareurl');
     urlBox.value = txtsrc
-    
-    
-    
+
+
+
 }
 
 function clipboardcopy(){
@@ -229,7 +225,7 @@ const pwElement = document.getElementById("shareurl");
                 pwElement.select();
   document.execCommand("copy");
 
-            
+
 }
 function closeexportlistpop() {
     const thEl = document.getElementById('exportlistpop');
@@ -256,20 +252,21 @@ function itemCheck(id,key){
     }
 
 
-    
+
 }
 
 function importList(){
    const currentURL = window.location.href;
-   const datastrip = currentUrl.split("?id=",)[1];
-   
+   if (currentURL){
+   const datastrip = currentURL.split("?id=",)[1];
+
    if(datastrip){
       const dataz = datastrip.replace(/_/g,' ');
       const datas = dataz.split("-"); 
-      
+
       const lName = datas[1];
-      
-      
+
+
       const popuptext = `Do you like to import the grocery list named "${lName}"?`;
       var result = window.confirm(popuptext);
       if (result){
@@ -277,34 +274,33 @@ function importList(){
       const lItem = datas[2];
       const lState = datas[3];
       const iTime = "imported on" + geTime();
-      
+
       const itemslist = lItem.split(",");
       const itemx= {};
       for (let m =0; m < (itemlist.length-1); m++){
-         
+
          var currItem = itemslist[m];
          var currQuan = lState[m];
          itemx[currItem] = parseInt(currQuan);
-         
+
          const addList = {
         "name": lName,
         "id": lId,
         "created": iTime,
         "items": itemx
-        
+
     }
     appendData(lId, addList);
     viewLists();
-         
-         
-      }
-      
-      
-         
-         
-         
-      }
-   }    
 
+
+      }
+
+
+
+
+
+      }
+   }    }
 }
 importList();
