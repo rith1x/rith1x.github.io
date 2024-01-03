@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     viewLists();
 });
-document.write(groceryData)
+
 
 function showlistpop() {
     const thEl = document.getElementById('createlistpop');
