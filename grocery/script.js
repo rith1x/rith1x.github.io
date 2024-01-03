@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     viewLists();
 });
+document.write(groceryData)
 
 function showlistpop() {
     const thEl = document.getElementById('createlistpop');
@@ -111,11 +112,20 @@ function viewLists(){
         listCreated.innerText = currentList.created;
         listInfo.appendChild(listTitle);
         listInfo.appendChild(listCreated);
+        
+        var listAction = document.createElement("div");
+        listAction.className = "listAction";
+        var listShare = document.createElement("button");
+        listShare.setAttribute("onclick",`shareList('${currentList.id}')`);
+        listShare.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i>';
+        
         var listDelete = document.createElement("button");
         listDelete.setAttribute("onclick",`deleteList('${currentList.id}')`);
         listDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
         listHead.appendChild(listInfo);
-        listHead.appendChild(listDelete);
+        listAction.appendChild(listShare);
+        listAction.appendChild(listDelete);
+        listHead.appendChild(listAction);
  
         var listItems = document.createElement("div");
         listItems.className = "list-items";
@@ -170,6 +180,59 @@ function deleteList(id){
         syncData();
     } 
 }
+
+function shareList(id){
+    const listId = id;
+    const listName = groceryData.groceryLists[id].name;
+const listItems = Object.keys(groceryData.groceryLists[id].items).join(',');
+const itemState = Object.values(groceryData.groceryLists[id].items).join(',');
+
+const baseUrl = "https:\/\/rith1x.github.io/grocery/";
+
+
+
+//rith1x.github.io/grocery?n=bansy&i=apple,mango,grape&s=101
+const queries = "?id=" + listId + "-" + listName + "-" + listItems + "-" + itemState;
+
+const fullUrl = baseUrl + queries;
+console.log(listItems);
+console.log(itemState);
+console.log(fullUrl);
+
+const qrBase = "https:\/\/chart.googleapis.com/chart?cht=qr&chs=512x512&chl=";
+const masterQr = qrBase + fullUrl;
+console.log(masterQr);
+exportpop(masterQr,fullUrl);
+
+}
+
+
+function exportpop(qrsrc,txtsrc) {
+    const tHEl = document.getElementById('exportlistpop');
+    tHEl.style.display = "flex";
+    tHEl.style.animationPlayState = "running";
+    const imgel =document.getElementById('qrimg');
+    imgel.src = qrsrc;
+    const urlBox = document.getElementById('shareurl');
+    urlBox.value = txtsrc
+    
+    
+    
+}
+
+function clipboardcopy(){
+const pwElement = document.getElementById("shareurl");
+                pwElement.select();
+  document.execCommand("copy");
+
+            
+}
+function closeexportlistpop() {
+    const thEl = document.getElementById('exportlistpop');
+    thEl.style.display = "None";
+
+}
+
 function itemAdder(id){
     const newitem = document.getElementById(`${id}-item`).value;
     groceryData.groceryLists[id].items[newitem] = 0;
@@ -191,26 +254,34 @@ function itemCheck(id,key){
 
     
 }
-(function qCk(){
+
+function qCk(){
  //   const theUrl = window.location.href;
 //    console.log(theUrl);
 //    document.write(theUrl);
  //   const queryParams = new URLSearchParams(new URL(theUrl).search);
  //   console.log(queryParams);
  
+ 
 // Get the current URL
 const currentURL = window.location.href;
 
 // Extract query parameters
 const queryParams = new URLSearchParams(new URL(currentURL).search);
+const id = queryParams.get("id");
 const name = queryParams.get("n");
 const items = queryParams.get("i").split(",");
-const quantities = queryParams.get("s").split(",");
+const state = queryParams.get("s").split(",");
 
-// Log the extracted values
-console.log("Name:", name);
-console.log("Items:", items);
-console.log("Quantities:", quantities);
-document.write(name,items,quantities)
-})();
+
+if (id){
+    var result = window.confirm("It looks like you're importing an list");
+    const listId = id;
+    const listName = name;
+    const listItems = items;
+    const itemState = state;
+    
+}
+
+}
 
