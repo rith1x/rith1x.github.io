@@ -277,7 +277,7 @@ function importList(){
 
       const itemslist = lItem.split(",");
       const itemx= {};
-      for (let m =0; m < (itemlist.length-1); m++){
+      for (let m =0; m < (itemslist.length-1); m++){
 
          var currItem = itemslist[m];
          var currQuan = lState[m];
