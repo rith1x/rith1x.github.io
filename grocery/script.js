@@ -192,9 +192,9 @@ function itemCheck(id,key){
     
 }
 
-function queryCheck(){
+(function queryCheck(){
     const theUrl = window.location.href;
     console.log(theUrl);
     document.write(theUrl);
-}
+})();
 
