@@ -264,7 +264,8 @@ function importList(){
    const datastrip = currentUrl.split("?id=",)[1];
    
    if(datastrip){
-      const datas = datastrip.split("-"); 
+      const dataz = datastrip.replace(/_/g,' ');
+      const datas = dataz.split("-"); 
       
       const lName = datas[1];
       
