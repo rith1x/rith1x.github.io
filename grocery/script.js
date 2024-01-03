@@ -255,33 +255,50 @@ function itemCheck(id,key){
     
 }
 
-function qCk(){
- //   const theUrl = window.location.href;
-//    console.log(theUrl);
-//    document.write(theUrl);
- //   const queryParams = new URLSearchParams(new URL(theUrl).search);
- //   console.log(queryParams);
- 
- 
-// Get the current URL
-const currentURL = window.location.href;
+function importList(){
+   const currentURL = window.location.href;
+   const datastrip = currentUrl.split("?id=",)[1];
+   
+   if(datastrip){
+      const datas = datastrip.split("-"); 
+      
+      const lName = datas[1];
+      
+      
+      const popuptext = `Do you like to import the grocery list named "${lName}"?`;
+      var result = window.confirm(popuptext);
+      if (result){
+      const lId = datas[0];
+      const lItem = datas[2];
+      const lState = datas[3];
+      const iTime = "imported on" + geTime();
+      
+      const itemslist = lItem.split(",");
+      const itemx= {};
+      for (let m =0; m < (itemlist.length-1); m++){
+         
+         var currItem = itemslist[m];
+         var currQuan = lState[m];
+         itemx[currItem] = parseInt(currQuan);
+         
+         const addList = {
+        "name": lName,
+        "id": lId,
+        "created": iTime,
+        "items": itemx
+        
+    }
+    appendData(lId, addList);
+    viewLists();
+         
+         
+      }
+      
+      
+         
+         
+         
+      }
+   }    
 
-// Extract query parameters
-const queryParams = new URLSearchParams(new URL(currentURL).search);
-const id = queryParams.get("id");
-const name = queryParams.get("n");
-const items = queryParams.get("i").split(",");
-const state = queryParams.get("s").split(",");
-
-
-if (id){
-    var result = window.confirm("It looks like you're importing an list");
-    const listId = id;
-    const listName = name;
-    const listItems = items;
-    const itemState = state;
-    
 }
-
-}
-
