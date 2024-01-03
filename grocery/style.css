@@ -13,7 +13,7 @@ body {
 }
 
 .create-list {
-    width: 50%;
+    width: 225px;
     aspect-ratio: 2/1;
     border-radius: 60px;
     position: fixed;
