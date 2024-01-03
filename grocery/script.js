@@ -191,10 +191,26 @@ function itemCheck(id,key){
 
     
 }
+(function qCk(){
+ //   const theUrl = window.location.href;
+//    console.log(theUrl);
+//    document.write(theUrl);
+ //   const queryParams = new URLSearchParams(new URL(theUrl).search);
+ //   console.log(queryParams);
+ 
+// Get the current URL
+const currentURL = window.location.href;
 
-(function queryCheck(){
-    const theUrl = window.location.href;
-    console.log(theUrl);
-    document.write(theUrl);
+// Extract query parameters
+const queryParams = new URLSearchParams(new URL(currentURL).search);
+const name = queryParams.get("n");
+const items = queryParams.get("i").split(",");
+const quantities = queryParams.get("s").split(",");
+
+// Log the extracted values
+console.log("Name:", name);
+console.log("Items:", items);
+console.log("Quantities:", quantities);
+document.write(name,items,quantities)
 })();
 
