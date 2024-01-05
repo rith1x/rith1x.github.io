@@ -282,13 +282,14 @@ function itemCheck(id, key) {
             const lId = datas[0];
             const lItem = datas[2];
             const lState = datas[3];
+            const larr = lState.split(',');
             const iTime = "imported on" + geTime();
             const itemslist = lItem.split(",");
+            console.log(typeof(lState),typeof(larr));
             const itemx = {};
-            for (let m = 0; m < (itemslist.length - 1); m++) {
+            for (let m = 0; m < (itemslist.length); m++) {
                 var currItem = itemslist[m];
-                var currQuan = lState[m];
-                itemx[currItem] = parseInt(currQuan);
+                itemx[currItem] = parseInt(larr[m]);
             }
             const addList = {
                 "name": lName,
@@ -296,6 +297,8 @@ function itemCheck(id, key) {
                 "created": iTime,
                 "items": itemx
             }
+           
+            console.log(Object.keys(itemx),Object.values(itemx));
             appendData(lId, addList);
             viewLists();
         }
