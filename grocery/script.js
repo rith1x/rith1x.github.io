@@ -270,17 +270,21 @@ function itemCheck(id, key) {
 
 (function importList() {
     const currentURL = window.location.href;
+console.log(currentURL);
     const datastrip = currentURL.split("?id=")[1];
+console.log(datastrip);
 
     if (datastrip) {
         const datas = datastrip.split("-");
-
+console.log(datas)
         if (datas.length >= 4) {
             const lId = datas[0];
+console.log(lId);
             const lName = datas[1].replace(/_/g, ' ');
-
+console.log(lName);
             const popuptext = `Do you want to import the grocery list named "${lName}"?`;
             const result = window.confirm(popuptext);
+console.log(result);
 
             if (result) {
                 const lItem = datas[2];
@@ -290,9 +294,22 @@ function itemCheck(id, key) {
                 const itemslist = lItem.split(",");
                 
                 const itemx = {};
+
+console.log(lItem);
+console.log(lState);
+console.log(larr);
+console.log(iTime);
+console.log(itemslist);
+
+
                 for (let m = 0; m < itemslist.length; m++) {
                     const currItem = itemslist[m];
                     itemx[currItem] = parseInt(larr[m]);
+
+
+console.log(m + currItem);
+console.log(itemx[currItem]);
+console.log(Object.keys(itemx));
                 }
 
                 const addList = {
@@ -301,9 +318,12 @@ function itemCheck(id, key) {
                     "created": iTime,
                     "items": itemx
                 };
+console.log(addList);
 
                 appendData(lId, addList);
-                viewLists();
+                console.log("appdatadone");
+
+viewLists();
             }
         }
     }
