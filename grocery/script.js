@@ -269,38 +269,42 @@ function itemCheck(id, key) {
 //https://rith1x.github.io/grocery/?id=QLU4MJO6M0-New_List-it1,it2,it3,it4,it5,it6-0,1,0,1,0,1
 
 (function importList() {
-
     const currentURL = window.location.href;
-    const datastrip = currentURL.split("?id=", )[1];
+    const datastrip = currentURL.split("?id=")[1];
+
     if (datastrip) {
-        const dataz = datastrip.replace(/_/g, ' ');
-        const datas = dataz.split("-");
-        const lName = datas[1];
-        const popuptext = `Do you like to import the grocery list named "${lName}"?`;
-        var result = window.confirm(popuptext);
-        if (result) {
+        const datas = datastrip.split("-");
+
+        if (datas.length >= 4) {
             const lId = datas[0];
-            const lItem = datas[2];
-            const lState = datas[3];
-            const larr = lState.split(',');
-            const iTime = "imported on" + geTime();
-            const itemslist = lItem.split(",");
-            console.log(typeof(lState),typeof(larr));
-            const itemx = {};
-            for (let m = 0; m < (itemslist.length); m++) {
-                var currItem = itemslist[m];
-                itemx[currItem] = parseInt(larr[m]);
+            const lName = datas[1].replace(/_/g, ' ');
+
+            const popuptext = `Do you want to import the grocery list named "${lName}"?`;
+            const result = window.confirm(popuptext);
+
+            if (result) {
+                const lItem = datas[2];
+                const lState = datas[3];
+                const larr = lState.split(',');
+                const iTime = "imported on " + geTime();
+                const itemslist = lItem.split(",");
+                
+                const itemx = {};
+                for (let m = 0; m < itemslist.length; m++) {
+                    const currItem = itemslist[m];
+                    itemx[currItem] = parseInt(larr[m]);
+                }
+
+                const addList = {
+                    "name": lName,
+                    "id": lId,
+                    "created": iTime,
+                    "items": itemx
+                };
+
+                appendData(lId, addList);
+                viewLists();
             }
-            const addList = {
-                "name": lName,
-                "id": lId,
-                "created": iTime,
-                "items": itemx
-            }
-           
-            console.log(Object.keys(itemx),Object.values(itemx));
-            appendData(lId, addList);
-            viewLists();
         }
     }
 })();
