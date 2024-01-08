@@ -1,9 +1,9 @@
 let groceryData;
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     fetchLocalData();
-
+    importList();
     viewLists();
 });
 
@@ -268,23 +268,23 @@ function itemCheck(id, key) {
 
 //https://rith1x.github.io/grocery/?id=QLU4MJO6M0-New_List-it1,it2,it3,it4,it5,it6-0,1,0,1,0,1
 
-(function importList() {
+function importList() {
     const currentURL = window.location.href;
-console.log(currentURL);
+    console.log(currentURL);
     const datastrip = currentURL.split("?id=")[1];
-console.log(datastrip);
+    console.log(datastrip);
 
     if (datastrip) {
         const datas = datastrip.split("-");
-console.log(datas)
+        console.log(datas)
         if (datas.length >= 4) {
             const lId = datas[0];
-console.log(lId);
+            console.log(lId);
             const lName = datas[1].replace(/_/g, ' ');
-console.log(lName);
+            console.log(lName);
             const popuptext = `Do you want to import the grocery list named "${lName}"?`;
             const result = window.confirm(popuptext);
-console.log(result);
+            console.log(result);
 
             if (result) {
                 const lItem = datas[2];
@@ -292,14 +292,14 @@ console.log(result);
                 const larr = lState.split(',');
                 const iTime = "imported on " + geTime();
                 const itemslist = lItem.split(",");
-                
+
                 const itemx = {};
 
-console.log(lItem);
-console.log(lState);
-console.log(larr);
-console.log(iTime);
-console.log(itemslist);
+                console.log(lItem);
+                console.log(lState);
+                console.log(larr);
+                console.log(iTime);
+                console.log(itemslist);
 
 
                 for (let m = 0; m < itemslist.length; m++) {
@@ -307,24 +307,30 @@ console.log(itemslist);
                     itemx[currItem] = parseInt(larr[m]);
 
 
-console.log(m + currItem);
-console.log(itemx[currItem]);
-console.log(Object.keys(itemx));
+                    console.log(m + currItem);
+                    console.log(itemx[currItem]);
+                    console.log(Object.keys(itemx));
                 }
 
-                const addList = {
+                const importedList = {
                     "name": lName,
                     "id": lId,
                     "created": iTime,
                     "items": itemx
                 };
-console.log(addList);
+                console.log(importedList);
+                // var listId = lId;
+                // appendData(listId, importedList);
 
-                appendData(lId, addList);
+
+                groceryData.groceryLists[lId] = importedList;
+                localStorage.setItem('groceryData', JSON.stringify(groceryData));
+
+
                 console.log("appdatadone");
 
-viewLists();
+                viewLists();
             }
         }
     }
-})();
+}
