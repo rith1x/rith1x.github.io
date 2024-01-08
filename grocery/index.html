@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,39 +10,44 @@
         <script src="script.js"></script>
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
     </head>
- <body>
-  <div class="container">
-   <div class="grocery-list" id="list">
-   </div>
-   <div class="create-list" onclick="showlistpop()">
-    <i id="add-icon" class="fa-solid fa-circle-plus"></i>
-    <h1>New List</h1>
-   </div>
-   <div class="newList" id="createlistpop" style="display: none;">
-    <div class="title-pop">
-     <h1>New List</h1>
-     <button onclick="closelistpop()">Cancel</button>
-    </div>
-    <div class="field">
-     <input type="text" id="listname" value=""/>
-     <input type="button" value="Create" onclick="createList()">
-    </div>
-   </div>
-   
-   <div class="exportList" id="exportlistpop" style="display: none;">
-    <div class="title-pop">
-     <h1>Share List</h1>
-     <button onclick="closeexportlistpop()">Cancel</button>
-    </div>
-    <div class="qrhold">
-       <img src="https://i.pinimg.com/originals/c7/e1/b7/c7e1b7b5753737039e1bdbda578132b8.gif" alt="" id="qrimg">
-    </div>
-    <div class="field">
-     <input type="text" id="shareurl" readonly/>
-     <input type="button" value="Copy" onclick="clipboardcopy()">
-    </div>
-   </div>
-   
-  </div>
- </body>
-</html> 
+
+    <body>
+        <div class="container">
+            <div class="grocery-list" id="list">
+            </div>
+            <div class="create-list" onclick="showlistpop()">
+                <i id="add-icon" class="fa-solid fa-circle-plus"></i>
+                <h1>New List</h1>
+            </div>
+            <div class="newList" id="createlistpop" style="display: none;">
+                <div class="title-pop">
+                    <h1>New List</h1>
+                    <button onclick="closelistpop()">Cancel</button>
+                </div>
+                <div class="field">
+                    <input type="text" id="listname" value="" />
+                    <input type="button" value="Create" onclick="createList()">
+                </div>
+            </div>
+
+            <div class="exportList" id="exportlistpop" style="display: none;">
+                <div class="title-pop">
+                    <h1>Share List</h1>
+                    <button onclick="closeexportlistpop()">Cancel</button>
+                </div>
+                <div class="qrhold">
+                    <div id="loading-bar-spinner" class="spinner">
+                        <div class="spinner-icon"></div>
+                    </div>
+                    <img style="display: none;" alt="" id="qrimg">
+                </div>
+                <div class="field">
+                    <input type="text" id="shareurl" readonly />
+                    <input type="button" value="Copy" onclick="clipboardcopy()">
+                </div>
+            </div>
+
+        </div>
+    </body>
+
+</html>

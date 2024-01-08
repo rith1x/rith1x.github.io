@@ -219,6 +219,11 @@ function exportpop(qrsrc, txtsrc) {
     tHEl.style.animationPlayState = "running";
     const imgel = document.getElementById('qrimg');
     imgel.src = qrsrc;
+    const loader = document.getElementById('loading-bar-spinner');
+
+    loader.style.display = "none";
+
+    imgel.style.display = "block";
     const urlBox = document.getElementById('shareurl');
     urlBox.value = txtsrc
 
