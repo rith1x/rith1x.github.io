@@ -328,8 +328,9 @@ function importList() {
 
 
                 console.log("appdatadone");
-
+                window.location.href = currentURL.split("?id=")[0];
                 viewLists();
+
             }
         }
     }
