@@ -65,9 +65,9 @@
 
             .project-links {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-end;
                 align-items: center;
-                gap: 20px;
+                gap: 5px;
                 margin-top: auto;
             }
 
@@ -129,10 +129,10 @@
                     projectDiv.classList.add('project-container');
                     projectDiv.addEventListener('click', () => window.location.href = project.link);
 
-                    const projectIcon = document.createElement('img');
-                    projectIcon.classList.add('project-icon');
-                    projectIcon.src = `https://www.google.com/s2/favicons?domain=${project.link}`;
-                    projectDiv.appendChild(projectIcon);
+                    // const projectIcon = document.createElement('img');
+                    // projectIcon.classList.add('project-icon');
+                    // projectIcon.src = `https://www.google.com/s2/favicons?domain=${project.link}`;
+                    // projectDiv.appendChild(projectIcon);
 
                     const projectDetails = document.createElement('div');
                     projectDetails.classList.add('project-details');
