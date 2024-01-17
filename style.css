@@ -10,13 +10,14 @@
          margin: 0;
          
       }
-      .container{
-        max-width: 400px;
-        margin: 0 auto;
-        height: 100%;
-        padding: 5dvw;
-        
-      }
+      .container {
+    height: 100dvh;
+    max-width: 450px;
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden scroll;
+}
       .card{
          width: 100%;
          aspect-ratio: 3/4;
