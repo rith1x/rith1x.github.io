@@ -13,7 +13,7 @@
       .container{
         max-width: 400px;
         margin: 0 auto;
-        height: 100dvh;
+        height: 100%;
         padding: 5dvw;
         
       }
