@@ -32,6 +32,7 @@
          aspect-ratio: 3/4.5;
         scroll-snap-align: center;
         background: #eee;
+               transition: all 0.3s ease;
         padding: 15px;
         position: relative;
         color: #fff;
