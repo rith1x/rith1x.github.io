@@ -7,7 +7,10 @@
          
       }
       body{
-         margin: 0;
+         padding: 0;
+    margin: 0;
+    background: black;
+    font-size: 14px;
          
       }
       .container{
@@ -16,13 +19,13 @@
         height: 100dvh;
         gap: 2em;
         overflow: scroll hidden;
-        padding: 5dvw;
-        display: flex;
         
+        display: flex;
+        position: relative;
         align-items: center;
         
         scroll-snap-type: x mandatory;
-        justify-content: space-between;
+        
       }
       .card{
          min-width: 100%;
