@@ -3,13 +3,13 @@
   margin: 0;
   padding: 0;
   font-family: Work Sans;
-  border: dashed 1px #f00;
+  /* border: dashed 1px #f00; */
 }
 
 body {
   padding: 0;
   margin: 0;
-  background: black;
+  background: #fff;
   font-size: 14px;
 
 }
@@ -20,7 +20,7 @@ body {
   height: 100dvh;
   gap: 2em;
   overflow: scroll hidden;
-
+  padding: 2em;
   display: flex;
   position: relative;
   align-items: center;
@@ -44,11 +44,11 @@ body {
   aspect-ratio: 3/4.5;
   scroll-snap-align: center;
   background: #eee;
-  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1.2);
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1.1);
   padding: 15px;
   position: relative;
   color: #fff;
-
+  box-shadow: 0 0 20px #c1c1c150;
   margin-bottom: 5dvw;
   border-radius: 31px;
 
@@ -112,6 +112,25 @@ body {
   padding-left: 2px;
 }
 
+.overlay p {
+  color: #888;
+  cursor: pointer;
+  padding-left: 2px;
+
+  font-style: italic;
+  font-size: 0.9em;
+}
+
+.overlay p:hover {
+  text-decoration: underline;
+
+}
+
+.overlay svg {
+  padding-right: 2px;
+
+}
+
 .title {
   width: 100%;
   color: #000;
@@ -137,6 +156,7 @@ h2 {
 
 .field {
   padding: 10px;
+  width: 100%;
   background: #ddd;
   border-radius: 11px;
 }
