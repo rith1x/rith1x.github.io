@@ -8,16 +8,19 @@
             const masker = document.getElementById('masker');
             const diam = document.getElementById('dia');
             const welc = document.getElementById('welcome-screen');
+            diam.style.borderRadius = "50%";
+            diam.style.height = "10px";
+            diam.style.width = "10px";
+
             diam.style.animationPlayState = "paused";
-            diam.style.aspectRatio = "1/1";
-            diam.style.filter = "none";
-            masker.style.backdropFilter = "none";
+
+            // diam.style.filter = "none";
             setTimeout(() => {
 
                 masker.style.background = "#000000";
                 welc.style.display = "None";
                 document.body.style.overflow = "auto";
-window.location.href = "https://rith1x.github.io/i2.html";
+                window.location.href = "https://rith1x.github.io/i2.html";
             }, 2000);
         }
     </script>
@@ -90,17 +93,14 @@ window.location.href = "https://rith1x.github.io/i2.html";
         @keyframes inflate {
             0% {
                 scale: 1;
-                border-radius: 0%;
             }
 
             50% {
                 scale: 1.1;
-                border-radius: 50%;
             }
 
             100% {
                 scale: 1;
-                border-radius: 0%;
 
             }
         }
@@ -120,7 +120,7 @@ window.location.href = "https://rith1x.github.io/i2.html";
             }
 
             100% {
-                border-radius: 0%;
+                border-radius: 50%;
                 opacity: 1;
                 width: 50dvw;
                 aspect-ratio: 1/1;
@@ -155,10 +155,8 @@ window.location.href = "https://rith1x.github.io/i2.html";
         }
 
         .masker h1 {
-            color: #000;
-            /* background: linear-gradient(30deg,#fff,#0f0); */
+            color: #fff;
             font-size: 6dvw;
-            /* background-clip: text; */
             text-align: center;
             font-weight: 1000;
             font-family: Gantari;
