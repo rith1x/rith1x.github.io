@@ -5,6 +5,7 @@
   font-family: Work Sans;
   -webkit-tap-highlight-color: transparent;
   /* border: dashed 1px #f00; */
+  font-display: optional;
 }
 
 body {
