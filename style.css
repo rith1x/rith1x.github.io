@@ -74,7 +74,7 @@ body {
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  height: 50px;
+  height: 60px;
   transition: all 0.3s ease-in-out;
   position: absolute;
   inset: 0;
@@ -143,9 +143,18 @@ body {
   align-items: left;
   justify-content: center;
   background: linear-gradient(0deg, #000000 20%, #00000000 100%);
-  overflow: hidden;
+  overflow: scroll;
   padding: 15px;
   color: #fff;
+  animation-name: poppy;
+  animation-duration: .5s;
+  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  animation-iteration-count: 1;
+  animation-direction: forwards;
+}
+
+.overlay::-webkit-scrollbar {
+  display: none;
 }
 
 .overlay h1 {
@@ -157,7 +166,19 @@ body {
   background-color: #c3cbdc;
   background-image: linear-gradient(-90deg, #c3cbcd 0%, #edf1f4 74%);
   background-clip: text;
+
   background-attachment: fixed;
+}
+
+@keyframes poppy {
+  from {
+    transform: translateY(50%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
 }
 
 .overlay h3 {
@@ -167,14 +188,16 @@ body {
   padding-left: 2px;
 }
 
-.overlay p {
+.overlay p.res {
   color: #888;
   cursor: pointer;
   padding-left: 2px;
-
+  padding-bottom: 15px;
   font-style: italic;
   font-size: 0.9em;
 }
+
+
 
 .overlay p:hover {
   text-decoration: underline;
@@ -374,4 +397,11 @@ h2 {
 a {
   text-decoration: none;
   color: #000;
+}
+
+.abtxs {
+  color: #888;
+  text-align: justify;
+  font-style: normal;
+  font-size: .9em;
 }
