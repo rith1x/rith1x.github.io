@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiruthik Kumar</title>
+    <script>
+        function hider() {
+            const masker = document.getElementById('masker');
+            const diam = document.getElementById('dia');
+            const welc = document.getElementById('welcome-screen');
+            diam.style.borderRadius = "50%";
+            diam.style.height = "10px";
+            diam.style.width = "10px";
+
+            diam.style.animationPlayState = "paused";
+
+            // diam.style.filter = "none";
+            setTimeout(() => {
+
+                masker.style.background = "#000000";
+                welc.style.display = "None";
+                document.body.style.overflow = "auto";
+                window.location.href = "https://rith1x.github.io/i2.html";
+            }, 2000);
+        }
+    </script>
+    <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="welcome-screen" style="display: block;">
+        <div class="floater">
+            <div class="diamond" id="dia">
+
+            </div>
+        </div>
+        <div class="masker" id="masker">
+            <h1>Hello!</h1>
+            <button onclick="hider()"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            background-color: #000;
+            cursor: url(cur1054.cur), auto;
+            overflow: hidden;
+        }
+
+        .floater {
+            height: 100dvh;
+            width: 100dvw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .diamond {
+            width: 3dvw;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            filter: blur(30px);
+            animation: rotator 4s 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.275), inflate 3s infinite forwards ease-in-out, rotate 10s infinite forwards ease-in-out;
+            animation-delay: 1s;
+
+            background: linear-gradient(30deg, #009fff, #ec2f4b);
+        }
+
+        @keyframes rotate {
+            0% {
+                rotate: 0deg;
+            }
+
+            50% {
+                rotate: 359deg;
+
+            }
+
+            100% {
+                rotate: 0deg;
+            }
+
+        }
+
+        @keyframes inflate {
+            0% {
+                scale: 1;
+            }
+
+            50% {
+                scale: 1.1;
+            }
+
+            100% {
+                scale: 1;
+
+            }
+        }
+
+        @keyframes rotator {
+            0% {
+                opacity: 0;
+                /* transform: translateY(-50%); */
+            }
+
+            10% {
+                border-radius: 50%;
+                width: 2dvw;
+                /* box-shadow:0 0 20dvw #000, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
+                aspect-ratio: 1/1;
+
+            }
+
+            100% {
+                border-radius: 50%;
+                opacity: 1;
+                width: 50dvw;
+                aspect-ratio: 1/1;
+
+                /* box-shadow:0 0 20dvw #009fff, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
+            }
+
+            /* 90%{
+                rotate: 0deg;
+                border-radius: 50%;
+                width: 5dvw;
+                opacity: 1;
+                aspect-ratio: 1/1;
+            } */
+
+        }
+
+        .masker {
+            width: 100dvw;
+            height: 100dvh;
+            background-color: #00000030;
+            backdrop-filter: blur(20px);
+            position: absolute;
+            inset: 0;
+            transition: .3s all ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .masker h1 {
+            color: #fff;
+            font-size: 6dvw;
+            text-align: center;
+            font-weight: 1000;
+            font-family: Gantari;
+            /* animation: show-text forwards 4s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275); */
+        }
+
+        .masker button {
+
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            border: none;
+            padding: 1.5em;
+            font-size: 1.5em;
+            transition: all .2s ease-in-out;
+            background-color: #00000020;
+            /* animation-play-state: paused; */
+
+
+
+        }
+
+        .masker button:hover {
+            scale: 1.2;
+            rotate: -45deg;
+            cursor: url(cur1030.cur), auto;
+
+            /* animation-play-state: running; */
+        }
+
+        /* @keyframes show-text {
+            0%{
+                opacity: 0;
+            background: #fff;
+            background-clip: text;
+
+            }
+            50%{
+                opacity: 1;
+
+            }
+            100%{
+                opacity: 0;
+            background: #0f0;;
+            background-clip: text;
+
+            }
+        } */
+    </style>
+</body>
+
+</html>
