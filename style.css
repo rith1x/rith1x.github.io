@@ -20,7 +20,7 @@ body {
   max-width: 450px;
   margin: 0 auto;
   height: 100dvh;
-  gap: 2em;
+  gap: 3em;
   overflow: scroll hidden;
   padding: 2em;
   display: flex;
@@ -34,15 +34,16 @@ body {
 .nav {
   position: absolute;
   height: 50px;
-  width: 450px;
+  max-width: 450px;
   margin: 0 auto;
   bottom: 6px;
   left: 0;
   position: fixed;
   right: 0;
-  display: flex;
+  display: grid;
+  grid-template-rows: 1;
   align-items: center;
-  justify-content: space-between;
+  grid-template-columns: repeat(5, 1fr);
   border-radius: 11px;
   /* box-shadow: 0 0 5px 0px #00000090; */
   border: solid 1px #f00;
@@ -53,7 +54,7 @@ body {
 .nav .page {
   /* padding-block: 6px; */
   height: 100%;
-  width: calc(450px / 5);
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

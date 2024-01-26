@@ -12,14 +12,15 @@ function cardmagic() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+   cardmagic();
    const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
 
          entry.target.classList.toggle('show', entry.isIntersecting);
          if (entry.target.classList.contains('boomer')) {
             cardmagic();
-         } 
-         
+         }
+
 
 
       });
