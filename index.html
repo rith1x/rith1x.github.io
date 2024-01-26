@@ -1,210 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
 
-<head>
+  <head>
+    <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kiruthik Kumar</title>
-    <script>
-        function hider() {
-            const masker = document.getElementById('masker');
-            const diam = document.getElementById('dia');
-            const welc = document.getElementById('welcome-screen');
-            diam.style.borderRadius = "50%";
-            diam.style.height = "10px";
-            diam.style.width = "10px";
-
-            diam.style.animationPlayState = "paused";
-
-            // diam.style.filter = "none";
-            setTimeout(() => {
-
-                masker.style.background = "#000000";
-                welc.style.display = "None";
-                document.body.style.overflow = "auto";
-                window.location.href = "https://rith1x.github.io/i2.html";
-            }, 2000);
-        }
-    </script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://api.fontshare.com/v2/css?f[]=work-sans@800,400,600&amp;display=swap" rel="stylesheet">
     <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
-</head>
+    <script src="script.js"></script>
 
-<body>
-    <div id="welcome-screen" style="display: block;">
-        <div class="floater">
-            <div class="diamond" id="dia">
+  </head>
 
+  <body>
+    <div class="container">
+
+      <div love="true" class="card profile-box hide boomer p1" id="home" onclick="cardmagic()">
+        <div class="profile-bg">
+          <img src="xxc.jpg" id="card-img">
+        </div>
+        <div class="overlay">
+          <h3>Hello, I am</h3>
+          <h1 class="name">Kiruthik Kumar</h1><br>
+          <p><i class="fa-solid fa-download"></i>Download Resume as PDF</p>
+
+        </div>
+
+      </div>
+      <div love="true" class="card hide p2 " id="education">
+        <div class="title">
+          <h1>Education</h1>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <div class="edu-title">
+              <h2>B.Tech in Artificial Intelligence and Data Science</h2>
+              <h2>79%</h2>
             </div>
+            <div class="edu-about">
+              <p><i>Aug 2022 - Present</i> <br>Knowledge Institute of Technology, Salem</p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="edu-title">
+              <h2>Diploma in Electronics and Communication Engineering</h2>
+              <h2>82%</h2>
+            </div>
+            <div class="edu-about">
+              <p><i>Jun 2019 - Jul 2022</i><br>Murugappa Polytechnic College, Chennai</p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="edu-title">
+              <h2>Secondary Schooling</h2>
+              <h2>76.4%</h2>
+            </div>
+            <div class="edu-about">
+              <p><i>Mar 2019</i><br>St.Pauls Higher Secondary School, Salem</p>
+            </div>
+          </div>
         </div>
-        <div class="masker" id="masker">
-            <h1>Hello!</h1>
-            <button onclick="hider()"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+
+
+      <div love="true" class="card hide p3" id="skills">
+        <div class="title">
+          <h1>Skills</h1>
         </div>
+        <div class="skill-body">
+          <div class="skill">
+            <p>Python Basics</p>
+            <i class="fa-brands fa-python"></i>
+          </div>
+          <div class="skill">
+            <p>C</p>
+            <i class="fa-solid fa-c"></i>
+          </div>
+          <div class="skill">
+            <p>SQL</p>
+            <i class="fa-solid fa-database"></i>
+          </div>
+          <div class="skill">
+            <p>JavaScript</p>
+            <i class="fa-brands fa-square-js"></i>
+          </div>
+          <div class="skill">
+            <p>Git</p>
+            <i class="fa-solid fa-code-merge"></i>
+          </div>
+          <div class="skill">
+            <p>CSS</p>
+            <i class="fa-brands fa-css3"></i>
+          </div>
+          <div class="skill">
+            <p>IoT</p>
+            <i class="fa-solid fa-house-signal"></i>
+          </div>
+          <div class="skill">
+            <p>Django Python</p>
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+        </div>
+      </div>
+      <div class="card hide p4" love="true" id="internships">
+        <div class="title">
+          <h1>Internships</h1>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <div class="edu-title">
+              <h2>Full-Stack Developer</h2>
+              <p><i>Jun 2023 - Present</i></p>
+            </div>
+            <div class="edu-about">
+              <p>PunchBiz, Salem</p>
+            </div>
+          </div>
+          <div class="field">
+            <div class="edu-title">
+              <h2>Data Science Student</h2>
+              <p><i>Feb 2023 - Apr 2023 </i></p>
+            </div>
+            <div class="edu-about">
+              <p>Viba Eduserv - Online</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div love="true" class="card hide p5" id="projects">
+        <div class="title">
+          <h1>Projects</h1>
+        </div>
+        <div class="projects-container" id="projectsContainer">
+
+        </div>
+      </div>
+      <div class="nav">
+        <a href="#home">
+          <div class="page " id="n1">
+            <div class="ico">
+              <i class="fa-solid fa-house"></i>
+            </div>
+            <div class="page-name">
+              Home
+            </div>
+          </div>
+        </a>
+        <a href="#education">
+          <div class="page" id="n2">
+            <div class="ico">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div class="page-name">
+              Education
+            </div>
+          </div>
+        </a>
+        <a href="#skills">
+          <div class="page" id="n3">
+            <div class="ico">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div class="page-name">
+              Skills
+            </div>
+          </div>
+        </a>
+        <a href="#internships">
+          <div class="page" id="n4">
+            <div class="ico">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="page-name">
+              Internships
+            </div>
+          </div>
+        </a>
+        <a href="#projects">
+          <div class="page" id="n5">
+            <div class="ico">
+              <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div class="page-name">
+              Projects
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@700&display=swap');
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            margin: 0;
-            background-color: #000;
-            cursor: url(cur1054.cur), auto;
-            overflow: hidden;
-        }
-
-        .floater {
-            height: 100dvh;
-            width: 100dvw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .diamond {
-            width: 3dvw;
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            filter: blur(30px);
-            animation: rotator 4s 1 forwards cubic-bezier(0.175, 0.885, 0.32, 1.275), inflate 3s infinite forwards ease-in-out, rotate 10s infinite forwards ease-in-out;
-            animation-delay: 1s;
-
-            background: linear-gradient(30deg, #009fff, #ec2f4b);
-        }
-
-        @keyframes rotate {
-            0% {
-                rotate: 0deg;
-            }
-
-            50% {
-                rotate: 359deg;
-
-            }
-
-            100% {
-                rotate: 0deg;
-            }
-
-        }
-
-        @keyframes inflate {
-            0% {
-                scale: 1;
-            }
-
-            50% {
-                scale: 1.1;
-            }
-
-            100% {
-                scale: 1;
-
-            }
-        }
-
-        @keyframes rotator {
-            0% {
-                opacity: 0;
-                /* transform: translateY(-50%); */
-            }
-
-            10% {
-                border-radius: 50%;
-                width: 2dvw;
-                /* box-shadow:0 0 20dvw #000, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
-                aspect-ratio: 1/1;
-
-            }
-
-            100% {
-                border-radius: 50%;
-                opacity: 1;
-                width: 50dvw;
-                aspect-ratio: 1/1;
-
-                /* box-shadow:0 0 20dvw #009fff, 0 0 0px 5px #000, 0 0 0 10px #009fff ; */
-            }
-
-            /* 90%{
-                rotate: 0deg;
-                border-radius: 50%;
-                width: 5dvw;
-                opacity: 1;
-                aspect-ratio: 1/1;
-            } */
-
-        }
-
-        .masker {
-            width: 100dvw;
-            height: 100dvh;
-            background-color: #00000030;
-            backdrop-filter: blur(20px);
-            position: absolute;
-            inset: 0;
-            transition: .3s all ease-in-out;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-            justify-content: center;
-
-        }
-
-        .masker h1 {
-            color: #fff;
-            font-size: 6dvw;
-            text-align: center;
-            font-weight: 1000;
-            font-family: Gantari;
-            /* animation: show-text forwards 4s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-        }
-
-        .masker button {
-
-            aspect-ratio: 1/1;
-            border-radius: 50%;
-            border: none;
-            padding: 1.5em;
-            font-size: 1.5em;
-            transition: all .2s ease-in-out;
-            background-color: #00000020;
-            /* animation-play-state: paused; */
 
 
-
-        }
-
-        .masker button:hover {
-            scale: 1.2;
-            rotate: -45deg;
-            cursor: url(cur1030.cur), auto;
-
-            /* animation-play-state: running; */
-        }
-
-        /* @keyframes show-text {
-            0%{
-                opacity: 0;
-            background: #fff;
-            background-clip: text;
-
-            }
-            50%{
-                opacity: 1;
-
-            }
-            100%{
-                opacity: 0;
-            background: #0f0;;
-            background-clip: text;
-
-            }
-        } */
-    </style>
-</body>
+  </body>
 
 </html>
