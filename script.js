@@ -3,11 +3,9 @@ function cardmagic() {
 
    const jpg = document.getElementById('card-img');
    if (jpg.style.scale == "1") {
-      jpg.style.scale = "1.7";
-      jpg.style.transform = "translateY(-10%)translateX(-3%)";
-      jpg.style.rotate = "15deg";
+      jpg.style.scale = "1.2";
+      jpg.style.rotate = "5deg";
    } else {
-      jpg.style.transform = "translateY(0%)translateX(0%)";
       jpg.style.scale = "1";
       jpg.style.rotate = "0deg";
    }
@@ -18,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function () {
       entries.forEach((entry) => {
 
          entry.target.classList.toggle('show', entry.isIntersecting);
+         if (entry.target.classList.contains('boomer')) {
+            cardmagic();
+         } 
+         
 
 
       });
