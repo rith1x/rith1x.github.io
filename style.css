@@ -99,7 +99,7 @@ body {
   padding: 15px;
   position: relative;
   color: #fff;
-  box-shadow: 0 0 20px #c1c1c150;
+  /* box-shadow: 0 0 20px #c1c1c150; */
   margin-bottom: 5dvw;
   border-radius: 31px;
   overflow: hidden;
