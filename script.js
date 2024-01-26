@@ -11,6 +11,14 @@ function cardmagic() {
    }
 }
 
+
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
    cardmagic();
    const observer = new IntersectionObserver((entries) => {
@@ -20,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
          if (entry.target.classList.contains('boomer')) {
             cardmagic();
          }
+         
 
 
 
