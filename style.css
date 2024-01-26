@@ -10,6 +10,8 @@ body {
   padding: 0;
   margin: 0;
   background: #fff;
+  transition: all 0.3s ease;
+
   font-size: 14px;
 
 }
@@ -41,7 +43,7 @@ body {
   align-items: center;
   justify-content: space-around;
   border-radius: 11px;
-  box-shadow: 0 0 5px 0px #00000090;
+  /* box-shadow: 0 0 5px 0px #00000090; */
   /* border: solid 1px #f00; */
 }
 
@@ -65,7 +67,6 @@ body {
   height: 6px;
   position: absolute;
   inset: 0;
-  display: none;
   border-radius: 5px;
 }
 
@@ -267,6 +268,7 @@ h2 {
   overflow: scroll;
   height: 100%;
   border-radius: 11px;
+  padding-bottom: 20px;
 }
 
 .projects-container::-webkit-scrollbar {
@@ -350,4 +352,9 @@ h2 {
   filter: blur(0px);
   opacity: 1;
 
+}
+
+a {
+  text-decoration: none;
+  color: #000;
 }
