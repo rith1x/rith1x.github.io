@@ -503,13 +503,13 @@ overflow:scroll;
 
 .socialbox div {
   width: 100%;
-  height: 60px;
+  height: 50px;
   display: flex;
   align-items: center;
   border-radius: 11px;
   background: #ddd;
 
-  padding-inline: 15px;
+  padding-inline: 10px;
   justify-content: space-between;
 }
 .socialbox::-webkit-scrollbar {
