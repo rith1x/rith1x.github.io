@@ -495,7 +495,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
-
+overflow:scroll;
   gap: 10px;
 
 
@@ -512,7 +512,12 @@ a {
   padding-inline: 15px;
   justify-content: space-between;
 }
-
+.socialbox::-webkit-scrollbar {
+  background-color: transparent;
+  width: 3px;
+  height: 40px;
+  display: none;
+}
 .socialbox div a {
   padding: 6px 10px;
   border-radius: 21px;
