@@ -5,47 +5,296 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
 
     <body>
-        <div class="container mx-auto">
-            <div class="flex-wrap ">
-                <div class="col-md-3 my-3">1</div>
-                <div class="col-md-3 my-3">2</div>
-                <div class="col-md-3 my-3">3</div>
-                <div class="col-md-3 my-3">4</div>
-                <div class="col-md-3 my-3">5</div>
-                <div class="col-md-3 my-3">6</div>
-                <div class="col-md-3 my-3">7</div>
-                <div class="col-md-3 my-3">8</div>
-                <div class="col-md-3 my-3">9</div>
-                <div class="col-md-3 my-3">10</div>
-                <div class="col-md-3 my-3">11</div>
-                <div class="col-md-3 my-3">12</div>
+        <div class="container">
+            <div class="row" id="notecanvas">
+                <div class="note">
+                    <textarea onchange="hello()" id=""
+                        rows="7">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat earum, voluptatum consequatur excepturi beatae quidem architecto nobis. Illo veniam cupiditate fuga voluptatibus cumque. Et iusto mollitia iure excepturi ducimus commodi odit corrupti fugit, inventore repellat vel aliquid ipsa. Iure, autem? Ad iusto laborum rem aut laboriosam doloribus beatae consequatur animi.</textarea>
+                </div>
+
             </div>
         </div>
+        <script>
+            // SESSION DATA
+
+            let noteData;
+
+            // STARTER FUNCTION
+
+            document.addEventListener("DOMContentLoaded", function () {
+                refreshData();
+            });
+
+            // SYNCING SESSION WITH LOCAL
+
+            function syncData() {
+                localStorage.setItem("notesData", JSON.stringify(noteData));
+                viewNotes();
+            }
+
+            function refreshData() {
+                let oldList = localStorage.getItem('notesData');
+                if (!oldList) {
+                    const template = {
+                        "notesData": {}
+                    }
+                    localStorage.setItem('notesData', JSON.stringify(template));
+                }
+                noteData = JSON.parse(localStorage.getItem('notesData'));
+                viewNotes();
+            }
+
+
+
+
+            function hello() {
+                console.log("hii");
+
+                const notecanvas = document.getElementById("notecanvas");
+
+
+
+            }
+
+
+
+
+
+
+            function viewNotes() {
+                var notecanvas = document.getElementById('list');
+                notecanvas.innerHTML = "";
+                for (var i = 0; i < Object.keys(grocerydata.groceryLists).length; i++) {
+                    var currentListId = Object.keys(listData.groceryLists)[i];
+                    var currentList = listData.groceryLists[currentListId];
+                    var newnote = document.createElement('div');
+                    newnote.className = "list-div";
+                    var listHead = document.createElement("div");
+                    listHead.className = "list-head";
+                    var listInfo = document.createElement("div");
+                    listInfo.className = "list-info";
+                    var listTitle = document.createElement("h1");
+                    listTitle.innerText = currentList.name;
+                    var listCreated = document.createElement("p");
+                    listCreated.innerText = currentList.created;
+                    listInfo.appendChild(listTitle);
+                    listInfo.appendChild(listCreated);
+
+                    var listAction = document.createElement("div");
+                    listAction.className = "listAction";
+                    var listShare = document.createElement("button");
+                    listShare.setAttribute("onclick", `shareList('${currentList.id}')`);
+                    listShare.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i>';
+
+                    var listDelete = document.createElement("button");
+                    listDelete.setAttribute("onclick", `deleteList('${currentList.id}')`);
+                    listDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                    listHead.appendChild(listInfo);
+                    listAction.appendChild(listShare);
+                    listAction.appendChild(listDelete);
+                    listHead.appendChild(listAction);
+
+                    var listItems = document.createElement("div");
+                    listItems.className = "list-items";
+
+                    for (var k = 0; k < Object.keys(listData.groceryLists[currentListId].items).length; k++) {
+                        var currentItemName = Object.keys(listData.groceryLists[currentListId].items)[k];
+
+                        var itemDiv = document.createElement("div");
+                        itemDiv.className = "item";
+                        var itemDivTxt = document.createElement("p");
+                        itemDivTxt.innerText = currentItemName;
+                        if (groceryData.groceryLists[currentList.id].items[currentItemName] === 1) {
+                            itemDiv.classList.add("done");
+                        }
+
+                        var itemDivBtn = document.createElement("button");
+
+                        itemDivBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+                        itemDivBtn.setAttribute("onclick", `itemCheck('${currentList.id}','${currentItemName}')`);
+                        itemDiv.appendChild(itemDivTxt);
+                        itemDiv.appendChild(itemDivBtn);
+                        listItems.appendChild(itemDiv);
+                    }
+
+
+                    var listItemS = document.createElement("div");
+                    listItemS.className = "item";
+                    var listItemSinput = document.createElement("input");
+                    listItemSinput.setAttribute("type", "text");
+                    listItemSinput.id = `${currentList.id}-item`;
+                    listItemSinput.setAttribute("placeholder", "Add Item");
+                    var listItemSbtn = document.createElement("button");
+                    listItemSbtn.setAttribute("onclick", `itemAdder('${currentList.id}')`);
+                    listItemSbtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+
+                    listItemS.appendChild(listItemSinput);
+                    listItemS.appendChild(listItemSbtn);
+                    listItems.appendChild(listItemS);
+
+
+                    newnote.appendChild(listHead);
+                    newnote.appendChild(listItems);
+
+                    notecanvas.appendChild(newnote);
+
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Satisfy&display=swap');
+
             * {
                 margin: 0;
                 padding: 0;
+                box-sizing: border-box;
+                font-family: "Cedarville Cursive";
+                font-weight: 400;
+                font-style: normal;
             }
 
             body {
                 margin: 0;
                 padding: 0;
+
             }
 
             .container {
+                width: 80%;
+                border: solid 1px #f00;
                 margin: 0 auto;
+            }
+
+            .row {
+                padding: 10px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: none;
+                gap: 10px;
+
+            }
+
+            .div {
+                border: solid 2px #ab4700;
+                height: fit-content;
 
             }
 
 
-            .container div div {
-                height: 60px;
-                border: solid 1px #f00;
+            .note {
+                border: solid 1px rgb(211, 211, 211);
+                border-radius: 11px;
+                margin-block: 10px;
+                padding: 10px;
+                height: fit-content;
+                position: relative;
+                padding-inline: 12px;
+                padding-top: 16px;
+                overflow: hidden;
+                z-index: 0;
+                font-size: 18px;
+                display: flex;
+                justify-content: stretch;
+
+
+            }
+
+            .note *::-webkit-scrollbar {
+                background-color: #e7e7e7;
+                width: 3px;
+            }
+
+            .note *::-webkit-scrollbar-thumb {
+                background-color: #6266ff;
+            }
+
+            .note::before {
+                content: '';
+                height: calc(100% - 20px);
+                width: calc(100% - 20px);
+                position: absolute;
+                left: 10px;
+                top: 10px;
+
+                background-color: #ffffff;
+                opacity: 0.2;
+                z-index: -1;
+                background-size: 24px 24px;
+                background-image: repeating-linear-gradient(0deg, #6266ff, #6266ff 1.4000000000000001px, #ffffff 1.4000000000000001px, #ffffff);
+
+            }
+
+            .note:focus-within {
+                border: solid 1px #00ab47;
+            }
+
+            textarea {
+                background-color: transparent;
+                min-width: 100%;
+                height: 100%;
+                border: none;
+                line-height: 24px;
+                font-size: 1em;
+            }
+
+            textarea:focus {
+                outline: none;
+                border: none;
+            }
+
+
+            @media (max-width: 800px) {
+
+                .container {
+                    width: 90%;
+                }
+
+                .row {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: none;
+                    gap: 10px;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    width: 100%;
+                }
+
+                .row {
+                    grid-template-columns: repeat(1, 1fr);
+                    grid-template-rows: none;
+                    gap: 10px;
+                }
             }
         </style>
     </body>
