@@ -27,7 +27,6 @@ body {
   max-width: 450px;
 
   height: 100dvh;
-  gap: 2em;
   overflow: hidden scroll;
   margin: 0 auto;
   display: flex;
@@ -72,7 +71,6 @@ body {
   position: relative;
   color: #fff;
   /* box-shadow: 0 0 20px #c1c1c150; */
-  margin-bottom: 5dvw;
   /* border-radius: 31px; */
   overflow: hidden;
 
@@ -352,14 +350,12 @@ h2 {
 
 .hide {
   scale: 0.8;
-  filter: blur(5px);
   opacity: 0;
   /* border-radius: 21px; */
 }
 
 .show {
   scale: 1;
-  filter: blur(0px);
   opacity: 1;
   /* border-radius: 31px; */
 
@@ -604,8 +600,7 @@ a {
 }
 
 .container>div {
-  /* border: solid 1px #f00; */
-  /* padding-top: 4em; */
+  padding-top: 4em;
 }
 
 .nav {
@@ -613,7 +608,7 @@ a {
   max-width: 400px;
   margin: 0 auto;
   top: 1dvh;
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
   display: grid;
@@ -632,10 +627,11 @@ a {
   width: 100%;
   height: 100%;
   display: flex;
+  margin-top: -4em;
+
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  backdrop-filter: blur(6px);
   color: #333;
   z-index: 4;
 
