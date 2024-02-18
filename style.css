@@ -17,9 +17,8 @@ body {
   padding: 0;
   background: #fff;
   transition: all 0.3s ease;
-  background-image: url(xxc-minc.jpg);
   font-size: 14px;
-  backdrop-filter: blur(5px);
+
 
 }
 
@@ -637,7 +636,7 @@ a {
   z-index: 4;
 
   padding: 1px 2px;
-  border-radius: 16px;
+  border-radius: 6px;
   /* gap: 4px; */
   justify-content: space-around;
 
@@ -656,4 +655,11 @@ a {
 
 .page svg {
   font-size: 1em;
+}
+
+@media not all and (max-width: 480px) {
+  body {
+    background-image: url(xxc-minc.jpg);
+    backdrop-filter: blur(5px);
+  }
 }
