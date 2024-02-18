@@ -15,94 +15,37 @@
 
 body {
   padding: 0;
-  margin: 0;
   background: #fff;
   transition: all 0.3s ease;
-
+  background-image: url(xxc-minc.jpg);
   font-size: 14px;
+  backdrop-filter: blur(5px);
 
 }
 
 .container {
   max-width: 450px;
-  margin: 0 auto;
+
   height: 100dvh;
   gap: 2em;
   overflow: hidden scroll;
-  padding: 2em;
-
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  position: relative;
   align-items: center;
 
   scroll-snap-type: y mandatory;
 
 }
 
-.container * {
-  /* border: solid 1px #f00; */
-}
 
-.nav {
-  position: absolute;
-  height: 45px;
-  max-width: 400px;
-
-  margin: 0 auto;
-  top: 1dvh;
-  left: 0;
-  position: fixed;
-  right: 0;
-  display: grid;
-  grid-template-rows: 1;
-  align-items: center;
-  grid-template-columns: repeat(5, 1fr);
-  border-radius: 11px;
-  gap: 5px;
-  /* box-shadow: 0 0 5px 0px #00000090; */
-}
-
-
-
-.nav .page {
-  /* padding-block: 6px; */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  backdrop-filter: blur(6px);
-  color: #333;
-
-  padding: 1px 2px;
-  border-radius: 16px;
-  /* gap: 4px; */
-  justify-content: space-around;
-
-}
-
-
-
-.page-name {
-  font-size: .8em;
-}
-
-.nav .page:focus {
-  color: #0047ab;
-
-}
-
-.page svg {
-  font-size: 1em;
-}
 
 ::-webkit-scrollbar {
   background-color: transparent;
   transition: all 0.3s ease-in-out;
   position: absolute;
   inset: 0;
+  display: none;
   width: 8px;
   border-radius: 21px;
   overflow: hidden;
@@ -119,9 +62,9 @@ body {
 }
 
 .card {
-  min-width: 100%;
-  min-height: 80dvh;
-  aspect-ratio: 3/4.5;
+  width: 100%;
+  min-height: 100%;
+  /* aspect-ratio: 3/4.5; */
   scroll-snap-align: center;
   background: #eee;
   transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1.1);
@@ -130,7 +73,7 @@ body {
   color: #fff;
   /* box-shadow: 0 0 20px #c1c1c150; */
   margin-bottom: 5dvw;
-  border-radius: 31px;
+  /* border-radius: 31px; */
   overflow: hidden;
 
 
@@ -411,14 +354,14 @@ h2 {
   scale: 0.8;
   filter: blur(5px);
   opacity: 0;
-  border-radius: 21px;
+  /* border-radius: 21px; */
 }
 
 .show {
   scale: 1;
   filter: blur(0px);
   opacity: 1;
-  border-radius: 31px;
+  /* border-radius: 31px; */
 
 }
 
@@ -658,4 +601,62 @@ a {
 .gapper {
   width: 100%;
   height: 20px;
+}
+
+.container>div {
+  /* border: solid 1px #f00; */
+  /* padding-top: 4em; */
+}
+
+.nav {
+  height: 45px;
+  max-width: 400px;
+  margin: 0 auto;
+  top: 1dvh;
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-rows: 1;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 11px;
+  gap: 5px;
+  overflow: hidden;
+}
+
+
+
+.nav .page {
+  /* padding-block: 6px; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  backdrop-filter: blur(6px);
+  color: #333;
+  z-index: 4;
+
+  padding: 1px 2px;
+  border-radius: 16px;
+  /* gap: 4px; */
+  justify-content: space-around;
+
+}
+
+
+
+.page-name {
+  font-size: .8em;
+}
+
+.nav .page:focus {
+  color: #0047ab;
+
+}
+
+.page svg {
+  font-size: 1em;
 }
