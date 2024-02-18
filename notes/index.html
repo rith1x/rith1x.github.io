@@ -12,12 +12,11 @@
             <div class="row" id="notecanvas">
                 <div class="card" id="card">
                     <div class="title">
-                        <input type="text">
+                        <input type="text" placeholder="My New Note">
                     </div>
                     <div class="content">
                         <div class="note">
-                            <textarea onchange="hello()" id="notedata"
-                                rows="7">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat earum, voluptatum consequatur excepturi beatae quidem architecto nobis. Illo veniam cupiditate fuga voluptatibus cumque. Et iusto mollitia iure excepturi ducimus commodi odit corrupti fugit, inventore repellat vel aliquid ipsa. Iure, autem? Ad iusto laborum rem aut laboriosam doloribus beatae consequatur animi.</textarea>
+                            <textarea onchange="hello()" id="notedata" rows="7">Write Something...</textarea>
                         </div>
                     </div>
                 </div>
@@ -237,8 +236,8 @@
             }
 
             .title input {
-                width: calc(100% - 12px);
-                margin: 10px auto;
+                width: calc(100%);
+                padding: 0px;
                 border: none;
                 border-bottom: solid 1px #000000;
             }
