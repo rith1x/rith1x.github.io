@@ -611,6 +611,7 @@ a {
   position: absolute;
   left: 0;
   right: 0;
+  padding-inline: 1em;
   display: grid;
   grid-template-rows: 1;
   align-items: center;
