@@ -12,11 +12,11 @@
             <div class="row" id="notecanvas">
                 <div class="card" id="card">
                     <div class="title">
-                        <input type="text" placeholder="My New Note">
+                        <input type="text" id="noteTitle" placeholder="My New Note">
                     </div>
                     <div class="content">
                         <div class="note">
-                            <textarea onchange="hello()" id="notedata" rows="7">Write Something...</textarea>
+                            <textarea onchange="hello()" id="noteData" rows="10">Write Something...</textarea>
                         </div>
                     </div>
                 </div>
@@ -24,50 +24,36 @@
             </div>
         </div>
         <script>
-            // SESSION DATA
-
-            let noteData;
-
-            // STARTER FUNCTION
-
-            document.addEventListener("DOMContentLoaded", function () {
-                refreshData();
-            });
-
-            // SYNCING SESSION WITH LOCAL
-
-            function syncData() {
-                localStorage.setItem("notesData", JSON.stringify(noteData));
-                viewNotes();
-            }
-
-            function refreshData() {
-                let oldList = localStorage.getItem('notesData');
-                if (!oldList) {
-                    const template = {
-                        "notesData": {}
-                    }
-                    localStorage.setItem('notesData', JSON.stringify(template));
-                }
-                noteData = JSON.parse(localStorage.getItem('notesData'));
-                viewNotes();
-            }
-
 
 
 
             function hello() {
                 console.log("hii");
 
-                const notecanvas = document.getElementById("notecanvas");
+                const title = document.getElementById("noteTitle").value;
+                const note = document.getElementById("noteData").value;
+
+                let card = {
+                    "title": title,
+                    "note": note,
+                }
+                localStorage.setItem("note", JSON.stringify(card));
+
 
 
 
             }
+            (function syncer() {
+                const sync = JSON.parse(localStorage.getItem("note"));
 
 
+                const title = document.getElementById("noteTitle");
+                const note = document.getElementById("noteData");
+                title.value = sync.title;
+                note.value = sync.note;
 
 
+            })();
 
 
             function viewNotes() {
