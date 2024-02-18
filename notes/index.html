@@ -10,9 +10,16 @@
     <body>
         <div class="container">
             <div class="row" id="notecanvas">
-                <div class="note">
-                    <textarea onchange="hello()" id=""
-                        rows="7">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat earum, voluptatum consequatur excepturi beatae quidem architecto nobis. Illo veniam cupiditate fuga voluptatibus cumque. Et iusto mollitia iure excepturi ducimus commodi odit corrupti fugit, inventore repellat vel aliquid ipsa. Iure, autem? Ad iusto laborum rem aut laboriosam doloribus beatae consequatur animi.</textarea>
+                <div class="card" id="card">
+                    <div class="title">
+                        <input type="text">
+                    </div>
+                    <div class="content">
+                        <div class="note">
+                            <textarea onchange="hello()" id="notedata"
+                                rows="7">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat earum, voluptatum consequatur excepturi beatae quidem architecto nobis. Illo veniam cupiditate fuga voluptatibus cumque. Et iusto mollitia iure excepturi ducimus commodi odit corrupti fugit, inventore repellat vel aliquid ipsa. Iure, autem? Ad iusto laborum rem aut laboriosam doloribus beatae consequatur animi.</textarea>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -190,7 +197,7 @@
 
             .container {
                 width: 80%;
-                border: solid 1px #f00;
+                /* border: solid 1px #f00; */
                 margin: 0 auto;
             }
 
@@ -199,7 +206,20 @@
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: none;
-                gap: 10px;
+                /* gap: 10px;gi */
+
+            }
+
+            .card {
+                border: solid 1px rgb(211, 211, 211);
+                padding: 10px;
+                border-radius: 21px;
+            }
+
+            .note {
+                display: flex;
+                flex-direction: column;
+
 
             }
 
@@ -209,42 +229,52 @@
 
             }
 
-
-            .note {
-                border: solid 1px rgb(211, 211, 211);
-                border-radius: 11px;
-                margin-block: 10px;
-                padding: 10px;
-                height: fit-content;
-                position: relative;
-                padding-inline: 12px;
-                padding-top: 16px;
-                overflow: hidden;
-                z-index: 0;
-                font-size: 18px;
+            .title {
+                background-color: #ffffff;
                 display: flex;
-                justify-content: stretch;
 
 
             }
 
-            .note *::-webkit-scrollbar {
+            .title input {
+                width: calc(100% - 12px);
+                margin: 10px auto;
+                border: none;
+                border-bottom: solid 1px #000000;
+            }
+
+            .title input:focus {
+                outline: none;
+            }
+
+            .content {
+                margin-block: 10px;
+                height: fit-content;
+                width: 100%;
+                position: relative;
+                z-index: 0;
+                font-size: 18px;
+
+
+            }
+
+            .content *::-webkit-scrollbar {
                 background-color: #e7e7e7;
                 width: 3px;
             }
 
-            .note *::-webkit-scrollbar-thumb {
+            .content *::-webkit-scrollbar-thumb {
                 background-color: #6266ff;
             }
 
-            .note::before {
+            .content::before {
                 content: '';
-                height: calc(100% - 20px);
-                width: calc(100% - 20px);
+                height: calc(100%);
+                width: calc(100%);
                 position: absolute;
-                left: 10px;
-                top: 10px;
-
+                /* left: 10px; */
+                /* top: 10px; */
+                /* box-sizing: border-box/; */
                 background-color: #ffffff;
                 opacity: 0.2;
                 z-index: -1;
@@ -253,18 +283,21 @@
 
             }
 
-            .note:focus-within {
+            .card:focus-within {
                 border: solid 1px #00ab47;
             }
 
             textarea {
                 background-color: transparent;
-                min-width: 100%;
+                width: 100%;
+                padding-top: .3em;
                 height: 100%;
                 border: none;
                 line-height: 24px;
                 font-size: 1em;
             }
+
+
 
             textarea:focus {
                 outline: none;
