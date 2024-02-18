@@ -27,9 +27,10 @@ body {
   max-width: 450px;
   margin: 0 auto;
   height: 100dvh;
-  gap: 3em;
+  gap: 2em;
   overflow: hidden scroll;
   padding: 2em;
+
   display: flex;
   flex-direction: column;
   position: relative;
@@ -39,13 +40,17 @@ body {
 
 }
 
+.container * {
+  /* border: solid 1px #f00; */
+}
+
 .nav {
   position: absolute;
-  height: 50px;
+  height: 45px;
   max-width: 400px;
 
   margin: 0 auto;
-  bottom: 1dvh;
+  top: 1dvh;
   left: 0;
   position: fixed;
   right: 0;
@@ -55,7 +60,6 @@ body {
   grid-template-columns: repeat(5, 1fr);
   border-radius: 11px;
   gap: 5px;
-  padding: 5px;
   /* box-shadow: 0 0 5px 0px #00000090; */
 }
 
@@ -72,7 +76,7 @@ body {
   backdrop-filter: blur(6px);
   color: #333;
 
-  padding: 3px 4px;
+  padding: 1px 2px;
   border-radius: 16px;
   /* gap: 4px; */
   justify-content: space-around;
@@ -137,6 +141,7 @@ body {
   background: #9b59b650;
   transition: all 0.3s ease;
   position: relative;
+  margin-top: 3em;
 }
 
 .profile-bg {
@@ -510,7 +515,7 @@ a {
   display: flex;
   flex-direction: column;
   height: 100%;
-overflow:scroll;
+  overflow: scroll;
   gap: 10px;
 
 
@@ -527,12 +532,14 @@ overflow:scroll;
   padding-inline: 10px;
   justify-content: space-between;
 }
+
 .socialbox::-webkit-scrollbar {
   background-color: transparent;
   width: 3px;
   height: 40px;
   display: none;
 }
+
 .socialbox div a {
   padding: 6px 10px;
   border-radius: 21px;

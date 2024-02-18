@@ -1,5 +1,16 @@
 [
     {
+        "name": "Notes App",
+        "link": "https://rith1x.github.io/notes",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/notes",
+        "description": "A simple Notes App  ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
         "name": "Analog Clock using HTML CSS JS",
         "link": "https://rith1x.github.io/clock",
         "github": "https://github.com/rith1x/rith1x.github.io/tree/main/clock",
