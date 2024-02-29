@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TicTacToe</title>
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100dvh;
+                background: url(bg.jpg);
+                background-size: cover;
+            }
+
+            .board {
+                width: 360px;
+                aspect-ratio: 1 / 1;
+                /* border: solid 1px #f00; */
+                padding: 10px;
+                position: relative;
+                background-color: #001e5050;
+                border-radius: 16px;
+                backdrop-filter: blur(7px);
+                gap: 10px;
+                display: grid;
+
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+
+                button {
+                    border: #cee0ff50 solid 1px;
+                    background-color: transparent;
+                    color: #fff;
+                    font-size: 3em;
+                    border-radius: 6px;
+
+                }
+
+                button:hover {
+                    border: #1d70ff50 solid 1px;
+                    box-shadow: 0px 0px 5px #1d70ff50;
+                }
+            }
+
+            .winner {
+                width: 360px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                color: #fff;
+                text-transform: uppercase;
+                font-family: sans-serif;
+                font-weight: 700;
+                justify-content: center;
+            }
+
+            .strike {
+                position: absolute;
+                width: 60px;
+                height: 85%;
+                border-radius: 30px;
+                transform-origin: 50% 50%;
+
+                inset: 0;
+                margin: auto;
+                border: solid 3px #f00;
+
+            }
+
+
+            .strike:nth-child(1) {
+                margin-block: auto;
+                margin-right: 76%;
+            }
+
+            .strike:nth-child(2) {
+                margin-block: auto;
+                margin-left: 76%;
+
+            }
+
+            .strike:nth-child(3) {
+                margin-block: auto;
+                rotate: 45deg;
+                height: 110%;
+
+            }
+
+            .strike:nth-child(4) {
+                margin-block: auto;
+                rotate: -45deg;
+                height: 110%;
+
+            }
+
+            .strike:nth-child(5) {
+                margin-block: auto;
+                rotate: 90deg;
+                transform-origin: 50%;
+
+
+            }
+
+            .strike:nth-child(6) {
+                margin-block: auto;
+                rotate: 90deg;
+                transform-origin: 50%;
+                top: 65%;
+
+
+            }
+
+            .strike:nth-child(7) {
+                margin-block: auto;
+                rotate: 90deg;
+                bottom: 65%;
+
+
+            }
+
+            .strikes {
+                /* position: absolute; */
+                display: contents;
+            }
+        </style>
+
+
+
+
+    </head>
+
+    <body>
+        <div class="gamespace">
+            <div id="win" class="winner">
+
+            </div>
+            <div class="board">
+                <button class="pos" id="pos0.0" onclick="inputGiven('0.0')"></button>
+                <button class="pos" id="pos0.1" onclick="inputGiven('0.1')"></button>
+                <button class="pos" id="pos0.2" onclick="inputGiven('0.2')"></button>
+                <button class="pos" id="pos1.0" onclick="inputGiven('1.0')"></button>
+                <button class="pos" id="pos1.1" onclick="inputGiven('1.1')"></button>
+                <button class="pos" id="pos1.2" onclick="inputGiven('1.2')"></button>
+                <button class="pos" id="pos2.0" onclick="inputGiven('2.0')"></button>
+                <button class="pos" id="pos2.1" onclick="inputGiven('2.1')"></button>
+                <button class="pos" id="pos2.2" onclick="inputGiven('2.2')"></button>
+                <div class="strikes">
+                    <div class="strike" id="sc1" style="display: none;"></div>
+                    <div class="strike" id="sc3" style="display: none;"></div>
+                    <div class="strike" id="sd2" style="display: none;"></div>
+                    <div class="strike" id="sd1" style="display: none;"></div>
+                    <div class="strike" id="sr2" style="display: none;"></div>
+                    <div class="strike" id="sr3" style="display: none;"></div>
+                    <div class="strike" id="sr1" style="display: none;"></div>
+                    <div class="strike" id="sc2" style="display: none;"></div>
+
+                </div>
+            </div>
+        </div>
+        <script>
+            let boardPos =
+                [[["0"], ["0"], ["0"]],
+                [["0"], ["0"], ["0"]],
+                [["0"], ["0"], ["0"]]]
+            function inputGiven(pos) {
+                document.getElementById(`pos${pos}`).innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+                currPos = pos.split(".");
+                cR = currPos[0];
+                cC = currPos[1];
+                boardPos[cR][cC] = "1";
+                console.log(currPos);
+                console.log(cR);
+                console.log(cC);
+                console.log(boardPos);
+                checkBoard();
+                document.getElementById("win").innerText = "Thinking...";
+                setTimeout(roboPlay, 2000)
+            }
+            function roboPlay() {
+                bCol = Math.floor(Math.random() * 3);
+                bRow = Math.floor(Math.random() * 3);
+                checkRobo(bCol, bRow);
+            }
+            function checkRobo(co, ro) {
+                if ((boardPos[co][ro]) == "1") {
+                    roboPlay();
+                } else {
+                    document.getElementById("win").innerText = "";
+
+                    boardPos[co][ro] = "2";
+                    document.getElementById(`pos${co}.${ro}`).innerHTML = `<i class="fa-solid fa-o"></i>`;
+                    checkBoard();
+                }
+            }
+            function putStr(pst) {
+                document.getElementById(`s${pst}`).style.display = "block";
+            }
+            function checkBoard() {
+                if ((boardPos[0][0] == "1") && (boardPos[0][1] == "1") && (boardPos[0][2] == "1")) {
+                    putStr("r1");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[1][0] == "1") && (boardPos[1][1] == "1") && (boardPos[1][2] == "1")) {
+                    putStr("r2");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[2][0] == "1") && (boardPos[2][1] == "1") && (boardPos[2][2] == "1")) {
+                    putStr("r3");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][0] == "1") && (boardPos[1][0] == "1") && (boardPos[2][0] == "1")) {
+                    putStr("c1");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][1] == "1") && (boardPos[1][1] == "1") && (boardPos[2][1] == "1")) {
+                    putStr("c2");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][2] == "1") && (boardPos[1][2] == "1") && (boardPos[2][2] == "1")) {
+                    putStr("c3");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][0] == "1") && (boardPos[1][1] == "1") && (boardPos[2][2] == "1")) {
+                    putStr("d1");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][2] == "1") && (boardPos[1][1] == "1") && (boardPos[2][0] == "1")) {
+                    putStr("d2");
+                    document.getElementById("win").innerText = "User wins!";
+                }
+                if ((boardPos[0][0] == "2") && (boardPos[0][1] == "2") && (boardPos[0][2] == "2")) {
+                    putStr("r1");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[1][0] == "2") && (boardPos[1][1] == "2") && (boardPos[1][2] == "2")) {
+                    putStr("r2");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[2][0] == "2") && (boardPos[2][1] == "2") && (boardPos[2][2] == "2")) {
+                    putStr("r3");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[0][0] == "2") && (boardPos[1][0] == "2") && (boardPos[2][0] == "2")) {
+                    putStr("c1");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[0][1] == "2") && (boardPos[1][1] == "2") && (boardPos[2][1] == "2")) {
+                    putStr("c2");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[0][2] == "2") && (boardPos[1][2] == "2") && (boardPos[2][2] == "2")) {
+                    putStr("c3");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[0][0] == "2") && (boardPos[1][1] == "2") && (boardPos[2][2] == "2")) {
+                    putStr("d1");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                if ((boardPos[0][2] == "2") && (boardPos[1][1] == "2") && (boardPos[2][0] == "2")) {
+                    putStr("d2");
+                    document.getElementById("win").innerText = "Computer wins!";
+                }
+                
+            }
+        </script>
+
+    </body>
+
+</html>
