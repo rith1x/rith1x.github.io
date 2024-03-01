@@ -188,16 +188,19 @@
             </div>
         </div>
         <script>
+            
             let boardPos =
                 [[["0"], ["0"], ["0"]],
                 [["0"], ["0"], ["0"]],
                 [["0"], ["0"], ["0"]]]
+            
             function inputGiven(pos) {
                 document.getElementById(`pos${pos}`).innerHTML = `<i class="fa-solid fa-xmark"></i>`;
                 currPos = pos.split(".");
                 cR = currPos[0];
                 cC = currPos[1];
                 boardPos[cR][cC] = "1";
+                document.getElementById(`pos${pos}`).disabled = true;
                 console.log(currPos);
                 console.log(cR);
                 console.log(cC);
@@ -212,13 +215,15 @@
                 checkRobo(bCol, bRow);
             }
             function checkRobo(co, ro) {
-                if ((boardPos[co][ro]) == "1") {
+                if (((boardPos[co][ro]) == "1") || ((boardPos[co][ro]) == "2") {
                     roboPlay();
                 } else {
                     document.getElementById("win").innerText = "";
 
                     boardPos[co][ro] = "2";
                     document.getElementById(`pos${co}.${ro}`).innerHTML = `<i class="fa-solid fa-o"></i>`;
+                    document.getElementById(`pos${co}.${ro}`).disabled = true;
+                    
                     checkBoard();
                 }
             }
