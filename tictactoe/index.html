@@ -199,8 +199,8 @@
                 currPos = pos.split(".");
                 cR = currPos[0];
                 cC = currPos[1];
-                boardPos[cR][cC] = "1";
-                document.getElementById(`pos${pos}`).disabled = true;
+                boardPos[cR][cC] = "1";                    
+                document.getElementById(`pos${co}.${ro}`).setAttribute("disabled","true");
                 console.log(currPos);
                 console.log(cR);
                 console.log(cC);
@@ -222,7 +222,7 @@
 
                     boardPos[co][ro] = "2";
                     document.getElementById(`pos${co}.${ro}`).innerHTML = `<i class="fa-solid fa-o"></i>`;
-                    document.getElementById(`pos${co}.${ro}`).disabled = true;
+                    document.getElementById(`pos${co}.${ro}`).setAttribute("disabled","true");
                     
                     checkBoard();
                 }
