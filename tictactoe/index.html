@@ -1,33 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TicTacToe</title>
+<title>Tic Tac Toe - By Kiruthik</title>
+<meta name="title" content="Tic Tac Toe - By Kiruthik" />
+<meta name="description" content="An simple Tic-tac-toe game created by using HTML, CSS, and Basic JavaScript. This is an open source Project and code is available on GitHub." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rith1x.github.io/tictactoe/" />
+<meta property="og:title" content="Tic Tac Toe - By Kiruthik" />
+<meta property="og:description" content="An simple Tic-tac-toe game created by using HTML, CSS, and Basic JavaScript. This is an open source Project and code is available on GitHub." />
+<meta property="og:image" content="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3251649/tic-tac-toe-icon-md.png" />
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content="https://rith1x.github.io/tictactoe/" />
+<meta property="twitter:title" content="Tic Tac Toe - By Kiruthik" />
+<meta property="twitter:description" content="An simple Tic-tac-toe game created by using HTML, CSS, and Basic JavaScript. This is an open source Project and code is available on GitHub." />
+<meta property="twitter:image" content="https://creazilla-store.fra1.digitaloceanspaces.com/icons/3251649/tic-tac-toe-icon-md.png" />
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
-
         <style>
             * {
                 box-sizing: border-box;
                 padding: 0;
                 margin: 0;
-
             }
-
             body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100dvh;
-                
             }
             html {
   --s: 222px; /* control the size */
   --c1: #7f727b;
   --c2: #d6b4c2;
-  --c3: #baa0ab;
-  
+  --c3: #baa0ab; 
   --_g: var(--c1) 10%,var(--c2) 10.5% 19%,#0000 19.5% 80.5%,var(--c2) 81% 89.5%,var(--c3) 90%;
   --_c: from -90deg at 37.5% 50%,#0000 75%;
   --_l1: linear-gradient(145deg,var(--_g));
@@ -40,12 +46,9 @@
     linear-gradient(90deg,var(--c3) 38%,var(--c1) 0 50%,var(--c3) 0 62%,var(--c1) 0);
   background-size: var(--s) calc(2*var(--s)/3);
 }
-
-
             .board {
                 width: 360px;
                 aspect-ratio: 1 / 1;
-                /* border: solid 1px #f00; */
                 padding: 10px;
                 position: relative;
                 background-color: #001e5050;
@@ -53,25 +56,20 @@
                 backdrop-filter: blur(7px);
                 gap: 10px;
                 display: grid;
-
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(3, 1fr);
-
                 button {
                     border: #cee0ff50 solid 1px;
                     background-color: transparent;
                     color: #fff;
                     font-size: 3em;
                     border-radius: 6px;
-
                 }
-
                 button:hover {
                     border: #1d70ff50 solid 1px;
                     box-shadow: 0px 0px 5px #1d70ff50;
                 }
             }
-
             .winner {
                 width: 360px;
                 height: 40px;
@@ -83,86 +81,58 @@
                 font-weight: 700;
                 justify-content: center;
             }
-
             .strike {
                 position: absolute;
                 width: 60px;
                 height: 85%;
                 border-radius: 30px;
                 transform-origin: 50% 50%;
-
                 inset: 0;
                 margin: auto;
                 border: solid 3px #f00;
-
             }
-
-
             .strike:nth-child(1) {
                 margin-block: auto;
                 margin-right: 76%;
             }
-
             .strike:nth-child(2) {
                 margin-block: auto;
                 margin-left: 76%;
-
             }
-
             .strike:nth-child(3) {
                 margin-block: auto;
                 rotate: 45deg;
                 height: 110%;
-
             }
-
             .strike:nth-child(4) {
                 margin-block: auto;
                 rotate: -45deg;
                 height: 110%;
-
             }
-
             .strike:nth-child(5) {
                 margin-block: auto;
                 rotate: 90deg;
                 transform-origin: 50%;
-
-
             }
-
             .strike:nth-child(6) {
                 margin-block: auto;
                 rotate: 90deg;
                 transform-origin: 50%;
                 top: 65%;
-
-
             }
-
             .strike:nth-child(7) {
                 margin-block: auto;
                 rotate: 90deg;
                 bottom: 65%;
-
-
             }
-
             .strikes {
-                /* position: absolute; */
                 display: contents;
             }
         </style>
-
-
-
-
     </head>
-
     <body>
         <div class="gamespace">
             <div id="win" class="winner">
-
             </div>
             <div class="board">
                 <button class="pos" id="pos0.0" onclick="inputGiven('0.0')"></button>
@@ -183,17 +153,11 @@
                     <div class="strike" id="sr3" style="display: none;"></div>
                     <div class="strike" id="sr1" style="display: none;"></div>
                     <div class="strike" id="sc2" style="display: none;"></div>
-
                 </div>
             </div>
         </div>
         <script>
-            
-            let boardPos =
-                [[["0"], ["0"], ["0"]],
-                [["0"], ["0"], ["0"]],
-                [["0"], ["0"], ["0"]]]
-            
+            let boardPos =[[["0"], ["0"], ["0"]],[["0"], ["0"], ["0"]],[["0"], ["0"], ["0"]]]
             function inputGiven(pos) {
                 document.getElementById(`pos${pos}`).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>`;
                 currPos = pos.split(".");
@@ -201,10 +165,6 @@
                 cC = currPos[1];
                 boardPos[cR][cC] = "1";                    
                 document.getElementById(`pos${co}.${ro}`).setAttribute("disabled","true");
-                console.log(currPos);
-                console.log(cR);
-                console.log(cC);
-                console.log(boardPos);
                 checkBoard();
                 document.getElementById("win").innerText = "Thinking...";
                 setTimeout(roboPlay, 2000)
@@ -215,15 +175,13 @@
                 checkRobo(bCol, bRow);
             }
             function checkRobo(co, ro) {
-                if (((boardPos[co][ro]) == "1") || ((boardPos[co][ro]) == "2") {
+                if (((boardPos[co][ro]) == "1") || ((boardPos[co][ro]) == "2")) {
                     roboPlay();
                 } else {
                     document.getElementById("win").innerText = "";
-
                     boardPos[co][ro] = "2";
                     document.getElementById(`pos${co}.${ro}`).innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 96a160 160 0 1 0 0 320 160 160 0 1 0 0-320zM448 256A224 224 0 1 1 0 256a224 224 0 1 1 448 0z"/></svg>`;
                     document.getElementById(`pos${co}.${ro}`).setAttribute("disabled","true");
-                    
                     checkBoard();
                 }
             }
@@ -295,10 +253,7 @@
                     putStr("d2");
                     document.getElementById("win").innerText = "Computer wins!";
                 }
-                
             }
         </script>
-
     </body>
-
 </html>
