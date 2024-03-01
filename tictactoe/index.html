@@ -157,15 +157,19 @@
             </div>
         </div>
         <script>
+            let xItr = 0;
             let boardPos =[[["0"], ["0"], ["0"]],[["0"], ["0"], ["0"]],[["0"], ["0"], ["0"]]]
             function inputGiven(pos) {
+                xItr += 1;
                 document.getElementById(`pos${pos}`).innerHTML = `<i class="fa-solid fa-xmark"></i>`;
                 currPos = pos.split(".");
                 cR = currPos[0];
                 cC = currPos[1];
                 boardPos[cR][cC] = "1";                    
                 document.getElementById(`pos${pos}`).setAttribute("disabled","true");
-                checkBoard();
+                if (xItr > 2){
+                    checkBoard();
+                }
                 document.getElementById("win").innerText = "Thinking...";
                 setTimeout(roboPlay, 2000)
             }
