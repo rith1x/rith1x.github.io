@@ -164,7 +164,7 @@
                 cR = currPos[0];
                 cC = currPos[1];
                 boardPos[cR][cC] = "1";                    
-                document.getElementById(`pos${co}.${ro}`).setAttribute("disabled","true");
+                document.getElementById(`pos${pos}`).setAttribute("disabled","true");
                 checkBoard();
                 document.getElementById("win").innerText = "Thinking...";
                 setTimeout(roboPlay, 2000)
