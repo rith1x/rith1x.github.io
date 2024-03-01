@@ -170,8 +170,8 @@
                 setTimeout(roboPlay, 2000)
             }
             function roboPlay() {
-                bCol = Math.floor(Math.random() * 3);
-                bRow = Math.floor(Math.random() * 3);
+                bCol = (Math.floor(Math.random() * 4) -1);
+                bRow = (Math.floor(Math.random() * 4) -1);
                 checkRobo(bCol, bRow);
             }
             function checkRobo(co, ro) {
