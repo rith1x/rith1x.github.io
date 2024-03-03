@@ -77,7 +77,7 @@
             }
 
             #score {
-                color: rgb(0, 0, 0);
+                color: rgb(183, 0, 255);
                 font-weight: 600;
                 font-size: 2.5em;
             }
@@ -87,6 +87,7 @@
                 align-items: center;
                 justify-content: space-between;
                 width: 500px;
+                color: #fff;
             }
 
             .bom {
@@ -140,168 +141,209 @@
                 animation-direction: alternate;
                 animation-timing-function: ease;
             }
+
+            @media only screen and (max-width: 580px) {
+                .container {
+                    max-width: 450px;
+                    overflow: hidden;
+                    height: 100dvh;
+                    margin: 0 auto;
+                    /* border: solid 1px #f00; */
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 10px;
+
+                }
+
+                .playSpace {
+                    width: 100%;
+                    aspect-ratio: 1 / 1;
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    grid-template-rows: repeat(4, 1fr);
+
+                }
+
+                .scoreCard {
+                    width: 100%;
+                }
+            }
         </style>
 
     </head>
 
     <body>
-        <div class="scoreCard">
-            <h1>Whack a mole</h1>
+        <div class="container">
+            <div class="scoreCard">
+                <h1>Whack a mole</h1>
 
-            <div class="bom">Score: <h1 id="score">0</h1>
-            </div>
-        </div>
-        <div class="playSpace">
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('0')" id="mole0" class="mole0"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('0')" id="bomb0" class="bomb0"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast0" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
+                <div class="bom">Score: <h1 id="score">0</h1>
                 </div>
             </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('1')" id="mole1" class="mole1"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('1')" id="bomb1" class="bomb1"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast1" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
+            <div class="playSpace">
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('0')" id="mole0" class="mole0"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('0')" id="bomb0" class="bomb0"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast0" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('1')" id="mole1" class="mole1"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('1')" id="bomb1" class="bomb1"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast1" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('2')" id="mole2" class="mole2"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('2')" id="bomb2" class="bomb2"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast2" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('3')" id="mole3" class="mole3"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('3')" id="bomb3" class="bomb3"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast3" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('4')" id="mole4" class="mole4"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('4')" id="bomb4" class="bomb4"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast4" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('5')" id="mole5" class="mole5"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('5')" id="bomb5" class="bomb5"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast5" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('6')" id="mole6" class="mole6"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('6')" id="bomb6" class="bomb6"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast6" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('7')" id="mole7" class="mole7"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('7')" id="bomb7" class="bomb7"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast7" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('8')" id="mole8" class="mole8"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('8')" id="bomb8" class="bomb8"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast8" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('9')" id="mole9" class="mole9"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('9')" id="bomb9" class="bomb9"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast9" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('10')" id="mole10" class="mole10"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('10')" id="bomb10" class="bomb10"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast10" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('11')" id="mole11" class="mole11"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('11')" id="bomb11" class="bomb11"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast11" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('12')" id="mole12" class="mole12"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('12')" id="bomb12" class="bomb12"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast12" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('13')" id="mole13" class="mole13"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('13')" id="bomb13" class="bomb13"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast13" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('14')" id="mole14" class="mole14"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('14')" id="bomb14" class="bomb14"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast14" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('15')" id="mole15" class="mole15"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('15')" id="bomb15" class="bomb15"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast15" style="background-color: #fff; display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
                 </div>
 
             </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('2')" id="mole2" class="mole2"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('2')" id="bomb2" class="bomb2"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast2" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('3')" id="mole3" class="mole3"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('3')" id="bomb3" class="bomb3"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast3" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('4')" id="mole4" class="mole4"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('4')" id="bomb4" class="bomb4"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast4" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('5')" id="mole5" class="mole5"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('5')" id="bomb5" class="bomb5"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast5" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('6')" id="mole6" class="mole6"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('6')" id="bomb6" class="bomb6"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast6" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('7')" id="mole7" class="mole7"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('7')" id="bomb7" class="bomb7"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast7" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('8')" id="mole8" class="mole8"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('8')" id="bomb8" class="bomb8"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast8" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('9')" id="mole9" class="mole9"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('9')" id="bomb9" class="bomb9"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast9" style="background-color: #fff;display:none;"><img src="blast.gif" alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('10')" id="mole10" class="mole10"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('10')" id="bomb10" class="bomb10"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast10" style="background-color: #fff;display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('11')" id="mole11" class="mole11"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('11')" id="bomb11" class="bomb11"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast11" style="background-color: #fff;display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('12')" id="mole12" class="mole12"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('12')" id="bomb12" class="bomb12"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast12" style="background-color: #fff;display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('13')" id="mole13" class="mole13"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('13')" id="bomb13" class="bomb13"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast13" style="background-color: #fff;display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('14')" id="mole14" class="mole14"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('14')" id="bomb14" class="bomb14"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast14" style="background-color: #fff;display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-            <div class="room">
-                <div style="transform:translatey(100%);" onclick="clickMole('15')" id="mole15" class="mole15"><img
-                        src="mole.png" alt=""></div>
-                <div style="transform:translatey(100%);" onclick="clickBomb('15')" id="bomb15" class="bomb15"><img
-                        src="bomb.png" alt=""></div>
-                <div class="blast" id="blast15" style="background-color: #fff; display:none;"><img src="blast.gif"
-                        alt="">
-                </div>
-
-            </div>
-
         </div>
         <div class="gameOver" id="gameOver" style="display: none;">
             <h1>GAME OVER!</h1>
