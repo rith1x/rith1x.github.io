@@ -30,11 +30,17 @@
                 margin: 0;
             }
 
+            @font-face {
+                font-family: com;
+                src: url(../digi/font.ttf);
+            }
+
             body {
                 display: flex;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
                 height: 100dvh;
+                font-family: ;
                 background-color: #e5e5f7;
                 background-image: radial-gradient(#c2ffb1 1.4500000000000002px, transparent 1.4500000000000002px), radial-gradient(#ffc5c5 1.4500000000000002px, #000000 1.4500000000000002px);
                 background-size: 60px 60px;
@@ -50,14 +56,14 @@
                 position: relative;
                 background-color: transparent;
                 border-radius: 16px;
-                backdrop-filter: blur(7px);
+                backdrop-filter: blur(4px);
                 gap: 10px;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
                 grid-template-rows: repeat(3, 1fr);
 
                 button {
-                    border: #cee0ffaa solid 1px;
+                    border: #cee0ff24 solid 1px;
                     background-color: transparent;
                     color: #fff;
                     font-size: 3em;
@@ -66,7 +72,7 @@
 
                 button:hover {
                     border: #1d70ff50 solid 1px;
-                    box-shadow: 0px 0px 5px #1d70ff50;
+                    box-shadow: 0px 0px 50px -10px #1d70ff50;
                 }
             }
 
@@ -77,10 +83,11 @@
                 align-items: center;
                 color: #fff;
                 text-transform: uppercase;
-                font-family: sans-serif;
-                font-weight: 700;
+                font-family: com;
+                font-size: 2em;
                 justify-content: center;
             }
+
 
             .strike {
                 position: absolute;
@@ -188,41 +195,71 @@
                     checkBoard();
                 }
                 document.getElementById("win").innerText = "Thinking...";
-                setTimeout(roboPlay, 1000)
+                let boardHasSpace = boardPos.includes(0);
+
+                if (boardHasSpace) {
+                    setTimeout(roboPlay, 1000);
+
+                } else {
+                    endGame();
+                }
+
+
+
             }
             function roboPlay() {
                 col = genRand();
                 checkRobo(col);
             }
+            function endGame() {
+                for (let i = 5; i >= 0; i--) {
+                    setTimeout(() => {
+                        document.getElementById("win").innerText = `New game begins in ${i}`;
+                        if (i == 0) {
+                            document.getElementById("win").innerText = `Go Ahead!`;
+
+                            gameBreak();
+
+                        }
+
+
+                    }, (5 - i) * 1000);
+
+                }
+
+            }
             function checkRobo(col) {
                 if ((boardPos[col]) != 0) {
-                    document.getElementById(`pos${col}`).style.borderColor = "#f00";
                     console.log(`Not Possible! ${col}`)
                     roboPlay();
+
                 }
                 else {
-                    document.getElementById(`pos${col}`).style.borderColor = "#0f0";
+                    let resp = checkBoard();
+                    if (resp == 0) {
+                        document.getElementById("win").innerText = "";
+                        boardPos[col] = 2;
+                        // document.getElementById(`pos${co}.${ro}`).innerHTML = `<i class="fa-solid fa-o"></i>`;
+                        document.getElementById(`pos${col}`).innerHTML = `○`;
 
-                    document.getElementById("win").innerText = "";
-                    boardPos[col] = 2;
-                    // document.getElementById(`pos${co}.${ro}`).innerHTML = `<i class="fa-solid fa-o"></i>`;
-                    document.getElementById(`pos${col}`).innerHTML = `○`;
-
-                    document.getElementById(`pos${col}`).setAttribute("disabled", "true");
-                    let x = boardPos;
-                    console.log(x[0] + ' ' + x[1] + ' ' + x[2] + '\n' + x[3] + ' ' + x[4] + ' ' + x[5] + '\n' + x[6] + ' ' + x[7] + ' ' + x[8])
-                    checkBoard();
+                        document.getElementById(`pos${col}`).setAttribute("disabled", "true");
+                        let x = boardPos;
+                        console.log(x[0] + ' ' + x[1] + ' ' + x[2] + '\n' + x[3] + ' ' + x[4] + ' ' + x[5] + '\n' + x[6] + ' ' + x[7] + ' ' + x[8])
+                    }
                 }
             }
             function putStr(pst) {
                 document.getElementById(`s${pst}`).style.display = "block";
+
+                endGame();
+
+
             }
             function gameBreak() {
-                for (i = 0; i < 10; i++) {
-                    setTimeout(function () {
-                        document.getElementById(`pos${i}`).innerText = "";
-                        document.getElementById(`pos${i}`).removeAttribute("disabled", "true");
-                    }, 300);
+                for (i = 0; i < 9; i++) {
+                    document.getElementById(`pos${i}`).innerText = " ";
+                    document.getElementById(`pos${i}`).removeAttribute("disabled", "true");
+                    boardPos[i] = 0;
                 }
                 document.getElementById("sc1").style.display = "none";
                 document.getElementById("sc3").style.display = "none";
@@ -237,114 +274,117 @@
                 if ((boardPos[0] == 1) && (boardPos[1] == 1) && (boardPos[2] == 1)) {
                     putStr("r1");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
+
                 }
                 if ((boardPos[3] == 1) && (boardPos[4] == 1) && (boardPos[5] == 1)) {
                     putStr("r2");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
 
 
                 }
                 if ((boardPos[6] == 1) && (boardPos[7] == 1) && (boardPos[8] == 1)) {
                     putStr("r3");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
-
+                    return 1;
 
                 }
                 if ((boardPos[0] == 1) && (boardPos[3] == 1) && (boardPos[6] == 1)) {
                     putStr("c1");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
 
 
                 }
                 if ((boardPos[1] == 1) && (boardPos[4] == 1) && (boardPos[7] == 1)) {
                     putStr("c2");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
 
 
                 }
                 if ((boardPos[2] == 1) && (boardPos[5] == 1) && (boardPos[8] == 1)) {
                     putStr("c3");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
 
 
                 }
                 if ((boardPos[0] == 1) && (boardPos[4] == 1) && (boardPos[8] == 1)) {
                     putStr("d1");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
 
 
                 }
                 if ((boardPos[2] == 1) && (boardPos[4] == 1) && (boardPos[6] == 1)) {
                     putStr("d2");
                     document.getElementById("win").innerText = "User wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 1;
 
 
                 }
                 if ((boardPos[0] == 2) && (boardPos[1] == 2) && (boardPos[2] == 2)) {
                     putStr("r1");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[3] == 2) && (boardPos[4] == 2) && (boardPos[5] == 2)) {
                     putStr("r2");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[6] == 2) && (boardPos[7] == 2) && (boardPos[8] == 2)) {
                     putStr("r3");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[0] == 2) && (boardPos[3] == 2) && (boardPos[6] == 2)) {
                     putStr("c1");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[1] == 2) && (boardPos[4] == 2) && (boardPos[7] == 2)) {
                     putStr("c2");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[2] == 2) && (boardPos[5] == 2) && (boardPos[8] == 2)) {
                     putStr("c3");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[0] == 2) && (boardPos[4] == 2) && (boardPos[8] == 2)) {
                     putStr("d1");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
                 }
                 if ((boardPos[2] == 2) && (boardPos[4] == 2) && (boardPos[6] == 2)) {
                     putStr("d2");
                     document.getElementById("win").innerText = "Computer wins!";
-                    setTimeout(gameBreak(), 1000);
+                    return 2;
 
 
+                } else {
+                    document.getElementById("win").innerText = "Oohoo!";
+                    return 0;
                 }
             }
+
         </script>
     </body>
 
