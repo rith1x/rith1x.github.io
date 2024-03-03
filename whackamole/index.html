@@ -77,13 +77,14 @@
             }
 
             #score {
-                color: rgb(183, 0, 255);
+                color: rgb(255, 230, 0);
                 font-weight: 600;
                 font-size: 2.5em;
             }
 
             .scoreCard {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
                 width: 500px;
@@ -92,26 +93,38 @@
 
             .bom {
                 display: flex;
+                width: 100%;
                 align-items: center;
                 justify-content: space-between;
                 gap: 1em;
                 font-weight: 600;
+
+            }
+
+            .bom div {
+                display: flex;
+                align-items: center;
+                gap: 1em;
             }
 
             .gameOver {
                 position: absolute;
                 height: 100dvh;
-                width: 500px;
+                width: 100dvw;
                 background-color: #00000050;
                 backdrop-filter: blur(4px);
-
+                inset: 0;
                 display: flex;
                 color: #fff;
-                flex-direction: column;
                 gap: 1em;
-                place-items: center;
-                place-content: center;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
 
+                a {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
             }
 
             @keyframes flasdh {
@@ -152,8 +165,9 @@
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: space-around;
                     padding: 10px;
+                    gap: 1em;
 
                 }
 
@@ -169,6 +183,7 @@
                 .scoreCard {
                     width: 100%;
                 }
+
             }
         </style>
 
@@ -179,7 +194,11 @@
             <div class="scoreCard">
                 <h1>Whack a mole</h1>
 
-                <div class="bom">Score: <h1 id="score">0</h1>
+                <div class="bom">
+                    <div class="">High Score: <h1 id="hscore">0</h1>
+                    </div>
+                    <div class="">Score: <h1 id="score">0</h1>
+                    </div>
                 </div>
             </div>
             <div class="playSpace">
@@ -344,11 +363,14 @@
                 </div>
 
             </div>
+            <div class="gameOver" id="gameOver" style="display: none;">
+                <h1>GAME OVER!</h1>
+                <a href="" onclick="restart()">
+                    <h2>Retry!</h2>
+                </a>
+            </div>
         </div>
-        <div class="gameOver" id="gameOver" style="display: none;">
-            <h1>GAME OVER!</h1>
-            <h2 onclick="restart()">Retry!</h2>
-        </div>
+
         <script>
             let score = 0;
 
@@ -356,7 +378,6 @@
             function showRand() {
 
                 choice = Math.floor(Math.random() * 10);
-                console.log(choice)
                 if (choice >= 8) {
                     showBomb();
                 } else {
@@ -376,13 +397,14 @@
                 document.getElementById(`mole${n}`).style.transform = "translateY(100%)";
                 score += 1;
                 document.getElementById("score").innerText = score;
+                updateHighScore();
+
                 // showRand()
             }
 
             function showBomb() {
                 randIntx = Math.floor(Math.random() * 15);
                 document.getElementById(`bomb${randIntx}`).style.transform = "translateY(0%)";
-                console.log(randIntx);
                 setTimeout(() => {
                     document.getElementById(`bomb${randIntx}`).style.transform = "translateY(100%)";
 
@@ -397,19 +419,48 @@
                     document.getElementById(`blast${n}`).style.display = "none";
                     score = 0;
                     document.getElementById("score").innerText = score;
+                    localStorage.setItem("whackamoleCurrscore", score);
+
 
 
 
                 }, 1000);
 
                 document.getElementById(`bomb${n}`).style.transform = "translateY(100%)";
-                document.getElementById("gameOver").style.display = "block";
+                document.getElementById("gameOver").style.display = "flex";
 
             }
             function restart() {
                 showRand();
             }
+
+            function updateHighScore() {
+                localStorage.setItem("whackamoleCurrscore", score);
+
+                hs = localStorage.getItem("whackamoleHighscore");
+                console.log(hs)
+                if (hs = null) {
+                    localStorage.setItem("whackamoleHighscore", score);
+
+                } else {
+                    if (score > hs) {
+                        localStorage.setItem("whackamoleHighscore", score);
+                        document.getElementById("hscore").innerText = hs;
+
+                    } else {
+                        document.getElementById("hscore").innerText = hs;
+
+                    }
+                }
+
+            }
+
+
+
             showRand();
+
+
+
 
         </script>
     </body>
