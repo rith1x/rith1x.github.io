@@ -439,16 +439,16 @@
 
                 hs = localStorage.getItem("whackamoleHighscore");
                 console.log(hs)
-                if (hs = null) {
+                if (hs == null) {
                     localStorage.setItem("whackamoleHighscore", score);
 
                 } else {
-                    if (score > hs) {
+                    if (score >= hs) {
                         localStorage.setItem("whackamoleHighscore", score);
-                        document.getElementById("hscore").innerText = hs;
+                        hsnew = localStorage.getItem("whackamoleHighscore");
+                        document.getElementById("hscore").innerText = hsnew;
+                        document.getElementById("hscore").style.color = "#444cF7";
 
-                    } else {
-                        document.getElementById("hscore").innerText = hs;
 
                     }
                 }
@@ -459,6 +459,8 @@
 
             showRand();
 
+            high = localStorage.getItem("whackamoleHighscore")
+            document.getElementById("hscore").innerText = high;
 
 
 
