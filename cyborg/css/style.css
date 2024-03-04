@@ -19684,12 +19684,17 @@ html[class*="ie"] .dtp-hour-hand {
 
 /*
 *
-* Preloader
+* Preloader 19693 -> 19878
 */
+
+
+
+
 .preloader {
 	position: fixed;
 	left: 0;
 	top: 0;
+	background-color: #000000;
 	bottom: 0;
 	right: 0;
 	z-index: 9999999;
@@ -19697,7 +19702,6 @@ html[class*="ie"] .dtp-hour-hand {
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
-	background: #fff;
 	transition: .3s all ease;
 }
 
@@ -19713,6 +19717,9 @@ html[class*="ie"] .dtp-hour-hand {
 .preloader-body p {
 	position: relative;
 	right: -8px;
+	font-family: cyb;
+	font-weight: 200;
+
 }
 
 .cssload-container {
@@ -19730,7 +19737,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .cssload-container .dot {
 	background: #80deea;
-	border-radius: 50%;
+	border-radius: 10px;
 	display: inline-block;
 	margin-right: 20px;
 	width: 32px;
