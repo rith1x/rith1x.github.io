@@ -9,7 +9,7 @@
 	font-size: 2em;
 	font-family: cyb;
 	color: #ff0;
-	text-shadow: 2px 0px 0 #000, -2px 0px 0 #000, 0 -2px 0 #000, 0 2px 0 #000;
+	text-shadow: 2px 0px 0 #000, -2px 0px 0 #000, 0 -2px 0 #000, 0 2px 0 #3e2525, -2px -2px 0 #000, 2px 2px 0 #000;
 }
 
 a:focus,
@@ -20478,4 +20478,15 @@ h3+.card-custom-group-wrap {
 
 .caption:hover {
 	background-color: #00000070;
+}
+
+#t1,
+#t2,
+#t3,
+#t4,
+#nt1,
+#nt2,
+#nt3,
+#nt4 {
+	width: 420px;
 }
