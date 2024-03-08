@@ -9,6 +9,7 @@
 	font-size: 2em;
 	font-family: cyb;
 	color: #ff0;
+	text-shadow: 2px 0px 0 #000, -2px 0px 0 #000, 0 -2px 0 #000, 0 2px 0 #000;
 }
 
 a:focus,
@@ -422,9 +423,10 @@ h6,
 	display: block;
 	height: 1px;
 	width: 35px;
+	border-radius: 21px;
 	margin-top: 15px;
 	background: #80deea;
-	will-change: transform, opacity;
+	will-change: transform;
 }
 
 .heading-decorated_center::after,
@@ -834,7 +836,7 @@ h2 .label {
 
 .link-transparent {
 	padding: 1px 20px;
-	opacity: .3;
+	opacity: .9;
 	transition: .33s;
 	text-align: center;
 }
@@ -2909,7 +2911,7 @@ figure img {
 	}
 
 	.desktop .thumb-creative__front .thumb-creative__image {
-		opacity: .35;
+		opacity: .9;
 	}
 
 	.desktop .thumb-creative__front .thumb-creative__content {
@@ -3029,14 +3031,14 @@ a.thumbnail-classic-title:hover {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-color: rgba(31, 40, 69, 0.5);
+	background-color: #000000;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	opacity: 0;
 	transform: scale(0.8);
 	transition: 350ms ease-in-out;
-	color: #fff;
+	color: #000;
 }
 
 .img-thumbnail-variant-1:hover .caption {
@@ -3201,7 +3203,7 @@ a.thumbnail-classic-title:hover {
 }
 
 .desktop .img-thumbnail-variant-3:hover img {
-	filter: blur(3px);
+	filter: blur(2px) saturate(0);
 }
 
 .desktop .img-thumbnail-variant-3:hover .hover-top-element,
@@ -15980,7 +15982,7 @@ button.swiper-pagination-bullet {
 	background: #000000;
 	opacity: 0.6;
 	-webkit-filter: blur(50px);
-	filter: blur(50px);
+	filter: blur(50px) saturate(0);
 	z-index: 0;
 }
 
@@ -20303,7 +20305,7 @@ h3+.card-custom-group-wrap {
 	right: 140%;
 	width: 30%;
 	height: 30%;
-	filter: blur(3px);
+	filter: blur(3px) saturate(0);
 	border: 6px solid #F48E2A;
 	z-index: -1;
 }
@@ -20468,4 +20470,12 @@ h3+.card-custom-group-wrap {
 	.banner-top {
 		display: none;
 	}
+}
+
+.caption p {
+	color: #000;
+}
+
+.caption:hover {
+	background-color: #00000070;
 }
