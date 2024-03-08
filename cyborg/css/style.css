@@ -127,7 +127,7 @@ a {
 a,
 a:active,
 a:focus {
-	color: #80deea;
+	color: #00ffe1;
 }
 
 a:hover,
@@ -8602,7 +8602,7 @@ html:not(.lt-ie10) .not-animated {
 	.isotope-filters .inline-list a,
 	.isotope-filters .inline-list a:active,
 	.isotope-filters .inline-list a:focus {
-		color: #888;
+		color: #1fff0f;
 	}
 
 	.isotope-filters .inline-list a:hover,
@@ -8686,15 +8686,15 @@ html:not(.lt-ie10) .not-animated {
 		width: 100%;
 		padding: 3px 8px;
 		font-size: 12px;
-		color: #000;
+		color: #fff;
 		border: 0;
 		background-color: transparent;
 	}
 
 	.isotope-filters-responsive .isotope-filters .inline-list a.active,
 	.isotope-filters-responsive .isotope-filters .inline-list a:hover {
-		color: #80deea;
-		background-color: rgba(128, 222, 234, 0.1);
+		color: #36e7ff;
+		background-color: rgba(44, 230, 255, 0.1);
 	}
 
 	.isotope-filters-responsive .isotope-filters li {
