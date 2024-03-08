@@ -9,7 +9,7 @@
       content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="images/icon.jpg" type="image/x-icon">
     <!-- Stylesheets-->
     <link rel="stylesheet" type="text/css"
       href="//fonts.googleapis.com/css?family=Fira+Sans:300,600,800,800i%7COpen+Sans:300,400,400i">
@@ -62,7 +62,57 @@
         </div>
         <p>Loading...</p>
       </div> -->
-      <div class="spinner">
+
+
+      <div class="loader"></div>
+      <style>
+        .loader {
+          display: inline-flex;
+          gap: 10px;
+        }
+
+        .loader:before,
+        .loader:after {
+          content: "";
+          height: 50px;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          background:
+            radial-gradient(farthest-side, #000 95%, #0000) 35% 35%/10px 10px no-repeat #fff;
+          animation: l5 3s infinite;
+          transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes l5 {
+
+          0%,
+          11% {
+            background-position: 35% 35%
+          }
+
+          14%,
+          36% {
+            background-position: 65% 35%
+          }
+
+          38%,
+          61% {
+            background-position: 65% 65%
+          }
+
+          64%,
+          86% {
+            background-position: 35% 65%
+          }
+
+          88%,
+          100% {
+            background-position: 35% 35%
+          }
+        }
+      </style>
+
+      <!-- <div class="spinner">
         <div class="spinner1"></div>
       </div>
       <style>
@@ -90,7 +140,7 @@
             transform: rotate(360deg);
           }
         }
-      </style>
+      </style> -->
     </div>
     <!-- Page-->
     <header class="page-header">
@@ -173,9 +223,8 @@
                 <ul class="rd-navbar-nav">
                   <li class="active"><a href="index.html">Home</a>
                   </li>
-                  <li><a href="about.html" style="color: #fff;">About</a>
-                  </li>
-                  <li><a href="contacts.html" style="color: #fff;">Contacts</a>
+
+                  <li><a href="#" onclick="fRedir()" style="color: #fff;">Register!</a>
                   </li>
                 </ul>
               </div>
@@ -216,8 +265,10 @@
               Join the Tech Odyssey!</h3>
             <div class="group-lg group-middle"
               data-swiper-anime="{ &quot;animation&quot;: &quot;swiperContentStack&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 700 }">
-              <a class="button button-primary button-shadow" href="#portfolio" data-custom-scroll-to="portfolio">See all
-                Events</a><a class="button button-black button-shadow" href="#">Register Now</a>
+              <a class="button button-primary button-shadow" href="#portfolio" data-custom-scroll-to="portfolio"
+                style="color: #000;">See all
+                Events</a><a class="button button-black button-shadow" href="#" onclick="fRedir()"
+                style="color: #fff;">Register Now</a>
             </div>
           </div>
         </div>
@@ -232,9 +283,11 @@
               Gear Up: <br class="d-none d-lg-block"> Join the Tech Adventure!</h2>
             <div class="group-lg group-middle"
               data-swiper-anime="{ &quot;animation&quot;: &quot;swiperContentStack&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 700 }">
-              <a class="button button-black button-shadow" href="#portfolio" data-custom-scroll-to="portfolio">see
+              <a class="button button-black button-shadow" href="#portfolio" data-custom-scroll-to="portfolio"
+                style="color: #fff;">see
                 technical
-                events</a><a class="button button-primary button-shadow" href="">Register
+                events</a><a style="color: #000;" class="button button-primary button-shadow" href=""
+                onclick="fRedir()">Register
                 Now</a>
             </div>
           </div>
@@ -256,8 +309,10 @@
                     Enjoy Non-Technical Fun Events!</h5>
                   <div class="group-lg group-middle"
                     data-swiper-anime="{ &quot;animation&quot;: &quot;swiperContentStack&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 700 }">
-                    <a class="button button-black button-shadow" href="#portfolio" data-custom-scroll-to="portfolio">see
-                      Non-technical events</a><a class="button button-primary button-shadow" href="#">Register
+                    <a class="button button-black button-shadow" href="#portfolio" data-custom-scroll-to="portfolio"
+                      style="color: #fff;">see
+                      Non-technical events</a><a class="button button-primary button-shadow" href="#" onclick="fRedir()"
+                      style="color: #000;">Register
                       Now</a>
                   </div>
                 </div>
@@ -285,7 +340,8 @@
               data-swiper-anime="{ &quot;animation&quot;: &quot;swiperContentStack&quot;, &quot;duration&quot;: 1000, &quot;delay&quot;: 700 }">
               <a style="color: #000000;" class="button button-primary button-shadow" href="#features"
                 data-custom-scroll-to="features">See all
-                Events</a><a style="color: #fff;" class="button button-black button-shadow" href="#">Register Now</a>
+                Events</a><a style="color: #fff;" class="button button-black button-shadow" href="#"
+                onclick="fRedir()">Register Now</a>
             </div>
           </div>
 
@@ -312,10 +368,10 @@
         </div>
       </div>
       <div class="object-wrap__body object-wrap__body-sizing-1 object-wrap__body-md-right bg-image"
-        style="background-image: url(images/galaxy.png)"></div>
+        style="background-image: url(images/grd.svg)"></div>
     </section>
     <section class="section-md bg-default text-center" id="portfolio"
-      style="background-image: url(./images/14212537_5441113.jpg);background-size: cover;background-attachment: fixed;">
+      style="background-image: url(./images/grd.svg);background-size: cover;background:#000;background-attachment: fixed;">
       <div class="bg-decor d-flex align-items-center"
         data-parallax-scroll="{&quot;y&quot;: 50,  &quot;smoothness&quot;: 30}"><img src="images/bg-decor-6.png"
           alt="" />
@@ -469,6 +525,14 @@
                 </ul>
               </li>
             </ul>
+            <br>
+            <h6>Links</h6>
+            <ul>
+              <li>
+                <p style="color: #849dff;" onclick="fRedir()">Register Now!</p>
+              </li>
+              <li>Coming Soon</li>
+            </ul>
           </div>
           <div class="col-sm-10 col-md-6 col-lg-5 col-xl-3">
             <h6>Map</h6>
@@ -527,7 +591,7 @@
               </li>
               <li>
                 <dl class="list-terms-minimal">
-                  <dt>Event Timeline:</dt>
+                  <dt>Event Timeline</dt>
                   <dd>Mar 28, 9.00am - 4.45pm</dd>
                 </dl>
               </li>
@@ -888,6 +952,10 @@
             return "nodesc";
             break;
         }
+      }
+      function fRedir() {
+        fLink = "https://forms.gle/znJJthgMc7HE1s8z8"
+        window.open(fLink, '_blank');
       }
     </script>
 
