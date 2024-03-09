@@ -20488,5 +20488,6 @@ h3+.card-custom-group-wrap {
 #nt2,
 #nt3,
 #nt4 {
-	width: 420px;
+	max-width: 420px;
+	padding: 0;
 }
