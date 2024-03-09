@@ -5,12 +5,7 @@
 	src: url(../fonts/cyborg.ttf);
 }
 
-.logotxt {
-	font-size: 2em;
-	font-family: cyb;
-	color: #ff0;
-	text-shadow: 2px 0px 0 #000, -2px 0px 0 #000, 0 -2px 0 #000, 0 2px 0 #3e2525, -2px -2px 0 #000, 2px 2px 0 #000;
-}
+
 
 a:focus,
 button:focus {
@@ -20489,5 +20484,26 @@ h3+.card-custom-group-wrap {
 #nt3,
 #nt4 {
 	max-width: 420px;
-	padding: 0;
+	padding: 0 1em 0 0;
+}
+
+.logotxt {
+	font-size: 2em;
+	font-family: cyb;
+	color: #9aff26;
+	text-shadow: 2px 0px 0 #000, -2px 0px 0 #000, 0 -2px 0 #000, 0 2px 0 #3e2525, -2px -2px 0 #000, 2px 2px 0 #000;
+}
+
+#logobarx {
+	background-color: transparent;
+}
+
+.descy {
+	text-transform: uppercase;
+	font-size: 100%;
+	font-family: monospace;
+}
+
+.descy:hover {
+	color: rgb(23, 133, 173);
 }
