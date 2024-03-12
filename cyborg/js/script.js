@@ -2464,3 +2464,21 @@
 
 	});
 }());
+
+
+
+
+const sm = document.getElementById("laser");
+const moveCursor = (e) => {
+	const mouseY = e.clientY + window.scrollY;
+	const mouseX = e.clientX + window.scrollX;
+
+	// sm.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+	sm.style.left = `${mouseX}px `
+	sm.style.top = `${mouseY}px`
+	sm.style.scale = "1";
+
+}
+
+
+window.addEventListener('mousemove', moveCursor)

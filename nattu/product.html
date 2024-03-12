@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageHead"></title>
+    <link href="https://api.fontshare.com/v2/css?f[]=amulya@400&display=swap" rel="stylesheet">
+    <link rel="icon" href="hei.webp" type="image/webp">
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    <script src="loader.js"></script>
+    <link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="stylem.css">
+    <script defer src="observer.js"></script>
+    <script defer src="product.js"></script>
+    <script defer src="nav.js"></script>
+    <script defer src="viewproducts.js"></script>
+    <script defer src="cart.js"></script>
+    <meta name="theme-color" content="#1f1f1f">
+</head>
+<body>
+  <div id="loader" class="loader loader-bouncing is-active"></div>
+  <div id="mySidenav" class="sidenav">
+    <a class="oreon namex" href="javascript:void(0)" class="closebtn" onclick="closeNav()"><p id="namex"></p><i class="fa-solid fa-xmark"></i></a>
+    <a class="oreon movi" href="index.html" id="backButton">Home</a>
+    <a class="oreon movi" href="cart.html">Cart</a>
+    <a class="oreon movi" href="contact.html">Contact</a>
+    <a class="oreon movi" href="privacy.html">Privacy notice</a>
+
+  </div>
+  <div class="nav-bar">
+    <span onclick="openNav()"><i  id="fafa" class="fa-solid fa-bars"></i></span>
+    <span class="logo" ><a href="index.html"> <img src="logo.png" alt=""></a></span>
+    <button class="bxnxcart" onclick="addToCart()" id="addToCartBtn">Add to Cart<i id="fafafa" class="fa-solid fa-cart-shopping"></i></button>
+  </div>
+  <div id="tapHider"  onclick="closeNav()"></div>
+  <div id="main">
+    <div class="box" id="product">
+        <div class="mgbox">
+          <span>
+            <div class="previewbox">
+              <div class="prev">
+                <img class="mySlides" id="slide1" style="width:100%;display:none">
+                <img class="mySlides" id="slide2" style="width:100%">
+                <img class="mySlides" id="slide3" style="width:100%;display:none">
+              </div>
+              <div class="samp-1">
+                <img id="samp1" onclick="currentDiv(1)">
+              </div>
+              <div class="samp-2">
+                <img id="samp2" onclick="currentDiv(2)">
+              </div>
+              <div class="samp-3">
+                <img id="samp3" onclick="currentDiv(3)">
+              </div>
+            </div>
+          </span>
+          <span>
+            <span class="namewish">
+              <h1 id="productName"></h1>
+            </span>
+            <span class="cost">
+                    <p id="productPrice"></p>
+                    <p id="productMrp"></p>
+                    <p id="savePrice"></p>
+            </span>
+            <span id="productReview"></span>
+            <h2 class="desc">Description</h2>
+            <p id="productDesc"></p>
+            <span>
+            <h2 class="desc">Key Features</h2>
+                <ul id="splFeat">
+                    <li id="sp1"></li>
+                    <li id="sp2"></li>
+                    <li id="sp3"></li>
+                    <li id="sp4"></li>
+                    <li id="sp5"></li>
+                </ul>
+            </span>
+          </span>
+        </div>
+      </div>
+  </div>
+</body>
+</html>

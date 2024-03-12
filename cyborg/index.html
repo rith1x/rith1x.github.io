@@ -36,7 +36,39 @@
     </style>
   </head>
 
-  <body style="overflow-x: hidden;">
+  <body style="cursor: none;">
+    <style>
+      .laser {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #ffff00;
+        width: 15px;
+        box-shadow: 0 0 10px 0 #3c3c3c;
+        height: 15px;
+        border-radius: 7.5px;
+        z-index: 1001;
+        scale: 1;
+        animation: beat .9s infinite linear forwards;
+        transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      @keyframes beat {
+        50% {
+          scale: 1.5;
+
+        }
+
+        80% {
+          scale: 1;
+        }
+
+
+      }
+    </style>
+    <div class="laser" id="laser"></div>
+
+    </div>
     <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img
           src="images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820"
           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a>
@@ -776,7 +808,6 @@
           border-radius: .25rem;
           color: rgb(106, 0, 0);
           font-size: 1.5rem;
-          cursor: pointer;
           width: 100%;
           justify-content: space-between;
         }

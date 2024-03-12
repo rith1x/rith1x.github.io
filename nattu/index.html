@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="hei.webp" type="image/webp">
+    <title>Thulir Homecare Products</title>
+    <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#1f1f1f">
+    <link href="https://api.fontshare.com/v2/css?f[]=amulya@400&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <script src="loader.js"></script>
+    <link rel="stylesheet" href="loader.css">
+
+    <script src="viewproducts.js"></script>
+    <script defer src="cart.js"></script>
+    <script defer src="welcome.js"></script>
+
+  </head>
+
+  <body>
+    <div id="loader" class="loader loader-bouncing is-active"></div>
+    <div id="mySidenav" class="sidenav">
+      <a class="oreon namex closebtn" href="javascript:void(0)" onclick="closeNav()">
+        <span>
+          <p id="namex"></p>
+          <i class="fa-solid fa-xmark"></i>
+        </span></a>
+      <a class="oreon movi" href="index.html">Home</a>
+      <a class="oreon movi" href="cart.html">Cart</a>
+      <a class="oreon movi" href="contact.html">Contact</a>
+      <a class="oreon movi" href="privacy.html">Privacy notice</a>
+
+    </div>
+    <div class="nav-bar">
+      <span onclick="openNav()"><i id="fafa" class="fa-solid fa-bars"></i></span>
+      <span class="logo"><img src="logo.png" alt=""></span>
+      <a href="cart.html"><span id="loginq"><i id="fafa" class="fa-solid fa-cart-shopping"></i><i id="cartActive"
+            class="fa-solid fa-circle fa-2xs" style="color: #ff0000; "></i></span></a>
+    </div>
+    <div id="tapHider" onclick="closeNav()"></div>
+    <div id="main">
+      <h1 class="browse-products" id="browse-products">Menu Items</h1>
+      <div id="products" class="products"></div>
+    </div>
+    <div id="welPop" style="display: none;">
+      <div class="wrapper">
+        <div class="closewrap">
+          <button onclick="closeWelForm()">
+            <i class="scx fa-regular fa-circle-xmark"></i></button>
+        </div>
+        <h1 class="title">Welcome to Thulir!</h1>
+        <form id="userForm" class="form">
+
+          <div class="field">
+            <label for="nameInput">Name:</label>
+            <input type="text" id="nameInput" required>
+          </div>
+          <div class="field">
+            <label for="addressInput">Address:</label>
+            <input type="text" id="addressInput" required>
+          </div>
+          <div class="field">
+            <label for="pincodeInput">Pincode:</label>
+            <input type="text" id="pincodeInput" required>
+          </div>
+          <div class="field">
+            <label for="contactInput">Contact Number:</label>
+            <input type="text" id="contactInput" required>
+          </div>
+          <div class="field">
+            <input type="submit" class="submit-button" value="Get Started ›">
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="nav.js"></script>
+  </body>
+
+</html>

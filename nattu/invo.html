@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="theme-color" content="#1f1f1f">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - Thulir Ecommerce</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=amulya@400&display=swap" rel="stylesheet">
+</head>
+    <script src="loader.js"></script>
+    <link rel="stylesheet" href="loader.css">
+  <link rel="icon" href="hei.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json" />
+
+  <link rel="stylesheet" href="invo.css">
+
+    
+
+</head> 
+<body>
+
+        
+      <div id="invoice" >
+        
+  <div class="heady">
+    <span class="comp-det">
+      <h2>Thulir Homecare Products</h2>
+      <p>Rasipuram,</p>
+      <p>Namakkal</p>
+    </span>
+      <span class="logox">
+        <h2>Invoice</h2>
+        <h3>Contact: +91 97864 81828</h3>
+      </span>
+    </div>
+      <div id="my-cart-items"></div>
+      <div class="cart-item"><span>Grand Total</span><span id="gdtl"></span></div>
+      <div class="tq" style="display: flex; justify-content: center;">*** Thank You For Shopping With Us ***</div>
+    <script src="invo.js"></script>
+    <a class="print" id="ioe" onclick="printy()">Print Invoice</a>
+    </div>
+<script>
+  function printy () {
+
+    const btn = document.getElementById('ioe');
+    btn.style.display = 'none';
+    window.print();
+  }
+</script>
+    
+</body>
+</html>

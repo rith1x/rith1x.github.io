@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="theme-color" content="#1f1f1f">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <link href="https://api.fontshare.com/v2/css?f[]=amulya@400&display=swap" rel="stylesheet">
+</head>
+    <script src="loader.js"></script>
+    <link rel="stylesheet" href="loader.css">
+  <link rel="icon" href="hei.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json" />
+
+
+    <script defer src="cart.js"></script>
+    <script defer src="nav.js"></script>
+
+    <link rel="stylesheet" href="stylem.css">
+</head> 
+<body>
+  <div id="loader" class="loader loader-bouncing is-active"></div>
+  <div id="mySidenav" class="sidenav">
+    <a class="oreon namex" href="javascript:void(0)" class="closebtn" onclick="closeNav()"><p id="namex"></p><i class="fa-solid fa-xmark"></i></a>
+    <a class="oreon movi" href="index.html" id="backButton">Home</a>
+    <a class="oreon movi" href="cart.html">Cart</a>
+    <a class="oreon movi" href="contact.html">Contact</a>
+    <a class="oreon movi" href="privacy.html">Privacy notice</a>
+
+  </div>
+  <div class="nav-bar">
+    <span onclick="openNav()"><i  id="fafa" class="fa-solid fa-bars"></i></span>
+    <span class="logo" ><a href="index.html"> <img src="logo.png" alt=""></a></span>
+    <a href="cart.html"><span id="loginq"> <i id="fafa" class="fa-solid fa-cart-shopping"></i><i id="cartActive" class="fa-solid fa-circle fa-2xs" style="color: #ff0000; "></i></span></a>
+  </div>
+  <div id="tapHider"  onclick="closeNav()"></div>
+  <div id="main">
+    <div id="my-cart">
+        <span class="mycart-header">
+        
+        <h2 class="cart-head">My Cart</h2>
+        <span class="EmptyCart"><button onclick="clearCart()">Empty Cart</button></span>
+      </span>
+      <div id="invoice" >
+        
+      <div id="my-cart-items"></div>
+      <div class="cart-item"><span>Grand Total</span><span id="gdtl"></span></div>
+    </div>
+    <div style="display: flex; gap: 20px">
+<button class="cart-form-open-btn2"  onclick="goInvo()">Print Invoice</button>
+<button class="cart-form-open-btn" onclick="openForm()">Checkout</button>
+    
+</div>
+<script>
+  function generatePdf() {
+     //console.log('print');  
+  let printContents = document.getElementById('invoice').innerHTML;
+  let originalContents = document.body.innerHTML;
+  document.body.innerHTML = '<div class="heady"><span class="comp-det"><h2>Thulir Homecare Products</h2><p>Rasipuram,</p><p>Namakkal</p></span><span class="logox"><h2>INVOICE</h2></span></div>' + printContents;
+  document.body.style.margin = "25px";
+  window.print();
+  document.body.style.margin = "0px";
+
+ document.body.innerHTML = originalContents; 
+  }
+</script>
+
+
+
+
+
+
+    <dialog>
+            <span class="headclose"><h1>Enter Your Details</h1> <button onclick="closeForm()">×</button></span>  
+            <div class="inputz">
+            <input required type="text" placeholder="Enter Your Name" id="nameInput">
+            <input required type="text" placeholder="Enter Your Address" id="addressInput">
+            <input required type="number" placeholder="Enter Your Pincode" id="pincodeInput">
+            </div>
+            <div class="checkout">
+            <button id="sendButton" class="chkot">Checkout <i id="fafaX" class="wink fa-solid fa-cart-shopping"></i></button>
+            </div>
+      </dialog>
+      </div>
+      </div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+[
+    {
+      "name": "Detergent Powder",
+      "title": "Sample Course ",
+      "id": "T01",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Detergent+Powder+1Kg",
+      "price": "90",
+      "mrp": "105",
+      "review": "5.0",
+      "img": [
+        "../img/T01/main.jpg",
+        "../img/T01/sub.jpg",
+        "../img/T01/alt.jpg"
+      ],
+      "qty": "1Kg",
+      "features": [
+        "Powerful stain removal: Effectively removes tough stains from clothes.",
+        "High foaming action: Produces rich lather for better cleaning results.",
+        "Gentle on fabric: Does not damage or fade the colors of your clothes.",
+        "Fresh fragrance: Leaves a pleasant scent on your laundry.",
+        "Suitable for all washing machines: Works well with both top-load and front-load machines."
+      ],
+      "description": "Powerful and effective, our detergent powder removes tough stains and leaves your clothes fresh and clean."
+    },
+    {
+      "name": "Detergent Liquid",
+      "title": "Sample Course ",
+      "id": "T02",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Detergent+Liquid+1L",
+      "price": "120",
+      "mrp": "140",
+      "review": "5.0",
+      "img": [
+        "../img/T02/main.jpg",
+        "../img/T02/sub.jpg",
+        "../img/T02/alt.jpg"
+      ],
+      "qty": "1L",
+      "features": [
+        "Advanced formula: Contains powerful ingredients for deep cleaning.",
+        "Easy to dissolve: Quickly dissolves in water, ensuring no residue on clothes.",
+        "Versatile usage: Can be used for hand washing or in washing machines.",
+        "Gentle on hands: Mild on skin, preventing dryness or irritation.",
+        "Effective stain removal: Tackles stubborn stains, including grease and oil."
+      ],
+      "description": "Our versatile detergent liquid delivers superior cleaning results while preserving the colors and texture of your fabrics."
+    },
+    {
+      "name": "Dish Wash Gel",
+      "title": "Sample Course ",
+      "id": "T03",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Dish+Wash+Gel",
+      "price": "35",
+      "mrp": "40",
+      "review": "5.0",
+      "img": [
+        "../img/T03/main.jpg",
+        "../img/T03/sub.jpg",
+        "../img/T03/alt.jpg"
+      ],
+      "qty": "250ml",
+      "features": [
+        "Grease-cutting power: Easily removes tough grease and food residues from dishes.",
+        "Fast-acting formula: Provides efficient cleaning in less time.",
+        "Gentle on hands: Keeps your hands soft and smooth even after prolonged use.",
+        "Refreshing fragrance: Leaves your dishes smelling fresh and clean.",
+        "Long-lasting: A little goes a long way, making it cost-effective."
+      ],
+      "description": "Cut through grease and grime effortlessly with our dish wash gel, leaving your dishes sparkling clean and residue-free."
+    },
+    {
+      "name": "Fabric Conditioner",
+      "title": "Sample Course ",
+      "id": "T04",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Fabric+Conditioner",
+      "price": "70",
+      "mrp": "80",
+      "review": "5.0",
+      "img": [
+        "../img/T04/main.jpg",
+        "../img/T04/sub.jpg",
+        "../img/T04/alt.jpg"
+      ],
+      "qty": "500ml",
+      "features": [
+        "Softens and freshens clothes: Makes fabric feel silky and pleasant to touch.",
+        "Reduces static cling: Minimizes static electricity, preventing clothes from sticking to each other.",
+        "Easier ironing: Smoothens out wrinkles, making ironing a breeze.",
+        "Long-lasting fragrance: Leaves a delightful scent on your garments.",
+        "Adds fabric protection: Helps preserve the quality and lifespan of your clothes."
+      ],
+      "description": "Pamper your clothes with our fabric conditioner, providing a soft and long-lasting fragrance while keeping them irresistibly soft."
+    },
+    {
+      "name": "Surface Cleaner",
+      "title": "Sample Course ",
+      "id": "T05",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Surface+Cleaner",
+      "price": "60",
+      "mrp": "65",
+      "review": "5.0",
+      "img": [
+        "../img/T05/main.jpg",
+        "../img/T05/sub.jpg",
+        "../img/T05/alt.jpg"
+      ],
+      "qty": "500ml",
+      "features": [
+        "Multi-surface compatibility: Suitable for various surfaces like countertops, glass, tiles, and more.",
+        "Powerful cleaning action: Effectively removes dirt, grime, and stains.",
+        "Quick-drying formula: Leaves surfaces clean and streak-free.",
+        "Antibacterial properties: Kills germs and prevents the spread of harmful bacteria.",
+        "Easy to use: Convenient spray bottle for effortless application."
+      ],
+      "description": "Our surface cleaner tackles dirt and germs on various surfaces, leaving behind a spotless shine and a refreshing scent."
+    },
+    {
+      "name": "All-in-One Cleaner",
+      "title": "Sample Course ",
+      "id": "T06",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=All-in-One+Cleaner",
+      "price": "60",
+      "mrp": "65",
+      "review": "5.0",
+      "img": [
+        "../img/T06/main.jpg",
+        "../img/T06/sub.jpg",
+        "../img/T06/alt.jpg"
+      ],
+      "qty": "500ml",
+      "features": [
+        "Versatile cleaning solution: Can be used on multiple surfaces and household items.",
+        "All-round performance: Effectively cleans, disinfects, and deodorizes.",
+        "Time-saving: Eliminates the need for multiple cleaning products.",
+        "Removes tough stains: Tackles various types of stains, from grease to wine spills.",
+        "Fresh fragrance: Leaves a pleasant scent after cleaning."
+      ],
+      "description": "Simplify your cleaning routine with our all-in-one cleaner, capable of tackling multiple surfaces and providing exceptional results."
+    },
+    {
+      "name": "Toilet Bowl Cleaner",
+      "title": "Sample Course ",
+      "id": "T07",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Toilet+Bowl+Cleaner",
+      "price": "70",
+      "mrp": "75",
+      "review": "5.0",
+      "img": [
+        "../img/T07/main.jpg",
+        "../img/T07/sub.jpg",
+        "../img/T07/alt.jpg"
+      ],
+      "qty": "500ml",
+      "features": [
+        "Powerful disinfection: Eliminates germs, bacteria, and toilet bowl stains.",
+        "Extended cling time: Adheres to the bowl's surface, allowing the cleaner to work effectively.",
+        "Freshens the toilet: Leaves a clean and pleasant fragrance in the bathroom.",
+        "Easy to use: Specially designed applicator for convenient application under the rim.",
+        "Prevents limescale buildup: Helps to keep the toilet bowl clean and free from mineral deposits."
+      ],
+      "description": "Maintain a hygienic bathroom with our toilet bowl cleaner, designed to remove stains, eliminate odors, and leave your toilet sparkling clean."
+    },
+    {
+      "name": "Phenyl",
+      "title": "Sample Course ",
+      "id": "T08",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Phenyl",
+      "price": "40",
+      "mrp": "50",
+      "review": "5.0",
+      "img": [
+        "../img/T08/main.jpg",
+        "../img/T08/sub.jpg",
+        "../img/T08/alt.jpg"
+      ],
+      "qty": "1L",
+      "features": [
+        "Strong and effective: Provides powerful cleaning action on floors and surfaces.",
+        "Eliminates foul odors: Helps to neutralize unpleasant smells in the environment.",
+        "Kills germs and bacteria: Provides a hygienic and clean living space.",
+        "Concentrated formula: Requires less product for effective cleaning.",
+        "Long-lasting effect: Provides a lasting freshness and cleanliness."
+      ],
+      "description": "Our powerful phenyl disinfects and deodorizes floors, providing a germ-free and fresh-smelling environment in your home or workspace."
+    },
+    {
+      "name": "Soap Oil",
+      "title": "Sample Course ",
+      "id": "T09",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Soap+Oil",
+      "price": "35",
+      "mrp": "50",
+      "review": "5.0",
+      "img": [
+        "../img/T09/main.jpg",
+        "../img/T09/sub.jpg",
+        "../img/T09/alt.jpg"
+      ],
+      "qty": "1L",
+      "features": [
+        "Nourishing and moisturizing: Soap oil contains ingredients that help nourish and moisturize the skin, keeping it soft and hydrated.",
+        "Gentle and mild: Suitable for all skin types, including sensitive skin, as it is formulated to be gentle and non-irritating.",
+        "Deep cleansing: Soap oil effectively removes dirt, oil, and impurities from the skin, leaving it clean and refreshed.",
+        "Versatile usage: Soap oil can be used for various purposes, such as body cleansing, shaving, or as a makeup remover.",
+        "Fragrance options: Soap oil is available in a range of delightful fragrances, providing a pleasant and enjoyable bathing experience."
+      ],
+      "description": "Indulge in the luxurious lather and nourishing properties of our soap oil, leaving your skin feeling moisturized, soft, and delicately scented."
+    },
+    {
+      "name": "Country Sugar",
+      "title": "-",
+      "id": "T10",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Country+Sugar",
+      "price": "65",
+      "mrp": "80",
+      "review": "5.0",
+      "img": [
+        "../img/T10/main.jpg",
+        "../img/T10/sub.jpg",
+        "../img/T10/alt.jpg"
+      ],
+      "qty": "1Kg",
+      "features": [
+        "Our natural country sugar is handcrafted using traditional methods, retaining the genuine character and rich flavors of unrefined sugarcane, bringing an authentic taste of the countryside to your table.",
+        "With its minimally processed nature, our country sugar retains its natural molasses content, offering a distinct and delightful sweetness that complements your beverages and culinary creations.",
+        "Unlike highly refined sugars, our country sugar contains trace minerals and antioxidants, adding a touch of nutritional value to your dishes and potentially offering a more balanced sweetening option.",
+        "Whether sprinkled on top of desserts, blended into baking recipes, or stirred into beverages, our country sugar's distinct taste and texture elevate the flavors of a wide range of culinary delights.",
+        "We're committed to sustainability. Our coconut oil comes in environmentally friendly packaging, reflecting our dedication to both quality and the planet."
+      ],
+      "description": "Embrace the rustic charm of our Natural Country Sugar. Handcrafted and unrefined, it brings authentic sweetness to your dishes. With its nutrient-rich profile and support for local communities, it's the perfect blend of tradition and goodness for your culinary journey."
+    },
+    {
+      "name": "Coconut Oil",
+      "title": "-",
+      "id": "T11",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Coconut+oil",
+      "price": "220",
+      "mrp": "250",
+      "review": "5.0",
+      "img": [
+        "../img/T11/main.jpg",
+        "../img/T11/sub.jpg",
+        "../img/T11/alt.jpg"
+      ],
+      "qty": "1L",
+      "features": [
+        "Our coconut oil is meticulously crafted through cold-press extraction, retaining the natural goodness and aroma of coconuts while delivering a pure and unrefined oil.",
+        "From cooking to skincare, our coconut oil is a versatile solution. It's an excellent choice for high-heat cooking due to its stability, and it also serves as a nourishing moisturizer and hair conditioner.",
+        "Packed with medium-chain triglycerides (MCTs), our coconut oil offers a quick source of energy, supports metabolism, and may contribute to overall well-being when incorporated into a balanced diet.",
+        "Loaded with vitamin E, antioxidants, and lauric acid, our coconut oil enhances the nutritional value of your meals and provides potential health benefits for skin, hair, and immune support.",
+        "We're committed to sustainability. Our coconut oil comes in environmentally friendly packaging, reflecting our dedication to both quality and the planet."
+      ],
+      "description": "Experience the goodness of coconuts through our Coconut Oil. Cold-pressed for maximum benefits, it's a versatile superstar – from enhancing flavors in cooking to nourishing your skin and hair. Packed with medium-chain fats, it's a wholesome addition to your well-being."
+    },
+    {
+      "name": "Groundnut Oil",
+      "title": "-",
+      "id": "T12",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Ground+nut+oil",
+      "price": "260",
+      "mrp": "290",
+      "review": "5.0",
+      "img": [
+        "../img/T12/main.jpg",
+        "../img/T12/sub.jpg",
+        "../img/T12/alt.jpg"
+      ],
+      "qty": "1L",
+      "features": [
+        "Our groundnut oil is extracted from carefully selected, high-quality peanuts, ensuring a pure and flavorful oil that serves as a foundation for delicious and healthy cooking.",
+        "With a high smoke point, our groundnut oil is perfect for various cooking methods, from deep frying to sautéing, providing stability and preventing the breakdown of nutrients under high heat.",
+        "Rich in monounsaturated fats and low in saturated fats, our groundnut oil is known to support heart health by helping to manage cholesterol levels and promoting overall cardiovascular well-being.",
+        "Packed with vitamin E, antioxidants, and essential nutrients, our groundnut oil not only adds a delectable flavor to dishes but also contributes to a balanced diet and potential health advantages.",
+        "Whether used as a cooking medium, salad dressing, or as an ingredient in marinades, our groundnut oil's mild and pleasant taste enhances the flavors of a wide array of dishes, making it a versatile choice for any kitchen."
+      ],
+      "description": "Elevate your cooking with our premium Groundnut Oil. Cold-pressed from high-quality peanuts, its high smoke point makes it ideal for diverse culinary techniques. Packed with heart-healthy nutrients, it's a tasteful and nutritious choice for every kitchen."
+    },
+    {
+      "name": "Natural Honey",
+      "title": "-",
+      "id": "T13",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=Natural+Honey",
+      "price": "500",
+      "mrp": "580",
+      "review": "5.0",
+      "img": [
+        "../img/T13/main.jpg",
+        "../img/T13/sub.jpg",
+        "../img/T13/alt.jpg"
+      ],
+      "qty": "1Kg",
+      "features": [
+        "Our natural honey is sourced from trusted apiaries, ensuring it's 100% pure and unadulterated, preserving the rich flavors and nutritional benefits of real honey.",
+        "Delight in the diverse taste of our natural honey, ranging from delicate floral notes to deep, robust flavors, making it a versatile ingredient for culinary creations.",
+        "Packed with vitamins, minerals, and antioxidants, our natural honey not only adds sweetness but also offers potential health benefits, contributing to your overall well-being.",
+        "We prioritize sustainable beekeeping practices, supporting bee populations and ecological balance while bringing you this delicious gift from nature.",
+        "Whether drizzled over breakfast, added to beverages, or used as a natural sweetener in recipes, our honey is a versatile pantry essential that enhances the taste and nutritional value of your favorite foods."
+      ],
+      "description": "Indulge in the pure essence of nature with our Natural Honey. Sourced from trusted apiaries, it offers rich flavors and potential health benefits. A versatile pantry staple, it adds sweetness to your meals and a touch of wellness to your lifestyle."
+    },
+    {
+      "name": "Phenyl Concentrate",
+      "title": "-",
+      "id": "T14",
+      "link": "https://placehold.jp/b8f1ff/ffffff/50x50.png?text=phenyl+concentrated",
+      "price": "95",
+      "mrp": "110",
+      "review": "5.0",
+      "img": [
+        "../img/T14/main.jpg",
+        "../img/T14/sub.jpg",
+        "../img/T14/alt.jpg"
+      ],
+      "qty": "500ml",
+      "features": [
+        "Our Phenyl Concentrate boasts an advanced formula that tackles even the toughest dirt and grime, ensuring a thorough and effective clean for various surfaces.",
+        "A little amount of this concentrate goes a long way, offering exceptional cleaning results while reducing the need for frequent refills and minimizing environmental impact.",
+        "From floors to countertops, tiles to bathrooms, our Phenyl Concentrate is suitable for a wide range of surfaces, making it a versatile solution for all your cleaning needs.",
+        "With its potent disinfecting properties, this concentrate not only cleans but also helps eliminate germs and bacteria, contributing to a healthier living environment.",
+        "Enjoy a lingering, refreshing fragrance that leaves your cleaned spaces smelling delightful, adding an extra touch of freshness to your surroundings long after cleaning."
+      ],
+      "description": "Discover the ultimate cleaning solution with our Phenyl Concentrate. Its cutting-edge formula effortlessly eliminates dirt and germs, while its concentrated nature ensures long-lasting value and reduces waste. Enjoy a refreshing fragrance that lingers after each clean, transforming your spaces into inviting sanctuaries."
+    }
+  ]

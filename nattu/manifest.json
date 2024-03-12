@@ -1,0 +1,47 @@
+{
+  "name": "Thulir Homecare",
+  "short_name": "Thulir",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "ltr",
+  "lang": "en",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "scope": "/",
+  "categories": ["business", "shopping"],
+  "icons": [
+    {
+      "src": "img/req/icon.png",
+      "sizes": "510x510",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "img/req/image1.png",
+      "sizes": "652x1412",
+      "type": "image/png"
+    },
+    {
+      "src": "img/req/image2.png",
+      "sizes": "652x1412",
+      "type": "image/png"
+    },
+    {
+      "src": "img/req/image3.png",
+      "sizes": "652x1412",
+      "type": "image/png"
+    },
+    {
+      "src": "img/req/image4.png",
+      "sizes": "652x1412",
+      "type": "image/png"
+    },
+    {
+      "src": "img/req/image5.png",
+      "sizes": "652x1412",
+      "type": "image/png"
+    }
+  ]
+}

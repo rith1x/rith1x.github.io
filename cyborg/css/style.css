@@ -559,7 +559,7 @@ code,
 }
 
 [data-custom-toggle] {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .image-wrapper {
@@ -855,7 +855,7 @@ h2 .label {
 	transition: .33s all ease;
 	white-space: normal;
 	text-transform: uppercase;
-	cursor: pointer;
+	/* cursor: pointer; */
 	text-align: center;
 }
 
@@ -1543,7 +1543,7 @@ textarea.form-input {
 .checkbox .checkbox-custom,
 .checkbox-inline .checkbox-custom {
 	opacity: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .radio .radio-custom[type='checkbox'],
@@ -1603,7 +1603,7 @@ textarea.form-input {
 	font-style: italic;
 	color: #888;
 	padding-left: 18px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .radio .radio-custom-dummy,
@@ -1630,7 +1630,7 @@ textarea.form-input {
 	font-style: italic;
 	color: #888;
 	padding-left: 32px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .checkbox .checkbox-custom-dummy,
@@ -3069,7 +3069,7 @@ a.thumbnail-classic-title:hover {
 	display: block;
 	text-align: center;
 	overflow: hidden;
-	cursor: pointer;
+	/* cursor: pointer; */
 	box-shadow: 8px 10px 35px rgba(0, 0, 0, 0.15);
 	width: 100%;
 }
@@ -5440,7 +5440,7 @@ a.thumbnail-classic-title:hover {
 	right: 20px;
 	z-index: 10000;
 	transition: .33s all ease;
-	cursor: pointer;
+	/* cursor: pointer; */
 	font-size: 0;
 	line-height: 1;
 	color: #000;
@@ -8914,7 +8914,7 @@ h4+.owl-carousel {
 .owl-carousel .owl-controls .owl-nav .owl-prev,
 .owl-carousel .owl-controls .owl-nav .owl-next,
 .owl-carousel .owl-controls .owl-dot {
-	cursor: pointer;
+	/* cursor: pointer; */
 	user-select: none;
 }
 
@@ -8988,7 +8988,7 @@ h4+.owl-carousel {
 	margin-left: -40px;
 	margin-top: -40px;
 	font: 400 40px/80px 'FontAwesome';
-	cursor: pointer;
+	/* cursor: pointer; */
 	z-index: 1;
 	transition: scale 100ms ease;
 }
@@ -9042,7 +9042,7 @@ h4+.owl-carousel {
 	transform: translateY(-50%);
 	font-family: 'Linearicons';
 	color: #c7c7c7;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .owl-prev:hover,
@@ -9081,7 +9081,7 @@ h4+.owl-carousel {
 	height: 14px;
 	border-radius: 50%;
 	text-align: center;
-	cursor: pointer;
+	/* cursor: pointer; */
 	background-color: #d9d9d9;
 	transition: .2s;
 }
@@ -9142,7 +9142,7 @@ h4+.owl-carousel {
 	text-align: center;
 	margin-top: -25px;
 	z-index: 10;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #ececee;
 	transition: .33s;
 	font-size: 30px;
@@ -9322,7 +9322,7 @@ h4+.owl-carousel {
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #1F2845;
 	display: none;
 }
@@ -9386,11 +9386,11 @@ h4+.owl-carousel {
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #000;
 	background-color: transparent;
 	border: none;
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: none;
 }
 
@@ -9587,7 +9587,7 @@ h4+.owl-carousel {
 	padding: 0;
 	outline: none;
 	outline-offset: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 	-webkit-appearance: none;
 }
 
@@ -9808,7 +9808,7 @@ h4+.owl-carousel {
 	content: '\e93c';
 	font-family: 'Linearicons';
 	font-size: 10px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-navbar-fullwidth .rd-navbar-dropdown .rd-navbar--has-dropdown>.rd-navbar-submenu-toggle:hover,
@@ -10457,7 +10457,7 @@ h4+.owl-carousel {
 	width: 17px;
 	line-height: 1;
 	text-align: center;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #000;
 }
 
@@ -10583,11 +10583,11 @@ h4+.owl-carousel {
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #fff;
 	background-color: transparent;
 	border: none;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-navbar-static.rd-navbar_dark .rd-navbar-toggle span,
@@ -11717,7 +11717,7 @@ h4+.owl-carousel {
 }
 
 .rd-navbar-fixed .rd-navbar-submenu-toggle {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-navbar-fixed .rd-navbar-submenu-toggle::after {
@@ -11732,7 +11732,7 @@ h4+.owl-carousel {
 	text-align: center;
 	transition: 0.4s all ease;
 	z-index: 2;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-navbar-fixed .rd-navbar-collapse,
@@ -11774,7 +11774,7 @@ h4+.owl-carousel {
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #000;
 }
 
@@ -12135,7 +12135,7 @@ html .page .rd-navbar-fixed .rd-navbar-fixed--hidden {
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #fff;
 }
 
@@ -12419,7 +12419,7 @@ html.rd-navbar-fixed-linked .page {
 	text-align: center;
 	vertical-align: middle;
 	line-height: 1;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #000;
 }
 
@@ -13131,7 +13131,7 @@ html.boxed .rd-navbar--is-clone {
 	background-color: rgba(0, 0, 0, 0.45);
 	border-radius: 2px;
 	color: #cacaca;
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: block;
 	font-size: 22px;
 	margin-top: -10px;
@@ -13308,7 +13308,7 @@ html.boxed .rd-navbar--is-clone {
 
 .lg-toolbar .lg-icon {
 	color: #cacaca;
-	cursor: pointer;
+	/* cursor: pointer; */
 	float: right;
 	font-size: 24px;
 	height: 47px;
@@ -13442,7 +13442,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-thumb-item {
-	cursor: pointer;
+	/* cursor: pointer; */
 	float: left;
 	overflow: hidden;
 	height: 100%;
@@ -13489,7 +13489,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	background-color: #0D0A0A;
 	border-radius: 2px 2px 0 0;
 	color: #cacaca;
-	cursor: pointer;
+	/* cursor: pointer; */
 	font-size: 24px;
 	height: 39px;
 	line-height: 27px;
@@ -13544,7 +13544,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	margin-left: -42px;
 	margin-top: -30px;
 	z-index: 1180;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .lg-outer .lg-has-vimeo .lg-video-play {
@@ -13711,7 +13711,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 .lg-outer .lg-pager-cont {
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
@@ -14884,7 +14884,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 }
 
 [data-lightgallery='item'] {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .lg-skin-light.lg-backdrop {
@@ -15482,7 +15482,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item.lg-complete .lg-object 
 	height: 44px;
 	margin-top: -22px;
 	z-index: 10;
-	cursor: pointer;
+	/* cursor: pointer; */
 	background-size: 27px 44px;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -15632,7 +15632,7 @@ button.swiper-pagination-bullet {
 }
 
 .swiper-pagination-clickable .swiper-pagination-bullet {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .swiper-pagination-bullet-active {
@@ -16033,7 +16033,7 @@ button.swiper-pagination-bullet {
 	text-align: center;
 	margin-top: -30px;
 	z-index: 10;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #fff;
 	transition: .33s;
 	background-color: #41516A;
@@ -16869,7 +16869,7 @@ button.swiper-pagination-bullet {
 	padding: 0;
 	outline: none;
 	outline-offset: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 	-webkit-appearance: none;
 }
 
@@ -16882,7 +16882,7 @@ button.swiper-pagination-bullet {
 .rdc-next,
 .rdc-prev,
 .rdc-events_close {
-	cursor: pointer;
+	/* cursor: pointer; */
 	transition: .3s all ease;
 	font-size: 14px;
 	color: #80deea;
@@ -17101,7 +17101,7 @@ button.swiper-pagination-bullet {
 }
 
 .rdc-table_has-events {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rdc-table_has-events .rdc-table_date {
@@ -17165,7 +17165,7 @@ button.swiper-pagination-bullet {
 .booking-calendar .rdc-prev,
 .booking-calendar .rdc-events_close {
 	color: #80deea;
-	cursor: pointer;
+	/* cursor: pointer; */
 	transition: .3s all ease;
 }
 
@@ -17195,7 +17195,7 @@ button.swiper-pagination-bullet {
 	z-index: 1;
 	background-color: transparent;
 	border: 1px solid #ececee;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 @media (min-width: 1200px) {
@@ -17557,7 +17557,7 @@ button.swiper-pagination-bullet {
 }
 
 #appointment .close {
-	cursor: pointer;
+	/* cursor: pointer; */
 	padding: 0;
 	margin: 0;
 }
@@ -17916,7 +17916,7 @@ button.swiper-pagination-bullet {
 	height: 30px;
 	font-size: 1em;
 	border-radius: 50%;
-	cursor: pointer;
+	/* cursor: pointer; */
 	font-weight: 500;
 	text-align: center !important;
 }
@@ -18168,7 +18168,7 @@ html[class*="ie"] .dtp-hour-hand {
 }
 
 .rd-audio-close:hover {
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #333;
 }
 
@@ -18186,7 +18186,7 @@ html[class*="ie"] .dtp-hour-hand {
 	width: 100%;
 	background: #888;
 	height: 4px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-audio-progress-bar .current {
@@ -18230,7 +18230,7 @@ html[class*="ie"] .dtp-hour-hand {
 .rd-audio-volume-bar {
 	position: relative;
 	background: #888;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-audio-volume-bar .current {
@@ -18392,7 +18392,7 @@ html[class*="ie"] .dtp-hour-hand {
 }
 
 .rd-audio-playlist .audio-track:hover {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .rd-audio-playlist .audio-track:hover:before {
@@ -18591,7 +18591,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .rd-range__pointer {
 	position: absolute;
-	cursor: pointer;
+	/* cursor: pointer; */
 	top: 1px;
 	left: 6%;
 	z-index: 1;
@@ -18757,7 +18757,7 @@ html[class*="ie"] .dtp-hour-hand {
 }
 
 .slick-list.dragging {
-	cursor: pointer;
+	/* cursor: pointer; */
 	cursor: hand;
 }
 
@@ -18849,7 +18849,7 @@ html[class*="ie"] .dtp-hour-hand {
 	vertical-align: middle;
 	text-align: center;
 	font-size: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: transparent;
 	background-color: #fff;
 	top: 50%;
@@ -18958,7 +18958,7 @@ html[class*="ie"] .dtp-hour-hand {
 	width: 20px;
 	margin: 0 5px;
 	padding: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .slick-dots li button {
@@ -18972,7 +18972,7 @@ html[class*="ie"] .dtp-hour-hand {
 	font-size: 0;
 	color: transparent;
 	padding: 5px;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .slick-dots li button:hover,
@@ -19022,7 +19022,7 @@ html[class*="ie"] .dtp-hour-hand {
 	margin-right: 12px;
 	opacity: .2;
 	transition: 280ms ease-in-out;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 #child-carousel .item:hover,
@@ -19090,7 +19090,7 @@ html[class*="ie"] .dtp-hour-hand {
 	line-height: 20px;
 	font-size: 12px;
 	font-family: "Linearicons";
-	cursor: pointer;
+	/* cursor: pointer; */
 	color: #41516A;
 	transition: .3s all ease;
 }
@@ -19141,7 +19141,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .select2-container .select2-selection--single {
 	box-sizing: border-box;
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: block;
 	height: 45px;
 	user-select: none;
@@ -19168,7 +19168,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .select2-container .select2-selection--multiple {
 	box-sizing: border-box;
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: block;
 	min-height: 32px;
 	user-select: none;
@@ -19229,7 +19229,7 @@ html[class*="ie"] .dtp-hour-hand {
 }
 
 .select2-results__option[aria-selected] {
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .select2-container--open .select2-dropdown {
@@ -19413,7 +19413,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .select2-container--bootstrap .select2-selection__clear {
 	color: #41516A;
-	cursor: pointer;
+	/* cursor: pointer; */
 	float: right;
 	font-weight: 400;
 	margin-right: 10px;
@@ -19530,7 +19530,7 @@ html[class*="ie"] .dtp-hour-hand {
 
 .select2-container--bootstrap .select2-selection--multiple .select2-selection__choice__remove {
 	color: #41516A;
-	cursor: pointer;
+	/* cursor: pointer; */
 	display: inline-block;
 	font-weight: bold;
 	margin-right: 10px / 2;
@@ -19931,7 +19931,7 @@ html[class*="ie"] .dtp-hour-hand {
 	position: relative;
 	top: 0;
 	left: 0;
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 
 .jspHorizontalBar .jspTrack,
@@ -19947,7 +19947,7 @@ html[class*="ie"] .dtp-hour-hand {
 	background: #50506d;
 	text-indent: -20000px;
 	display: block;
-	cursor: pointer;
+	/* cursor: pointer; */
 	padding: 0;
 	margin: 0;
 }
@@ -20318,7 +20318,7 @@ h3+.card-custom-group-wrap {
 
 .circle-carousel .pagination .dot:hover {
 	transform: translate(-50%, -50%) scale(1.05);
-	cursor: pointer;
+	/* cursor: pointer; */
 	background: #AA54ED;
 	color: #fff;
 }
@@ -20364,7 +20364,7 @@ h3+.card-custom-group-wrap {
 		bottom: 0;
 		margin: auto;
 		height: 92px;
-		cursor: pointer;
+		/* cursor: pointer; */
 	}
 
 	.circle-carousel .prev span,
