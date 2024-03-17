@@ -1,0 +1,3 @@
+<script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+@import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
