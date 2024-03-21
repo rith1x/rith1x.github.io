@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Paint App</title>
+    </head>
+
+    <body>
+        <div class="space">
+            <div class="canvas">
+                <canvas id="canvaS" style="width: 100%;height:100%;"></canvas>
+            </div>
+            <div class="tools">
+
+            </div>
+        </div>
+
+        <script>
+            const canvas = document.getElementById("canvaS");
+            const pen = canvas.getContext("2d");
+
+            const startDraw = (e) => {
+                pen.beginPath();
+                pen.lineWidth = "10px";
+                pen.strokeStyle = "#ff0000"
+                pen.fillStyle = "#0047ab";
+                snap = pen.getImageData(0, 0, canvas.width, canvas.height);
+                canvas.addEventListener("mousedown",
+                    startDraw);
+            }
+            canvas.addEventListener("mousemove", startDraw);
+        </script>
+        <style>
+            .canvas {
+                border: solid 1px #000;
+                height: 500px;
+                width: 500px;
+            }
+        </style>
+    </body>
+
+</html>
