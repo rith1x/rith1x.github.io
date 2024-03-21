@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form</title>
+        <link rel="stylesheet" href="form/style.css" />
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="form">
+                <h1>Enter Details</h1>
+                <div class="field">
+                    <label for="">Username:</label><input minlength="5" maxlength="20" type="text" id="username"
+                        oninput="checkUn()" />
+                </div>
+                <div class="field">
+                    <label for="">Email:</label><input type="email" id="email" oninput="checkEm()" />
+                </div>
+                <div class="field">
+                    <label for="">Register No:</label><input type="number" minlength="10" maxlength="10" id="regNo"
+                        oninput="checkRn()" />
+                </div>
+                <div class="field">
+                    <label for="">Mobile:</label><input minlength="10" maxlenght="10" type="number" id="phNo"
+                        oninput="checkPh()" />
+                </div>
+                <div class="field pass">
+                    <label for="">Password:</label><input id="password" oninput="checkPs()" type="text" />
+                    <button onclick="generatePassword()">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </button>
+                </div>
+
+                <div class="error">
+                    <p style="color: #ab0047" id="err"></p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function checkEm() {
+                const errEl = document.getElementById('err');
+
+                let emailIp = document.getElementById('email').value;
+
+                var validRegex =
+                    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+                if (!emailIp.match(validRegex)) {
+                    errEl.innerText = 'Email is not Valid';
+                } else {
+                    errEl.innerText = '';
+                }
+            }
+            function checkUn() {
+                const errEl = document.getElementById('err');
+
+                let regNo = document.getElementById('regno').value;
+
+                if (unIp.length < 5) {
+                    errEl.innerText = 'Username Should be 5 - 20 characters';
+                } else {
+                    errEl.innerText = '';
+                }
+            }
+            function checkRn() {
+                const errEl = document.getElementById('err');
+
+                let reg = document.getElementById('regNo').value;
+
+                if (reg.length != 10) {
+                    errEl.innerText = 'Register Number Should be 10 Digits';
+                } else {
+                    errEl.innerText = '';
+                }
+            }
+            function checkPh() {
+                const errEl = document.getElementById('err');
+
+                let phNo = document.getElementById('phNo').value;
+
+                if (phNo.length != 10) {
+                    errEl.innerText = 'Phone Number Should be 10 Digits';
+                } else {
+                    errEl.innerText = '';
+                }
+            }
+            function checkPs() {
+                const errEl = document.getElementById('err');
+
+                let pwIp = document.getElementById('password').value;
+
+                var validRegex =
+                    /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+                if (!pwIp.match(validRegex)) {
+                    errEl.innerText =
+                        'Password should be minimum 8 characters, with at least one uppercase, one lowercase, one digit and a special character';
+                } else {
+                    errEl.innerText = '';
+                }
+            }
+            function generatePassword() {
+                const pwElement = document.getElementById('password');
+
+                let caps = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                let smal = 'abcdefghijklmnopqrstuvwxyz';
+                let nums = '1234567890';
+                let syms = '+-=*/`~!@#$%^&_()={}[];:,.<>?';
+
+                let generated = '';
+
+                while (8 > generated.length) {
+                    generated += caps[Math.floor(Math.random() * caps.length)];
+                    generated += smal[Math.floor(Math.random() * smal.length)];
+                    generated += nums[Math.floor(Math.random() * nums.length)];
+                    generated += syms[Math.floor(Math.random() * syms.length)];
+                }
+                pwElement.value = generated;
+                checkPs();
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                font-family: Gantari;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .container {
+                max-width: 450px;
+                margin: 0 auto;
+                height: 100dvh;
+                display: flex;
+                padding: 20px;
+                place-content: center;
+                place-items: center;
+            }
+
+            h1 {
+                padding-left: 5px;
+                border-left: solid 5px #0047ab;
+            }
+
+            .form {
+                width: 500px;
+                height: fit-content;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                margin: 0 auto;
+                border: solid 1px #1a1a1a70;
+                padding: 20px;
+                border-radius: 21px;
+            }
+
+            .field {
+                width: 100%;
+                height: 50px;
+                border-radius: 6px;
+                position: relative;
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+                border-radius: 6px;
+                font-size: 1em;
+                padding-left: 10px;
+                border: solid 1px #1a1a1a50;
+            }
+
+            label {
+                position: absolute;
+                font-size: 14px;
+                top: -10px;
+                left: 4px;
+                background-color: #ffffff;
+                padding: 0 3px;
+            }
+
+            input:focus {
+                outline: none;
+            }
+
+            .field input:invalid {
+                border: solid 1px #9e2000ed;
+            }
+
+            .pass {
+                display: flex;
+                gap: 10px;
+            }
+
+            .pass button {
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                border: none;
+                background-color: yellowgreen;
+            }
+        </style>
+    </body>
+
+</html>

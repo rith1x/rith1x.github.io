@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="stylesheet" href="style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="box">
+                <div class="field xcv">
+                    <h1>BMI Calculator</h1>
+                </div>
+                <div class="field xcv" id="bmiShow" style="display: none">
+                    <h1 id="bmi"></h1>
+                </div>
+                <div class="field">
+                    <label for="">Enter Weight in Kg</label>
+                    <input type="number" id="weight" />
+                </div>
+                <div class="field">
+                    <label for="">Enter Height in Cm</label>
+                    <input type="number" id="height" />
+                </div>
+                <div class="field xcv">
+                    <button onclick="calculate()">Calculate BMI</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            function calculate() {
+                var height = parseInt(document.getElementById('height').value);
+                var weight = parseInt(document.getElementById('weight').value);
+                var hm = height / 100;
+                var hsqr = hm * hm;
+                var bmi = weight / hsqr;
+                bmi = bmi.toFixed(2);
+                let cat;
+                let clr;
+                if (bmi < 18.5) {
+                    cat = 'Underweight';
+                    clr = '#ad2800';
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    cat = 'Healthy Weight';
+                    clr = '#00ad09';
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    cat = 'Over Weight';
+                    clr = '#ad6e00';
+                } else if (bmi > 30) {
+                    cat = 'Obese';
+                    clr = '#ad2800';
+                }
+                document.getElementById('bmiShow').style.display = 'block';
+                document.getElementById('bmiShow').style.color = clr;
+
+                document.getElementById(
+                    'bmi'
+                ).innerText = `Your BMI is ${bmi}, and you are ${cat}`;
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                font-family: Gantari;
+            }
+
+            body {
+                margin: 0;
+            }
+
+            .container {
+                max-width: 450px;
+                margin: 0 auto;
+                height: 100dvh;
+                display: flex;
+                padding: 20px;
+                place-content: center;
+                place-items: center;
+            }
+
+            .box {
+                border: solid 1px #1a1a1a50;
+
+                width: 100%;
+                height: fit-content;
+                padding: 15px;
+                border-radius: 21px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            #bmiShow {
+                height: fit-content;
+            }
+
+            .field {
+                width: 100%;
+                height: 50px;
+                border: solid 1px #1a1a1a50;
+                border-radius: 6px;
+                position: relative;
+            }
+
+            button {
+                width: 100%;
+                height: 100%;
+                background-color: rgb(111, 0, 229);
+                color: #fff;
+                border: none;
+                font-size: 1em;
+                border-radius: 11px;
+            }
+
+            input[type='number'] {
+                width: 100%;
+                height: 100%;
+                border-radius: 11px;
+                font-size: 1em;
+                padding-left: 10px;
+                border: none;
+            }
+
+            label {
+                position: absolute;
+                font-size: 14px;
+                top: -10px;
+                left: 4px;
+                background-color: #ffffff;
+                padding: 0 3px;
+            }
+
+            input:focus {
+                outline: none;
+            }
+
+            .xcv {
+                border: none;
+            }
+
+            .field:focus-within {
+                border: solid 1px #009e0ded;
+            }
+        </style>
+    </body>
+
+</html>
