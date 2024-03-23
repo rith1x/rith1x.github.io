@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cyborg-Counter</title>
+        <link rel="icon" href="2011.i211.033..pyrotechnics fireworks realistic city background.jpg">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="main">
+            <div class="head">
+                <h1>CountDown to</h1>
+            </div>
+            <div class="logo"><img src="images/cyborglogo.png" alt=""></div>
+
+            <div class="counter">
+                <div>
+                    <h1 id="days">00</h1>
+                    <small>Days</small>
+                </div>
+                <div>
+                    <h1 id="hours">00</h1>
+                    <small>Hours</small>
+                </div>
+                <div>
+                    <h1 id="minutes">00</h1>
+                    <small>Minutes</small>
+                </div>
+                <div>
+                    <h1 id="seconds">00</h1>
+                    <small>Seconds</small>
+                </div>
+            </div>
+        </div>
+        <script>
+            const days = document.querySelector("#days")
+            const hours = document.querySelector("#hours")
+            const minutes = document.querySelector("#minutes")
+            const seconds = document.querySelector("#seconds")
+
+
+            const evenTime = 240328090000;
+
+
+
+
+            function updateTime() {
+                var countdownDate = new Date("Mar 28, 2024 09:00:00").getTime();
+
+                var countdownFunction = setInterval(function () {
+                    var now = new Date().getTime();
+
+                    var timeRemaining = countdownDate - now;
+
+                    var da = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                    var ho = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var mi = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var se = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+
+
+                    days.innerHTML = da;
+                    hours.innerHTML = ho;
+                    minutes.innerHTML = mi;
+                    seconds.innerHTML = se;
+                }, 1000);
+            }
+            updateTime();
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inspiration&family=Poppins:wght@400;700&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Poppins', sans-serif;
+            }
+
+            body {
+                background-image: url(images/slider-slide-6-1920x986.png);
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                position: static;
+                align-items: center;
+                background-repeat: no-repeat;
+                color: #ffffff;
+                background-color: rgb(0, 33, 15);
+                overflow: hidden;
+
+            }
+
+            .logo {
+                width: 100px;
+                height: 200px;
+                position: relative;
+                top: 30px;
+                right: 150px;
+
+            }
+
+            .head {
+                position: relative;
+                top: 0px;
+            }
+
+            .counter {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                top: 20px;
+                right: -10px;
+                font-size: 30px;
+                justify-content: space-between;
+                gap: 60px;
+            }
+
+            .newyear {
+                font-family: 'Inspiration', cursive;
+                margin: 20px;
+                padding: 20px;
+                font-size: 100px;
+            }
+
+            .counter {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 20px;
+            }
+
+            div {
+                text-align: center;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+                margin: 0;
+            }
+
+            small {
+                display: block;
+                font-size: 1em;
+                color: #ffffff;
+            }
+
+            p {
+                font-size: x-large;
+            }
+
+            /* Media Query for Small Screens */
+            @media only screen and (max-width: 600px) {
+                body {
+                    margin-inline: 5%;
+                }
+
+                .newyear {
+                    font-size: 60px;
+                }
+
+                h1 {
+                    font-size: 1.5em;
+                }
+
+                small {
+                    font-size: 0.8em;
+                }
+
+                p {
+                    font-size: large;
+                }
+            }
+        </style>
+    </body>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KriOS</title>
+        <link href="https://api.fontshare.com/v2/css?f[]=work-sans@400&display=swap" rel="stylesheet">
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="topbar">
+            <div class="left"><img src="images/logo.png" style="height: 20px;"></div>
+            <div class="right">
+                <p id="time"></p>
+            </div>
+        </div>
+        <div class="display">
+
+
+            <div id="floatingWindow">floater</div>
+
+        </div>
+        <div class="taskie">
+            <div class="app">
+                <i class="fa-solid fa-table-cells-large"></i>
+            </div>
+            <div class="app">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div class="app" onclick="openApp('notes')">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+        </div>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                font-family: 'Work Sans', sans-serif;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100dvh;
+                width: 100dvw;
+                background: url(images/wall.jpg);
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .topbar {
+                width: 100%;
+                height: 24px;
+                display: flex;
+                background-color: #1e1e1e;
+                align-items: center;
+                justify-content: space-between;
+                padding-inline: 10px;
+                color: #fff;
+            }
+
+            .right {
+                font-weight: 700;
+                font-size: 13px;
+            }
+
+            .display {
+                height: calc(100dvh - 24px);
+                width: 100dvw;
+                position: relative;
+
+            }
+
+            .taskie {
+                width: fit-content;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                background-color: #12121280;
+                border-radius: 11px;
+                display: flex;
+                gap: 7px;
+                align-items: center;
+                padding: 7px;
+                height: 50px;
+                bottom: 10px;
+            }
+
+            #floatingWindow {
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                background-color: #fff;
+                border-radius: 11px;
+                width: 500px;
+                height: 400px;
+                box-shadow: 0 0 5px #aaa;
+            }
+            #floatingWindow::before{
+                content: '';
+                
+            }
+
+            .app {
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2em;
+                cursor: pointer;
+                border-radius: 6px;
+                background-color: #fff;
+                color: #0047ab;
+
+            }
+        </style>
+        <script>
+            function openApp(name) {
+
+            }
+
+            (function refreshTime() {
+                setInterval(() => {
+                    const now = new Date();
+                    document.getElementById("time").innerText = `${getDay(now.getDay())} ${getMth(now.getMonth())} ${now.getDate()} ${now.getHours() > 12 ? now.getHours() - 12 : now.getHours()}:${now.getMinutes()}${now.getHours() > 12 ? "PM" : "AM"}`;
+                }, 500);
+            })();
+            function getDay(n) {
+                switch (n) {
+                    case 0:
+                        return "Sun"
+                    case 1:
+                        return "Mon"
+                    case 2:
+                        return "Tue"
+                    case 3:
+                        return "Wed"
+                    case 4:
+                        return "Thu"
+                    case 5:
+                        return "Fri"
+                    case 6:
+                        return "Sat"
+                }
+            }
+            function getMth(n) {
+                switch (n) {
+                    case 0:
+                        return "Jan"
+                    case 1:
+                        return "Feb"
+                    case 2:
+                        return "Mar"
+                    case 3:
+                        return "Apr"
+                    case 4:
+                        return "May"
+                    case 5:
+                        return "Jun"
+                    case 6:
+                        return "Jul"
+                    case 7:
+                        return "Aug"
+                    case 8:
+                        return "Sep"
+                    case 9:
+                        return "Oct"
+                    case 10:
+                        return "Nov"
+                    case 11:
+                        return "Dec"
+                }
+            }
+        </script>
+    </body>
+
+</html>
