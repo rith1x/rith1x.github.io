@@ -11,7 +11,7 @@
 
     <body>
         <div class="topbar">
-            <div class="left"><img src="images/logo.png" style="height: 20px;"></div>
+            <div class="left"><img src="https://rith1x.github.io/os/images/logo.png" style="height: 20px;"></div>
             <div class="right">
                 <p id="time"></p>
             </div>
@@ -19,7 +19,14 @@
         <div class="display">
 
 
-            <div id="floatingWindow">floater</div>
+            <div id="floatingWindow" class="floater">
+
+                <div class="floatHead">
+                    <div class="controls">
+                        <button>🔴</button><button>🟡</button><button>🟢</button>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="taskie">
@@ -47,7 +54,7 @@
                 padding: 0;
                 height: 100dvh;
                 width: 100dvw;
-                background: url(images/wall.jpg);
+                background: url(https://rith1x.github.io/os/images/wall.jpg);
                 background-size: cover;
                 display: flex;
                 flex-direction: column;
@@ -97,16 +104,47 @@
             #floatingWindow {
                 position: absolute;
                 inset: 0;
+                overflow: hidden;
                 margin: auto;
-                background-color: #fff;
+                background-color: #ffffff;
+                backdrop-filter: blur(9px);
                 border-radius: 11px;
                 width: 500px;
                 height: 400px;
                 box-shadow: 0 0 5px #aaa;
+                border: solid 1px rgb(73, 73, 73);
+
             }
-            #floatingWindow::before{
-                content: '';
-                
+            .floatHead{
+                border-bottom: solid 1px rgb(204, 204, 204);
+                background-color: #1e1e1e;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                && .controls{
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    padding-left: 3px;
+                    justify-content: space-between;
+                    button{
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        justify-content: center;
+                        background-color: transparent;
+                        border: none;
+                        transition: all .2s ease-in-out;
+                        opacity: .8;
+                        aspect-ratio: 1/1;
+                    &&:hover{
+                        opacity: 1;
+                    }
+                    
+                    }
+                }
             }
 
             .app {
