@@ -1,131 +1,214 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Code Editor</title>
-</head>
-<body>
-        <div id="output" class="output"></div>
-        <div id="coder" class="coder">
-            <div id="coderhe">
-                <span>Online Code Editor - Internship Project</span>
-                <span>  By <a target="_blank" href="https://www.linkedin.com/in/kiruthikkumar/">Kiruthik Kumar</a></span>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>KriOS</title>
+        <link href="https://api.fontshare.com/v2/css?f[]=work-sans@400&display=swap" rel="stylesheet">
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="topbar">
+            <div class="left"><img src="https://rith1x.github.io/os/images/logo.png" style="height: 20px;"></div>
+            <div class="right">
+                <p id="time"></p>
             </div>
-            <span class="codings">
-                <textarea name="" id="incode" class="cody" oninput="debug()" placeholder="Write your code here..."></textarea>
-            </span>
+        </div>
+        <div class="display">
+
+
+            <div id="floatingWindow" class="floatingWindow">
+                <div class="floatHeader">
+                    <div class="floatMenu">
+                        <button>🔴</button>
+                        <button>🟡</button>
+                        <button>🟢</button>
+                    </div>
+                    <div class="floatTitle" id="floatTitle">Visual Studio Code</div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="taskie">
+            <!-- mern -->
+            <div class="app">
+                <i class="fa-solid fa-table-cells-large"></i>
+            </div>
+            <div class="app">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+            <div class="app" onclick="openApp('notes')">
+                <i class="fa-solid fa-pen"></i>
+            </div>
         </div>
 
-
         <style>
-            *{
+            * {
                 box-sizing: border-box;
                 margin: 0;
+                font-family: 'Work Sans', sans-serif;
+            }
+
+            body {
+                margin: 0;
                 padding: 0;
-            }
-            .coder{
-                height: 350px;
-                width: 500px;
-                border-radius: 11px;
-                overflow: hidden;
-                position: absolute;
-                resize: both;
-                inset: 0;
-                /* margin: auto; */
-                z-index: 9;
-                background-color: #f1f1f1;
-                border: 1px solid #d3d3d3;
-            }
-            
-            #coderhe{
-                height: 25px;
-                width: 100%;
-                background-color: rgb(0, 67, 125);
-                cursor: move;
-                z-index: 15;
-                color: #fff;
+                height: 100dvh;
+                width: 100dvw;
+                background: url(https://rith1x.github.io/os/images/wall.jpg);
+                background-size: cover;
                 display: flex;
-                justify-content: space-between;
+                flex-direction: column;
                 align-items: center;
-                padding-inline: 8px;
-                font-size: 12px;
-                font-family: sans-serif;
+                justify-content: space-between;
             }
-            .cody{
+
+            .topbar {
+                width: 100%;
+                height: 24px;
+                display: flex;
+                background-color: #1e1e1e;
+                align-items: center;
+                justify-content: space-between;
+                padding-inline: 10px;
+                color: #fff;
+            }
+
+            .right {
+                font-weight: 700;
+                font-size: 13px;
+            }
+
+            .display {
+                height: calc(100dvh - 24px);
+                width: 100dvw;
+                position: relative;
+
+            }
+
+            .taskie {
+                width: fit-content;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                background-color: #12121280;
+                border-radius: 11px;
+                display: flex;
+                gap: 7px;
+                align-items: center;
+                padding: 7px;
+                height: 50px;
+                bottom: 10px;
+            }
+
+            #floatingWindow {
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                background-color: #fff;
+                border-radius: 11px;
+                width: 500px;
+                height: 400px;
+                box-shadow: 0 0 5px #aaa;
+            }
+            .floatHeader{
+                /* border: solid 1px #f00; */
+                height: 30px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            .floatHeader button{
                 background-color: transparent;
                 border: none;
-                width: 100%;
-                padding: 5px;
+                height: 30px;
+                aspect-ratio: 1 /1;
+                display: flex;
+                font-size: 1em;
+                align-items: center;
+                justify-content: center;
+            }
+            .floatMenu{
+                /* border: solid 1px #00f; */
+                display: flex;
+                padding-left: 3px;
 
+            }
+            .app {
                 height: 100%;
-            }
-            .cody:focus{
-                outline: none;
-                font-family: monospace;
-                font-size: 15px;
-            }
-            #coderhe a{
-              text-decoration: none;
-              color: aqua;
+                aspect-ratio: 1 / 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2em;
+                cursor: pointer;
+                border-radius: 6px;
+                background-color: #fff;
+                color: #0047ab;
+
             }
         </style>
         <script>
-            dragElement(document.getElementById("coder"));
+            function openApp(name) {
 
-function dragElement(elmnt) {
-  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  if (document.getElementById(elmnt.id + "he")) {
-    // if present, the header is where you move the DIV from:
-    document.getElementById(elmnt.id + "he").onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
+            }
 
-  function dragMouseDown(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // get the mouse cursor position at startup:
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    document.onmouseup = closeDragElement;
-    // call a function whenever the cursor moves:
-    document.onmousemove = elementDrag;
-  }
-
-  function elementDrag(e) {
-    e = e || window.event;
-    e.preventDefault();
-    // calculate the new cursor position:
-    pos1 = pos3 - e.clientX;
-    pos2 = pos4 - e.clientY;
-    pos3 = e.clientX;
-    pos4 = e.clientY;
-    // set the element's new position:
-    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-  }
-
-  function closeDragElement() {
-    // stop moving when mouse button is released:
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-}
-function debug() {
-    const code = document.getElementById('incode').value;
-    const oput = document.getElementById('output');
-
-    oput.innerHTML = code;
-}
+            (function refreshTime() {
+                setInterval(() => {
+                    const now = new Date();
+                    document.getElementById("time").innerText = `${getDay(now.getDay())} ${getMth(now.getMonth())} ${now.getDate()} ${now.getHours() > 12 ? now.getHours() - 12 : now.getHours()}:${now.getMinutes()}${now.getHours() > 12 ? "PM" : "AM"}`;
+                }, 500);
+            })();
+            function getDay(n) {
+                switch (n) {
+                    case 0:
+                        return "Sun"
+                    case 1:
+                        return "Mon"
+                    case 2:
+                        return "Tue"
+                    case 3:
+                        return "Wed"
+                    case 4:
+                        return "Thu"
+                    case 5:
+                        return "Fri"
+                    case 6:
+                        return "Sat"
+                }
+            }
+            function getMth(n) {
+                switch (n) {
+                    case 0:
+                        return "Jan"
+                    case 1:
+                        return "Feb"
+                    case 2:
+                        return "Mar"
+                    case 3:
+                        return "Apr"
+                    case 4:
+                        return "May"
+                    case 5:
+                        return "Jun"
+                    case 6:
+                        return "Jul"
+                    case 7:
+                        return "Aug"
+                    case 8:
+                        return "Sep"
+                    case 9:
+                        return "Oct"
+                    case 10:
+                        return "Nov"
+                    case 11:
+                        return "Dec"
+                }
+            }
         </script>
+    </body>
 
-
-
-<!-- Coderscave Internship Project  -->
-<!-- By Kiruthik Kumar  -->
-<!-- beacons.ai/rith1x  -->
-</body>
 </html>
