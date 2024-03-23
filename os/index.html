@@ -16,17 +16,20 @@
                 <p id="time"></p>
             </div>
         </div>
-        <div class="display">
+        <div class="display" id="display">
 
 
-            <div id="floatingWindow" class="floater">
+            <!-- <div id="floatingWindow" class="floater">
 
                 <div class="floatHead">
                     <div class="controls">
                         <button>🔴</button><button>🟡</button><button>🟢</button>
                     </div>
                 </div>
-            </div>
+                <div class="floatBody" id="fContent">
+                    <iframe src="https://rith1x.github.io/calc" frameborder="0"></iframe>
+                </div>
+            </div> -->
 
         </div>
         <div class="taskie">
@@ -34,7 +37,7 @@
             <div class="app">
                 <i class="fa-solid fa-table-cells-large"></i>
             </div>
-            <div class="app">
+            <div class="app" onclick="openApp('calc')">
                 <i class="fa-solid fa-calculator"></i>
             </div>
             <div class="app" onclick="openApp('notes')">
@@ -52,6 +55,7 @@
             body {
                 margin: 0;
                 padding: 0;
+                overflow: hidden;
                 height: 100dvh;
                 width: 100dvw;
                 background: url(https://rith1x.github.io/os/images/wall.jpg);
@@ -101,34 +105,46 @@
                 bottom: 10px;
             }
 
-            #floatingWindow {
+            .floatBody {
+                background-color: #fff;
+                height: 100%;
+                width: 100%;
+
+                iframe {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .floater {
+                resize: both;
                 position: absolute;
                 inset: 0;
                 overflow: hidden;
-                margin: auto;
                 background-color: #ffffff;
-                backdrop-filter: blur(9px);
                 border-radius: 11px;
                 width: 500px;
                 height: 400px;
-                box-shadow: 0 0 5px #aaa;
-                border: solid 1px rgb(73, 73, 73);
+                border: solid 1px #494949;
 
             }
-            .floatHead{
-                border-bottom: solid 1px rgb(204, 204, 204);
+
+            .floatHead {
+                border-bottom: solid 1px #494949;
                 background-color: #1e1e1e;
                 height: 25px;
                 display: flex;
                 align-items: center;
                 justify-content: start;
-                && .controls{
+
+                && .controls {
                     display: flex;
                     align-items: center;
                     height: 100%;
                     padding-left: 3px;
                     justify-content: space-between;
-                    button{
+
+                    button {
                         height: 100%;
                         display: flex;
                         align-items: center;
@@ -139,10 +155,11 @@
                         transition: all .2s ease-in-out;
                         opacity: .8;
                         aspect-ratio: 1/1;
-                    &&:hover{
-                        opacity: 1;
-                    }
-                    
+
+                        &&:hover {
+                            opacity: 1;
+                        }
+
                     }
                 }
             }
@@ -162,14 +179,113 @@
             }
         </style>
         <script>
+            let activeWindows = 0;
+
+            // Function to initialize dragging
+            function dragElement(elmnt) {
+                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                // Check if the header bar exists
+                var header = elmnt.getElementsByClassName("floatHead")[0];
+                console.log(elmnt);
+                // Function to handle mouse down event
+                header.onmousedown = dragMouseDown;
+
+                function dragMouseDown(e) {
+
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // Call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                }
+
+                // Function to handle dragging
+                function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // Calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // Set the element's new position:
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    elmnt.style.zIndex = 10;
+
+                }
+
+                // Function to handle mouse up event
+                function closeDragElement() {
+                    // Stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                }
+            }
+
+            // Function to open a new window
             function openApp(name) {
+                activeWindows += 1;
+                switch (name) {
+                    case "calc":
+                        newWindow("https://rith1x.github.io/calc", name);
+                        break;
+                    case "notes":
+                        newWindow("https://rith1x.github.io/", name);
+                        break;
+
+                }
+            }
+
+            // Function to create a new window
+            function newWindow(link, name) {
+                const template = `<div class="floater" id="floater${activeWindows}"><div class="floatHead" id="floatHead${activeWindows}"><div class="controls"><button onclick="closeApp('floater${activeWindows}')">🔴</button><button onclick="maximize('floater${activeWindows}')">🟡</button><button onclick="minimize('floater${activeWindows}')">🟢</button></div></div><div class="floatBody"><iframe src="${link}" frameborder="0"></iframe></div></div>`;
+                const display = document.getElementById("display");
+                display.insertAdjacentHTML("beforeend", template);
+                dragElement(document.getElementById(`floater${activeWindows}`));
+            }
+            function minimize(elem) {
+
 
             }
+            function maximize(elem) {
+                const curEl = document.getElementById(elem);
+                if (curEl.style.width != "100%") {
+                    curEl.style.width = "100%";
+                    curEl.style.height = "100%";
+                    curEl.style.top = "0";
+                    curEl.style.left = "0";
+                    curEl.style.borderRadius = "0";
+                } else {
+                    curEl.style.width = "500px";
+                    curEl.style.height = "500px";
+                    curEl.style.borderRadius = "11px";
+
+
+                }
+
+
+
+
+
+            }
+
+
+            function closeApp(elem) {
+                const deadlock = document.getElementById(elem);
+                const parenT = deadlock.parentNode;
+                parenT.removeChild(deadlock);
+                activeWindows -= 1;
+            }
+
 
             (function refreshTime() {
                 setInterval(() => {
                     const now = new Date();
-                    document.getElementById("time").innerText = `${getDay(now.getDay())} ${getMth(now.getMonth())} ${now.getDate()} ${now.getHours() > 12 ? now.getHours() - 12 : now.getHours()}:${now.getMinutes()}${now.getHours() > 12 ? "PM" : "AM"}`;
+                    document.getElementById("time").innerText = `${getDay(now.getDay())} ${getMth(now.getMonth())} ${now.getDate()} ${now.getHours() > 12 ? now.getHours() - 12 : now.getHours()}:${(now.getMinutes() / 10 < 1) ? "0" + now.getMinutes() : now.getMinutes()}${now.getHours() > 12 ? "PM" : "AM"}`;
                 }, 500);
             })();
             function getDay(n) {
