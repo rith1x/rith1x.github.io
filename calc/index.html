@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+ <html lang="en">
+  <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="initial-scale=1.0, width=device-width,user-scalable=no" />
+   <title>Calculator</title>
+  </head>
+  <body>
+   <link rel="stylesheet" href="style.css">
+    <div class="box">
+     <form action="" name="calculator"> 
+     <input class="disp" type="text" id="display" disabled>  
+     <br>  
+     <div class="r1">
+      <input class="like" type="button" value="♡" href="https://bit.ly/2k4xcc">
+      <input class="dm" type="button" value="🌙">
+      <input class="ope" type="button" value="%" onclick="calculator.display.value += '%'">
+      <input class="ope" type="button" value="/" onclick="calculator.display.value += '/'">  
+     </div>
+     <br>  
+     <div class="r2">
+      <input class="num" type="button" value="1" onclick="calculator.display.value += '1'">
+      <input class="num" type="button" value="2" onclick="calculator.display.value += '2'">
+      <input class="num" type="button" value="3" onclick="calculator.display.value += '3'">
+      <input class="ope" type="button" value="+" onclick="calculator.display.value += '+'">
+     </div>
+     <br>  
+     <div class="r3">
+      <input class="num" type="button" value="4" onclick="calculator.display.value += '4'">
+      <input class="num" type="button" value="5" onclick="calculator.display.value += '5'">
+      <input class="num" type="button" value="6" onclick="calculator.display.value += '6'">
+      <input class="ope" type="button" value="-" onclick="calculator.display.value += '-'">
+     </div>
+     <br>
+     <div class="r4">
+      <input class="num" type="button" value="7" onclick="calculator.display.value += '7'">
+      <input class="num" type="button" value="8" onclick="calculator.display.value += '8'">
+      <input class="num" type="button" value="9" onclick="calculator.display.value += '9'">
+      <input class="ope" type="button" value="*" onclick="calculator.display.value += '*'">
+     </div>
+     <br>  
+     <div class="r5">
+      <input class="num" type="button" value="." onclick="calculator.display.value += '.'">
+      <input class="num" type="button" value="0" onclick="calculator.display.value += '0'">
+      <input class="opex" type="button" value="=" onclick="calculator.display.value = eval(calculator.display.value)">
+      <input class="ope" type="button" value="c" onclick="calculator.display.value = ''">
+    </div>   
+   </form>
+  </div>
+    <style>
+      
+@font-face { 
+font-family: myFirstFont; 
+src: url(love.ttf); 
+} 
+body{
+    margin: 0;
+    background-image: url(https://images.pexels.com/photos/7078628/pexels-photo-7078628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    font-size: 0;
+   
+    
+}
+.box{
+    width: 200px; 
+    height: 305px; 
+    border: none; 
+    position: absolute; 
+    overflow:hidden;
+    border-radius: 10px;
+    background: #ffffff35;
+    backdrop-filter: blur(5px);
+    padding: 2.5px;
+    top:0; 
+
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    margin: auto; 
+}
+.like, .ope, .dm, .opex, .num{
+    width: 40px;
+    height: 40px;
+    font-family: myFirstFont;
+    margin: 5px;
+    border-radius: 10px;
+    border: none;
+    color: #ffffffdd;
+    backdrop-filter: blur(5px);
+}
+.like{
+    background: #ff5e0025;
+    
+}
+.dm{
+    background: #00000025;
+}
+.ope{
+    background: #9055ff25;
+    
+}
+.num{
+    background: #006cff25;
+}
+.opex{
+    background: #26ff0025;
+}
+.disp{
+    width: 185px;
+    height: 40px;
+    border: none;
+    color: #fff;
+    margin: 5px;
+    font-family: myFirstFont;
+    border-radius: 10px;
+  background-color: #ffffff25;
+  backdrop-filter: blur(5px);   
+}
+@media screen and (min-width: 800px) {
+
+  .box{
+    width: 400px; 
+    height: 610px; 
+    border: none; 
+    position: absolute; 
+    overflow:hidden;
+    border-radius: 20px;
+    background: #ffffff25;
+    backdrop-filter: blur(5px);
+    padding: 2.5px;
+    top:0; 
+  }
+    .like, .ope, .dm, .opex, .num{
+    width: 80px;
+    height: 80px;
+    font-family: myFirstFont;
+    margin: 10px;
+    border-radius: 20px;
+    border: none;
+      font-size: 28px;
+    color: #ffffffdd;
+    backdrop-filter: blur(5px);
+}
+  .disp{
+    width: 370px;
+    font-size: 28px;
+    height: 80px;
+    border: none;
+    color: #fff;
+    margin: 10px;
+    font-family: myFirstFont;
+    border-radius: 20px;
+  background-color: #ffffff25;
+  backdrop-filter: blur(5px);   
+}
+}
+    </style>
+ </body>
+</html>
