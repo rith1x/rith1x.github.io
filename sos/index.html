@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Collision Alert System</title>
+    
+    <link href="https://api.fontshare.com/v2/css?f[]=work-sans@400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap')
+;        
+*{
+    box-sizing: border-box;
+}
+body {
+            font-family: Gantari;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+            font-size: 32px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #555;
+            font-size: 24px;
+        }
+
+        h3 {
+            margin-top: 5px;
+            color: #777;
+            font-size: 20px;
+        }
+        .content{
+            display: flex;
+            width: 100%;
+            height: 120px;
+            align-items: center;
+            justify-content: space-evenly;
+            gap: 10px;
+            div{
+                border: solid 1px #aaaaaa80;
+                border-radius: 11px;
+
+                height: 100%;
+                width: 100%;
+                display: grid;
+                padding-block:30px;
+                place-content: center;
+                place-items: center;
+            }
+        }
+        .alert-img {
+            width: 2000px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .mapouter {
+            /* border: solid 1px #ddd; */
+            border-radius: 10px;
+            overflow: hidden;
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            width: 100%;
+            height:100%; /* Change height to fill the container */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Vehicle Collision Alert System</h1>
+        <div class="content">
+        <div>
+    
+            <h2>Magnitude</h2>
+            <h3 id="mag"></h3>
+        </div>
+            <div><h2>Latitude</h2>
+                <h3 id="lat"></h3></div>
+
+         <div>   <h2>Longitude</h2>
+            <h3 id="lon"></h3></div>
+
+        </div>
+
+        <div class="mapouter" style="border: solid 1px #aaa;">
+            <div class="gmap_canvas"><iframe id="gmap_canvas" style="border: none;" src="" width="100%"  height="100%"></iframe></div>
+        </div>
+    </div>
+
+    <script>
+        (function fetchFn() {
+            fetch("https://api.thingspeak.com/channels/2486338/fields/1.json?results=2")
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    let lat = data.channel.latitude
+                    let lon = data.channel.longitude
+                    const lastKey = Object.keys(data.feeds)[data.feeds.length - 1];
+                    let latestFeed = data.feeds[lastKey].field1
+                    let mag = latestFeed
+
+                    document.getElementById("lat").innerText = lat;
+                    document.getElementById("lon").innerText = lon;
+                    document.getElementById("mag").innerText = mag;
+                    if (mag>149){
+                    document.getElementById("mag").style.color = "#f00";
+                    alert("Magnitude is High");
+
+                    }
+                    updateMap(lat, lon);
+                })
+        })()
+        setInterval(fetchFn, 5000);
+
+        function updateMap(lat, lon) {
+            const iFra = document.getElementById("gmap_canvas");
+            iFra.src = `https://maps.google.com/maps?q=${lat}, ${lon}&z=17&output=embed`
+        }
+    </script>
+</body>
+
+</html>
