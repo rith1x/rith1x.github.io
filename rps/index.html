@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>RPCV2.0</title>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="topbar">
+                <div class="title">
+                    <h2>Stone Paper Scissors</h2>
+                    <p>🤖: <span id="comment"></span></p>
+                </div>
+                <div class="scorecard">
+                    <h3>SCORE</h3>
+                    <div class="scores">
+                        <div class="sh">
+                            <h5>YOU</h5>
+                            <p id="sch">0</p>
+
+                        </div>
+                        <div class="sb">
+                            <h5>COM</h5>
+                            <p id="scb">0</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="space" id="space">
+                <div id="rob">
+                    <img src="s.png" id="b">
+                </div>
+                <div id="hum">
+                    <img src="p.png" id="h">
+                </div>
+
+            </div>
+
+            <div class="userip" id="uip">
+                <div class="opt">
+                    <button id="ub1" onclick="validate('r')">
+                        <img src="r.png" alt="">
+                    </button>
+                </div>
+                <div class="opt">
+                    <button id="ub2" onclick="validate('p')">
+                        <img src="p.png" alt="">
+
+                    </button>
+                </div>
+                <div class="opt">
+                    <button id="ub3" onclick="validate('s')">
+                        <img src="s.png" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: Chakra Petch;
+
+            }
+
+            body {
+                margin: 0;
+                background-color: #ebebeb;
+            }
+
+            .topbar {
+                height: 10dvh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                padding-inline: 10px;
+                justify-content: space-between;
+            }
+
+            .title {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: space-between;
+            }
+
+            #comment {
+                background-color: #000;
+                color: #fff;
+                padding: 3px 10px;
+                font-size: 14px;
+                margin-left: 5px;
+                transition: all .3s ease-in-out;
+                border-radius: 21px;
+            }
+
+
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow: visible hidden;
+                justify-content: space-between;
+            }
+
+            .userip {
+                height: 15dvh;
+                background-color: #fff;
+                border-radius: 31px 31px 0 0;
+                overflow: hidden;
+                transition: all .3s ease-in-out;
+                display: flex;
+                align-items: space-evenly;
+                justify-content: center;
+                gap: 20px;
+                padding: 10px 10px 0 10px;
+                width: 96%;
+                box-shadow: 0 0 10px -3px #aaa;
+
+            }
+
+            .scorecard {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border: solid 2px #000;
+            }
+
+            .scores {
+                display: flex;
+                align-items: center;
+                width: 100px;
+                justify-content: space-between;
+            }
+
+            .scores div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                border-top: solid 2px #000;
+            }
+
+            .scores div:first-child {
+                border-right: solid 2px #000;
+            }
+
+            .space {
+                width: 80%;
+                aspect-ratio: 1 / 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                border: solid 3px #aaaaaa40;
+                border-radius: 50%;
+                background-image: linear-gradient(0deg, #fff3e2, #e8f4ff);
+            }
+
+
+
+            button {
+                height: 100%;
+                aspect-ratio: 1/1;
+                border: none;
+                transition: all 0.2s ease-in-out;
+                padding: 10px;
+                background-color: transparent;
+            }
+
+            button img {
+                width: 100%;
+            }
+
+            button:hover {
+                margin-top: -10px;
+            }
+
+            #hum,
+            #rob {
+                height: 100%;
+                padding-block: 20px;
+                width: 100%;
+                overflow: hidden;
+                display: flex;
+                justify-content: center;
+                transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+
+            }
+
+            #hum {
+                transform: translateY(120%);
+            }
+
+            #rob {
+                transform: translateY(-120%);
+
+            }
+
+            #rob img {
+                rotate: 180deg;
+                filter: hue-rotate(200deg);
+
+            }
+        </style>
+        <script>
+
+            const s_h = document.getElementById("h");
+            const s_b = document.getElementById("b");
+            const shel = document.getElementById("hum");
+            const sbel = document.getElementById("rob");
+            const space = document.getElementById("space");
+
+            const ub1 = document.getElementById("ub1")
+            const ub2 = document.getElementById("ub2")
+            const ub3 = document.getElementById("ub3")
+            const sch = document.getElementById("sch")
+            const scb = document.getElementById("scb")
+            const comment = document.getElementById("comment")
+
+            const uip = document.getElementById("uip")
+            var rc;
+            var hc;
+            var scrb = 0;
+            var scrh = 0;
+
+
+            function validate(hum) {
+                lockBtns()
+                hc = hum
+                s_h.src = `${hc}.png`;
+                shel.style.transform = "translateY(0)";
+                setTimeout(roboGen, 5000);
+
+            }
+            function roboGen() {
+                let randInt = Math.floor(Math.random() * 3)
+                switch (randInt) {
+                    case 0:
+                        rc = "r"
+                        break;
+                    case 1:
+                        rc = "p"
+                        break;
+                    case 2:
+                        rc = "s"
+                        break;
+                }
+                s_b.src = `${rc}.png`
+                sbel.style.transform = "translateY(0)";
+                result = evaluate(hc, rc);
+                if (result == "hum") {
+                    space.style.boxShadow = " 0 30px 40px #90ff90, 0 -30px 50px #ff9090"
+                    updateScore("h")
+
+                } else if (result == "bot") {
+                    space.style.boxShadow = " 0 30px 40px #ff9090, 0 -30px 50px #90ff90"
+                    updateScore("b")
+
+                } else {
+                    space.style.boxShadow = " 0 30px 40px #fa343d, 0 -30px 50px #fa343d"
+
+                }
+                setTimeout(unlockBtns, 2000);
+
+            }
+
+            function lockBtns() {
+                ub1.setAttribute("disabled", "true");
+                ub2.setAttribute("disabled", "true");
+                ub3.setAttribute("disabled", "true");
+                ub1.style.filter = "saturate(0)";
+                ub2.style.filter = "saturate(0)";
+                ub3.style.filter = "saturate(0)";
+                uip.style.marginBottom = "-15dvh"
+
+            }
+
+            function unlockBtns() {
+                ub1.removeAttribute("disabled", "false");
+                ub2.removeAttribute("disabled", "false");
+                ub3.removeAttribute("disabled", "false");
+                ub1.style.filter = "none";
+                ub2.style.filter = "none";
+                ub3.style.filter = "none";
+                uip.style.marginBottom = "0dvh"
+                shel.style.transform = "translatey(120%)"
+                sbel.style.transform = "translatey(-120%)"
+                space.style.boxShadow = "none"
+
+            }
+
+            function updateScore(x) {
+                if (x == "h") {
+                    scrh += 1;
+                    sch.innerText = scrh;
+                    showComment("h");
+
+                }
+                else {
+                    scrb += 1;
+                    scb.innerText = scrb;
+                    showComment("b");
+
+
+                }
+            }
+
+            function evaluate(h, b) {
+
+                if (h != b) {
+                    if (h == "r") {
+                        if (b == "s") {
+                            return "hum";
+                        } else {
+                            return "bot";
+                        }
+                    } else if (h == "p") {
+                        if (b == "r") {
+                            return "hum";
+                        } else {
+                            return "bot";
+                        }
+                    } else {
+                        if (b == "p") {
+                            return "hum";
+                        } else {
+                            return "bot";
+                        }
+                    }
+                } else {
+
+                    return "tie";
+                }
+            }
+
+            function showComment(v) {
+                var won = ["I'm the King!", "Loser!", "lol", "Try Again", "Hey Fool!", "🤣🤣🤣🤣"]
+                var los = ["Oops!", "Ouch!", "Heyy!", "Its Over!!", "Pleech!", "Please!", "🥹🥹🥹", "😭😭😭"]
+                if (v == "h") {
+                    var ranInty = los[Math.floor(Math.random() * los.length)]
+                    comment.innerText = ranInty;
+                } else {
+                    var ranInty = won[Math.floor(Math.random() * won.length)]
+                    comment.innerText = ranInty;
+
+                }
+                setTimeout(() => {
+                    comment.innerText = "";
+                }, 3000);
+            }
+        </script>
+    </body>
+
+</html>
