@@ -379,6 +379,8 @@
 
                 } else {
                     space.style.boxShadow = " 0 0 50px #ffff90"
+                    showComment("tie");
+
 
                 }
                 setTimeout(unlockBtns, 2000);
@@ -454,8 +456,103 @@
             }
 
             function showComment(v) {
-                var won = ["I'm the King!", "Loser!", "lol", "Try Again", "Hey Fool!", "🤣🤣🤣🤣"]
-                var los = ["Oops!", "Ouch!", "Heyy!", "Its Over!!", "Pleech!", "Please!", "🥹🥹🥹", "😭😭😭"]
+                var won = [
+                    "I'm the King! 👑",
+                    "Top dog! 🐕",
+                    "Bossing it! 😎",
+                    "Champ is here! 🥇",
+                    "Gold medalist! 🏅",
+                    "Bow to the champ! 🏆",
+                    "Winner winner! 🍗",
+                    "Victory dance time! 💃🕺",
+                    "Unstoppable! 🚀",
+                    "In your face! 🌟",
+                    "Feeling great! 😄",
+                    "Thanks, luck! 🍀",
+                    "Sweet victory! 🍫",
+                    "On cloud nine! ☁️",
+                    "Just keep winning! 🏆",
+                    "Dreams come true! 💭🎉",
+                    "You're the best! 🏆",
+                    "I'm the best! 😎",
+                    "King of hill! 👑",
+                    "Feeling good! 🌟",
+                    "Champions rule! 🏆",
+                    "Gold standard! 🥇",
+                    "I'm a winner! 🏆",
+                    "Hooray for me! 🎉",
+                    "I'm a champ! 🏅",
+                    "I win again! 🥇",
+                    "I won, yay! 🎉",
+                    "Winning feels good! 🏆",
+                    "Living the dream! 🌈",
+                    "Thank you, world! 🌎",
+                ];
+                var los = [
+                    "Oops! 😬",
+                    "Oh no! 😔",
+                    "Tough luck! 😓",
+                    "Lost again! 😞",
+                    "Second place! 🥈",
+                    "Try again! 🔄",
+                    "Next time! 🔜",
+                    "Better luck! 🍀",
+                    "It's over! 😫",
+                    "Almost won! 😅",
+                    "Not today! 🙅‍♂️",
+                    "Maybe next time! 🤞",
+                    "Not your day! 📆",
+                    "Close call! 📞",
+                    "Better try! 💪",
+                    "Not the one! ❌",
+                    "Better luck next! 🍀",
+                    "Defeated! 😢",
+                    "Lost the game! 😟",
+                    "Not this time! ⏰",
+                    "Can't win all! 🙁",
+                    "Try harder! 💪",
+                    "No winning! 🛑",
+                    "Lost the match! 💔",
+                    "Missed out! 😣",
+                    "Lost the battle! ⚔️",
+                    "Didn't win! 🤷",
+                    "Fell short! 📉",
+                    "Bad luck! 🌪️",
+                    "No victory! 🚫",
+                ];
+                var tie = [
+                    "It's a draw! 🤝",
+                    "No winner! 🚫",
+                    "Even match! ⚖️",
+                    "Tied game! 🎯",
+                    "Same score! 📊",
+                    "No victor! 🏳️",
+                    "Stalemate! 🛡️",
+                    "Tiebreaker needed! 🔄",
+                    "Equal footing! ⚔️",
+                    "Neutral result! 🔄",
+                    "All square! ▪️▫️",
+                    "No decision! 🤷",
+                    "Dead heat! 🏁",
+                    "Level playing field! 🏞️",
+                    "Drawn game! 🎲",
+                    "Balance achieved! ⚖️",
+                    "No clear winner! ❓",
+                    "Shared victory! 🤝",
+                    "Both win! 🎉",
+                    "No one wins! ❌",
+                    "Tie game! 🎮",
+                    "Equal outcome! ⚖️",
+                    "Equal result! ➰",
+                    "No loser! 🤷‍♂️",
+                    "Even contest! 🥊",
+                    "All tied up! 🎀",
+                    "Both sides equal! ⚖️",
+                    "No decisive winner! ❔",
+                    "Neither wins! ❓",
+                    "Match ends level! ⚖️",
+                ];
+
 
                 comment.style.transform = "rotatey(0deg)";
                 comment.style.color = "var(--tc)";
@@ -468,6 +565,9 @@
                     comment.innerText = "Welcome to the Game!";
 
 
+                } else if (v == "tie") {
+                    var ranInty = tie[Math.floor(Math.random() * tie.length)]
+                    comment.innerText = "🤖: " + ranInty;
                 }
                 else {
                     var ranInty = won[Math.floor(Math.random() * won.length)]
