@@ -13,7 +13,7 @@
             <div class="topbar">
                 <div class="title">
                     <h2>Stone Paper Scissors</h2>
-                    <p>🤖: <span id="comment"></span></p>
+
                 </div>
                 <div class="scorecard">
                     <h3>SCORE</h3>
@@ -31,6 +31,7 @@
                 </div>
 
             </div>
+            <p id="comment">Oiii</p>
             <div class="space" id="space">
                 <div id="rob">
                     <img src="s.png" id="b">
@@ -95,10 +96,13 @@
             #comment {
                 background-color: #000;
                 color: #fff;
-                padding: 3px 10px;
-                font-size: 14px;
-                margin-left: 5px;
-                transition: all .3s ease-in-out;
+                font-size: 20px;
+                transform: rotatey(90deg);
+                width: fit-content;
+                padding: 5px 20px;
+                overflow: hidden;
+                transition: all .5s cubic-bezier(0.175, 0.885, 0.32, 1);
+
                 border-radius: 21px;
             }
 
@@ -352,6 +356,10 @@
             function showComment(v) {
                 var won = ["I'm the King!", "Loser!", "lol", "Try Again", "Hey Fool!", "🤣🤣🤣🤣"]
                 var los = ["Oops!", "Ouch!", "Heyy!", "Its Over!!", "Pleech!", "Please!", "🥹🥹🥹", "😭😭😭"]
+
+                comment.style.transform = "rotatey(0deg)";
+
+
                 if (v == "h") {
                     var ranInty = los[Math.floor(Math.random() * los.length)]
                     comment.innerText = ranInty;
@@ -361,7 +369,7 @@
 
                 }
                 setTimeout(() => {
-                    comment.innerText = "";
+                    comment.style.transform = "rotatey(90deg)";
                 }, 3000);
             }
         </script>
