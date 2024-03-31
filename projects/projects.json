@@ -1,5 +1,82 @@
 [
     {
+        "name": "Tic Tac Toe Game",
+        "link": "https://rith1x.github.io/tictactoe",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/tictactoe",
+        "description": "X O Game",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Whack a Mole Game",
+        "link": "https://rith1x.github.io/whackamole",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/whackamole",
+        "description": "Whack-A-Mole!!!",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Rock Paper Scissors V2",
+        "link": "https://rith1x.github.io/rps",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/rps",
+        "description": "Updated version of Rock Paper Scissors game",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Simple Web OS",
+        "link": "https://rith1x.github.io/os",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/os",
+        "description": "A simple web based os, KritOS",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "Character Counter",
+        "link": "https://rith1x.github.io/chars",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/chars",
+        "description": "Count the characters as you type",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "GPA Calc",
+        "link": "https://rith1x.github.io/cgpa",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/cgpa",
+        "description": "A simple GPA Calculator  ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
+        "name": "BMI Calc",
+        "link": "https://rith1x.github.io/bmi",
+        "github": "https://github.com/rith1x/rith1x.github.io/tree/main/bmi",
+        "description": "A simple BMI Calculator  ",
+        "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    {
         "name": "Notes App",
         "link": "https://rith1x.github.io/notes",
         "github": "https://github.com/rith1x/rith1x.github.io/tree/main/notes",

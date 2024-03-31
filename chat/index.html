@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chatie</title>
+
+        <script src="engine.js"></script>
+
+
+        <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                font-family: Gantari;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+
+            }
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                margin: 0 auto;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+
+            }
+
+            .box {
+                width: 100%;
+                height: fit-content;
+                padding: 20px;
+                border: solid 1px #aaa;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                border-radius: 21px;
+            }
+
+            .field {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                gap: 5px;
+            }
+
+            h1 {
+                padding-left: 5px;
+                border-left: solid 5px #0047ab;
+            }
+
+            .field input {
+                width: 100%;
+                height: 100%;
+                padding-left: 10px;
+                border-radius: 6px;
+                text-transform: uppercase;
+                letter-spacing: 5PX;
+                font-weight: 700;
+                font-size: 20px;
+                border: solid 1px #aaa;
+
+            }
+
+            .field input::placeholder {
+                opacity: 0.5;
+            }
+
+            .cr {
+                background-color: #0047ab;
+                border: none;
+                height: 100%;
+                width: 100%;
+                color: #fff;
+                border-radius: 6px;
+            }
+
+            .jr {
+                background-color: #0047ab;
+                border: none;
+                height: 100%;
+                width: fit-content;
+                padding: 0 20px;
+                color: #fff;
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="box">
+                <div class="field">
+                    <h1>Chatie</h1>
+                </div>
+                <div class="field">
+                    <button class="cr">Create Room</button>
+                </div>
+                <div class="field">
+                    <input type="text" placeholder="RoomCode" maxlength="6"><button class="jr">Join
+                        room</button>
+                </div>
+
+
+            </div>
+        </div>
+    </body>
+
+</html>

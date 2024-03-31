@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Chat | Mind Aura</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google Fonts Link For Icons -->
+
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+
+        <style>
+            /* Import Google font - Poppins */
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Gantari", sans-serif;
+                transition: all .3s ease-in-out;
+            }
+
+            body {
+                background: #E3F2FD;
+                overflow: hidden;
+            }
+
+
+
+            button {
+                background-color: transparent;
+                border: none;
+            }
+
+            .chatbot {
+                background: #fff;
+                width: 500px;
+                margin: 10dvh auto;
+                border-radius: 31px;
+                overflow: hidden;
+                opacity: 0;
+                pointer-events: none;
+                transform: scale(0.5);
+                transform-origin: bottom right;
+                box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
+                    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+            }
+
+            body.show-chatbot .chatbot {
+                opacity: 1;
+                pointer-events: auto;
+                transform: scale(1);
+            }
+
+            .chatbot header {
+                position: relative;
+                padding: 10px;
+                text-align: center;
+                color: #000;
+                /* border: solid 1px#724ae8; */
+                border-radius: 21px;
+                margin: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+
+            header h2 {
+                font-size: 1.4em;
+            }
+
+            .chatbot .chatbox {
+                overflow-y: auto;
+                height: 510px;
+                padding: 30px 20px 100px;
+            }
+
+            .chatbot :where(.chatbox, textarea)::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-track {
+                background: #fff;
+                border-radius: 25px;
+            }
+
+            .chatbot :where(.chatbox, textarea)::-webkit-scrollbar-thumb {
+                background: #ccc;
+                border-radius: 25px;
+            }
+
+            .chatbox .chat {
+                display: flex;
+                list-style: none;
+            }
+
+            .chatbox .outgoing {
+                margin: 20px 0;
+
+                justify-content: flex-end;
+            }
+
+            .chatbox .incoming span {
+                width: 32px;
+                height: 32px;
+                color: #fff;
+                cursor: default;
+                text-align: center;
+                line-height: 32px;
+                align-self: flex-end;
+                background: #724ae8;
+                border-radius: 4px;
+                margin: 0 10px 7px 0;
+            }
+
+            .chatbox .chat p {
+                white-space: pre-wrap;
+                padding: 12px 16px;
+                border-radius: 21px 21px 0 21px;
+
+                max-width: 75%;
+                color: #fff;
+                font-size: 0.95rem;
+                background: #349836;
+            }
+
+            .chatbox .incoming p {
+                border-radius: 21px 21px 21px 0;
+            }
+
+            .chatbox .chat p.error {
+                color: #721c24;
+                background: #f8d7da;
+            }
+
+            .chatbox .incoming p {
+                color: #000;
+                background: #f2f2f2;
+            }
+
+            .chatbot .chat-input {
+                display: flex;
+                gap: 5px;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                background: #fff;
+                padding: 3px 20px;
+                border-top: 1px solid #ddd;
+            }
+
+            .chat-input input {
+                height: 55px;
+                width: 100%;
+                border: none;
+                outline: none;
+                resize: none;
+                max-height: 180px;
+                padding: 15px 15px 15px 0;
+                font-size: 0.95rem;
+            }
+
+            .chat-input button span {
+                align-self: flex-end;
+                color: #724ae8;
+                cursor: pointer;
+                height: 55px;
+                display: flex;
+                align-items: center;
+                visibility: hidden;
+                font-size: 1.35rem;
+            }
+
+            .chat-input textarea:valid~button span {
+                visibility: visible;
+            }
+
+            @media (max-width: 490px) {
+
+
+                .chatbot {
+                    right: 0;
+                    bottom: 0;
+                    height: 100%;
+                    border-radius: 0;
+                    width: 100%;
+                }
+
+                .chatbot .chatbox {
+                    height: 90%;
+                    padding: 25px 15px 100px;
+                }
+
+                .chatbot .chat-input {
+                    padding: 5px 15px;
+                }
+
+                .chatbot header span {
+                    display: block;
+                }
+            }
+        </style>
+    </head>
+
+    <body class="show-chatbot">
+        <div class="chatbot">
+            <header>
+                <h1>Textie</h1>
+                <h2>Roomcode: <span id="code"></span></h2>
+            </header>
+            <ul class="chatbox">
+
+
+                <div class="summa" >
+                    <li class="chat outgoing">
+                        <p id="currOg">Hola!</p>
+                    </li>
+                    <li class="chat incoming">
+                        <p id="currIc">Hello</p>
+                    </li>
+                </div>
+            </ul>
+            <form action="/chat/" method="POST">
+                <div class="chat-input">
+                    <input type="text" placeholder="Enter a message..." spellcheck="false" required />
+                    <button type="submit">
+                        <span id="send-btn" class="material-symbols-rounded"><i
+                                class="fa-regular fa-paper-plane"></i></span>
+
+                    </button>
+                </div>
+            </form>
+            <input type="text" id="accsr" value="{{acc_scr}}" style="display:none;">
+        </div>
+        <script>
+
+            function clearChat() {
+                localStorage.removeItem("chatData");
+                window.location.reload()
+            }
+
+
+            const acsr = document.getElementById("accsr").value;
+            if (acsr) {
+                localStorage.setItem("acsr", acsr);
+
+            }
+
+            const gt = localStorage.getItem("acsr");
+            if (gt) {
+                document.getElementById("scr").innerText = gt;
+
+
+            } else {
+                document.getElementById("scr").innerText = "summa";
+
+            }
+            // Wait for the DOM content to be fully loaded
+            document.addEventListener("DOMContentLoaded", function () {
+                // Retrieve chatData from local storage
+                const chatData = JSON.parse(localStorage.getItem("chatData"));
+
+                // Reference the #oldies div element
+                const oldiesDiv = document.getElementById("oldies");
+
+                // Check if chatData is not null
+                if (chatData !== null) {
+                    // Loop through each chatObj in chatData
+                    chatData.forEach(chatObj => {
+                        // Create a new list item element
+
+                        // Check if the current chatObj has "ic" and "og" keys
+                        if (chatObj.ic && chatObj.og) {
+                            // Create incoming and outgoing paragraphs based on the "ic" and "og" keys
+                            const icParagraph = document.createElement("p");
+                            icParagraph.textContent = chatObj.ic;
+                            const ogParagraph = document.createElement("p");
+                            ogParagraph.textContent = chatObj.og;
+                            const oli = document.createElement("li");
+                            const ili = document.createElement("li");
+
+
+
+
+                            // Append "incoming" and "chat" classes to ic paragraph
+                            ili.classList.add("incoming", "chat");
+                            // Append "outgoing" and "chat" classes to og paragraph
+                            oli.classList.add("outgoing", "chat");
+
+                            // Append paragraphs to the list item
+                            oli.appendChild(ogParagraph);
+
+                            ili.appendChild(icParagraph);
+
+                            // Append the list item to the #oldies div
+                            oldiesDiv.appendChild(oli);
+                            oldiesDiv.appendChild(ili);
+
+                        }
+                    });
+                    // Get the last appended element
+                    const lastElement = oldiesDiv.lastElementChild;
+
+                    // Scroll the last appended element into view
+                    lastElement.scrollIntoView();
+                }
+            });
+
+            // Retrieve current values from input fields
+            const currIc = document.getElementById("currIc").innerText;
+            const currOg = document.getElementById("currOg").innerText;
+
+            // Create an object with the current values
+            let chatObj = {
+                "ic": currIc,
+                "og": currOg
+            };
+
+            // Retrieve existing chat data from local storage
+            let chatData = JSON.parse(localStorage.getItem("chatData"));
+
+            // If no existing chat data is found, initialize an empty array
+            if (!chatData) {
+                chatData = [];
+            }
+
+            // Append the current chatObj to the chatData array
+            chatData.push(chatObj);
+
+            // Save the updated chatData back to local storage
+            localStorage.setItem("chatData", JSON.stringify(chatData));
+
+            // Update the handleChat function in your script.js file
+            const handleChat = async () => {
+                const userMessage = chatInput.value.trim(); // Get user entered message and remove extra whitespace
+                if (!userMessage) return;
+
+                // Clear the input textarea
+                chatInput.value = "";
+
+                // Append the user's message to the chatbox
+                appendMessageToChatbox(userMessage, "outgoing");
+
+                try {
+                    const response = await fetch("/chat/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                            "X-CSRFToken": "{{ csrf_token }}",
+                        },
+                        body: `message=${encodeURIComponent(userMessage)}`,
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+
+                    const data = await response.text();
+
+                    // Append the bot's response to the chatbox
+                    appendMessageToChatbox(data, "incoming");
+
+                    // Store chat messages in local storage
+                    storeChatHistory();
+
+                } catch (error) {
+                    console.error("Error:", error);
+                    // Display an error message in the chatbox
+                    appendMessageToChatbox("Oops! Something went wrong. Please try again.", "error");
+                }
+            };
+
+            // Function to append message to chatbox
+            const appendMessageToChatbox = (message, type) => {
+                if (type == "incoming") {
+
+                    setTimeout(function () {
+                        const messageHTML = `<div class="message ${type}"><p>${message}</p></div>`;
+                        chatbox.innerHTML += messageHTML;
+                        chatbox.scrollTo(0, chatbox.scrollHeight);
+                    }, 10000);
+
+                } else {
+                    const messageHTML = `<div class="message ${type}"><p>${message}</p></div>`;
+                    chatbox.innerHTML += messageHTML;
+                    chatbox.scrollTo(0, chatbox.scrollHeight);
+                }
+
+
+            };
+
+            // Function to store chat history in local storage
+            const storeChatHistory = () => {
+                const chatHistory = chatbox.innerHTML;
+                localStorage.setItem("chatHistory", chatHistory);
+            };
+
+            // Function to load chat history from local storage
+            const loadChatHistory = () => {
+                const chatHistory = localStorage.getItem("chatHistory");
+                if (chatHistory) {
+                    chatbox.innerHTML = chatHistory;
+                }
+            };
+
+            // Load chat history when the page loads
+            window.onload(loadChatHistory());
+
+
+        </script>
+
+        <a style="position:fixed;margin: 0 auto;left: 1em;top: 1em; z-index: 4; color: #ab0047;"
+            onclick="clearChat()">Clear Chat</a>
+        <!-- WEBSITE DESIGNED AND DEVELOPED BY KIRUTHIK KUMAR
+            https://rith1x.github.io/
+        -->
+
+    </body>
+
+</html>
