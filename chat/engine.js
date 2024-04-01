@@ -24,9 +24,14 @@ function chatLoad() {
     spliced = currurl.split("?r=");
     codie = spliced[1];
     console.log(codie)
-    currentRoom = codie;
-    let rmcodeElement = document.getElementById("rmcode")
-    rmcodeElement.innerText = "Roomcode: " + currentRoom;
+    if (codie.length == 6) {
+        currentRoom = codie;
+        let rmcodeElement = document.getElementById("rmcode")
+        rmcodeElement.innerText = "Roomcode: " + currentRoom;
+    } else {
+        window.location.href = "/"
+    }
+
 }
 function sendMessage() {
     var messageel = document.getElementById("message");
@@ -93,7 +98,52 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
 });
 
 
-function deleteRoom(){
+function deleteRoom() {
     firebase.database().ref("ROOMS").child(currentRoom).remove();
-    
+    window.location.href = "/"
+
+}
+
+
+
+function shareRoom() {
+
+    const theUrl = `https:\/\/rith1x.github.io/chat/chat.html?r=${currentRoom}`;
+    const qrBase = "https:\/\/chart.googleapis.com/chart?cht=qr&chs=512x512&chl=";
+    const masterQr = qrBase + theUrl;
+    sharePop(masterQr, theUrl);
+
+}
+
+
+function sharePop(qrsrc, txtsrc) {
+    const tHEl = document.getElementById('exportroompop');
+    tHEl.style.display = "flex";
+    tHEl.style.animationPlayState = "running";
+    const imgel = document.getElementById('qrimg');
+    imgel.src = qrsrc;
+    const loader = document.getElementById('loading-bar-spinner');
+
+    loader.style.display = "none";
+
+    imgel.style.display = "block";
+    const urlBox = document.getElementById('shareurl');
+    urlBox.value = txtsrc
+
+
+
+}
+
+function clipboardcopy() {
+    const pwElement = document.getElementById("shareurl");
+    pwElement.select();
+    document.execCommand("copy");
+
+
+}
+
+function closeRoomPop() {
+    const thEl = document.getElementById('exportroompop');
+    thEl.style.display = "None";
+
 }
