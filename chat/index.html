@@ -6,10 +6,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chatie</title>
 
+
+        <!-- <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script> -->
         <script src="engine.js"></script>
 
-
-        <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
 
 
         <style>
@@ -108,10 +108,11 @@
                     <h1>Chatie</h1>
                 </div>
                 <div class="field">
-                    <button class="cr">Create Room</button>
+                    <button class="cr" onclick="createRoom()">Create Room</button>
                 </div>
                 <div class="field">
-                    <input type="text" placeholder="RoomCode" maxlength="6"><button class="jr">Join
+                    <input type="text" id="roomcode" placeholder="RoomCode" maxlength="6"><button class="jr"
+                        onclick="joinRoom()">Join
                         room</button>
                 </div>
 
