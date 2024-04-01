@@ -6,7 +6,7 @@ function createRoom() {
 }
 function joinRoom() {
     storeName()
-    jrCode = document.getElementById("roomcode").value;
+    jrCode = toUpperCase(document.getElementById("roomcode").value);
     window.location.href = `chat.html?r=${jrCode}`;
 
 

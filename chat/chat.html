@@ -42,23 +42,13 @@
 
             .chatbot {
                 background: #fff;
-                width: 500px;
-                margin: 10dvh auto;
+                height: auto;
+                max-width: 450px;
                 border-radius: 31px;
                 overflow: hidden;
-                opacity: 0;
-                pointer-events: none;
-                transform: scale(0.5);
-                transform-origin: bottom right;
-                box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1),
-                    0 32px 64px -48px rgba(0, 0, 0, 0.5);
             }
 
-            body.show-chatbot .chatbot {
-                opacity: 1;
-                pointer-events: auto;
-                transform: scale(1);
-            }
+
 
             .chatbot header {
                 position: relative;
@@ -202,7 +192,7 @@
         </style>
     </head>
 
-    <body class="show-chatbot">
+    <body>
         <div class="chatbot">
             <header>
                 <h1>Textie</h1>
@@ -224,9 +214,11 @@
                         </path>
                     </svg>
 
+
                 </button>
             </div>
         </div>
+
         <script>
 
 
