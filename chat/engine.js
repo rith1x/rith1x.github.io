@@ -91,3 +91,9 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
     console.log(genTxt);
     document.getElementById("chatbox").innerHTML += genTxt;
 });
+
+
+function deleteRoom(){
+    firebase.database().ref("ROOMS").child(currentRoom).remove();
+    
+}
