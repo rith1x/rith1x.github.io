@@ -14,27 +14,10 @@ let c = firebase.initializeApp(firebaseConfig);
 
 
 
-function codeGenerator() {
-    let vals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-    let code = "";
-    while (code.length != 6) {
-        code += vals[Math.floor(Math.random() * vals.length)];
-    }
-    return code;
 
-}
 let currentRoom;
 let currSender = "Kiruthik";
-function createRoom() {
-    cody = codeGenerator();
-    window.location.href = `chat.html?r=${cody}`;
-}
-function joinRoom() {
-    jrCode = document.getElementById("roomcode").value;
-    window.location.href = `chat.html?r=${jrCode}`;
 
-
-}
 function chatLoad() {
     // currentRoom = codeGenerator();
     currurl = window.location.href;
