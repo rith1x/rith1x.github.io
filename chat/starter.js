@@ -2,12 +2,12 @@ function createRoom() {
     storeName()
 
     cody = codeGenerator();
-    window.location.href = `chat.html?r=${cody}`;
+    // window.location.href = `chat.html?r=${cody}`;
 }
 function joinRoom() {
     storeName()
-    jrCode = toUpperCase(document.getElementById("roomcode").value);
-    window.location.href = `chat.html?r=${jrCode}`;
+    jrCode = document.getElementById("roomcode").value.toUpperCase();
+    // window.location.href = `chat.html?r=${jrCode}`;
 
 
 }
