@@ -4,7 +4,9 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Chat | Mind Aura</title>
+        <title>Chatie | CDK
+
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Google Fonts Link For Icons -->
 
@@ -13,7 +15,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
 
-        <script src="engine.js"></script>
+        <script src="engine.js" defer></script>
         <style>
             /* Import Google font - Poppins */
             @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&display=swap');
@@ -204,10 +206,10 @@
         <div class="chatbot">
             <header>
                 <h1>Textie</h1>
-                <h2>Roomcode: <span id="code"></span></h2>
+                <h2 id="rmcode"></h2>
             </header>
             <ul class="chatbox" id="chatbox">
-                
+
             </ul>
 
             <div class="chat-input">
@@ -226,7 +228,7 @@
             </div>
         </div>
         <script>
-            document.addEventListener("onload", chatLoad())
+
 
             // function clearChat() {
             //     localStorage.removeItem("chatData");

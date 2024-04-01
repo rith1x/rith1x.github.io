@@ -15,8 +15,8 @@ let c = firebase.initializeApp(firebaseConfig);
 
 
 
-let currentRoom;
-let currSender = "Kiruthik";
+var currentRoom;
+var currSender = "Kiruthik";
 
 function chatLoad() {
     // currentRoom = codeGenerator();
@@ -24,8 +24,9 @@ function chatLoad() {
     spliced = currurl.split("?r=");
     codie = spliced[1];
     console.log(codie)
-    currentRoom = codie
-    document.getElementById("code").innerText = codie;
+    currentRoom = codie;
+    let rmcodeElement = document.getElementById("rmcode")
+    rmcodeElement.innerText = "Roomcode: " + currentRoom;
 }
 function sendMessage() {
     var messageel = document.getElementById("message");
@@ -60,17 +61,10 @@ document.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
         sendMessage()
     }
-})
-firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
-
-    var sen = snapshot.val().sender;
-    var tim = snapshot.val().time;
-    var msg = snapshot.val().message;
-
-    let genTxt = createRecieve(sen, msg, tim);
-    console.log(genTxt);
-    document.getElementById("chatbox").innerHTML += genTxt;
 });
+
+
+
 
 
 
@@ -79,4 +73,15 @@ function createRecieve(user, msg, time) {
     return generatedMsg;
 }
 
+console.log("check")
+chatLoad()
+firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+    console.log("check")
+    var sen = snapshot.val().sender;
+    var tim = snapshot.val().time;
+    var msg = snapshot.val().message;
 
+    let genTxt = createRecieve(sen, msg, tim);
+    console.log(genTxt);
+    document.getElementById("chatbox").innerHTML += genTxt;
+});
