@@ -1,8 +1,11 @@
 function createRoom() {
+    storeName()
+
     cody = codeGenerator();
     window.location.href = `chat.html?r=${cody}`;
 }
 function joinRoom() {
+    storeName()
     jrCode = document.getElementById("roomcode").value;
     window.location.href = `chat.html?r=${jrCode}`;
 
@@ -16,4 +19,8 @@ function codeGenerator() {
     }
     return code;
 
+}
+function storeName() {
+    var currName = document.getElementById("name").value;
+    localStorage.setItem("chatName", currName);
 }

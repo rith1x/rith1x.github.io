@@ -16,7 +16,7 @@ let c = firebase.initializeApp(firebaseConfig);
 
 
 var currentRoom;
-var currSender = "Kiruthik";
+var currSender = localStorage.getItem("chatName")
 
 function chatLoad() {
     // currentRoom = codeGenerator();
