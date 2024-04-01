@@ -24,3 +24,11 @@ function storeName() {
     var currName = document.getElementById("name").value;
     localStorage.setItem("chatName", currName);
 }
+(function init() {
+    var localName = localStorage.getItem("chatName");
+    console.log(localName)
+    console.log("tets")
+    if (localName != null) {
+        document.getElementById("name").value = localName;
+    }
+})()

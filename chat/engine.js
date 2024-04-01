@@ -69,7 +69,13 @@ document.addEventListener("keyup", (e) => {
 
 
 function createRecieve(user, msg, time) {
-    var generatedMsg = `<li class="chat incoming"><p class="sender">${user}</p><p class="msg">${msg}</p><p class="time">${time}</p></li>`
+    if (user == currSender) {
+        var generatedMsg = `<li class="chat outgoing"><p class="sender">${user}</p><p class="msg">${msg}</p><p class="time">${time}</p></li>`
+
+    } else {
+        var generatedMsg = `<li class="chat incoming"><p class="sender">${user}</p><p class="msg">${msg}</p><p class="time">${time}</p></li>`
+
+    }
     return generatedMsg;
 }
 
