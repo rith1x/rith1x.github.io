@@ -22,6 +22,9 @@ function codeGenerator() {
 }
 function storeName() {
     let currName = document.getElementById("name").value;
+    
+    let spaceCheck = !currName.replace(/\s/g, '').length;
+    
     localStorage.setItem("chatName", currName);
 }
 var localName = localStorage.getItem("chatName");

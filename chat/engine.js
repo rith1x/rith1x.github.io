@@ -16,7 +16,14 @@ let c = firebase.initializeApp(firebaseConfig);
 
 
 var currentRoom;
-var currSender = localStorage.getItem("chatName")
+var currSender = localStorage.getItem("chatName");
+if (!currSender) {
+    currSender = prompt("Enter Your Name")
+    if (!currSender) {
+        window.location.href = "index.html"
+    }
+    localStorage.setItem("chatName", currSender);
+}
 
 function chatLoad() {
     // currentRoom = codeGenerator();
