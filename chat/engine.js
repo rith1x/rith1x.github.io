@@ -24,20 +24,24 @@ if (!currSender) {
     }
     localStorage.setItem("chatName", currSender);
 }
-
+const p = (msg) => { console.log(msg) }
 function chatLoad() {
     // currentRoom = codeGenerator();
     currurl = window.location.href;
     spliced = currurl.split("?r=");
     codie = spliced[1];
     console.log(codie)
-    if (codie.length == 6) {
-        currentRoom = codie;
-        let rmcodeElement = document.getElementById("rmcode")
-        rmcodeElement.innerText = "Roomcode: " + currentRoom;
-    } else {
-        window.location.href = "/"
+    if (codie == undefined) {
+        window.location.href = "index.html"
     }
+    else {
+        if (codie.length == 6) {
+            currentRoom = codie;
+            let rmcodeElement = document.getElementById("rmcode")
+            rmcodeElement.innerText = "Roomcode: " + currentRoom;
+        }
+    }
+
 
 }
 function sendMessage() {
@@ -60,6 +64,7 @@ function sendMessage() {
             });
     }
     messageel.value = ""
+
 }
 function geTime() {
 
@@ -82,26 +87,85 @@ document.addEventListener("keyup", (e) => {
 
 function createRecieve(user, msg, time) {
     if (user == currSender) {
-        var generatedMsg = `<li class="chat outgoing"><p class="sender">${user}</p><p class="msg">${msg}</p><p class="time">${time}</p></li>`
-
+        const liEl = document.createElement("li");
+        liEl.classList.add("chat", "outgoing");
+        const senP = document.createElement("p");
+        senP.className = "sender";
+        senP.innerText = user;
+        const msgP = document.createElement("p");
+        msgP.className = "msg";
+        msgP.innerText = msg;
+        const timP = document.createElement("p");
+        timP.className = "time";
+        timP.innerText = time;
+        liEl.appendChild(senP);
+        liEl.appendChild(msgP);
+        liEl.appendChild(timP);
     } else {
-        var generatedMsg = `<li class="chat incoming"><p class="sender">${user}</p><p class="msg">${msg}</p><p class="time">${time}</p></li>`
+        const liEl = document.createElement("li");
+        liEl.classList.add("chat", "outgoing");
+        const senP = document.createElement("p");
+        senP.className = "sender";
+        senP.innerText = user;
+        const msgP = document.createElement("p");
+        msgP.className = "msg";
+        msgP.innerText = msg;
+        const timP = document.createElement("p");
+        timP.className = "time";
+        timP.innerText = time;
+        liEl.appendChild(senP);
+        liEl.appendChild(msgP);
+        liEl.appendChild(timP);
 
     }
-    return generatedMsg;
+    return liEl;
 }
 
 console.log("check")
 chatLoad()
 firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
-    console.log("check")
-    var sen = snapshot.val().sender;
-    var tim = snapshot.val().time;
-    var msg = snapshot.val().message;
+    const msgScr = document.getElementById("chatbox");
 
-    let genTxt = createRecieve(sen, msg, tim);
-    console.log(genTxt);
-    document.getElementById("chatbox").innerHTML += genTxt;
+    var user = snapshot.val().sender;
+    var time = snapshot.val().time;
+    var msg = snapshot.val().message;
+    if (user == currSender) {
+        const liEl = document.createElement("li");
+        liEl.classList.add("chat", "outgoing");
+        const senP = document.createElement("p");
+        senP.className = "sender";
+        senP.innerText = user;
+        const msgP = document.createElement("p");
+        msgP.className = "msg";
+        msgP.innerText = msg;
+        const timP = document.createElement("p");
+        timP.className = "time";
+        timP.innerText = time;
+        liEl.appendChild(senP);
+        liEl.appendChild(msgP);
+        liEl.appendChild(timP);
+        msgScr.appendChild(liEl);
+
+    } else {
+        const liEl = document.createElement("li");
+        liEl.classList.add("chat", "outgoing");
+        const senP = document.createElement("p");
+        senP.className = "sender";
+        senP.innerText = user;
+        const msgP = document.createElement("p");
+        msgP.className = "msg";
+        msgP.innerText = msg;
+        const timP = document.createElement("p");
+        timP.className = "time";
+        timP.innerText = time;
+        liEl.appendChild(senP);
+        liEl.appendChild(msgP);
+        liEl.appendChild(timP);
+        msgScr.appendChild(liEl);
+
+    }
+    msgScr.scrollTop = msgScr.scrollHeight;
+
 });
 
 

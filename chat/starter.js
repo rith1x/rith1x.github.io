@@ -1,14 +1,17 @@
 function createRoom() {
-    storeName()
+    var chk = storeName()
+    if (chk) {
+        let cody = codeGenerator();
+        window.location.href = `chat.html?r=${cody}`;
+    }
 
-    cody = codeGenerator();
-    window.location.href = `chat.html?r=${cody}`;
 }
 function joinRoom() {
-    storeName()
-    jrCode = document.getElementById("roomcode").value.toUpperCase();
-    window.location.href = `chat.html?r=${jrCode}`;
-
+    var chk = storeName()
+    if (chk) {
+        var jrCode = document.getElementById("roomcode").value.toUpperCase();
+        window.location.href = `chat.html?r=${jrCode}`;
+    }
 
 }
 function codeGenerator() {
@@ -22,10 +25,16 @@ function codeGenerator() {
 }
 function storeName() {
     let currName = document.getElementById("name").value;
-    
     let spaceCheck = !currName.replace(/\s/g, '').length;
-    
-    localStorage.setItem("chatName", currName);
+    if (spaceCheck) {
+        alert("Valid Name Only!");
+        return false;
+    } else {
+
+        localStorage.setItem("chatName", currName);
+        return true;
+    }
+
 }
 var localName = localStorage.getItem("chatName");
 console.log(localName)
