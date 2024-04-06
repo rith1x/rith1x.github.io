@@ -12,11 +12,11 @@
             <div class="row" id="notecanvas">
                 <div class="card" id="card">
                     <div class="title">
-                        <input type="text" id="noteTitle" placeholder="My New Note">
+                        <input oninput="hello()" type="text" id="noteTitle" placeholder="My New Note">
                     </div>
                     <div class="content">
                         <div class="note">
-                            <textarea onchange="hello()" id="noteData" rows="10">Write Something...</textarea>
+                            <textarea oninput="hello()" id="noteData" rows="10">Write Something...</textarea>
                         </div>
                     </div>
                 </div>
@@ -47,9 +47,9 @@
                 const sync = JSON.parse(localStorage.getItem("note"));
 
 
-                const title = document.getElementById("noteTitle");
+                const titl = document.getElementById("noteTitle");
                 const note = document.getElementById("noteData");
-                title.value = sync.title;
+                titl.value = sync.title;
                 note.value = sync.note;
 
 
@@ -218,12 +218,13 @@
                 background-color: #ffffff;
                 display: flex;
 
-
             }
 
             .title input {
                 width: calc(100%);
                 padding: 0px;
+                font-size: 1.2em;
+
                 border: none;
                 border-bottom: solid 1px #000000;
             }
@@ -280,6 +281,8 @@
                 border: none;
                 line-height: 24px;
                 font-size: 1em;
+                color: rgb(24, 0, 131);
+
             }
 
 
