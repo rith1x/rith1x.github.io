@@ -1,450 +1,100 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - www.codingnepalweb.com -->
-<html lang="en" dir="ltr">
+<html lang="en">
 
     <head>
-        <meta charset="utf-8">
-        <title>Chatie | CDK
-
-        </title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Google Fonts Link For Icons -->
-
+        <title>Chatie | CDK</title>
+        <link rel="stylesheet" href="style.css">
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+        <script src="script.js" defer></script>
 
-
-        <script src="engine.js" defer></script>
-        <style>
-            /* Import Google font - Poppins */
-            @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&display=swap');
-
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: "Gantari", sans-serif;
-                transition: all .3s ease-in-out;
-            }
-
-            body {
-                background: #E3F2FD;
-                width: 100dvw;
-                height: 100dvh;
-            }
-
-
-
-            header button {
-                background-color: transparent;
-                border: none;
-                font-size: 1.2em;
-                padding: 5px 8px;
-                border-radius: 6px;
-                cursor: pointer;
-            }
-
-            header button {
-                color: #39b400;
-                background-color: #d2ffd2;
-
-            }
-
-            header button:last-child {
-                color: #b40000;
-                background-color: #ffd2d2;
-
-            }
-
-            .option {
-                display: flex;
-                gap: 10px;
-            }
-
-            .chatbot {
-                background: #fff;
-                height: 100dvh;
-                max-width: 450px;
-                position: relative;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                overflow: hidden;
-            }
-
-
-
-            .chatbot header {
-                position: relative;
-                padding: 10px;
-                text-align: center;
-                color: #000;
-                /* border: solid 1px#724ae8; */
-                margin: 0 auto;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            }
-
-
-            header h2 {
-                font-size: 1em;
-            }
-
-            .chatbot .chatbox {
-                overflow-y: auto;
-                height: 100%;
-                width: 100%;
-                padding: 10px;
-            }
-
-            .chatbox {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .chatbox .chat {
-                list-style: none;
-                padding: 10px 15px 13px 15px;
-                width: fit-content;
-                height: fit-content;
-                display: flex;
-                min-width: 25%;
-                transition: all .3s ease-in-out;
-                max-width: 80%;
-                position: relative;
-                flex-direction: column;
-
-            }
-
-            .chatbox::-webkit-scrollbar {
-                width: 3px;
-            }
-
-            .chatbox::-webkit-scrollbar-track {
-                background-color: transparent;
-            }
-
-            .chatbox::-webkit-scrollbar-thumb {
-                background-color: #c4c4c4;
-                border-radius: 2px;
-            }
-
-            .incoming {
-                align-self: flex-start;
-                border-radius: 11px 11px 11px 0;
-                background-color: #e9e9eb
-            }
-
-            .outgoing {
-                align-self: flex-end;
-                border-radius: 11px 11px 0 11px;
-                background-color: #b1e6c5;
-                color: #000;
-                align-items: flex-end;
-
-            }
-
-            .outgoing .msg {
-                padding-right: 40px;
-
-            }
-
-            .time {
-                font-size: 10px;
-                color: #808080;
-                position: absolute;
-                bottom: 5px;
-                right: 8px;
-            }
-
-            .sender {
-                text-transform: uppercase;
-                font-size: 10px;
-            }
-
-            .incoming p.sender {
-                color: #a115ff;
-
-            }
-
-
-            .chat-input {
-                width: 100%;
-                height: 60px;
-                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-
-                display: flex;
-
-                justify-content: space-between;
-                align-items: center;
-
-            }
-
-            .chat-input input {
-                width: 100%;
-                height: 100%;
-                border-radius: 31px;
-                border: none;
-                padding-left: 18px;
-                font-size: 18px;
-            }
-
-            .chat-input button {
-                height: 100%;
-                aspect-ratio: 1/1;
-                transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                visibility: hidden;
-                border: none;
-                border-radius: 31px;
-                background-color: transparent;
-            }
-
-
-            .chat-input input:valid~button {
-                visibility: visible;
-                scale: 1.1;
-
-            }
-
-            input:focus {
-                outline: none;
-            }
-
-            .chat-input button svg {
-                height: 50%;
-                color: #048aff;
-            }
-
-            .exportRoom {
-                width: 94%;
-                height: fit-content;
-
-                border: solid 1px #00000050;
-                background-color: #fff;
-                box-shadow: 0 0 0 100dvh #00000025;
-
-                position: absolute;
-                padding: 20px;
-                animation: iphonepop 0.1s forwards ease;
-                inset: 0;
-                animation-iteration-count: 1;
-                animation-play-state: paused;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-between;
-                border-radius: 25px;
-                margin: auto;
-            }
-
-            .qrhold {
-                width: 100%;
-                aspect-ratio: 1/1;
-            }
-
-            .qrhold img {
-                width: 100%;
-            }
-
-            .exportRoom .field {
-                width: 100%;
-                display: flex;
-                height: 50px;
-                overflow: hidden;
-                border-radius: 25px;
-
-                border: solid 1px #00000060;
-
-
-            }
-
-            .exportRoom .field input[type=text] {
-                width: 100%;
-                border-radius: 25px;
-                border: none;
-                padding-left: 1em;
-                font-size: 1em;
-            }
-
-            .exportRoom .field input[type=text]:focus {
-                border: none;
-                outline: none;
-            }
-
-            .exportRoom .field:focus-within {
-                border: solid 1px #000000ee;
-            }
-
-            .exportRoom .field input[type="button"] {
-                padding-inline: 15px;
-                border-radius: 25px;
-                background-color: transparent;
-                font-size: 1em;
-                color: rgb(0, 108, 0);
-                border: none;
-
-            }
-
-            .title-pop button {
-                color: rgb(210, 0, 0);
-                font-size: 1em;
-                background-color: transparent;
-                padding: 5px 10px;
-                border: none;
-            }
-
-            .exportRoom .title-pop {
-                display: flex;
-                width: 100%;
-                align-items: center;
-                justify-content: space-between;
-
-            }
-
-            .box {
-                width: 90%;
-                height: fit-content;
-                padding: 20px;
-                border: solid 1px #aaa;
-                display: flex;
-                position: absolute;
-                flex-direction: column;
-                inset: 0;
-                margin: auto;
-                gap: 15px;
-                border-radius: 21px;
-            }
-
-            .field {
-                height: 50px;
-                display: flex;
-                align-items: center;
-                width: 100%;
-                gap: 5px;
-            }
-
-            h1 {
-                padding-left: 5px;
-                border-left: solid 5px #0047ab;
-            }
-
-            .field input {
-                width: 100%;
-                height: 100%;
-                padding-left: 10px;
-                border-radius: 6px;
-                text-transform: uppercase;
-                letter-spacing: 5PX;
-                font-weight: 700;
-                font-size: 20px;
-                border: solid 1px #aaa;
-
-            }
-
-            .field input::placeholder {
-                opacity: 0.5;
-            }
-
-            .cr {
-                background-color: #0047ab;
-                border: none;
-                height: 100%;
-                width: 100%;
-                color: #fff;
-                border-radius: 6px;
-            }
-
-            .jr {
-                background-color: #0047ab;
-                border: none;
-                height: 100%;
-                width: fit-content;
-                padding: 0 20px;
-                color: #fff;
-                border-radius: 6px;
-            }
-        </style>
     </head>
 
     <body>
-        <div class="chatbot">
-            <header>
-                <h2 id="rmcode"></h2>
-
-                <div class="option">
-                    <button onclick="shareRoom()">
-                        <i class="fa-solid fa-share-from-square"></i>
-                    </button>
-                    <button onclick="deleteRoom()">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                </div>
-            </header>
-            <ul class="chatbox" id="chatbox">
-
-            </ul>
-
-            <div class="chat-input">
-                <input type="text" placeholder="Enter a message..." id="message" autocomplete="off" required />
-                <button type="submit" onclick="sendMessage()">
-
-                    <svg class="svg-inline--fa fa-circle-arrow-right" aria-hidden="true" focusable="false"
-                        data-prefix="fas" data-icon="circle-arrow-right" role="img" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512" data-fa-i2svg="">
-                        <path fill="currentColor"
-                            d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM281 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L136 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l182.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L393 239c9.4 9.4 9.4 24.6 0 33.9L281 385z">
-                        </path>
-                    </svg>
-
-
-                </button>
-            </div>
-
-            <div class="exportRoom" id="exportroompop" style="display: none;">
-                <div class="title-pop">
-                    <h1>Share Roomcode</h1>
-                    <button onclick="closeRoomPop()">Cancel</button>
-                </div>
-                <div class="qrhold">
-                    <div id="loading-bar-spinner" class="spinner">
-                        <div class="spinner-icon"></div>
+        <div class="container" id="mex">
+            <div class="screen1" id="welcx">
+                <div class="box">
+                    <div class="field">
+                        <h1>Welcome to Chatie</h1>
                     </div>
-                    <img style="display: none;" alt="" id="qrimg">
-                </div>
-                <div class="field">
-                    <input type="text" id="shareurl" readonly />
-                    <input type="button" value="Copy" onclick="clipboardcopy()">
+                    <div class="field">
+                        <input type="text" id="name" placeholder="Enter name" required>
+                    </div>
+                    <div class="field">
+                        <button class="cr" onclick="createRoom()">Create Room</button>
+                    </div>
+                    <div class="field">
+                        <input type="text" id="roomcode" placeholder="RoomCode" maxlength="6"><button class="jr"
+                            onclick="joinRoom()">Join
+                            room</button>
+                    </div>
+
+
                 </div>
             </div>
+            <div class="screen2" id="chatx">
 
-            <div class="box" id="welPop">
-                <div class="field">
-                    <h1>Chatie</h1>
-                </div>
-                <div class="field">
-                    <input type="text" id="name" placeholder="Enter name" required>
-                </div>
-                <div class="field">
-                    <button class="cr" onclick="createRoom()">Create Room</button>
-                </div>
-                <div class="field">
-                    <input type="text" id="roomcode" placeholder="RoomCode" maxlength="6"><button class="jr"
-                        onclick="joinRoom()">Join
-                        room</button>
+                <header>
+                    <h2 id="rmcode"></h2>
+
+                    <div class="option">
+                        <button onclick="shareRoom()">
+                            <i class="fa-solid fa-share-from-square"></i>
+                        </button>
+                        <button onclick="deleteRoom()">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </header>
+                <ul class="chatbox" id="chatbox">
+
+                </ul>
+
+                <div class="chat-input">
+                    <input type="text" placeholder="Enter a message..." id="message" autocomplete="off" required />
+                    <button type="submit" onclick="sendMessage()">
+
+                        <svg class="svg-inline--fa fa-circle-arrow-right" aria-hidden="true" focusable="false"
+                            data-prefix="fas" data-icon="circle-arrow-right" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                            <path fill="currentColor"
+                                d="M0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM281 385c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l71-71L136 280c-13.3 0-24-10.7-24-24s10.7-24 24-24l182.1 0-71-71c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0L393 239c9.4 9.4 9.4 24.6 0 33.9L281 385z">
+                            </path>
+                        </svg>
+
+
+                    </button>
                 </div>
 
+
+                <div class="exportRoom" id="exportroompop" style="display: none;">
+                    <div class="title-pop">
+                        <h1>Share Roomcode</h1>
+                        <button onclick="closeRoomPop()">Cancel</button>
+                    </div>
+                    <div class="qrhold">
+                        <div id="loading-bar-spinner" class="spinner">
+                            <div class="spinner-icon"></div>
+                        </div>
+                        <img style="display: none;" alt="" id="qrimg">
+                    </div>
+                    <div class="field">
+                        <input type="text" id="shareurl" readonly />
+                        <input type="button" value="Copy" onclick="clipboardcopy()">
+                    </div>
+                </div>
 
             </div>
         </div>
+
+
+        <script>
+            
+        </script>
+
     </body>
 
 </html>

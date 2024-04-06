@@ -1,4 +1,3 @@
-// CONFIG 
 
 const firebaseConfig = {
     apiKey: "AIzaSyD6KJ-ZZGsThD1aAxSpaZHsuPMmG-dvYqE",
@@ -9,24 +8,25 @@ const firebaseConfig = {
     messagingSenderId: "1007710976666",
     appId: "1:1007710976666:web:71c3895500b964d816fd23"
 };
-let c = firebase.initializeApp(firebaseConfig);
-
-// VAR INITIALIZATION
-
+var c = firebase.initializeApp(firebaseConfig);
 var currentRoom;
-var currentActive = 0;
-var activeUpdate = false;
 var currentUser;
 
-// CHECK THE URL HREF
+const mex = document.getElementById("mex");
+
+const wscr = document.getElementById("welcx");
+const cscr = document.getElementById("chatx");
+
 
 var currurl = window.location.href;
+console.log(currurl)
 if (currurl.includes("?r=")) {
-    spliced = currurl.split("?r=");
-    codie = spliced[1];
+    let spliced = currurl.split("?r=");
+    let codie = spliced[1];
+
     console.log(codie)
+    document.getElementById("roomcode").value = codie;
     if (codie == undefined) {
-        window.location.href = "index.html"
 
     }
     else {
@@ -34,54 +34,41 @@ if (currurl.includes("?r=")) {
             var currSender = localStorage.getItem("chatName");
             if (!currSender) {
                 currSender = prompt("Enter Your Name")
-                if (!currSender) {
+                if (currSender) {
+                    wscr.style.display = "none";
 
-                    currSender = prompt();
+                    localStorage.setItem("chatName", currSender);
+                    document.getElementById("name").value = currSender;
+                    currentRoom = codie;
+                    let rmcodeElement = document.getElementById("rmcode")
+                    rmcodeElement.innerText = "Roomcode: " + currentRoom;
+
                 }
 
-                localStorage.setItem("chatName", currSender);
-            } else if (currSender == undefined || currSender == 'null') {
-                if (!currSender) {
-                    currSender = prompt("Enter Your Name")
-                    window.location.href = "index.html"
-                }
+            } else {
+                wscr.style.display = "none";
 
                 localStorage.setItem("chatName", currSender);
+                document.getElementById("name").value = currSender;
+                currentRoom = codie;
+                let rmcodeElement = document.getElementById("rmcode")
+                rmcodeElement.innerText = "Roomcode: " + currentRoom;
             }
-            console.log(currSender);
-            currentRoom = codie;
-            let rmcodeElement = document.getElementById("rmcode")
-            rmcodeElement.innerText = "Roomcode: " + currentRoom;
-            document.getElementById("welPop").style.display = "none";
         }
     }
 
 }
-
-// NAME CHECK
-
-var localName = localStorage.getItem("chatName");
-if (localName != null) {
-    document.getElementById("name").value = localName;
-}
-
-// GET TIME 
-
 function geTime() {
     const now = new Date();
     times = `${now.getHours() > 12 ? now.getHours() - 12 : now.getHours()}:${(now.getMinutes() / 10 < 1) ? "0" + now.getMinutes() : now.getMinutes()}${now.getHours() > 12 ? "PM" : "AM"}`;
     return times
 }
 
-// SEND MSG INVOKING
-
 document.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
         sendMessage()
     }
 });
-
-// DELETE ROOM
 
 function deleteRoom() {
     firebase.database().ref("ROOMS").child(currentRoom).remove();
@@ -125,8 +112,6 @@ function closeRoomPop() {
 }
 
 
-// CODE GENERATIOR
-
 function codeGenerator() {
     let vals = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
     let code = "";
@@ -167,8 +152,6 @@ function joinRoom() {
         document.getElementById("welPop").style.display = "none";
     }
 }
-
-//SEND MESSAGE
 
 function sendMessage() {
     var messageel = document.getElementById("message");
@@ -239,3 +222,5 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
 //     currentActive = parseInt(snapshot.val());
 //     console.log(currentActive)
 // });
+
+
