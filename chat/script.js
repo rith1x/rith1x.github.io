@@ -85,14 +85,31 @@ function nameValidate() {
     currentUser = tempName;
     return true;
 }
+const p = (c) => { console.log(c) }
+var profDb = [];
+function profanityFetch() {
+    const binId = '66123526e41b4d34e4e08701';
+    const accessKey = '$2a$10$odq91M7aOecbPFdaJheXrO0SZ8jooZN4xTsyUmhU4fRkbkNob8oci';
+    fetch(`https://api.jsonbin.io/v3/b/${binId}/latest`, {
+        headers: {
+            'X-Access-Key': accessKey
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            profDb = data.record.profanity
+            console.log("Database Filter Fetched!")
+        })
+        .catch(error => {
+            console.error('Error:', error);
+
+        });
+}
 
 
 
 
-
-
-
-
+profanityFetch()
 
 
 
@@ -105,7 +122,8 @@ function geTime() {
 }
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
+    const leb = document.getElementById("message").value
+    if (e.key === "Enter" && leb != "") {
         sendMessage()
     }
 });
@@ -180,9 +198,26 @@ function joinRoom() {
     }
 }
 
+function profanityCleaner(sentence) {
+    var result = [];
+    const localWords = sentence.split(" ");
+    for (i = 0; i < localWords.length; i++) {
+        if (profDb.includes(localWords[i].toLowerCase())) {
+            localWords[i] = "****"
+        }
+        result.push(localWords[i]);
+    }
+    result = result.join(" ");
+    return result;
+
+}
+
 function sendMessage() {
     var messageel = document.getElementById("message");
-    var message = messageel.value;
+    var uncleaned = messageel.value;
+    console.log(uncleaned);
+    var message = profanityCleaner(uncleaned);
+    p(uncleaned)
     if (message != " " || message != "") {
         timex = geTime();
         firebase.database().ref("ROOMS").child(currentRoom).push().set({
@@ -254,9 +289,6 @@ if (currentRoom) {
     });
 
 }
-// firebase.database().ref("ROOMS").child(currentRoom).child("active").once("value", function (snapshot) {
-//     currentActive = parseInt(snapshot.val());
-//     console.log(currentActive)
-// });
+
 
 

@@ -281,7 +281,7 @@ header button:last-child {
 
 .chat-input {
     width: 100%;
-    height: 60px;
+    height: 80px;
     position: relative;
     display: flex;
     background-color: #fff;
