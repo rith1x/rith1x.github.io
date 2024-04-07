@@ -11,7 +11,7 @@
 body {
     background: #E3F2FD;
     width: 100dvw;
-    height: 100dvh;
+    height: 100svh;
     display: flex;
     align-items: center;
 }
@@ -48,8 +48,6 @@ body {
     background-position: right;
     background-size: cover;
 }
-
-
 
 .box {
     width: 90%;
@@ -88,10 +86,8 @@ h1 {
     letter-spacing: 5PX;
     font-weight: 700;
     font-size: 20px;
-    /* border: solid 1px #aaa; */
     border: none;
     background-color: #ffffff60;
-
 }
 
 input {
@@ -101,10 +97,8 @@ input {
     border-radius: 6px;
     font-weight: 700;
     font-size: 20px;
-    /* border: solid 1px #aaa; */
     border: none;
     background-color: #ffffff60;
-
 }
 
 .field input::placeholder {
@@ -130,7 +124,6 @@ input {
     border-radius: 6px;
 }
 
-
 header {
     padding: 8px 8px 8px 20px;
     color: #000;
@@ -141,20 +134,13 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-
-
-
 
 header h2 {
     font-size: 1em;
     width: fit-content;
-
 }
-
-
 
 header button {
     background-color: transparent;
