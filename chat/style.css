@@ -12,15 +12,19 @@ body {
     background: #E3F2FD;
     width: 100dvw;
     height: 100dvh;
+    display: flex;
+    align-items: center;
 }
 
 .container {
+    flex-grow: 1;
     max-width: 450px;
-    height: 100dvh;
+    height: 100%;
     background-color: black;
     margin: 0 auto;
     display: flex;
     overflow: hidden;
+    border-radius: 31px;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     box-shadow: 0 0 25px -15px #aaa;
@@ -34,7 +38,7 @@ body {
 .screen2 {
     scroll-snap-align: center;
     min-width: 100%;
-    height: 100svh;
+    height: 100%;
     background-color: #E3F2FD;
     position: relative;
     display: flex;
@@ -188,7 +192,7 @@ header button:last-child {
 
 .chatbox {
     overflow-y: auto;
-    height: 100dvh;
+    height: 100%;
     width: 100%;
     padding: 10px;
     padding-top: 70px;
