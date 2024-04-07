@@ -37,10 +37,10 @@ if (currurl.includes("?r=")) {
                 currSender = prompt("Enter Your Name")
                 if (currSender) {
                     wscr.style.display = "none";
-
                     localStorage.setItem("chatName", currSender);
                     document.getElementById("name").value = currSender;
-                    currentRoom = codie;
+                    currentRoom = codie.toUpperCase();
+                    console.log(currentRoom);
                     let rmcodeElement = document.getElementById("rmcode")
                     rmcodeElement.innerText = "Roomcode: " + currentRoom;
 
@@ -51,7 +51,8 @@ if (currurl.includes("?r=")) {
 
                 localStorage.setItem("chatName", currSender);
                 document.getElementById("name").value = currSender;
-                currentRoom = codie;
+                currentRoom = codie.toUpperCase();
+                
                 let rmcodeElement = document.getElementById("rmcode")
                 rmcodeElement.innerText = "Roomcode: " + currentRoom;
             }
