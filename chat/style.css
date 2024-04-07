@@ -79,13 +79,26 @@ h1 {
     border-left: solid 5px #7158d6;
 }
 
-.field input {
+#roomcode {
     width: 100%;
     height: 100%;
     padding-left: 10px;
     border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 5PX;
+    font-weight: 700;
+    font-size: 20px;
+    /* border: solid 1px #aaa; */
+    border: none;
+    background-color: #ffffff60;
+
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    border-radius: 6px;
     font-weight: 700;
     font-size: 20px;
     /* border: solid 1px #aaa; */
