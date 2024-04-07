@@ -204,7 +204,7 @@ header button:last-child {
 
 .chatbox .chat {
     list-style: none;
-    padding: 8px 0px 15px 15px;
+    padding: 8px;
     width: fit-content;
     display: flex;
     min-width: 25%;
@@ -215,6 +215,7 @@ header button:last-child {
 
 
 }
+
 
 .chatbox::-webkit-scrollbar {
     width: 3px;
@@ -231,31 +232,35 @@ header button:last-child {
 
 .incoming {
     align-self: flex-start;
-    border-radius: 0px 11px 11px 0;
+    border-radius: 3px;
     background-color: #ffffff;
-    border-left: solid 4px #0047ab;
+    border-left: solid 4px #a115ff;
 }
 
 .outgoing {
-    align-self: flex-end;
-    border-radius: 11px 11px 0 11px;
-    background-color: #b1e6c5;
-    color: #000;
-    align-items: flex-end;
+    /* align-self: flex-end; */
+    border-radius: 3px;
+    border-left: solid 4px #ff06ac;
+
+    background-color: #ffffff;
+    /* align-items: flex-end; */
 
 }
 
-.outgoing .msg {
-    padding-right: 40px;
 
+
+
+
+.top-bar {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .time {
     font-size: 10px;
     color: #808080;
-    position: absolute;
-    bottom: 5px;
-    right: 8px;
 }
 
 .sender {
@@ -265,6 +270,11 @@ header button:last-child {
 
 .incoming p.sender {
     color: #a115ff;
+
+}
+
+.outgoing p.sender {
+    color: #ff06ac;
 
 }
 

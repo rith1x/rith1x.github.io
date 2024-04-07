@@ -52,7 +52,7 @@ if (currurl.includes("?r=")) {
                 localStorage.setItem("chatName", currSender);
                 document.getElementById("name").value = currSender;
                 currentRoom = codie.toUpperCase();
-                
+
                 let rmcodeElement = document.getElementById("rmcode")
                 rmcodeElement.innerText = "Roomcode: " + currentRoom;
             }
@@ -216,15 +216,18 @@ if (currentRoom) {
                 const senP = document.createElement("p");
                 senP.className = "sender";
                 senP.innerText = user;
+                const topBar = document.createElement("div");
+                topBar.className = "top-bar";
                 const msgP = document.createElement("p");
                 msgP.className = "msg";
                 msgP.innerText = msg;
                 const timP = document.createElement("p");
                 timP.className = "time";
                 timP.innerText = time;
-                liEl.appendChild(senP);
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
                 liEl.appendChild(msgP);
-                liEl.appendChild(timP);
                 msgScr.appendChild(liEl);
             } else {
                 const liEl = document.createElement("li");
@@ -232,15 +235,18 @@ if (currentRoom) {
                 const senP = document.createElement("p");
                 senP.className = "sender";
                 senP.innerText = user;
+                const topBar = document.createElement("div");
+                topBar.className = "top-bar";
                 const msgP = document.createElement("p");
                 msgP.className = "msg";
                 msgP.innerText = msg;
                 const timP = document.createElement("p");
                 timP.className = "time";
                 timP.innerText = time;
-                liEl.appendChild(senP);
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
                 liEl.appendChild(msgP);
-                liEl.appendChild(timP);
                 msgScr.appendChild(liEl);
             }
             msgScr.scrollTop = msgScr.scrollHeight;
