@@ -227,7 +227,7 @@ if (currentRoom) {
                 msgScr.appendChild(liEl);
             } else {
                 const liEl = document.createElement("li");
-                liEl.classList.add("chat", "outgoing");
+                liEl.classList.add("chat", "incoming");
                 const senP = document.createElement("p");
                 senP.className = "sender";
                 senP.innerText = user;
