@@ -188,7 +188,7 @@ header button:last-child {
 
 .chatbox {
     overflow-y: auto;
-    height: 100%;
+    height: 100dvh;
     width: 100%;
     padding: 10px;
     padding-top: 70px;
@@ -204,13 +204,13 @@ header button:last-child {
     list-style: none;
     padding: 10px 15px 13px 15px;
     width: fit-content;
-    height: fit-content;
     display: flex;
     min-width: 25%;
     transition: all .3s ease-in-out;
     max-width: 80%;
     position: relative;
     flex-direction: column;
+
 
 }
 
@@ -230,7 +230,8 @@ header button:last-child {
 .incoming {
     align-self: flex-start;
     border-radius: 11px 11px 11px 0;
-    background-color: #e9e9eb
+    background-color: #e9e9eb;
+
 }
 
 .outgoing {

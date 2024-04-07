@@ -196,7 +196,8 @@ function sendMessage() {
                 console.error("Error sending message:", error);
             });
     }
-    messageel.value = ""
+    messageel.value = "";
+    messageel.focus();
 }
 
 //CHECK INCOMING 
