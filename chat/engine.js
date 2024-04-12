@@ -191,10 +191,7 @@ function sendMessage() {
 }
 
 //CHECK INCOMING 
-function playTone(){
-    const tone = new Audio("tone.mp3");
-    tone.play();
-}
+
 
 firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
     if (snapshot.val().sender != undefined) {
