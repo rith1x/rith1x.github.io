@@ -240,6 +240,19 @@ function playTone(){
     const tone = new Audio("tone.mp3");
     tone.play();
 }
+
+function showNoti(sender,room){
+    const title = `Chatie - ${room}`;
+const body = `${sender} sent you a message!`;
+const notification = new Notification(title, {
+  body: body,
+});
+notification.show();
+}
+
+
+
+
 //CHECK INCOMING 
 
 if (currentRoom) {
@@ -270,6 +283,7 @@ if (currentRoom) {
                 msgScr.appendChild(liEl);
             } else {
                 playTone();
+                showNoti(user,currentRoom);
                 const liEl = document.createElement("li");
                 liEl.classList.add("chat", "incoming");
                 const senP = document.createElement("p");
