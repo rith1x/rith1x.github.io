@@ -12,6 +12,7 @@ firebase.initializeApp(firebaseConfig);
 
 var currentRoom;
 var currentUser;
+var syncer = false;
 
 const mex = document.getElementById("mex");
 
@@ -255,7 +256,7 @@ notification.show();
 
 //CHECK INCOMING 
 
-if (currentRoom) {
+if (currentRoom && syncer) {
     firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
         if (snapshot.val().sender != undefined) {
             const msgScr = document.getElementById("chatbox");
@@ -307,6 +308,56 @@ if (currentRoom) {
         }
     });
 
+} else {
+    firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+        if (snapshot.val().sender != undefined) {
+            const msgScr = document.getElementById("chatbox");
+            var user = snapshot.val().sender;
+            var time = snapshot.val().time;
+            var msg = snapshot.val().message;
+            if (user == currSender) {
+                const liEl = document.createElement("li");
+                liEl.classList.add("chat", "outgoing");
+                const senP = document.createElement("p");
+                senP.className = "sender";
+                senP.innerText = user;
+                const topBar = document.createElement("div");
+                topBar.className = "top-bar";
+                const msgP = document.createElement("p");
+                msgP.className = "msg";
+                msgP.innerText = msg;
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
+                msgScr.appendChild(liEl);
+            } else {
+                const liEl = document.createElement("li");
+                liEl.classList.add("chat", "incoming");
+                const senP = document.createElement("p");
+                senP.className = "sender";
+                senP.innerText = user;
+                const topBar = document.createElement("div");
+                topBar.className = "top-bar";
+                const msgP = document.createElement("p");
+                msgP.className = "msg";
+                msgP.innerText = msg;
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
+                msgScr.appendChild(liEl);
+            }
+            msgScr.scrollTop = msgScr.scrollHeight;
+        }
+        syncer = true;
+    });
 }
 
 
