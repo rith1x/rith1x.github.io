@@ -198,6 +198,7 @@ function playTone(){
 
 firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
     if (snapshot.val().sender != undefined) {
+        playTone();
         const msgScr = document.getElementById("chatbox");
         var user = snapshot.val().sender;
         var time = snapshot.val().time;
