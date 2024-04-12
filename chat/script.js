@@ -237,128 +237,93 @@ function sendMessage() {
     messageel.focus();
 }
 
-function playTone(){
+function playTone() {
     const tone = new Audio("tone.mp3");
     tone.play();
+    console.log("Tone Play")
 }
 
-function showNoti(sender,room){
+
+function showNoti(sender, room) {
+    if (!("Notification" in window)) {
+        console.error("This browser does not support desktop notification");
+        return;
+    }
+
+    if (Notification.permission !== "granted") {
+        Notification.requestPermission().then(function (permission) {
+            if (permission !== "granted") {
+                console.warn("Permission denied for notifications");
+            }
+        });
+    }
+
     const title = `Chatie - ${room}`;
-const body = `${sender} sent you a message!`;
-const notification = new Notification(title, {
-  body: body,
-});
-notification.show();
+    const body = `${sender} sent you a message!`;
+    const notification = new Notification(title, {
+        body: body,
+    });
+    notification.show();
 }
-
 
 
 
 //CHECK INCOMING 
 
-if (currentRoom && syncer) {
-    firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
-        if (snapshot.val().sender != undefined) {
-            const msgScr = document.getElementById("chatbox");
-            var user = snapshot.val().sender;
-            var time = snapshot.val().time;
-            var msg = snapshot.val().message;
-            if (user == currSender) {
-                const liEl = document.createElement("li");
-                liEl.classList.add("chat", "outgoing");
-                const senP = document.createElement("p");
-                senP.className = "sender";
-                senP.innerText = user;
-                const topBar = document.createElement("div");
-                topBar.className = "top-bar";
-                const msgP = document.createElement("p");
-                msgP.className = "msg";
-                msgP.innerText = msg;
-                const timP = document.createElement("p");
-                timP.className = "time";
-                timP.innerText = time;
-                topBar.appendChild(senP);
-                topBar.appendChild(timP);
-                liEl.appendChild(topBar);
-                liEl.appendChild(msgP);
-                msgScr.appendChild(liEl);
-            } else {
+firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+    if (snapshot.val().sender != undefined) {
+        const msgScr = document.getElementById("chatbox");
+        var user = snapshot.val().sender;
+        var time = snapshot.val().time;
+        var msg = snapshot.val().message;
+        if (user == currSender) {
+            const liEl = document.createElement("li");
+            liEl.classList.add("chat", "outgoing");
+            const senP = document.createElement("p");
+            senP.className = "sender";
+            senP.innerText = user;
+            const topBar = document.createElement("div");
+            topBar.className = "top-bar";
+            const msgP = document.createElement("p");
+            msgP.className = "msg";
+            msgP.innerText = msg;
+            const timP = document.createElement("p");
+            timP.className = "time";
+            timP.innerText = time;
+            topBar.appendChild(senP);
+            topBar.appendChild(timP);
+            liEl.appendChild(topBar);
+            liEl.appendChild(msgP);
+            msgScr.appendChild(liEl);
+        } else {
+            const liEl = document.createElement("li");
+            liEl.classList.add("chat", "incoming");
+            const senP = document.createElement("p");
+            senP.className = "sender";
+            senP.innerText = user;
+            const topBar = document.createElement("div");
+            topBar.className = "top-bar";
+            const msgP = document.createElement("p");
+            msgP.className = "msg";
+            msgP.innerText = msg;
+            const timP = document.createElement("p");
+            timP.className = "time";
+            timP.innerText = time;
+            topBar.appendChild(senP);
+            topBar.appendChild(timP);
+            liEl.appendChild(topBar);
+            liEl.appendChild(msgP);
+            msgScr.appendChild(liEl);
+            console.log("new ")
+            if (syncer) {
                 playTone();
-                showNoti(user,currentRoom);
-                const liEl = document.createElement("li");
-                liEl.classList.add("chat", "incoming");
-                const senP = document.createElement("p");
-                senP.className = "sender";
-                senP.innerText = user;
-                const topBar = document.createElement("div");
-                topBar.className = "top-bar";
-                const msgP = document.createElement("p");
-                msgP.className = "msg";
-                msgP.innerText = msg;
-                const timP = document.createElement("p");
-                timP.className = "time";
-                timP.innerText = time;
-                topBar.appendChild(senP);
-                topBar.appendChild(timP);
-                liEl.appendChild(topBar);
-                liEl.appendChild(msgP);
-                msgScr.appendChild(liEl);
+                showNoti(user, currentRoom);
             }
-            msgScr.scrollTop = msgScr.scrollHeight;
+            syncer = true
         }
-    });
-
-} else {
-    firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
-        if (snapshot.val().sender != undefined) {
-            const msgScr = document.getElementById("chatbox");
-            var user = snapshot.val().sender;
-            var time = snapshot.val().time;
-            var msg = snapshot.val().message;
-            if (user == currSender) {
-                const liEl = document.createElement("li");
-                liEl.classList.add("chat", "outgoing");
-                const senP = document.createElement("p");
-                senP.className = "sender";
-                senP.innerText = user;
-                const topBar = document.createElement("div");
-                topBar.className = "top-bar";
-                const msgP = document.createElement("p");
-                msgP.className = "msg";
-                msgP.innerText = msg;
-                const timP = document.createElement("p");
-                timP.className = "time";
-                timP.innerText = time;
-                topBar.appendChild(senP);
-                topBar.appendChild(timP);
-                liEl.appendChild(topBar);
-                liEl.appendChild(msgP);
-                msgScr.appendChild(liEl);
-            } else {
-                const liEl = document.createElement("li");
-                liEl.classList.add("chat", "incoming");
-                const senP = document.createElement("p");
-                senP.className = "sender";
-                senP.innerText = user;
-                const topBar = document.createElement("div");
-                topBar.className = "top-bar";
-                const msgP = document.createElement("p");
-                msgP.className = "msg";
-                msgP.innerText = msg;
-                const timP = document.createElement("p");
-                timP.className = "time";
-                timP.innerText = time;
-                topBar.appendChild(senP);
-                topBar.appendChild(timP);
-                liEl.appendChild(topBar);
-                liEl.appendChild(msgP);
-                msgScr.appendChild(liEl);
-            }
-            msgScr.scrollTop = msgScr.scrollHeight;
-        }
-        syncer = true;
-    });
-}
+        msgScr.scrollTop = msgScr.scrollHeight;
+    }
+});
 
 
 
