@@ -25,6 +25,14 @@ console.log(currurl)
 if (currurl.includes("?r=")) {
     let spliced = currurl.split("?r=");
     let codie = spliced[1];
+    let frontpt = spliced[0]
+    if (frontpt.includes("?c")) {
+        let dat = [currentUser];
+        console.log(dat)
+        firebase.database.ref("ROOMS").child(currentRoom).child("active").push().set(dat);
+    }
+    else {
+    }
 
     console.log(codie)
     document.getElementById("roomcode").value = codie;
@@ -186,7 +194,7 @@ function createRoom() {
     let vali = nameValidate();
     if (vali) {
         currentRoom = codeGenerator();
-        window.location.href += `?r=${currentRoom}`
+        window.location.href += `?c?r=${currentRoom}`
     }
 }
 
