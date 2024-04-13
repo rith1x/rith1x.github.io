@@ -238,8 +238,8 @@ function sendMessage() {
 }
 
 function playTone() {
-    const tone = new Audio("tone.mp3");
-    tone.play();
+    const toner = document.getElementById("toner");
+    toner.play();
     console.log("Tone Play")
 }
 
