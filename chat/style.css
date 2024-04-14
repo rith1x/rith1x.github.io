@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Gantari:wght@400;500;600&display=swap');
 
+:root {
+    --dynamic-color: #a200ff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -279,62 +283,6 @@ header button:last-child {
 }
 
 
-.chat-input {
-    width: 100%;
-    height: 80px;
-    position: relative;
-    display: flex;
-    background-color: #fff;
-    border-radius: 31px;
-    justify-content: space-between;
-    align-items: center;
-
-}
-
-.chat-input input {
-    width: 100%;
-
-
-    height: 100%;
-    border-radius: 31px;
-    border: none;
-    padding-left: 18px;
-    font-size: 18px;
-}
-
-.chat-input button {
-    height: 100%;
-    aspect-ratio: 1/1;
-    position: absolute;
-    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    border: none;
-    right: 0;
-    border-radius: 31px;
-    background-color: transparent;
-}
-
-
-.chat-input input:valid~button {
-    visibility: visible;
-    scale: 1.3;
-    rotate: -90deg;
-
-}
-
-input:focus {
-    outline: none;
-}
-
-.chat-input button svg {
-    height: 50%;
-    color: #048aff;
-}
-
-
 .exportRoom {
     width: 94%;
     height: fit-content;
@@ -419,4 +367,133 @@ input:focus {
     align-items: center;
     justify-content: space-between;
 
+}
+
+/* INPUT STYLING */
+
+.dynamix {
+    width: 100%;
+    min-height: 60px;
+    box-shadow: 0 0 5px #aaaaaa70;
+    border-radius: 30px;
+    background-color: #fff;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+
+}
+
+
+input {
+    width: 100%;
+    height: 100%;
+    border: none;
+
+    position: relative;
+    background-color: transparent;
+    font-size: 18px;
+
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
+input::placeholder {
+    color: #838383;
+}
+
+input[type="file"] {
+    width: 50px;
+    height: 60px;
+    padding: 20px;
+
+}
+
+input[type="file"]::file-selector-button {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    color: transparent;
+}
+
+input[type="file"]::before {
+    position: absolute;
+    pointer-events: none;
+    height: 20px;
+    width: 20px;
+    top: 20px;
+    left: 20px;
+    content: '';
+    background-image: url("camera-solid.svg");
+}
+
+input[type="file"]::before svg {
+    color: #0f0;
+}
+
+input[type="file"]::after {
+    position: absolute;
+    pointer-events: none;
+    color: var(--dynamic-color);
+    content: "";
+}
+
+input[type="file"]::file-selector-button {
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    transition: background-color 200ms;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background-color: #f3f4f6;
+}
+
+input[type="file"]::file-selector-button:active {
+    background-color: #e5e7eb;
+}
+
+
+
+
+
+button {
+    height: 60px;
+    width: 60px;
+    /* background-color: #048aff; */
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    border: none;
+    border-radius: 31px;
+    font-size: 1.2em;
+    background-color: transparent;
+}
+
+button svg {
+    height: 60%;
+    color: var(--dynamic-color);
+}
+
+input#message:valid~button {
+    visibility: visible;
+    scale: 1.5;
+    rotate: -90deg;
+
+}
+
+input:focus {
+    outline: none;
 }
