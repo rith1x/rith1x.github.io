@@ -13,11 +13,13 @@ firebase.initializeApp(firebaseConfig);
 var currentRoom;
 var currentUser;
 var syncer = false;
+let namePush = false;
 
 const mex = document.getElementById("mex");
 
 const wscr = document.getElementById("welcx");
 const cscr = document.getElementById("chatx");
+let updat;
 
 
 var currurl = window.location.href;
@@ -26,14 +28,31 @@ if (currurl.includes("?r=")) {
     let spliced = currurl.split("?r=");
     let codie = spliced[1];
     let frontpt = spliced[0]
+    let namey = localStorage.getItem("chatName")
     if (frontpt.includes("?c")) {
-        let dat = [currentUser];
+        let dat = [namey];
         console.log(dat)
-        firebase.database.ref("ROOMS").child(currentRoom).child("active").push().set(dat);
+        firebase.database().ref("ROOMS").child(codie).child("active").set(dat);
     }
     else {
+        let temps = firebase.database().ref("ROOMS").child(codie).child("active")
+        if (!namePush) {
+            temps.on("value", function (snapshot) {
+                updat = snapshot.val();
+                console.log(updat);
+                updateActiveBar();
+                if (updat.includes(namey)) {
+                    namePush = true
+                }
+                if (!namePush) {
+                    namePush = true
+                    updat.push(currentUser);
+                    console.log(updat)
+                    firebase.database().ref("ROOMS").child(codie).child("active").set(updat);
+                }
+            })
+        }
     }
-
     console.log(codie)
     document.getElementById("roomcode").value = codie;
     if (codie == undefined) {
@@ -65,11 +84,25 @@ if (currurl.includes("?r=")) {
                 let rmcodeElement = document.getElementById("rmcode")
                 rmcodeElement.innerText = "Roomcode: " + currentRoom;
             }
+        } else {
+            window.location.href = frontpt;
         }
     }
 
 }
+function updateActiveBar() {
+    const parAct = document.getElementById("actives");
+    updat.forEach(el => {
+        const personn = document.createElement('div');
+        const pername = document.createElement('p');
+        pername.innerText = el;
+        personn.appendChild(pername);
+        parAct.appendChild(personn);
+        parAct.scrollLeft = parAct.scrollWidth;
 
+
+    });
+}
 function checkName() {
     const nameEl = document.getElementById("name");
     var loName = localStorage.getItem("chatName");

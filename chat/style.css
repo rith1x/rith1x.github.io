@@ -252,7 +252,32 @@ header button:last-child {
 }
 
 
+.activebar {
+    width: 100%;
+    height: 46px;
+    background-color: #ffffff50;
+    display: flex;
+    overflow-x: scroll;
+    transition: all .3s ease-in-out;
+    align-items: center;
+    gap: 5px;
+    padding-inline: 10px;
+}
 
+.activebar::-webkit-scrollbar {
+    display: none;
+}
+
+.activebar div {
+    background-color: #000;
+    color: #fff;
+    padding-inline: 5px;
+    padding-block: 2px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-size: 14px;
+    align-items: center;
+}
 
 
 .top-bar {
@@ -388,7 +413,7 @@ header button:last-child {
 }
 
 
-input {
+.dynamix input {
     width: 100%;
     height: 100%;
     border: none;
@@ -409,7 +434,7 @@ input::placeholder {
 }
 
 input[type="file"] {
-    width: 50px;
+    max-width: 50px;
     height: 60px;
     padding: 20px;
 
@@ -465,7 +490,7 @@ input[type="file"]::file-selector-button:active {
 
 
 
-button {
+.dynamix button {
     height: 60px;
     width: 60px;
     /* background-color: #048aff; */
@@ -478,18 +503,18 @@ button {
     visibility: hidden;
     border: none;
     border-radius: 31px;
-    font-size: 1.2em;
+    font-size: 1em;
     background-color: transparent;
 }
 
-button svg {
+.dynamix button svg {
     height: 60%;
     color: var(--dynamic-color);
 }
 
-input#message:valid~button {
+.dynamix input#message:valid~button {
     visibility: visible;
-    scale: 1.5;
+    scale: 1;
     rotate: -90deg;
 
 }
