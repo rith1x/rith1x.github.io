@@ -351,6 +351,8 @@ header button:last-child {
 
 }
 
+
+
 .exportRoom .field input[type=text] {
     width: 100%;
     border-radius: 25px;
@@ -368,8 +370,9 @@ header button:last-child {
     border: solid 1px #000000ee;
 }
 
-.exportRoom .field input[type="button"] {
-    padding-inline: 15px;
+.exportRoom .field .copyBtn {
+    padding-right: 15px;
+    width: fit-content;
     border-radius: 25px;
     background-color: transparent;
     font-size: 1em;

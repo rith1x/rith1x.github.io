@@ -73,7 +73,7 @@
 
                 </div>
 
-                <div class="exportRoom" id="exportroompop" style="display: none;">
+                <div class="exportRoom" id="exportroompop">
                     <div class="title-pop">
                         <h1>Share Roomcode</h1>
                         <button onclick="closeRoomPop()">Cancel</button>
@@ -85,8 +85,9 @@
                         <img style="display: none;" alt="" id="qrimg">
                     </div>
                     <div class="field">
+
                         <input type="text" id="shareurl" readonly />
-                        <input type="button" value="Copy" onclick="clipboardcopy()">
+                        <input class="copyBtn" type="button" value="Copy" onclick="clipboardcopy()">
                     </div>
                 </div>
             </div>
