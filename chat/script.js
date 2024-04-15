@@ -34,31 +34,9 @@ if (currurl.includes("?r=")) {
         console.log(dat)
         firebase.database().ref("ROOMS").child(codie).child("active").set(dat);
     }
-    else {
-        let temps = firebase.database().ref("ROOMS").child(codie).child("active")
-        if (!namePush) {
-            temps.on("value", function (snapshot) {
-                updat = snapshot.val();
-                console.log(updat);
-                updateActiveBar();
-                if (updat.includes(namey)) {
-                    namePush = true
-                }
-                if (!namePush) {
-                    namePush = true
-                    updat.push(currentUser);
-                    console.log(updat)
-                    firebase.database().ref("ROOMS").child(codie).child("active").set(updat);
-                }
-            })
-        }
-    }
     console.log(codie)
     document.getElementById("roomcode").value = codie;
-    if (codie == undefined) {
-
-    }
-    else {
+    if (codie != undefined) {
         if (codie.length == 6) {
             var currSender = localStorage.getItem("chatName");
             if (!currSender) {
@@ -84,14 +62,34 @@ if (currurl.includes("?r=")) {
                 let rmcodeElement = document.getElementById("rmcode")
                 rmcodeElement.innerText = "Roomcode: " + currentRoom;
             }
+
         } else {
             window.location.href = frontpt;
         }
     }
 
 }
+if (!namePush) {
+    firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
+        updat = snapshot.val();
+        console.log(updat);
+        if (updat != undefined) {
+            if (updat.includes(currSender)) {
+                namePush = true
+            }
+            if (!namePush) {
+                namePush = true
+                updat.push(currentUser);
+                console.log(updat)
+                firebase.database().ref("ROOMS").child(currentRoom).child("active").set(updat);
+            }
+            updateActiveBar();
+        }
+    })
+}
 function updateActiveBar() {
     const parAct = document.getElementById("actives");
+    parAct.innerHTML = "";
     updat.forEach(el => {
         const personn = document.createElement('div');
         const pername = document.createElement('p');
