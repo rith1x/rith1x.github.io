@@ -10,13 +10,36 @@
     </head>
 
     <body>
+        <script>
+            function getRandomColor() {
+                var red = Math.floor(Math.random() * 256);
+                var green = Math.floor(Math.random() * 256);
+                var blue = Math.floor(Math.random() * 256);
+                var threshold = 256;
+                var lthr = 220;
+                if (lthr < red && red < threshold && lthr < green && green < threshold && lthr < blue && blue < threshold && red != green & red != blue && green != blue) {
+                    var adjust = threshold - Math.min(red, green, blue);
+                    red += adjust;
+                    green += adjust;
+                    console.log("adjusting..." + adjust)
+                    blue += adjust;
+                }
+                console.log(red, green, blue)
+                var redHex = red.toString(16).padStart(2, '0');
+                var greenHex = green.toString(16).padStart(2, '0');
+                var blueHex = blue.toString(16).padStart(2, '0');
+                document.body.style.background = '#' + redHex + greenHex + blueHex;
+            }
 
-        
+            setInterval(() => {
+                getRandomColor()
+            }, 100);
+
+        </script>
+
 
 
         <style>
-            
-
             * {
                 box-sizing: border-box;
                 padding: 0;
@@ -33,7 +56,6 @@
                 box-sizing: border-box;
                 background-color: #fff;
             }
-
         </style>
     </body>
 
