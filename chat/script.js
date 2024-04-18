@@ -306,7 +306,16 @@ function showNoti(sender, room) {
 }
 
 
-
+function deleteMsg(e,idxx, msg) {
+    if (msg != "Deleted Message") {
+        let confirmation = window.confirm(`Do you want to delete the following message > ${msg}?`);
+        if (confirmation) {
+            firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set("Deleted Message")
+            e.preventDefault()
+            window.location.reload()
+        } 
+    } 
+}
 //CHECK INCOMING 
 
 firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
@@ -315,6 +324,8 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
         var user = snapshot.val().sender;
         var time = snapshot.val().time;
         var msg = snapshot.val().message;
+        var muid = snapshot.key;
+        // console.log(snapshot.key)
         if (user == currSender) {
             const liEl = document.createElement("li");
             liEl.classList.add("chat", "outgoing");
@@ -325,7 +336,14 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             topBar.className = "top-bar";
             const msgP = document.createElement("p");
             msgP.className = "msg";
-            msgP.innerText = msg;
+
+            if (msg != "Deleted Message") {
+                liEl.onclick = (el) => { deleteMsg(el,muid, msg) };
+                msgP.innerText = msg;
+            } else {
+                msgP.innerHTML = "<i>Deleted Message</i>"
+                msgP.style.color = "#959595"
+            }
             const timP = document.createElement("p");
             timP.className = "time";
             timP.innerText = time;
@@ -333,7 +351,9 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             topBar.appendChild(timP);
             liEl.appendChild(topBar);
             liEl.appendChild(msgP);
+            console.log(muid)
             msgScr.appendChild(liEl);
+
         } else {
             const liEl = document.createElement("li");
             liEl.classList.add("chat", "incoming");
