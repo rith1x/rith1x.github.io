@@ -69,7 +69,7 @@ if (currurl.includes("?r=")) {
     }
 
 }
-if (!namePush) {
+if (!namePush && currentRoom) {
     firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
         updat = snapshot.val();
         console.log(updat);
@@ -86,6 +86,23 @@ if (!namePush) {
             updateActiveBar();
         }
     })
+}
+function leaveRoom() {
+    firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
+        updat = snapshot.val();
+        console.log(updat);
+        if (updat != undefined) {
+            updat.pop(currentUser);
+            console.log(updat)
+            firebase.database().ref("ROOMS").child(currentRoom).child("active").set(updat);
+            updateActiveBar();
+        }
+    })
+    currentRoom = "";
+    window.location.href = "../chat/"
+
+
+
 }
 function updateActiveBar() {
     const parAct = document.getElementById("actives");
@@ -125,7 +142,6 @@ function nameValidate() {
     currentUser = tempName;
     return true;
 }
-const p = (c) => { console.log(c) }
 var profDb = [];
 function profanityFetch() {
     const binId = '66123526e41b4d34e4e08701';
@@ -138,10 +154,8 @@ function profanityFetch() {
         .then(response => response.json())
         .then(data => {
             profDb = data.record.profanity
-            console.log("Database Filter Fetched!")
         })
         .catch(error => {
-            console.error('Error:', error);
 
         });
 }
@@ -255,9 +269,8 @@ function profanityCleaner(sentence) {
 function sendMessage() {
     var messageel = document.getElementById("message");
     var uncleaned = messageel.value;
-    console.log(uncleaned);
+    // console.log(uncleaned);
     var message = profanityCleaner(uncleaned);
-    p(uncleaned)
     if (message != " " || message != "") {
         timex = geTime();
         firebase.database().ref("ROOMS").child(currentRoom).push().set({
@@ -266,10 +279,10 @@ function sendMessage() {
             "time": timex
         })
             .then(() => {
-                console.log("Message sent successfully");
+                // console.log("Message sent successfully");
             })
             .catch((error) => {
-                console.error("Error sending message:", error);
+                // console.error("Error sending message:", error);
             });
     }
     messageel.value = "";
@@ -279,20 +292,20 @@ function sendMessage() {
 function playTone() {
     const toner = document.getElementById("toner");
     toner.play();
-    console.log("Tone Play")
+    // console.log("Tone Play")
 }
 
 
 function showNoti(sender, room) {
     if (!("Notification" in window)) {
-        console.error("This browser does not support desktop notification");
+        // console.error("This browser does not support desktop notification");
         return;
     }
 
     if (Notification.permission !== "granted") {
         Notification.requestPermission().then(function (permission) {
             if (permission !== "granted") {
-                console.warn("Permission denied for notifications");
+                // console.warn("Permission denied for notifications");
             }
         });
     }
@@ -307,18 +320,33 @@ function showNoti(sender, room) {
 
 
 function deleteMsg(e, idxx, msg) {
-    if (msg != "Deleted Message") {
-        let confirmation = window.confirm(`Do you want to delete the following message > ${msg}?`);
-        if (confirmation) {
+
+    var permis = window.confirm(`Do you want to delete the message "${msg}"?`);
+    if (permis) {
+        if (msg != "Deleted Message") {
             firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set("Deleted Message")
-            e.preventDefault()
-            window.location.reload()
         }
     }
-}
-//CHECK INCOMING 
 
-firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+}
+function showAlert(title, content) {
+    document.getElementById("alertbox").style.display = "block"
+    document.getElementById("aTitle").innerText = title;
+    document.getElementById("aDefn").innerText = content;
+}
+function closeAlert() {
+    document.getElementById("alertbox").style.display = "none"
+}
+function acceptAlert() {
+
+
+    closeAlert();
+}
+function declineAlert() {
+    closeAlert();
+}
+
+function listMessages(snapshot) {
     if (snapshot.val().sender != undefined) {
         const msgScr = document.getElementById("chatbox");
         var user = snapshot.val().sender;
@@ -329,6 +357,7 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
         if (user == currSender) {
             const liEl = document.createElement("li");
             liEl.classList.add("chat", "outgoing");
+            liEl.id = snapshot.key
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
@@ -336,6 +365,7 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             topBar.className = "top-bar";
             const msgP = document.createElement("p");
             msgP.className = "msg";
+            msgP.id = "p" + snapshot.key;
 
             if (msg != "Deleted Message") {
                 liEl.onclick = (el) => { deleteMsg(el, muid, msg) };
@@ -351,12 +381,13 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             topBar.appendChild(timP);
             liEl.appendChild(topBar);
             liEl.appendChild(msgP);
-            console.log(muid)
+            // console.log(muid)
             msgScr.appendChild(liEl);
 
         } else {
             const liEl = document.createElement("li");
             liEl.classList.add("chat", "incoming");
+            liEl.id = snapshot.key;
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
@@ -364,7 +395,13 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             topBar.className = "top-bar";
             const msgP = document.createElement("p");
             msgP.className = "msg";
-            msgP.innerText = msg;
+            msgP.id = "p" + snapshot.key;
+            if (msg != "Deleted Message") {
+                msgP.innerText = msg;
+            } else {
+                msgP.innerHTML = "<i>Deleted Message</i>"
+                msgP.style.color = "#959595"
+            }
             const timP = document.createElement("p");
             timP.className = "time";
             timP.innerText = time;
@@ -373,7 +410,7 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             liEl.appendChild(topBar);
             liEl.appendChild(msgP);
             msgScr.appendChild(liEl);
-            console.log("new ")
+            // console.log("new ")
             if (syncer) {
                 playTone();
                 showNoti(user, currentRoom);
@@ -382,32 +419,19 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
         }
         msgScr.scrollTop = msgScr.scrollHeight;
     }
-});
-
-
-var Approved = false;
-function showAlert(title, content) {
-    document.getElementById("alertbox").style.display = "block"
-    document.getElementById("aTitle").innerText = title;
-    document.getElementById("aDefn").innerText = content;
-    setTimeout(() => {
-        Approved = false;
-        closeAlert()
-        console.log("Alert Timeout")
-    }, 5000);
-
-}
-function closeAlert() {
-    document.getElementById("alertbox").style.display = "none"
 }
 
-function acceptAlert() {
-    Approved = true
-    console.log("Alert Done")
-    closeAlert();
+
+
+if (currentRoom) {
+    firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+        listMessages(snapshot);
+    });
+    firebase.database().ref("ROOMS").child(currentRoom).on("child_changed", (snapshot) => {
+        document.getElementById("p" + snapshot.key).innerHTML = '<i>Deleted Message</i>'
+        document.getElementById("p" + snapshot.key).style.color = '#959595'
+    });
 }
-function declineAlert() {
-    Approved = false
-    console.log("Alert Declined")
-    closeAlert();
-}
+
+
+

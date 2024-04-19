@@ -164,6 +164,11 @@ header button {
 
 }
 
+header button:nth-child(2) {
+    color: #b45a00;
+    background-color: #ffe9d2;
+}
+
 header button:last-child {
     color: #b40000;
     background-color: #ffd2d2;
