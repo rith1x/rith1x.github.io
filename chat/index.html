@@ -90,9 +90,22 @@
                         <input class="copyBtn" type="button" value="Copy" onclick="clipboardcopy()">
                     </div>
                 </div>
+                <div class="alertbox" id="alertbox" style="display: none;">
+                    <div class="alerthead">
+                        <h3 class="" id="aTitle"></h3>
+                    </div>
+                    <div class="aDef">
+                        <p id="aDefn"></p>
+                    </div>
+                    <div class="aOptions">
+                        <button onclick="declineAlert()">No</button><button onclick="acceptAlert()">Yes</button>
+                    </div>
+                </div>
 
             </div>
+
         </div>
+
     </body>
 
 </html>

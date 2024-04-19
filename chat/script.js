@@ -306,15 +306,15 @@ function showNoti(sender, room) {
 }
 
 
-function deleteMsg(e,idxx, msg) {
+function deleteMsg(e, idxx, msg) {
     if (msg != "Deleted Message") {
         let confirmation = window.confirm(`Do you want to delete the following message > ${msg}?`);
         if (confirmation) {
             firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set("Deleted Message")
             e.preventDefault()
             window.location.reload()
-        } 
-    } 
+        }
+    }
 }
 //CHECK INCOMING 
 
@@ -338,7 +338,7 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
             msgP.className = "msg";
 
             if (msg != "Deleted Message") {
-                liEl.onclick = (el) => { deleteMsg(el,muid, msg) };
+                liEl.onclick = (el) => { deleteMsg(el, muid, msg) };
                 msgP.innerText = msg;
             } else {
                 msgP.innerHTML = "<i>Deleted Message</i>"
@@ -385,4 +385,29 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
 });
 
 
+var Approved = false;
+function showAlert(title, content) {
+    document.getElementById("alertbox").style.display = "block"
+    document.getElementById("aTitle").innerText = title;
+    document.getElementById("aDefn").innerText = content;
+    setTimeout(() => {
+        Approved = false;
+        closeAlert()
+        console.log("Alert Timeout")
+    }, 5000);
 
+}
+function closeAlert() {
+    document.getElementById("alertbox").style.display = "none"
+}
+
+function acceptAlert() {
+    Approved = true
+    console.log("Alert Done")
+    closeAlert();
+}
+function declineAlert() {
+    Approved = false
+    console.log("Alert Declined")
+    closeAlert();
+}
