@@ -163,7 +163,7 @@ function profanityFetch() {
 
 
 
-profanityFetch()
+// profanityFetch()
 
 
 
@@ -266,13 +266,14 @@ function profanityCleaner(sentence) {
 
 }
 
-function sendMessage() {
+function normalMessage() {
+    console.log("Normal Type")
     var messageel = document.getElementById("message");
     var uncleaned = messageel.value;
     // console.log(uncleaned);
     var message = profanityCleaner(uncleaned);
     if (message != " " || message != "") {
-        timex = geTime();
+        var timex = geTime();
         firebase.database().ref("ROOMS").child(currentRoom).push().set({
             "sender": currSender,
             "message": message,
@@ -354,15 +355,15 @@ function listMessages(snapshot) {
         var msg = snapshot.val().message;
         var muid = snapshot.key;
         // console.log(snapshot.key)
-
+        const liEl = document.createElement("li");
         if (user == currSender) {
-            const liEl = document.createElement("li");
             liEl.classList.add("chat", "outgoing");
             liEl.id = snapshot.key
             liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
+            senP.id = "s" + snapshot.key;
             const topBar = document.createElement("div");
             topBar.className = "top-bar";
             const msgP = document.createElement("p");
@@ -384,10 +385,8 @@ function listMessages(snapshot) {
             liEl.appendChild(topBar);
             liEl.appendChild(msgP);
             // console.log(muid)
-            msgScr.appendChild(liEl);
 
         } else {
-            const liEl = document.createElement("li");
             liEl.classList.add("chat", "incoming");
             liEl.id = snapshot.key;
             const senP = document.createElement("p");
@@ -411,7 +410,6 @@ function listMessages(snapshot) {
             topBar.appendChild(timP);
             liEl.appendChild(topBar);
             liEl.appendChild(msgP);
-            msgScr.appendChild(liEl);
             // console.log("new ")
             if (syncer) {
                 playTone();
@@ -419,6 +417,52 @@ function listMessages(snapshot) {
             }
             syncer = true
         }
+        var reVe = snapshot.val().rId;
+        console.log(reVe)
+        if (reVe) {
+            liEl.classList.add("repLos")
+            const liElx = document.createElement("li");
+            liElx.className = "chat";
+            const repP = document.createElement("li");
+            repP.className = "replyEnc"
+            const repSender = firebase.database().ref("ROOMS").child(currentRoom).child(reVe);
+            repSender.once('value').then(snapshot => {
+                const rSen = snapshot.val().sender
+                const rMsg = snapshot.val().message
+                const senP = document.createElement("p");
+                senP.className = "sender";
+                senP.innerText = rSen;
+                const topBar = document.createElement("div");
+                topBar.className = "top-bar";
+                const msgP = document.createElement("p");
+                msgP.className = "msg";
+                msgP.id = "p" + snapshot.key;
+                if (msg != "Deleted Message") {
+                    msgP.innerText = rMsg;
+                } else {
+                    msgP.innerHTML = "<i>Deleted Message</i>"
+                    msgP.style.color = "#959595"
+                }
+                topBar.appendChild(senP);
+                console.log(liEl)
+
+                liElx.appendChild(topBar);
+                liElx.appendChild(msgP);
+                liEl.appendChild(liElx)
+                repP.appendChild(liEl)
+                msgScr.appendChild(repP);
+
+            })
+
+
+
+        } else {
+            msgScr.appendChild(liEl);
+        }
+
+
+
+
         msgScr.scrollTop = msgScr.scrollHeight;
     }
 }
@@ -435,21 +479,69 @@ if (currentRoom) {
     });
 }
 
+var sendMessage = () => { normalMessage() }
 
-
-let lastTapTime = 0;
-let tappedElement = null;
+var cRply;
 function replyingTo(event, key) {
-    const currentTime = new Date().getTime();
-    const tapDelay = 300; // Adjust this value as needed (in milliseconds)
+    console.log(key, event)
+    const rMsg = document.getElementById("p" + key).innerText;
+    const rSen = document.getElementById("s" + key).innerText;
+    console.log(rSen)
+    console.log(rMsg)
+    const replyStage = document.getElementById("replyArea");
+    var rTemp = `
+    <p class="repTo">
+                            Replying to
+                        </p>
+                        <div class="rCon">
 
-    if (tappedElement === event.target && (currentTime - lastTapTime) < tapDelay) {
-        console.log("Double tap detected on:", event.target);
-        lastTapTime = 0;
-        tappedElement = null;
-    } else {
-        lastTapTime = currentTime;
-        tappedElement = event.target;
+                            <div class="rLeft">
+                                <h3>${rSen}</h3>
+                                <p>${rMsg}</p>
+                            </div>
+                            <div class="rRight">
+                                <button onclick=cancelReply()>
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        </div>`
+    replyStage.innerHTML = rTemp
+    cRply = key;
+    sendMessage = () => replyMessage();
+    var messageel = document.getElementById("message");
+
+    messageel.focus();
+
+}
+function cancelReply() {
+    document.getElementById("replyArea").innerHTML = "";
+}
+function replyMessage() {
+    document.getElementById("replyArea").innerHTML = "";
+    console.log("replying")
+    var messageel = document.getElementById("message");
+    var uncleaned = messageel.value;
+    // console.log(uncleaned);
+    var message = profanityCleaner(uncleaned);
+    if (message != " " || message != "") {
+        var timex = geTime();
+        var rems = cRply;
+        firebase.database().ref("ROOMS").child(currentRoom).push().set({
+            "sender": currSender,
+            "message": message,
+            "time": timex,
+            "rId": rems,
+        })
+            .then(() => {
+                // console.log("Message sent successfully");
+            })
+            .catch((error) => {
+                // console.error("Error sending message:", error);
+            });
     }
-    console.log(key)
+    messageel.value = "";
+    messageel.focus();
+    cRply = "";
+    sendMessage = () => normalMessage();
+
 }
