@@ -354,10 +354,12 @@ function listMessages(snapshot) {
         var msg = snapshot.val().message;
         var muid = snapshot.key;
         // console.log(snapshot.key)
+
         if (user == currSender) {
             const liEl = document.createElement("li");
             liEl.classList.add("chat", "outgoing");
             liEl.id = snapshot.key
+            liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
@@ -368,7 +370,7 @@ function listMessages(snapshot) {
             msgP.id = "p" + snapshot.key;
 
             if (msg != "Deleted Message") {
-                liEl.onclick = (el) => { deleteMsg(el, muid, msg) };
+                liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
                 msgP.innerText = msg;
             } else {
                 msgP.innerHTML = "<i>Deleted Message</i>"
@@ -435,3 +437,19 @@ if (currentRoom) {
 
 
 
+let lastTapTime = 0;
+let tappedElement = null;
+function replyingTo(event, key) {
+    const currentTime = new Date().getTime();
+    const tapDelay = 300; // Adjust this value as needed (in milliseconds)
+
+    if (tappedElement === event.target && (currentTime - lastTapTime) < tapDelay) {
+        console.log("Double tap detected on:", event.target);
+        lastTapTime = 0;
+        tappedElement = null;
+    } else {
+        lastTapTime = currentTime;
+        tappedElement = event.target;
+    }
+    console.log(key)
+}
