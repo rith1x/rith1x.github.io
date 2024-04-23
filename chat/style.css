@@ -15,14 +15,14 @@
 body {
     background: #000;
     width: 100dvw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
 }
 
 .container {
     flex-grow: 1;
-    max-width: 450px;
+    max-width: 800px;
     height: 100%;
     background-color: black;
     margin: 0 auto;
@@ -318,7 +318,8 @@ header button:last-child {
 
 
 .exportRoom {
-    width: 94%;
+    max-width: 50%;
+    min-width: 350px;
     height: fit-content;
 
     border: solid 1px #00000050;

@@ -453,22 +453,12 @@ function listMessages(snapshot) {
                 msgScr.appendChild(repP);
 
             })
-
-
-
         } else {
             msgScr.appendChild(liEl);
         }
-
-
-
-
         msgScr.scrollTop = msgScr.scrollHeight;
     }
 }
-
-
-
 if (currentRoom) {
     firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
         listMessages(snapshot);
@@ -478,9 +468,7 @@ if (currentRoom) {
         document.getElementById("p" + snapshot.key).style.color = '#959595'
     });
 }
-
 var sendMessage = () => { normalMessage() }
-
 var cRply;
 function replyingTo(event, key) {
     console.log(key, event)
@@ -509,9 +497,7 @@ function replyingTo(event, key) {
     cRply = key;
     sendMessage = () => replyMessage();
     var messageel = document.getElementById("message");
-
     messageel.focus();
-
 }
 function cancelReply() {
     document.getElementById("replyArea").innerHTML = "";
@@ -521,7 +507,6 @@ function replyMessage() {
     console.log("replying")
     var messageel = document.getElementById("message");
     var uncleaned = messageel.value;
-    // console.log(uncleaned);
     var message = profanityCleaner(uncleaned);
     if (message != " " || message != "") {
         var timex = geTime();
@@ -543,5 +528,11 @@ function replyMessage() {
     messageel.focus();
     cRply = "";
     sendMessage = () => normalMessage();
-
 }
+firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
+    console.log(snapshot.key);
+    if (currentRoom == snapshot.key) {
+        currentRoom = "";
+        window.location.href = "/chat";
+    }
+});
