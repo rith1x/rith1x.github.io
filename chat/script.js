@@ -316,7 +316,7 @@ function showNoti(sender, room) {
     const notification = new Notification(title, {
         body: body,
     });
-    notification.show();
+    notification.show;
 }
 
 
@@ -386,17 +386,27 @@ function listMessages(snapshot) {
             liEl.appendChild(msgP);
             // console.log(muid)
 
-        } else {
+        }
+
+
+
+        else {
             liEl.classList.add("chat", "incoming");
             liEl.id = snapshot.key;
+            liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
+
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
+            senP.id = "s" + snapshot.key;
+
             const topBar = document.createElement("div");
             topBar.className = "top-bar";
             const msgP = document.createElement("p");
             msgP.className = "msg";
             msgP.id = "p" + snapshot.key;
+            msgP.id = "p" + snapshot.key;
+
             if (msg != "Deleted Message") {
                 msgP.innerText = msg;
             } else {
@@ -417,8 +427,12 @@ function listMessages(snapshot) {
             }
             syncer = true
         }
+
+
         var reVe = snapshot.val().rId;
         console.log(reVe)
+
+
         if (reVe) {
             liEl.classList.add("repLos")
             const liElx = document.createElement("li");
@@ -453,6 +467,8 @@ function listMessages(snapshot) {
                 msgScr.appendChild(repP);
 
             })
+            msgScr.scrollTop = msgScr.scrollHeight;
+
         } else {
             msgScr.appendChild(liEl);
         }
@@ -462,6 +478,9 @@ function listMessages(snapshot) {
 if (currentRoom) {
     firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
         listMessages(snapshot);
+        const msgScr = document.getElementById("chatbox");
+        msgScr.scrollTop = msgScr.scrollHeight;
+
     });
     firebase.database().ref("ROOMS").child(currentRoom).on("child_changed", (snapshot) => {
         document.getElementById("p" + snapshot.key).innerHTML = '<i>Deleted Message</i>'
