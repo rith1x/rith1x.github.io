@@ -20,7 +20,7 @@ const mex = document.getElementById("mex");
 const wscr = document.getElementById("welcx");
 const cscr = document.getElementById("chatx");
 let updat;
-
+const xy = yx = Symbol();
 
 var currurl = window.location.href;
 console.log(currurl)
