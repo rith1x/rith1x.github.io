@@ -85,6 +85,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                transition: all .3s ease-in-out;
                 justify-content: space-between;
             }
 
@@ -99,7 +100,7 @@
 
             .rdm {
                 position: absolute;
-                width: 140px;
+                width: 210px;
                 border-radius: 40px;
                 border: none;
                 display: flex;
@@ -110,6 +111,7 @@
                 font-size: 2.3em;
                 margin: 0 auto;
                 left: 0;
+                transition: all .3s ease-in-out;
                 right: 0;
                 bottom: 110px;
                 height: 70px;
@@ -131,7 +133,7 @@
                 bottom: 110px;
             }
 
-            .rdm button svg {
+            .rdm button:nth-child(2) svg {
                 rotate: 15deg;
             }
         </style>
@@ -154,6 +156,7 @@
                 </div>
             </div>
             <div class="rdm">
+                <button onclick="changeLook()"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
                 <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
             </div>
@@ -212,6 +215,16 @@
                 meta.content = genClr;
             }
             changeColor();
+            let i = 0;
+            function changeLook() {
+                const styles = ["rotate(0deg)", "rotate(-5deg)", "rotate(5deg)"];
+                i += 1;
+                if (i >= styles.length) {
+                    i = 0;
+                }
+                document.getElementById("rxd").style.transform = styles[i];
+
+            }
 
         </script>
 
