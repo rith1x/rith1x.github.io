@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fullscreen Div Share</title>
+        <style>
+            body,
+            html {
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+
+            #fullscreenDiv {
+                width: 90%;
+                margin: 5%;
+                aspect-ratio: 1/1;
+                background-color: #ff7070;
+                display: flex;
+                justify-content: center;
+                border-radius: 31px;
+                align-items: center;
+            }
+
+            #dynamicContent {
+                font-size: 24px;
+                color: #333;
+                text-align: center;
+            }
+
+            #shareButton {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="fullscreenDiv">
+            <div id="dynamicContent">
+                This is dynamic content!
+            </div>
+        </div>
+
+        <button id="shareButton" onclick="copyboard()">Share Screenshot</button>
+        <div id="log">
+
+        </div>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <script>
+            const shareData = {
+                title: "MDN",
+                text: "Learn web development on MDN!",
+                url: "https://developer.mozilla.org",
+            };
+            const elementToSave = document.getElementById("fullscreenDiv");
+            async function copyboard() {
+                // html2canvas(elementToSave).then(canvas => {
+                //     const dataurl = canvas.toDataURL("image/jpeg");
+                //     console.log(dataurl);
+                // });
+                try {
+                    await navigator.share(shareData);
+                    document.getElementById("dynamicContent").innerText = "done";
+                } catch (err) {
+                    document.getElementById("dynamicContent").innerText = "vaipilla";
+                }
+                elementToSave.style.background = `#${Math.floor(Math.random() * 0xffffff)}`
+                navigator.share("lollipop ");
+            }
+
+        </script>
+
+    </body>
+
+</html>
