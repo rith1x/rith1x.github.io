@@ -9,18 +9,19 @@
         <meta name="theme-color" id="metacl" content="#000000" />
 
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
             body,
             html {
                 margin: 0;
                 padding: 0;
                 height: 100%;
+                font-family: "Libre Caslon Text", serif;
+
             }
 
             * {
                 box-sizing: border-box;
-                font-family: "Libre Caslon Text", serif;
 
             }
 
@@ -53,6 +54,8 @@
                 left: 0;
                 right: 0;
                 margin: 0 auto;
+                font-family: "Libre Caslon Text", serif;
+
                 /* opacity: 0; */
                 padding-block: 20px;
                 position: absolute;
@@ -67,6 +70,8 @@
                 width: 100%;
                 height: 50px;
                 display: flex;
+                font-family: "Libre Caslon Text", serif;
+
                 align-items: center;
                 justify-content: center;
                 border-radius: 25px;
@@ -100,7 +105,7 @@
 
             .rdm {
                 position: absolute;
-                width: 210px;
+                width: 240px;
                 border-radius: 40px;
                 border: none;
                 display: flex;
@@ -114,7 +119,7 @@
                 transition: all .3s ease-in-out;
                 right: 0;
                 bottom: 110px;
-                height: 70px;
+                height: 60px;
             }
 
             .rdm button {
@@ -133,7 +138,7 @@
                 bottom: 110px;
             }
 
-            .rdm button:nth-child(2) svg {
+            .rdm button:nth-child(odd) svg {
                 rotate: 15deg;
             }
         </style>
@@ -156,6 +161,7 @@
                 </div>
             </div>
             <div class="rdm">
+                <button onclick="changeFont()"><i class="fa-solid fa-font"></i></button>
                 <button onclick="changeLook()"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
                 <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
@@ -218,13 +224,24 @@
             let i = 0;
             function changeLook() {
                 const styles = ["rotate(0deg)", "rotate(-5deg)", "rotate(5deg)"];
-                i += 1;
+                i += 1
                 if (i >= styles.length) {
-                    i = 0;
+                    i = 0
                 }
                 document.getElementById("rxd").style.transform = styles[i];
 
             }
+            let f = -1;
+            function changeFont() {
+                const fonts = ["Libre Caslon Text", "Playfair Display", "EB Garamond", "DM Serif Display", "Cedarville Cursive"]
+                f += 1;
+                if (f >= fonts.length) {
+                    f = 0
+                }
+                document.getElementById("rxd").style.fontFamily = fonts[f];
+
+            }
+            changeFont()
 
         </script>
 
