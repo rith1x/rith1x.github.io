@@ -145,6 +145,7 @@
             const elementToSave = document.getElementById("fullscreenDiv");
             function copyboard() {
                 html2canvas(elementToSave, {
+                    scale: 5,
                     width: elementToSave.scrollWidth - 1,
                     height: elementToSave.scrollHeight - 1
                 }).then(canvas => {
