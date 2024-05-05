@@ -4,8 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fullscreen Div Share</title>
+        <title>Random Quote Generator</title>
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+        <meta name="theme-color" id="metacl" content="#000000" />
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
@@ -143,7 +144,10 @@
         <script>
             const elementToSave = document.getElementById("fullscreenDiv");
             function copyboard() {
-                html2canvas(elementToSave).then(canvas => {
+                html2canvas(elementToSave, {
+                    width: elementToSave.scrollWidth - 1,
+                    height: elementToSave.scrollHeight - 1
+                }).then(canvas => {
                     var dataUrl = canvas.toDataURL("image/jpeg");
                     const a = document.createElement('a');
                     a.href = dataUrl;
@@ -153,6 +157,7 @@
                 });
 
             }
+            const meta = document.getElementById("metacl");
             // Function to fetch a random quote
             function fetchRandomQuote() {
                 // Endpoint URL
@@ -168,7 +173,7 @@
                         document.body.style.backgroundColor = genClr;
                         document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
                         document.getElementById("fullscreenDiv").style.borderColor = genClr;
-
+                        meta.content = genClr;
                         document.getElementById("quote").innerText = quoteText;
                         document.getElementById("author").innerText = quoteAuthor;
                         console.log(`"${quoteText}" - ${quoteAuthor}`);
