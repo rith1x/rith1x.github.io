@@ -95,9 +95,11 @@
                 align-self: flex-end;
             }
 
+
+
             .rdm {
                 position: absolute;
-                width: 80px;
+                width: 140px;
                 border-radius: 40px;
                 border: none;
                 display: flex;
@@ -110,10 +112,26 @@
                 left: 0;
                 right: 0;
                 bottom: 110px;
-                height: 80px;
+                height: 70px;
             }
 
-            .rdm svg {
+            .rdm button {
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: transparent;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                font-size: .7em;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                bottom: 110px;
+            }
+
+            .rdm button svg {
                 rotate: 15deg;
             }
         </style>
@@ -135,7 +153,10 @@
                     rith1x.github.io/quote
                 </div>
             </div>
-            <button class="rdm" onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
+            <div class="rdm">
+                <button onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
+                <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
+            </div>
             <button id="shareButton" onclick="copyboard()">Share Quote</button>
         </div>
 
@@ -159,35 +180,23 @@
 
             }
             const meta = document.getElementById("metacl");
-            // Function to fetch a random quote
             function fetchRandomQuote() {
-                // Endpoint URL
                 const apiUrl = 'https://api.quotable.io/quotes/random?minLength=20&maxLength=140';
-
                 fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
                         const quoteText = data[0].content;
                         const quoteAuthor = data[0].author;
-                        var genClr = getRandomHexColor();
-                        document.body.style.backgroundColor = genClr;
-                        document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
-                        document.getElementById("fullscreenDiv").style.borderColor = genClr;
-                        meta.content = genClr;
                         document.getElementById("quote").innerText = quoteText;
                         document.getElementById("author").innerText = quoteAuthor;
-                        console.log(`"${quoteText}" - ${quoteAuthor}`);
                     })
                     .catch(error => {
                         console.error('Error fetching quote:', error);
                     });
-
             }
             fetchRandomQuote()
-
             function getRandomHexColor() {
-                // Generate a random hexadecimal color code
                 const letters = '0123456789ABCDEF';
                 let color = '#';
                 for (let i = 0; i < 6; i++) {
@@ -195,6 +204,14 @@
                 }
                 return color;
             }
+            function changeColor() {
+                var genClr = getRandomHexColor();
+                document.body.style.backgroundColor = genClr;
+                document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
+                document.getElementById("fullscreenDiv").style.borderColor = genClr;
+                meta.content = genClr;
+            }
+            changeColor();
 
         </script>
 
