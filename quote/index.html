@@ -56,17 +56,18 @@
         </div>
         <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
         <script>
-            const shareData = {
-                title: "MDN",
-                text: "Learn web development on MDN!",
-                url: "https://developer.mozilla.org",
-            };
             const elementToSave = document.getElementById("fullscreenDiv");
             async function copyboard() {
-                // html2canvas(elementToSave).then(canvas => {
-                //     const dataurl = canvas.toDataURL("image/jpeg");
-                //     console.log(dataurl);
-                // });
+                var dataurl
+                html2canvas(elementToSave).then(canvas => {
+                    dataurl = canvas.toDataURL("image/jpeg");
+                    // console.log(dataurl);
+                });
+                const shareData = {
+                    title: "Today's Quote",
+                    text: "Learn web development on MDN!",
+                    url: dataurl,
+                };
                 try {
                     await navigator.share(shareData);
                     document.getElementById("dynamicContent").innerText = "done";
