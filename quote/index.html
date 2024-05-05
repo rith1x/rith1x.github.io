@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
                 padding: 0;
                 height: 100%;
             }
+
             #fullscreenDiv {
                 width: 100vw;
                 height: 100vh;
@@ -19,11 +21,13 @@
                 justify-content: center;
                 align-items: center;
             }
+
             #dynamicContent {
                 font-size: 24px;
                 color: #333;
                 text-align: center;
             }
+
             #shareButton {
                 padding: 10px 20px;
                 font-size: 16px;
@@ -35,6 +39,7 @@
             }
         </style>
     </head>
+
     <body>
         <div id="fullscreenDiv">
             <div id="dynamicContent">
@@ -52,9 +57,9 @@
                     const canvas = await html2canvas(elementToSave);
                     const dataUrl = canvas.toDataURL("image/jpeg");
                     const shareData = {
+                        dataUrl,
                         title: "Today's Quote",
-                        text: "Learn web development on MDN!",
-                        url: dataUrl,
+                        text: "Heyy",
                     };
                     await navigator.share(shareData);
                     document.getElementById("dynamicContent").innerText = "Shared successfully";
@@ -66,4 +71,5 @@
             }
         </script>
     </body>
+
 </html>
