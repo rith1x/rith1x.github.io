@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,24 +11,19 @@
                 padding: 0;
                 height: 100%;
             }
-
             #fullscreenDiv {
-                width: 90%;
-                margin: 5%;
-                aspect-ratio: 1/1;
-                background-color: #ff7070;
+                width: 100vw;
+                height: 100vh;
+                background-color: #f0f0f0;
                 display: flex;
                 justify-content: center;
-                border-radius: 31px;
                 align-items: center;
             }
-
             #dynamicContent {
                 font-size: 24px;
                 color: #333;
                 text-align: center;
             }
-
             #shareButton {
                 padding: 10px 20px;
                 font-size: 16px;
@@ -41,45 +35,35 @@
             }
         </style>
     </head>
-
     <body>
-
         <div id="fullscreenDiv">
             <div id="dynamicContent">
                 This is dynamic content!
             </div>
         </div>
-
         <button id="shareButton" onclick="copyboard()">Share Screenshot</button>
-        <div id="log">
-
-        </div>
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
+            integrity="sha512-LlT33DhU9NxLzGcZX/0OSwG2wKq5v3z9jPzwBqD3G20kxYUAIKlqjJrfRdcC3CInw5WbjrNswGtLg5RD8Akajw=="
+            crossorigin="anonymous"></script>
         <script>
-            const elementToSave = document.getElementById("fullscreenDiv");
             async function copyboard() {
-                var dataurl
-                html2canvas(elementToSave).then(canvas => {
-                    dataurl = canvas.toDataURL("image/jpeg");
-                    // console.log(dataurl);
-                });
-                const shareData = {
-                    title: "Today's Quote",
-                    text: "Learn web development on MDN!",
-                    url: dataurl,
-                };
+                const elementToSave = document.getElementById("fullscreenDiv");
                 try {
+                    const canvas = await html2canvas(elementToSave);
+                    const dataUrl = canvas.toDataURL("image/jpeg");
+                    const shareData = {
+                        title: "Today's Quote",
+                        text: "Learn web development on MDN!",
+                        url: dataUrl,
+                    };
                     await navigator.share(shareData);
-                    document.getElementById("dynamicContent").innerText = "done";
+                    document.getElementById("dynamicContent").innerText = "Shared successfully";
                 } catch (err) {
-                    document.getElementById("dynamicContent").innerText = "vaipilla";
+                    console.error("Error sharing:", err);
+                    document.getElementById("dynamicContent").innerText = "Failed to share";
                 }
-                elementToSave.style.background = `#${Math.floor(Math.random() * 0xffffff)}`
-                navigator.share("lollipop ");
+                elementToSave.style.background = `#${Math.floor(Math.random() * 0xffffff)}`;
             }
-
         </script>
-
     </body>
-
 </html>
