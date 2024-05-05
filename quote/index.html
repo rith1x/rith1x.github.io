@@ -161,7 +161,7 @@
             // Function to fetch a random quote
             function fetchRandomQuote() {
                 // Endpoint URL
-                const apiUrl = 'https://api.quotable.io/quotes/random';
+                const apiUrl = 'https://api.quotable.io/quotes/random?minLength=100&maxLength=140';
 
                 fetch(apiUrl)
                     .then(response => response.json())
