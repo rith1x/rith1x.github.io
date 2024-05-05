@@ -5,7 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Fullscreen Div Share</title>
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
             body,
             html {
                 margin: 0;
@@ -13,63 +17,181 @@
                 height: 100%;
             }
 
-            #fullscreenDiv {
-                width: 100vw;
-                height: 100vh;
-                background-color: #f0f0f0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+            * {
+                box-sizing: border-box;
+                font-family: "Libre Caslon Text", serif;
+
             }
 
-            #dynamicContent {
-                font-size: 24px;
-                color: #333;
-                text-align: center;
+            .container {
+                max-width: 400px;
+                height: 100dvh;
+                margin: 0 auto;
+                position: relative;
+                display: flex;
+                flex-direction: column;
             }
+
+            #fullscreenDiv {
+                max-width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                background-color: transparent;
+                justify-content: space-between;
+                align-items: center;
+                padding: 25px;
+                padding-block: 50px;
+
+            }
+
 
             #shareButton {
-                padding: 10px 20px;
                 font-size: 16px;
-                background-color: #007bff;
+                width: 96%;
+                bottom: 10px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                opacity: 0;
+                padding-block: 20px;
+                position: absolute;
+                background-color: #000;
                 color: #fff;
+                border-radius: 31px;
                 border: none;
-                border-radius: 5px;
-                cursor: pointer;
+            }
+
+            .ad {
+                background-color: #ffffff30;
+                width: 100%;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 25px;
+            }
+
+            .quotebox {
+                /* box-shadow: 0 0 20px #1a1a1a62; */
+                width: 100%;
+                font-size: 1.8em;
+                min-height: 50%;
+                padding: 20px;
+                height: fit-content;
+                background-color: #ffffff90;
+                border-radius: 31px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            #author {
+                color: #4e4e4e;
+                font-size: 20px;
+                margin-top: 10px;
+                align-self: flex-end;
+            }
+
+            .rdm {
+                position: absolute;
+                width: 80px;
+                border-radius: 40px;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: #fff;
+                box-shadow: 0 0 20px #1a1a1a25;
+                font-size: 2.3em;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+                bottom: 110px;
+                height: 80px;
+            }
+
+            .rdm svg {
+                rotate: 15deg;
             }
         </style>
     </head>
 
     <body>
-        <div id="fullscreenDiv">
-            <div id="dynamicContent">
-                This is dynamic content!
+
+        <div class="container">
+            <div id="fullscreenDiv">
+                <div class="quotebox" id="rxd">
+                    <div id="quote">
+
+                    </div>
+                    <div id="author">
+
+                    </div>
+                </div>
+                <div class="ad">
+                    rith1x.github.io/quote
+                </div>
             </div>
+            <button class="rdm" onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
+            <button id="shareButton" onclick="copyboard()">Share Quote</button>
         </div>
-        <button id="shareButton" onclick="copyboard()">Share Screenshot</button>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"
-            integrity="sha512-LlT33DhU9NxLzGcZX/0OSwG2wKq5v3z9jPzwBqD3G20kxYUAIKlqjJrfRdcC3CInw5WbjrNswGtLg5RD8Akajw=="
-            crossorigin="anonymous"></script>
+
+
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
         <script>
-            async function copyboard() {
-                const elementToSave = document.getElementById("fullscreenDiv");
-                try {
-                    const canvas = await html2canvas(elementToSave);
-                    const dataUrl = canvas.toDataURL("image/jpeg");
-                    const shareData = {
-                        dataUrl,
-                        title: "Today's Quote",
-                        text: "Heyy",
-                    };
-                    await navigator.share(shareData);
-                    document.getElementById("dynamicContent").innerText = "Shared successfully";
-                } catch (err) {
-                    console.error("Error sharing:", err);
-                    document.getElementById("dynamicContent").innerText = "Failed to share";
-                }
-                elementToSave.style.background = `#${Math.floor(Math.random() * 0xffffff)}`;
+            const elementToSave = document.getElementById("fullscreenDiv");
+            function copyboard() {
+                html2canvas(elementToSave).then(canvas => {
+                    var dataUrl = canvas.toDataURL("image/jpeg");
+                    const a = document.createElement('a');
+                    a.href = dataUrl;
+                    a.download = 'quote.png';
+
+                    a.click();
+                });
+
             }
+            // Function to fetch a random quote
+            function fetchRandomQuote() {
+                // Endpoint URL
+                const apiUrl = 'https://api.quotable.io/quotes/random';
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        const quoteText = data[0].content;
+                        const quoteAuthor = data[0].author;
+                        var genClr = getRandomHexColor();
+                        document.body.style.backgroundColor = genClr;
+                        document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
+                        document.getElementById("fullscreenDiv").style.borderColor = genClr;
+
+                        document.getElementById("quote").innerText = quoteText;
+                        document.getElementById("author").innerText = quoteAuthor;
+                        console.log(`"${quoteText}" - ${quoteAuthor}`);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching quote:', error);
+                    });
+
+            }
+            fetchRandomQuote()
+
+            function getRandomHexColor() {
+                // Generate a random hexadecimal color code
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
         </script>
+
     </body>
 
 </html>
