@@ -122,6 +122,9 @@
                 right: 0;
                 bottom: 110px;
                 height: 50px;
+
+                overflow: hidden;
+
             }
 
             .rdm button {
@@ -142,7 +145,30 @@
             }
 
             .rdm button:nth-child(4) svg {
-                rotate: 15deg;
+                animation-name: float;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                transform-origin: 50% 50%;
+                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            }
+
+            @keyframes float {
+                from {
+                    scale: 1;
+                }
+
+                50% {
+
+                    scale: 1.2;
+                }
+
+                100% {
+                    scale: 1;
+                    rotate: 135deg;
+
+                }
             }
 
 
@@ -266,9 +292,9 @@
                 <button onclick="changeFont()"><i class="fa-solid fa-font"></i></button>
                 <button onclick="changeBold()"><i class="fa-solid fa-bold"></i></button>
                 <button onclick="changeItallic()"><i class="fa-solid fa-italic"></i></button>
+                <button onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
                 <button onclick="changeLook()"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button onclick="poppshow()"><i class="fa-solid fa-sliders"></i></button>
-                <button onclick="fetchRandomQuote()"><i class="fa-solid fa-dice-five"></i></button>
                 <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
             </div>
             <button id="shareButton" onclick="copyboard()">Share Quote</button>
