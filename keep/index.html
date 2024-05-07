@@ -32,14 +32,14 @@
                 let card = {
                     "note": note,
                 }
-                localStorage.setItem("note", JSON.stringify(card));
+                localStorage.setItem("keep", JSON.stringify(card));
 
 
 
 
             }
             (function syncer() {
-                const sync = JSON.parse(localStorage.getItem("note"));
+                const sync = JSON.parse(localStorage.getItem("keep"));
 
 
                 const note = document.getElementById("noteData");
@@ -251,8 +251,8 @@
                 padding-top: .3em;
                 height: 100dvh;
                 border: none;
-                line-height: 1.1em;
-                font-size: 1.3em;
+                line-height: 1.3em;
+                font-size: 1.5em;
                 color: rgb(24, 0, 131);
 
             }
