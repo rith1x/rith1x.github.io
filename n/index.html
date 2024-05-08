@@ -7,20 +7,65 @@
         <title>Portfolio</title>
         <style>
             @font-face {
-                font-family: brigast;
-                src: url(brigast.otf);
+                font-family: tgf;
+                src: url(tgf.ttf);
             }
 
             body {
                 font-size: 7em;
                 font-weight: 100;
-                font-family: brigast;
+                font-family: tgf;
+                margin: 0;
+                font-size: 18px;
+                box-sizing: border-box;
+                padding: 0;
+            }
+
+            .container {
+                width: 100%;
+                height: 100dvh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #ffbfee;
+            }
+
+            .plane {
+                width: 100%;
+                min-height: 100dvh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            .plane h3 {
+                color: #f00;
+                font-size: 2em;
+                position: absolute;
+                margin: auto;
+                top: -2em;
+            }
+
+            .plane h1 {
+                font-size: 7em;
             }
         </style>
     </head>
 
     <body>
-        Kiruthik
+        <div class="container">
+            <div class="plane">
+                <h3>I am</h3>
+                <h1>Kiruthik Kumar</h1>
+            </div>
+            <div class="plane"></div>
+            <div class="plane"></div>
+            <div class="plane"></div>
+            <div class="plane"></div>
+        </div>
     </body>
 
 </html>
