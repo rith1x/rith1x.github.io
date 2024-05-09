@@ -19,6 +19,9 @@
                 font-size: 18px;
                 box-sizing: border-box;
                 padding: 0;
+                animation-timeline: scroll();
+                animation-name: bloom;
+                animation-timing-function: linear;
             }
 
             .container {
@@ -28,12 +31,24 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
-                background-color: #ffbfee;
+
+            }
+
+            @keyframes bloom {
+                from {
+                    background-color: #000;
+
+                }
+
+                to {
+                    background-color: #00f;
+                }
             }
 
             .plane {
                 width: 100%;
                 min-height: 100dvh;
+                overflow: hidden;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -51,6 +66,7 @@
 
             .plane h1 {
                 font-size: 7em;
+                position: fixed;
             }
         </style>
     </head>

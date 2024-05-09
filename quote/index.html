@@ -97,8 +97,8 @@
             }
 
             #author {
-                color: #4e4e4e;
-                font-size: 20px;
+                color: #161616;
+                font-size: 17px;
                 margin-top: 10px;
                 align-self: flex-end;
             }
@@ -107,7 +107,7 @@
 
             .rdm {
                 position: absolute;
-                width: 350px;
+                width: fit-content;
                 border-radius: 40px;
                 border: none;
                 display: flex;
@@ -121,7 +121,7 @@
                 transition: all .3s ease-in-out;
                 right: 0;
                 bottom: 110px;
-                height: 50px;
+                height: 40px;
 
                 overflow: hidden;
 
@@ -136,7 +136,7 @@
                 margin: 0 auto;
                 left: 0;
                 right: 0;
-                font-size: .6em;
+                font-size: .5em;
                 /* width: 100%; */
                 aspect-ratio: 1 / 1;
                 height: 100%;
@@ -281,6 +281,20 @@
                 border-radius: 4px;
                 color: #7f00a6;
             }
+
+            .qtes {
+                width: 100%;
+                display: flex;
+                padding-block: 10px;
+            }
+
+            .topquote {
+                justify-content: flex-start;
+            }
+
+            .btmquote {
+                justify-content: flex-end;
+            }
         </style>
     </head>
 
@@ -289,14 +303,21 @@
         <div class="container">
             <div id="fullscreenDiv">
                 <div class="quotebox" id="rxd">
+                    <div class="topquote qtes" tag-2 style="display: none;">
+                        <i class="fa-solid fa-quote-left"></i>
+                    </div>
                     <div id="quote">
 
                     </div>
                     <div id="author">
 
                     </div>
+                    <div class="btmquote qtes" tag-1 style="display: none;">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
+
                 </div>
-                <div class="ad">
+                <div class="ad" id="ad">
                     rith1x.github.io/quote
                 </div>
             </div>
@@ -335,6 +356,8 @@
                 <button onclick="changeLook()"><i class="fa-solid fa-wand-magic-sparkles"></i></button>
                 <button onclick="poppshow()"><i class="fa-solid fa-sliders"></i></button>
                 <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
+                <button onclick="changeModel()"><i class="fa-solid fa-quote-left"></i></button>
+                <button onclick="putBorder()"><i class="fa-solid fa-border-top-left"></i></button>
             </div>
             <button id="shareButton" onclick="copyboard()">Share Quote</button>
         </div>
@@ -342,6 +365,50 @@
 
         <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
         <script>
+            let currentColor;
+            let view = 0;
+            function changeModel() {
+                if (view == 0) {
+                    const elementToSave = document.getElementById("fullscreenDiv");
+                    const ad = document.getElementById("ad");
+                    ad.style.visibility = "hidden";
+                    elementToSave.style.height = "fit-content";
+
+                    elementToSave.style.justifyContent = "center";
+                    document.getElementById("rxd").style.margin = "none";
+                    document.getElementById("rxd").style.background = "none";
+                    document.querySelector('[tag-1]').style.display = "flex";
+                    document.querySelector('[tag-2]').style.display = "flex";
+                    let meg = currentColor.split("#");
+                    console.log(meg[1])
+                    document.getElementById("rxd").style.color = getTextColor(meg[1]);
+                    document.getElementById("author").style.color = getTextColor(meg[1]);
+
+                    view = 1;
+                } else {
+                    const elementoSave = document.getElementById("fullscreenDiv");
+
+                    elementoSave.style.height = "100dvh";
+                    const ad = document.getElementById("ad");
+                    ad.style.visibility = "visible";
+                    const elementToSave = document.getElementById("fullscreenDiv");
+                    elementToSave.style.justifyContent = "space-between";
+                    document.getElementById("rxd").style.marginTop = "50px";
+                    document.getElementById("rxd").style.background = "";
+                    document.querySelector('[tag-1]').style.display = "none";
+                    document.querySelector('[tag-2]').style.display = "none";
+                    document.getElementById("rxd").style.color = "#000";
+                    view = 0;
+                }
+            }
+            function getTextColor(hexColor) {
+                let r = parseInt(hexColor.substring(0, 2), 16);
+                let g = parseInt(hexColor.substring(2, 4), 16);
+                let b = parseInt(hexColor.substring(4, 6), 16);
+                let luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+                return luminance > 0.5 ? '#000000' : '#ffffff';
+            }
+
             const elementToSave = document.getElementById("fullscreenDiv");
             function copyboard() {
                 html2canvas(elementToSave, {
@@ -368,7 +435,6 @@
                 document.getElementById("popp").style.visibility = "hidden"
             }
 
-            poppshow()
             let custom = "?minLength=20&maxLength=130"
             let apiUrl = 'https://api.quotable.io/quotes/random';
             const meta = document.getElementById("metacl");
@@ -415,10 +481,23 @@
             }
             function changeColor() {
                 var genClr = getRandomHexColor();
+                currentColor = genClr;
                 document.body.style.backgroundColor = genClr;
                 document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
                 document.getElementById("fullscreenDiv").style.borderColor = genClr;
                 meta.content = genClr;
+                if (view == 1) {
+                    let meg = currentColor.split("#");
+                    console.log(meg[1])
+                    document.getElementById("rxd").style.color = getTextColor(meg[1]);
+                    document.getElementById("author").style.color = getTextColor(meg[1]);
+
+
+                } else {
+                    document.getElementById("author").style.color = "#000";
+
+                    document.getElementById("rxd").style.color = "#000";
+                }
             }
             changeColor();
             let i = 0;
@@ -501,7 +580,17 @@
                     bold = 0
                 }
             }
-
+            let bi = 0;
+            function putBorder() {
+                const borders = ['none', 'solid 1px', 'solid 2px', 'solid 3px']
+                const qteel = document.getElementById("rxd");
+                console.log(borders[bi])
+                qteel.style.border = borders[bi];
+                bi += 1;
+                if (bi >= borders.length) {
+                    bi = 0
+                }
+            }
 
         </script>
 
