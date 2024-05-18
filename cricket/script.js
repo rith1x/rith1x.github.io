@@ -1,6 +1,6 @@
 const tossModal = document.getElementById('toss')
 const toss_body = document.getElementById('toss_content')
-
+const gameInfo = document.getElementById("gameInfo");
 
 function shows() {
     tossModal.showModal();
@@ -35,6 +35,8 @@ function computerChoice() {
         toss_body.innerHTML = "Computer Choosed to Bat!"
         setTimeout(() => {
             tossModal.close()
+            startGame()
+
         }, 2000)
 
     } else {
@@ -43,6 +45,8 @@ function computerChoice() {
         toss_body.innerHTML = "Computer Choosed to Bowl!"
         setTimeout(() => {
             tossModal.close()
+            startGame()
+
         }, 2000)
     }
 }
@@ -54,6 +58,8 @@ function chooseTo(role) {
 
         setTimeout(() => {
             tossModal.close()
+            startGame()
+
         }, 2000)
     } else {
         currentBowler = 'Player'
@@ -61,6 +67,7 @@ function chooseTo(role) {
         toss_body.innerText = "You choosed to Bowl"
         setTimeout(() => {
             tossModal.close()
+            startGame()
         }, 2000)
     }
 }
@@ -90,4 +97,33 @@ function userToss(usernum) {
         }
 
     }
+}
+function uiUpdate() {
+    gameInfo.innerText = `
+    Current Bowler: ${currentBowler}
+    Current Batter: ${currentBatter}
+    Score: ${playerScore}
+    Bot-Score: ${botScore}    
+    `
+}
+function startGame() {
+    gameInfo.innerText = `
+    Current Bowler: ${currentBowler}
+    Current Batter: ${currentBatter}
+    Score: ${playerScore}
+    Bot-Score: ${botScore}    
+    `
+    if (currentBatter == 'Computer') {
+        computerThrow();
+    }
+}
+function userThrow(choice) {
+    let botChoice = randomGenerator(6);
+    if (botChoice == choice) {
+        alert('Out');
+    } else {
+        playerScore += parseInt(choice);
+        uiUpdate()
+    }
+
 }
