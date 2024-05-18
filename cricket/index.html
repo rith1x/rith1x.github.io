@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Handcricket</title>
+        <script src="script.js" defer></script>
+        <style>
+            #toss {
+                border: none;
+                padding: 15px;
+                border-radius: 11px;
+            }
+
+
+            #toss::backdrop {
+                background-color: #00000060;
+                backdrop-filter: blur(2px);
+            }
+
+            .headline {
+                display: flex;
+                height: fit-content;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- popups -->
+        <dialog id="toss">
+
+            <div class="headline">
+                <h2 id="toss-head">Toss</h2>
+                <button onclick="closeToss()">Close</button>
+            </div>
+            <div id="toss_content">
+                <div class="cont">Toss for Gameplay</div>
+
+                <div id="evenodd">
+                    <input type="radio" name="choice" value="even" id="r1" checked>
+                    <label for="r1">Even</label>
+                    <input type="radio" name="choice" value="odd" id="r2">
+                    <label for="r2">Odd</label>
+                </div>
+
+                <button onclick="userToss('1')">1</button>
+                <button onclick="userToss('2')">2</button>
+                <button onclick="userToss('3')">3</button>
+                <button onclick="userToss('4')">4</button>
+                <button onclick="userToss('5')">5</button>
+                <button onclick="userToss('6')">6</button>
+
+
+            </div>
+        </dialog>
+        <dialog id="alert-modal">
+            <div class="headline">
+                <h2>Alert</h2>
+            </div>
+        </dialog>
+        <button onclick="shows()">Open</button>
+
+    </body>
+
+</html>

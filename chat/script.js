@@ -22,6 +22,11 @@ const cscr = document.getElementById("chatx");
 let updat;
 const xy = yx = Symbol();
 
+const lklk = {
+    [xy]: (_ms,_ky) => { return CryptoJS.AES.encrypt(_ms,_ky).toString(); },
+    [yx]: (_ms,_ky) => { return CryptoJS.AES.decrypt(_ms,_ky).toString(CryptoJS.enc.Utf8); }
+};
+
 var currurl = window.location.href;
 console.log(currurl)
 if (currurl.includes("?r=")) {
@@ -555,3 +560,15 @@ firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
         window.location.href = "/chat";
     }
 });
+
+function keyMaker(rc){
+    let nc =""
+    let rs = "";
+    for(let i = 0 ; i<rc.length; i++){
+        nc+=parseInt(rc.charCodeAt(i))+1
+    }
+    for(let i = nc.length-1; i>=0; i--){
+        rs+=nc[i]
+    }
+    return parseInt(rs)+parseInt(nc)
+}

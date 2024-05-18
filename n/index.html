@@ -5,82 +5,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Portfolio</title>
+        
         <style>
-            @font-face {
-                font-family: tgf;
-                src: url(tgf.ttf);
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
             }
 
             body {
-                font-size: 7em;
-                font-weight: 100;
-                font-family: tgf;
-                margin: 0;
-                font-size: 18px;
-                box-sizing: border-box;
-                padding: 0;
-                animation-timeline: scroll();
-                animation-name: bloom;
-                animation-timing-function: linear;
-            }
-
-            .container {
-                width: 100%;
-                height: 100dvh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-between;
-
-            }
-
-            @keyframes bloom {
-                from {
-                    background-color: #000;
-
-                }
-
-                to {
-                    background-color: #00f;
-                }
-            }
-
-            .plane {
-                width: 100%;
-                min-height: 100dvh;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                position: relative;
-            }
-
-            .plane h3 {
-                color: #f00;
-                font-size: 2em;
-                position: absolute;
-                margin: auto;
-                top: -2em;
-            }
-
-            .plane h1 {
-                font-size: 7em;
-                position: fixed;
+                background-color: #000;
             }
         </style>
     </head>
 
     <body>
         <div class="container">
-            <div class="plane">
-                <h3>I am</h3>
-                <h1>Kiruthik Kumar</h1>
+            <div class="card">
+
             </div>
-            <div class="plane"></div>
-            <div class="plane"></div>
-            <div class="plane"></div>
-            <div class="plane"></div>
         </div>
     </body>
 

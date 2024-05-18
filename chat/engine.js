@@ -241,3 +241,4 @@ firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot)
 //     currentActive = parseInt(snapshot.val());
 //     console.log(currentActive)
 // });
+
