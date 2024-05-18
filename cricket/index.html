@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handcricket</title>
         <script src="script.js" defer></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <style>
+            @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap');
+
             #toss {
                 border: none;
                 padding: 15px;
-                border-radius: 11px;
+                border-radius: 21px;
+                width: 90%;
+                max-width: 460px;
             }
 
 
@@ -30,6 +36,32 @@
             .gamespace {
                 visibility: hidden;
             }
+
+            .button-grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                gap: 10px;
+
+            }
+
+            .button-grid button {
+                height: 50px;
+                border: none;
+                color: #00ab47;
+                border-radius: 11px;
+                border: solid 2px;
+                background-color: transparent;
+                font-family: Martian Mono;
+                font-size: 1.3em;
+            }
+
+            #evenodd {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                margin-block: 20px;
+                gap: 10px;
+                width: 100%;
+            }
         </style>
     </head>
 
@@ -45,19 +77,32 @@
             <div id="toss_content">
                 <div class="cont">Toss for Gameplay</div>
 
-                <div id="evenodd">
-                    <input type="radio" name="choice" value="even" id="r1" checked>
-                    <label for="r1">Even</label>
-                    <input type="radio" name="choice" value="odd" id="r2">
-                    <label for="r2">Odd</label>
-                </div>
+                <div id="evenodd" class="form-check form-switch">
+                    <div class="">
+                        <input type="radio" class="btn-check" name="options-outlined" value="even" id="success-outlined"
+                            autocomplete="off" checked>
+                        <label style="width: 100%;" class="btn btn-outline-dark" for="success-outlined">Even</label>
+                    </div>
+                    <div class="">
+                        <input type="radio" class="btn-check" name="options-outlined" value="odd" id="dark-outlined"
+                            autocomplete="off">
+                        <label style="width: 100%;" class="btn btn-outline-dark" for="dark-outlined">Odd</label>
+                    </div>
+                </div><!-- <span><input type="radio" name="choice" value="even" id="r1" checked>
+                        <label for="r1">Even</label></span>
+                    <span>
+                        <input type="radio" name="choice" value="odd" id="r2">
+                        <label for="r2">Odd</label>
+                    </span> -->
 
-                <button onclick="userToss('1')">1</button>
-                <button onclick="userToss('2')">2</button>
-                <button onclick="userToss('3')">3</button>
-                <button onclick="userToss('4')">4</button>
-                <button onclick="userToss('5')">5</button>
-                <button onclick="userToss('6')">6</button>
+                <div class="button-grid">
+                    <button onclick="userToss('1')">1</button>
+                    <button onclick="userToss('2')">2</button>
+                    <button onclick="userToss('3')">3</button>
+                    <button onclick="userToss('4')">4</button>
+                    <button onclick="userToss('5')">5</button>
+                    <button onclick="userToss('6')">6</button>
+                </div>
 
 
             </div>

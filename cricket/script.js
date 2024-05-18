@@ -122,16 +122,26 @@ function startGame() {
 function userThrow(choice) {
     let botChoice = randomGenerator(6);
     if (botChoice == choice) {
-        alert('Out');
-        stateChange();
+        if (round == 1 && playerScore == botScore) {
+            gameoverDraw();
+        } else {
+            alert('Out');
+            stateChange();
+        }
+
     } else {
         if (currentBatter == 'Player') {
             playerScore += parseInt(choice);
             uiUpdate()
+            if (playerScore > botScore && round == 1) {
+                gameover();
+            }
         } else {
             botScore += parseInt(botChoice);
             uiUpdate()
-
+            if (botScore > playerScore && round == 1) {
+                gameover();
+            }
         }
     }
 
@@ -150,4 +160,7 @@ function gameover() {
     let winner = playerScore > botScore ? 'Player' : 'Computer'
     let diff = winner == 'Player' ? playerScore - botScore : botScore - playerScore;
     document.body.innerText = `${winner} won by ${diff} Runs`;
+}
+function gameoverDraw() {
+    document.body.innerText = `Draw Match`;
 }
