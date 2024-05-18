@@ -22,7 +22,8 @@ let playerScore = 0;
 let botScore = 0;
 let currentBatter = "Player";
 let currentBowler = "Computer";
-
+let round = 0;
+let bats = 0;
 shows();
 function giveUserChoice() {
     toss_body.innerHTML = `<div class="cont" > Electing to: </div ><button onclick="chooseTo('bowl')">Bowling</button><button onclick="chooseTo('bat')">Batting</button>`;
@@ -107,6 +108,7 @@ function uiUpdate() {
     `
 }
 function startGame() {
+    document.getElementById('gamespace').style.visibility = "visible"
     gameInfo.innerText = `
     Current Bowler: ${currentBowler}
     Current Batter: ${currentBatter}
@@ -121,9 +123,31 @@ function userThrow(choice) {
     let botChoice = randomGenerator(6);
     if (botChoice == choice) {
         alert('Out');
+        stateChange();
     } else {
-        playerScore += parseInt(choice);
-        uiUpdate()
+        if (currentBatter == 'Player') {
+            playerScore += parseInt(choice);
+            uiUpdate()
+        } else {
+            botScore += parseInt(botChoice);
+            uiUpdate()
+
+        }
     }
 
+}
+function stateChange() {
+    round += 1;
+    if (round < 2) {
+        currentBatter = currentBatter == 'Player' ? 'Computer' : 'Player';
+        currentBowler = currentBowler == 'Player' ? 'Computer' : 'Player';
+        uiUpdate();
+    } else {
+        gameover();
+    }
+}
+function gameover() {
+    let winner = playerScore > botScore ? 'Player' : 'Computer'
+    let diff = winner == 'Player' ? playerScore - botScore : botScore - playerScore;
+    document.body.innerText = `${winner} won by ${diff} Runs`;
 }

@@ -26,6 +26,10 @@
                 justify-content: space-between;
                 gap: 10px;
             }
+
+            .gamespace {
+                visibility: hidden;
+            }
         </style>
     </head>
 
@@ -64,14 +68,16 @@
             </div>
         </dialog>
         <button onclick="shows()">Open</button>
-        <div id="gameInfo"></div>
-        <div id="gameplay">
-            <button onclick="userThrow('1')">1</button>
-            <button onclick="userThrow('2')">2</button>
-            <button onclick="userThrow('3')">3</button>
-            <button onclick="userThrow('4')">4</button>
-            <button onclick="userThrow('5')">5</button>
-            <button onclick="userThrow('6')">6</button>
+        <div id="gamespace" class="gamespace">
+            <div id="gameInfo"></div>
+            <div id="gameplay">
+                <button onclick="userThrow('1')">1</button>
+                <button onclick="userThrow('2')">2</button>
+                <button onclick="userThrow('3')">3</button>
+                <button onclick="userThrow('4')">4</button>
+                <button onclick="userThrow('5')">5</button>
+                <button onclick="userThrow('6')">6</button>
+            </div>
         </div>
 
 
