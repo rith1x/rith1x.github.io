@@ -24,15 +24,28 @@ let currentBatter = "Player";
 let currentBowler = "Computer";
 let round = 0;
 let bats = 0;
+let balls = 0;
+let lasten = '';
 shows();
 function giveUserChoice() {
-    toss_body.innerHTML = `<div class="cont" > Electing to: </div ><button onclick="chooseTo('bowl')">Bowling</button><button onclick="chooseTo('bat')">Batting</button>`;
+    document.getElementById('toss-btn').style.display = 'none';
+    toss_body.innerHTML = `
+    <div class="cont">Choose to </div>
+    <div class="toggle" id="evenodd">
+        <input type="radio" id="sizeWeight" oninput="chooseTo('bowl')" />
+        <label for="sizeWeight">Bowling</label>
+        <input type="radio" id="sizeDimensions" oninput="chooseTo('bat')"/>
+        <label for="sizeDimensions">Batting</label>
+    </div>
+    `;
 }
 function computerChoice() {
     let comp_choice = randomGenerator(6);
     if (comp_choice > 3) {
         currentBatter = "Computer"
         currentBowler = "Player"
+        document.getElementById('toss-btn').style.display = 'none';
+
         toss_body.innerHTML = "Computer Choosed to Bat!"
         setTimeout(() => {
             tossModal.close()
@@ -43,6 +56,8 @@ function computerChoice() {
     } else {
         currentBatter = "Player"
         currentBowler = "Computer"
+        document.getElementById('toss-btn').style.display = 'none';
+
         toss_body.innerHTML = "Computer Choosed to Bowl!"
         setTimeout(() => {
             tossModal.close()
@@ -77,6 +92,7 @@ function userToss(usernum) {
     let botchoice = userchoice == 'even' ? 'odd' : 'even';
     console.log(userchoice + " " + botchoice)
     let botnum = randomGenerator(6)
+
     let totalToss = parseInt(usernum) + parseInt(botnum);
     console.log(usernum + " " + botnum)
     console.log("Total: " + totalToss)
@@ -100,44 +116,64 @@ function userToss(usernum) {
     }
 }
 function uiUpdate() {
-    gameInfo.innerText = `
-    Current Bowler: ${currentBowler}
-    Current Batter: ${currentBatter}
-    Score: ${playerScore}
-    Bot-Score: ${botScore}    
-    `
+    // gameInfo.innerText = `
+    // Current Bowler: ${currentBowler}
+    // Current Batter: ${currentBatter}
+    // Score: ${playerScore}
+    // Bot-Score: ${botScore}    
+    // `
+
+    document.getElementById('sr').innerText = ((playerScore / balls) * 100).toFixed(2)
+    if (currentBatter == 'Computer') {
+        document.getElementById('c-bat').className = 'show-bat'
+    } else {
+        document.getElementById('u-bat').className = 'show-bat'
+
+    }
+    if (round == 1 && currentBatter == 'Player') {
+        document.getElementById('rtw').innerText = botScore - playerScore;
+    } else {
+        document.getElementById('rtw').innerText = 0;
+
+    }
+    document.getElementById("ltb").innerText = lasten.slice(-20);
+
+    document.getElementById("bScr").innerText = botScore
+    document.getElementById("pScr").innerText = playerScore
 }
 function startGame() {
+    uiUpdate();
     document.getElementById('gamespace').style.visibility = "visible"
-    gameInfo.innerText = `
-    Current Bowler: ${currentBowler}
-    Current Batter: ${currentBatter}
-    Score: ${playerScore}
-    Bot-Score: ${botScore}    
-    `
-    if (currentBatter == 'Computer') {
-        computerThrow();
-    }
+
 }
+
 function userThrow(choice) {
     let botChoice = randomGenerator(6);
+    balls += 1;
     if (botChoice == choice) {
+        lasten += 'W '
+        uiUpdate();
+
         if (round == 1 && playerScore == botScore) {
             gameoverDraw();
         } else {
-            alert('Out');
+            document.getElementById('u-bat').classList.remove('show-bat')
+            document.getElementById('c-bat').classList.remove('show-bat')
+
             stateChange();
         }
 
     } else {
         if (currentBatter == 'Player') {
             playerScore += parseInt(choice);
+            lasten += choice + " "
             uiUpdate()
             if (playerScore > botScore && round == 1) {
                 gameover();
             }
         } else {
             botScore += parseInt(botChoice);
+
             uiUpdate()
             if (botScore > playerScore && round == 1) {
                 gameover();
@@ -159,8 +195,23 @@ function stateChange() {
 function gameover() {
     let winner = playerScore > botScore ? 'Player' : 'Computer'
     let diff = winner == 'Player' ? playerScore - botScore : botScore - playerScore;
-    document.body.innerText = `${winner} won by ${diff} Runs`;
+    document.getElementById('oneliner').innerText = `${winner} won by ${diff} Runs`;
+    if (winner == 'Player') {
+        document.querySelector('[botpop]').className = "run";
+        document.querySelector('[botpop]').innerText = "Runner";
+        document.querySelector('[plrpop]').className = "win";
+        document.querySelector('[plrpop]').innerText = "Winner";
+    } else {
+        document.querySelector('[botpop]').className = "win";
+        document.querySelector('[botpop]').innerText = "Winner";
+        document.querySelector('[plrpop]').className = "run";
+        document.querySelector('[plrpop]').innerText = "Runner";
+    }
+    document.getElementById('scorecard').showModal()
+
 }
 function gameoverDraw() {
     document.body.innerText = `Draw Match`;
 }
+
+

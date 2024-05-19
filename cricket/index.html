@@ -6,17 +6,153 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Handcricket</title>
         <script src="script.js" defer></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+
+        <style>
+
+        </style>
+    </head>
+
+    <body>
+        <!-- popups -->
+
+        <dialog id="toss">
+
+            <div class="headline">
+                <h2 id="toss-head">Toss</h2>
+                <button onclick="closeToss()">Close</button>
+            </div>
+            <div id="toss_content">
+                <div class="cont">Toss for Gameplay</div>
+
+                <div class="toggle" id="evenodd">
+                    <input type="radio" name="choice" value="even" id="sizeWeight" checked="checked" />
+                    <label for="sizeWeight">Even</label>
+                    <input type="radio" name="choice" value="odd" id="sizeDimensions" />
+                    <label for="sizeDimensions">Odd</label>
+                </div>
+            </div>
+            <div class="button-grid" id="toss-btn">
+                <button onclick="userToss('1')">1</button>
+                <button onclick="userToss('2')">2</button>
+                <button onclick="userToss('3')">3</button>
+                <button onclick="userToss('4')">4</button>
+                <button onclick="userToss('5')">5</button>
+                <button onclick="userToss('6')">6</button>
+            </div>
+
+
+            </div>
+        </dialog>
+        <dialog id="alert-modal">
+            <div class="headline">
+                <h2>Alert</h2>
+            </div>
+        </dialog>
+        <dialog class="card" id="scorecard">
+            <div class="oneliner">
+                <p id="oneliner"></p>
+            </div>
+            <div class="logs">
+                <div class="">
+                    <img src="com.png" alt="">
+                </div>
+                <div class="">
+                    vs
+                </div>
+                <div class="">
+                    <img src="pla.png" alt="">
+                </div>
+            </div>
+            <div class="winrun">
+                <div class="" id="" botpop></div>
+                <div class="" id="" plrpop></div>
+            </div>
+            <button onclick="javascript:location.reload()">Newgame</button>
+        </dialog>
+        <div id="gamespace" class="gamespace" style="visibility: visible;">
+            <!-- <div id="gameInfo">
+                Current Bowler: ${currentBowler}
+                Current Batter: ${currentBatter}
+                Score: ${playerScore}
+                Bot-Score: ${botScore}
+            </div> -->
+            <div class="hud-board">
+
+                <div class="rtwsr">
+                    <div class="sr">
+                        Strike Rate: <p id="sr"></p>
+                    </div>
+                    <div class="rtw">
+                        Runs to Win: <p id="rtw"></p>
+                    </div>
+                </div>
+                <div class="lbs">
+                    Last 10 balls&nbsp;<p id="ltb"></p>
+                </div>
+            </div>
+            <div class="gameview">
+                <div class="logo">
+                    <img src="com.png" alt="" draggable="false">
+                    <img src="bat.png" id="c-bat" alt="">
+                </div>
+                <div class="logo">
+                    <img src="pla.png" alt="" draggable="false">
+                    <img src="bat.png" id="u-bat">
+                </div>
+                <div class="bot chs" id="bScr">
+                    0
+                </div>
+                <div class="plr chs" id="pScr">
+                    0
+                </div>
+                <div class="stage">
+                    <h1 id="cpy"></h1>
+                </div>
+                <div class="stage">
+                    <h1 id="ppy"></h1>
+                </div>
+                <div class="boname cn">Computer</div>
+                <div class="plname cn">You</div>
+
+            </div>
+            <div id="gameplay" class="play-btns">
+                <button onclick="userThrow('1')">1</button>
+                <button onclick="userThrow('2')">2</button>
+                <button onclick="userThrow('3')">3</button>
+                <button onclick="userThrow('4')">4</button>
+                <button onclick="userThrow('5')">5</button>
+                <button onclick="userThrow('6')">6</button>
+            </div>
+        </div>
+
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap');
 
+            * {
+                /* border: solid .1px #0f0; */
+                box-sizing: border-box;
+                padding: 0;
+                font-family: Martian mono;
+                margin: 0;
+            }
+
+            body {
+                background: linear-gradient(89deg, rgb(21, 74, 189) 0.1%, rgb(26, 138, 211) 51.5%, rgb(72, 177, 234) 100.2%);
+                height: 100dvh;
+                padding: 0;
+                margin: 0;
+            }
+
+
             #toss {
                 border: none;
-                padding: 15px;
+                padding: 20px;
                 border-radius: 21px;
                 width: 90%;
                 max-width: 460px;
+                inset: 0;
+                margin: auto;
             }
 
 
@@ -31,6 +167,14 @@
                 align-items: center;
                 justify-content: space-between;
                 gap: 10px;
+            }
+
+            .headline button {
+                border: none;
+                padding: 5px 10px;
+                background-color: transparent;
+                font-weight: 500;
+                color: rgb(202, 0, 0);
             }
 
             .gamespace {
@@ -56,76 +200,309 @@
             }
 
             #evenodd {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
                 margin-block: 20px;
-                gap: 10px;
                 width: 100%;
             }
+
+            .toggle {
+                box-sizing: border-box;
+                font-size: 0;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: flex-start;
+                align-items: stretch;
+                gap: 10px;
+
+                input {
+                    display: none;
+                }
+
+                input+label {
+                    margin: 0;
+                    padding: .75rem 2rem;
+                    box-sizing: border-box;
+                    position: relative;
+                    display: inline-block;
+                    border: solid 2px #0047ab80;
+                    background-color: #FFF;
+                    font-size: 1rem;
+                    line-height: 140%;
+                    color: #0047ab;
+                    font-weight: 600;
+                    text-align: center;
+                    transition: border-color .15s ease-out,
+                        color .25s ease-out,
+                        background-color .15s ease-out,
+                        box-shadow .15s ease-out;
+
+                    flex: 0 1 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    border-radius: 11px;
+                }
+
+                input:hover+label {
+                    border-color: #0047ab;
+                }
+
+                input:checked+label {
+                    background-color: #0047ab;
+                    color: #FFF;
+                    border-color: #0047ab;
+                    z-index: 1;
+                }
+
+
+
+            }
+
+            .gamespace {
+                max-width: 400px;
+                height: 100dvh;
+                margin: 0 auto;
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+
+            }
+
+            .play-btns {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 5px;
+            }
+
+            .play-btns button {
+                height: 60px;
+                border: none;
+                color: #fff;
+                border-radius: 30px;
+                background-color: transparent;
+                font-family: Martian Mono;
+                border: solid 1px #ffffff50;
+                font-size: 1.3em;
+            }
+
+            .hud-board {
+                width: 100%;
+                display: flex;
+                font-size: 14px;
+                flex-direction: column;
+                font-family: Martian Mono;
+
+                gap: 10px;
+            }
+
+
+            .rtwsr {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .rtwsr div {
+                height: 40px;
+
+                display: flex;
+                align-items: center;
+                border-radius: 6px;
+                justify-content: center;
+                background-color: #FFF;
+                width: 100%;
+            }
+
+            .gameview {
+                width: 100%;
+
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .gameview div.chs {
+                /* background-color: #ffffffbb; */
+                border-radius: 11px;
+
+                display: flex;
+                align-items: center;
+                width: 100%;
+                font-weight: 1000;
+                color: #fff;
+                justify-content: center;
+                font-size: 2em;
+                font-family: Martian Mono;
+            }
+
+            .cn {
+                font-family: Martian Mono;
+                color: #fff;
+                font-size: .9em;
+                width: 100%;
+                text-align: center;
+            }
+
+            .logo {
+                width: 100%;
+                display: flex;
+                /* overflow: hidden; */
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                position: relative;
+                /* border: solid 5px #fff; */
+                /* box-shadow: 0 0 10px #2323238d; */
+            }
+
+            .logo img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            .logo img:last-child {
+                position: absolute !important;
+                background-color: rgb(255, 255, 255);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                padding: 3px;
+                z-index: 2;
+                bottom: 10px;
+                border: solid 2px rgb(255, 255, 255);
+                right: 20px;
+                visibility: hidden;
+            }
+
+            .show-bat {
+                visibility: visible !important;
+            }
+
+            .lbs {
+                height: 40px;
+                display: flex;
+                align-items: center;
+                border-radius: 6px;
+                justify-content: center;
+                background-color: #FFF;
+                padding-inline: 7px;
+                width: 100%;
+                font-size: 14px;
+            }
+
+            .stage {
+                font-weight: 1000;
+                color: #fff;
+                font-size: 2em;
+
+                marquee {
+                    text-align: center;
+                }
+            }
+
+            #ltb,
+            #rtw,
+            #sr {
+                color: #0047ab;
+                background-color: #0047ab50;
+                padding-inline: 8px;
+                padding-block: 2px;
+                border-radius: 6px;
+                font-weight: 600;
+            }
+
+            #sr {
+                color: #ce6a00;
+                background-color: #ce6a0050;
+            }
+
+            #rtw {
+                color: #7200ab;
+                background-color: #7200ab50;
+            }
+
+            .card {
+                background-color: #fff;
+                padding: 15px;
+                width: 80%;
+                max-width: 400px;
+                inset: 0;
+                border: none;
+                margin: auto;
+                border-radius: 31px;
+            }
+
+            .card button {
+                border: none;
+                background-color: #0047ab;
+                height: 50px;
+                width: 100%;
+                margin-top: 20px;
+                border-radius: 21px;
+                font-size: 1em;
+                color: #fff;
+                font-weight: 700;
+            }
+
+            .logs {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                justify-content: space-around;
+            }
+
+            .logs div {
+                aspect-ratio: 1 / 1;
+                font-weight: 700;
+            }
+
+
+            .logs div img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            .oneliner {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: 15px;
+                font-weight: 700;
+            }
+
+            .winrun {
+                display: flex;
+                margin-top: 5px;
+                align-items: center;
+                justify-content: space-between;
+                padding-inline: 40px;
+                font-size: 1.1em;
+                font-weight: 700;
+            }
+
+            .winrun div {
+                padding-inline: 5px;
+                padding-block: 2px;
+                border-radius: 6px;
+            }
+
+            .win {
+                color: #2eb522;
+
+            }
+
+            .run {
+                color: #ff5500;
+
+            }
         </style>
-    </head>
-
-    <body>
-        <!-- popups -->
-
-        <dialog id="toss">
-
-            <div class="headline">
-                <h2 id="toss-head">Toss</h2>
-                <button onclick="closeToss()">Close</button>
-            </div>
-            <div id="toss_content">
-                <div class="cont">Toss for Gameplay</div>
-
-                <div id="evenodd" class="form-check form-switch">
-
-                    <!-- <input type="radio" class="btn-check" name="options-outlined" value="even" id="success-outlined"
-                        autocomplete="off" checked>
-                    <label style="width: 100%;" class="btn btn-outline-dark" for="success-outlined">Even</label>
-
-                    <input type="radio" class="btn-check" name="options-outlined" value="odd" id="dark-outlined"
-                        autocomplete="off">
-                    <label style="width: 100%;" class="btn btn-outline-dark" for="dark-outlined">Odd</label>
-
-                </div> -->
-                    <span><input type="radio" name="choice" value="even" id="r1" checked>
-                        <label for="r1">Even</label></span>
-                    <span>
-                        <input type="radio" name="choice" value="odd" id="r2">
-                        <label for="r2">Odd</label>
-                    </span>
-                </div>
-                <div class="button-grid">
-                    <button onclick="userToss('1')">1</button>
-                    <button onclick="userToss('2')">2</button>
-                    <button onclick="userToss('3')">3</button>
-                    <button onclick="userToss('4')">4</button>
-                    <button onclick="userToss('5')">5</button>
-                    <button onclick="userToss('6')">6</button>
-                </div>
-
-
-            </div>
-        </dialog>
-        <dialog id="alert-modal">
-            <div class="headline">
-                <h2>Alert</h2>
-            </div>
-        </dialog>
-        <button onclick="shows()">Open</button>
-        <div id="gamespace" class="gamespace">
-            <div id="gameInfo"></div>
-            <div id="gameplay">
-                <button onclick="userThrow('1')">1</button>
-                <button onclick="userThrow('2')">2</button>
-                <button onclick="userThrow('3')">3</button>
-                <button onclick="userThrow('4')">4</button>
-                <button onclick="userThrow('5')">5</button>
-                <button onclick="userThrow('6')">6</button>
-            </div>
-        </div>
-
-
 
 
     </body>
