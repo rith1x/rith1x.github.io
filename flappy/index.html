@@ -95,9 +95,12 @@
                 if (jpng == 0) {
                     char.style.top = (chartop + 3) + "px"
                 }
-                if (chartop > height - 30) {
+                var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+                var holeTop = parseInt(window.getComputedStyle(hole).getPropertyValue("top"));
+                var cTop = -(height - chartop);
+                if ((chartop > height - 30) || ((blockLeft < 20) && (blockLeft > -50) && ((cTop < holeTop) || (cTop > holeTop + 130)))) {
                     alert('Game Over, Score = ' + scr);
-                    char.style.top = "0px"
+                    char.style.top = "100px"
                     scr = 0;
                 }
 
@@ -108,7 +111,7 @@
                 var jmpiv = setInterval(() => {
                     var chartop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
                     if ((chartop > 6) && (scr < 15)) {
-                        char.style.top = (chartop - 5) + "px"
+                        char.style.top = (chartop - 3) + "px"
                     }
                     if (jct > 20) {
                         clearInterval(jmpiv)
