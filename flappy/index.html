@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" onclick="jump()">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flappy Bird</title>
+    </head>
+
+    <body>
+        <div id="game">
+            <div id="blk">
+            </div>
+            <div id="hole">
+            </div>
+            <div id="char">
+            </div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #game {
+                max-width: 400px;
+                height: 100dvh;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+
+            #blk {
+                width: 50px;
+                height: 100%;
+                background-color: #000;
+                position: relative;
+                left: 100%;
+                animation: block 2s infinite linear;
+
+            }
+
+            @keyframes block {
+                0% {
+                    left: 100%;
+                }
+
+                100% {
+                    left: -50px;
+                }
+            }
+
+            #hole {
+                width: 50px;
+                height: 150px;
+                background-color: #fff;
+                position: relative;
+                left: 100%;
+                top: -100%;
+                animation: block 2s infinite linear;
+
+            }
+
+            #char {
+                width: 30px;
+                height: 30px;
+                background-color: #0047ab;
+                position: absolute;
+                top: 100px;
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            var height = document.getElementById('game').getBoundingClientRect().height
+            var width = document.getElementById('game').getBoundingClientRect().width
+            const block = document.getElementById('blk')
+            const hole = document.getElementById('hole')
+            var char = document.getElementById('char');
+            var jpng = 0;
+            var scr = 0;
+
+            hole.addEventListener('animationiteration', () => {
+                var rdm = -((Math.random() * 300) + 150);
+                hole.style.top = rdm + "px"
+                scr++;
+            });
+            setInterval(() => {
+                var chartop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                if (jpng == 0) {
+                    char.style.top = (chartop + 3) + "px"
+                }
+                if (chartop > height - 30) {
+                    alert('Game Over, Score = ' + scr);
+                    char.style.top = "0px"
+                    scr = 0;
+                }
+
+            }, 10);
+            function jump() {
+                jpng = 1;
+                let jct = 0
+                var jmpiv = setInterval(() => {
+                    var chartop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
+                    if ((chartop > 6) && (scr < 15)) {
+                        char.style.top = (chartop - 5) + "px"
+                    }
+                    if (jct > 20) {
+                        clearInterval(jmpiv)
+                        jpng = 0
+                        jct = 0
+                    }
+                    jct++
+                }, 10);
+            }
+        </script>
+    </body>
+
+</html>
