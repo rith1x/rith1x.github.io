@@ -23,8 +23,8 @@ let updat;
 const xy = yx = Symbol();
 
 const lklk = {
-    [xy]: (_ms,_ky) => { return CryptoJS.AES.encrypt(_ms,_ky).toString(); },
-    [yx]: (_ms,_ky) => { return CryptoJS.AES.decrypt(_ms,_ky).toString(CryptoJS.enc.Utf8); }
+    [xy]: (_ms, _ky) => { return CryptoJS.AES.encrypt(_ms, _ky).toString(); },
+    [yx]: (_ms, _ky) => { return CryptoJS.AES.decrypt(_ms, _ky).toString(CryptoJS.enc.Utf8); }
 };
 
 var currurl = window.location.href;
@@ -276,7 +276,9 @@ function normalMessage() {
     var messageel = document.getElementById("message");
     var uncleaned = messageel.value;
     // console.log(uncleaned);
+
     var message = profanityCleaner(uncleaned);
+    message = message.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
     if (message != " " || message != "") {
         var timex = geTime();
         firebase.database().ref("ROOMS").child(currentRoom).push().set({
@@ -532,6 +534,8 @@ function replyMessage() {
     var messageel = document.getElementById("message");
     var uncleaned = messageel.value;
     var message = profanityCleaner(uncleaned);
+    message = message.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+
     if (message != " " || message != "") {
         var timex = geTime();
         var rems = cRply;
@@ -561,14 +565,14 @@ firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
     }
 });
 
-function keyMaker(rc){
-    let nc =""
+function keyMaker(rc) {
+    let nc = ""
     let rs = "";
-    for(let i = 0 ; i<rc.length; i++){
-        nc+=parseInt(rc.charCodeAt(i))+1
+    for (let i = 0; i < rc.length; i++) {
+        nc += parseInt(rc.charCodeAt(i)) + 1
     }
-    for(let i = nc.length-1; i>=0; i--){
-        rs+=nc[i]
+    for (let i = nc.length - 1; i >= 0; i--) {
+        rs += nc[i]
     }
-    return parseInt(rs)+parseInt(nc)
+    return parseInt(rs) + parseInt(nc)
 }
