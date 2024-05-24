@@ -20,11 +20,10 @@ const mex = document.getElementById("mex");
 const wscr = document.getElementById("welcx");
 const cscr = document.getElementById("chatx");
 let updat;
-const xy = yx = Symbol();
 
 const lklk = {
-    [xy]: (_ms, _ky) => { return CryptoJS.AES.encrypt(_ms, _ky).toString(); },
-    [yx]: (_ms, _ky) => { return CryptoJS.AES.decrypt(_ms, _ky).toString(CryptoJS.enc.Utf8); }
+    en: (_ms, _ky) => { return CryptoJS.AES.encrypt(_ms, _ky).toString(); },
+    de: (_ms, _ky) => { return CryptoJS.AES.decrypt(_ms, _ky).toString(CryptoJS.enc.Utf8); }
 };
 
 var currurl = window.location.href;
@@ -33,12 +32,10 @@ if (currurl.includes("?r=")) {
     let spliced = currurl.split("?r=");
     let codie = spliced[1];
     let frontpt = spliced[0]
-    let namey = localStorage.getItem("chatName")
-    if (frontpt.includes("?c")) {
-        let dat = [namey];
-        console.log(dat)
-        firebase.database().ref("ROOMS").child(codie).child("active").set(dat);
-    }
+    // let namey = localStorage.getItem("chatName")
+    // let dat = [namey];
+    // console.log(dat)
+    // firebase.database().ref("ROOMS").child(codie).child("active").set(dat);
     console.log(codie)
     document.getElementById("roomcode").value = codie;
     if (codie != undefined) {
@@ -193,12 +190,11 @@ function deleteRoom() {
 //SHARE ROOM
 
 function shareRoom() {
-    const theUrl = `https:\/\/rith1x.github.io/chat/?r=${currentRoom}`;
-    const qrBase = "https:\/\/chart.googleapis.com/chart?cht=qr&chs=512x512&chl=";
+    const theUrl = `https://rith1x.github.io/chat/?r=${currentRoom}`;
+    const qrBase = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
     const masterQr = qrBase + theUrl;
     sharePop(masterQr, theUrl);
 }
-
 
 function sharePop(qrsrc, txtsrc) {
     const tHEl = document.getElementById('exportroompop');
@@ -206,8 +202,6 @@ function sharePop(qrsrc, txtsrc) {
     tHEl.style.animationPlayState = "running";
     const imgel = document.getElementById('qrimg');
     imgel.src = qrsrc;
-    const loader = document.getElementById('loading-bar-spinner');
-    loader.style.display = "none";
     imgel.style.display = "block";
     const urlBox = document.getElementById('shareurl');
     urlBox.value = txtsrc
@@ -217,8 +211,15 @@ function sharePop(qrsrc, txtsrc) {
 
 function clipboardcopy() {
     const pwElement = document.getElementById("shareurl");
-    pwElement.select();
-    document.clipboardcopy("copy");
+    let link2cpy = pwElement.value;
+    navigator.clipboard.writeText(link2cpy);
+    document.getElementById('cpyBtn').value = "Copied!";
+    setTimeout(() => {
+        document.getElementById('cpyBtn').value = "Copy";
+
+
+    }, 2000);
+    // document.execCommand("copy");
 }
 
 function closeRoomPop() {
@@ -256,16 +257,19 @@ function joinRoom() {
 }
 
 function profanityCleaner(sentence) {
-    var result = [];
-    const localWords = sentence.split(" ");
-    for (i = 0; i < localWords.length; i++) {
-        if (profDb.includes(localWords[i].toLowerCase())) {
-            localWords[i] = "****"
-        }
-        result.push(localWords[i]);
-    }
-    result = result.join(" ");
-    return result;
+    // var result = [];
+    // const localWords = sentence.split(" ");
+    // for (i = 0; i < localWords.length; i++) {
+    //     if (profDb.includes(localWords[i].toLowerCase())) {
+    //         localWords[i] = "****"
+    //     }
+    //     result.push(localWords[i]);
+    // }
+    // result = result.join(" ");
+    let key = keyMaker(currentRoom);
+    console.log(key)
+    let encrypted = lklk.en(sentence, `k${key}`);
+    return encrypted;
 
 }
 
@@ -358,6 +362,11 @@ function listMessages(snapshot) {
         var user = snapshot.val().sender;
         var time = snapshot.val().time;
         var msg = snapshot.val().message;
+        msg = lklk.de(msg, `k${keyMaker(currentRoom)}`)
+
+        if (msg == '') {
+            msg = "<DECRYPTION TOKEN FAILURE>"
+        }
         var muid = snapshot.key;
         // console.log(snapshot.key)
         const liEl = document.createElement("li");

@@ -10,7 +10,7 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-        <script src="script.js" defer></script>
+        <script src="./script.js" defer></script>
         <script src="starter.js" defer></script>
 
         <meta name="theme-color" content="#000000" />
@@ -62,7 +62,7 @@
                         </button>
                     </div>
                 </header>
-        
+
                 <ul class="chatbox" id="chatbox">
                 </ul>
 
@@ -98,15 +98,12 @@
                         <button onclick="closeRoomPop()">Cancel</button>
                     </div>
                     <div class="qrhold">
-                        <div id="loading-bar-spinner" class="spinner">
-                            <div class="spinner-icon"></div>
-                        </div>
                         <img style="display: none;" alt="" id="qrimg">
                     </div>
                     <div class="field">
 
                         <input type="text" id="shareurl" readonly />
-                        <input class="copyBtn" type="button" value="Copy" onclick="clipboardcopy()">
+                        <input class="copyBtn" type="button" value="Copy" id="cpyBtn" onclick="clipboardcopy()">
                     </div>
                 </div>
                 <div class="alertbox" id="alertbox" style="display: none;">
