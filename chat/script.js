@@ -52,8 +52,8 @@ if (currurl.includes("?r=")) {
                     document.getElementById("name").value = currSender;
                     currentRoom = codie.toUpperCase();
                     console.log(currentRoom);
-                    let rmcodeElement = document.getElementById("rmcode")
-                    rmcodeElement.innerText = "Roomcode: " + currentRoom;
+                    let rmcodeElement = document.getElementById("rc")
+                    rmcodeElement.innerText = currentRoom;
 
                 }
 
@@ -64,8 +64,8 @@ if (currurl.includes("?r=")) {
                 document.getElementById("name").value = currSender;
                 currentRoom = codie.toUpperCase();
 
-                let rmcodeElement = document.getElementById("rmcode")
-                rmcodeElement.innerText = "Roomcode: " + currentRoom;
+                let rmcodeElement = document.getElementById("rc")
+                rmcodeElement.innerText = currentRoom;
             }
 
         } else {
@@ -110,14 +110,12 @@ function leaveRoom() {
 
 }
 function updateActiveBar() {
-    const parAct = document.getElementById("actives");
+    const parAct = document.getElementById("members");
     parAct.innerHTML = "";
     updat.forEach(el => {
-        const personn = document.createElement('div');
-        const pername = document.createElement('p');
+        const pername = document.createElement('span');
         pername.innerText = el;
-        personn.appendChild(pername);
-        parAct.appendChild(personn);
+        parAct.appendChild(pername);
         parAct.scrollLeft = parAct.scrollWidth;
 
 

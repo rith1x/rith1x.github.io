@@ -45,22 +45,24 @@
                 </div>
 
                 <header>
-                    <h2 id="rmcode"></h2>
+                    <div class="roomdetails">
+                        <h2 id="rmcode">Room&nbsp;<span id="rc"></span></h2>
+                        <p id="members"></p>
+                    </div>
 
                     <div class="option">
-                        <button onclick="shareRoom()">
+                        <button title="Share roomcode" onclick="shareRoom()">
                             <i class="fa-solid fa-share-from-square"></i>
                         </button>
-                        <button onclick="deleteRoom()">
+                        <button title="Delete Room" onclick="deleteRoom()">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
-                        <button onclick="leaveRoom()">
+                        <button title="Leave room" onclick="leaveRoom()">
                             <i class="fa-solid fa-person-running"></i>
                         </button>
                     </div>
                 </header>
-                <div class="activebar" id="actives">
-                </div>
+        
                 <ul class="chatbox" id="chatbox">
                 </ul>
 
