@@ -583,3 +583,36 @@ function keyMaker(rc) {
     }
     return parseInt(rs) + parseInt(nc)
 }
+var storage = firebase.storage();
+function uploadImg() {
+    var file = document.getElementById("imgFile").files;
+    var files = Array.from(file);
+    var finalUrl
+    var storageRef = storage.ref();
+    const uploadPromises = files.map((img, index) => {
+        return new Promise((resolve, reject) => {
+            var thisref = storageRef.child('data').child(currentRoom).child("images").child(`img${index}`).put(img);
+            thisref.on(
+                "state_changed",
+                function (snapshot) {
+                    console.log(snapshot)
+                },
+                function (error) {
+                    reject(error);
+                },
+                function () {
+                    var downloadURL = thisref.snapshot.downloadURL;
+                    finalUrl = downloadURL
+                    resolve();
+                }
+            );
+        });
+    });
+    Promise.all(uploadPromises)
+        .then(() => {
+            console.log(finalUrl);
+        })
+        .catch(error => {
+            console.error('Error uploading images:', error);
+        });
+}

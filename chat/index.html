@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="style.css">
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="./script.js" defer></script>
@@ -71,12 +72,11 @@
                     <div class="reply" id="replyArea">
                     </div>
                     <div class="dynax">
-                        <input type="file" src="" alt="" accept="image/" style="display: none;" class="red"
-                            id="imageUpload">
-                        <button class="imgf" onclick="uploadImg()">
+                        <!-- <input type="file" src="" alt=""class="red" value='' id="imageUpload"> -->
+                        <label for="imgFile" class="custom-file-upload">
                             <i class="fa-solid fa-plus"></i>
-
-                        </button>
+                        </label>
+                        <input oninput="uploadImg()" id="imgFile" type="file" accept="image/" />
 
                         <!-- <input type="text" placeholder="Enter a message..." id="message" autocomplete="off"
                             spellcheck="false" required aria-autocomplete="none" /> -->
