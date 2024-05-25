@@ -39,10 +39,10 @@
 
                 </div>
             </div>
+            <div class="backend-elements" style="display: none;">
+                <audio id="toner" src="tone.mp3"></audio>
+            </div>
             <div class="screen2" id="chatx">
-                <div class="backend-elements" style="display: none;">
-                    <audio id="toner" src="tone.mp3"></audio>
-                </div>
 
                 <header>
                     <div class="roomdetails">
@@ -74,11 +74,14 @@
                         <input type="file" src="" alt="" accept="image/" style="display: none;" class="red"
                             id="imageUpload">
                         <button class="imgf" onclick="uploadImg()">
-                            <i class="fa-solid fa-camera"></i>
+                            <i class="fa-solid fa-plus"></i>
 
                         </button>
-                        <input type="text" placeholder="Enter a message..." id="message" autocomplete="off"
-                            spellcheck="false" required aria-autocomplete="none" />
+
+                        <!-- <input type="text" placeholder="Enter a message..." id="message" autocomplete="off"
+                            spellcheck="false" required aria-autocomplete="none" /> -->
+                        <textarea name="" placeholder="Send a message..." id="message" required aria-autocomplete="none"
+                            spellcheck="false" autocomplete="off"></textarea>
                         <button type="submit" onclick="sendMessage()">
                             <svg class="svg-inline--fa fa-circle-arrow-right" aria-hidden="true" focusable="false"
                                 data-prefix="fas" data-icon="circle-arrow-right" role="img"

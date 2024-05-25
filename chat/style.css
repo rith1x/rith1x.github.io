@@ -22,11 +22,12 @@ body {
 
 .container {
     flex-grow: 1;
-    max-width: 800px;
-    height: 100%;
+    max-width: 1200px;
+    height: 100dvh;
     background-color: black;
     margin: 0 auto;
     display: flex;
+    border-radius: 11px;
     overflow: scroll;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
@@ -169,12 +170,14 @@ header {
     color: #fff;
     z-index: 2;
     background-color: #000;
-    width: 100%;
+    width: 98%;
+    margin-top: 6px;
     height: 60px;
     display: flex;
     align-items: center;
+    border-radius: 30px 30px;
     justify-content: space-between;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px #000000;
 }
 
 header h2 {
@@ -186,8 +189,9 @@ header button {
     background-color: transparent;
     border: none;
     height: 100%;
-    aspect-ratio: 1 /1;
-    font-size: 1.3em;
+    aspect-ratio: 1/ 1;
+    border: solid 1px rgb(63, 63, 63);
+    font-size: 1em;
     border-radius: 31px;
     cursor: pointer;
 }
@@ -233,10 +237,15 @@ header button:last-child {
 
 .chatbox {
     overflow-y: auto;
-    height: 100%;
+    height: fit-content;
     width: 100%;
     padding: 10px;
     padding-top: 70px;
+}
+
+.chatme {
+    width: 100%;
+    height: 100%;
 }
 
 .chatbox {
@@ -479,6 +488,24 @@ input::placeholder {
 
 }
 
+.dynax textarea {
+    width: 100%;
+    height: 50px;
+    border: none;
+    /* columns: 1; */
+    position: relative;
+    padding-block: 10px;
+    padding-left: 0px;
+    background-color: transparent;
+    font-size: 20px;
+    color: #fff;
+
+}
+
+.dynax textarea:focus {
+    outline: none;
+}
+
 
 .dynax button:last-child {
     height: 60px;
@@ -508,6 +535,13 @@ input::placeholder {
 
 }
 
+.dynax textarea#message:valid~button:last-child {
+    visibility: visible;
+    scale: 1;
+    rotate: -90deg;
+
+}
+
 button.imgf {
     width: 60px;
     height: 60px;
@@ -526,10 +560,10 @@ button.imgf svg {
 
 .dynamix {
     width: 98%;
-    background-color: #1b1b1b;
+    background-color: #000000;
     min-height: 60px;
     /* box-shadow: 0 0 10px #2e2e2e; */
-    border: solid 1px #2e2e2e80;
+    border: solid 1px #4f4f4f90;
     border-radius: 30px;
     display: flex;
     transition: all .3s ease-in-out;
