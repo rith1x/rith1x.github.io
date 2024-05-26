@@ -204,6 +204,12 @@ header button {
 
 }
 
+.mediaImg {
+    width: 300px;
+    border-radius: 11px;
+    margin-top: 7px;
+}
+
 header button:nth-child(2) {
     color: #b45a00;
     /* background-color: #ffe9d2; */
