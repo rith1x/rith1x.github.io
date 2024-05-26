@@ -9,15 +9,8 @@
 
     <body>
         <div class="container">
-            <div class="row" id="notecanvas">
-                <div class="card" id="card">
-                    <div class="content">
-                        <div class="note">
-                            <textarea oninput="hello()" id="noteData" rows="10">Write Something...</textarea>
-                        </div>
-                    </div>
-                </div>
-
+            <div class="sheet">
+                <textarea oninput="hello()" id="noteData" rows="10">Write Something...</textarea>
             </div>
         </div>
         <script>
@@ -176,8 +169,7 @@
             }
 
             .container {
-                width: 100%;
-                /* border: solid 1px #f00; */
+                width: 96%;
                 margin: 0 auto;
             }
 
@@ -190,14 +182,19 @@
 
             } */
 
-            .card {
+            .sheet {
                 /* border: solid 1px rgb(211, 211, 211); */
                 padding: 30px;
+                height: fit-content;
+                box-shadow: 0 0 50px #000;
+
                 /* border-radius: 21px; */
             }
 
             .note {
                 display: flex;
+                height: fit-content;
+
                 flex-direction: column;
 
 
@@ -207,37 +204,13 @@
 
             .content {
                 margin-block: 10px;
-                height: 100%;
+                border: solid 2px #0f0;
+                aspect-ratio: 1.414/1;
                 width: 100%;
                 position: relative;
                 z-index: 0;
                 font-size: 18px;
 
-
-            }
-
-            .content *::-webkit-scrollbar {
-                display: none;
-            }
-
-            .content *::-webkit-scrollbar-thumb {
-                display: none;
-
-            }
-
-            .content::before {
-                content: '';
-                height: calc(100%);
-                width: calc(100%);
-                position: absolute;
-                /* left: 10px; */
-                /* top: 10px; */
-                /* box-sizing: border-box/; */
-                background-color: #ffffff;
-                opacity: 0.2;
-                z-index: -1;
-                /* background-size: 1.6em 1.6em; */
-                /* background-image: repeating-linear-gradient(0deg, #6266ff, #6266ff 1.4000000000000001px, #ffffff 1.4000000000000001px, #ffffff); */
 
             }
 
@@ -249,9 +222,10 @@
                 background-color: transparent;
                 width: 100%;
                 padding-top: .3em;
-                height: 100dvh;
                 border: none;
                 line-height: 1.3em;
+                height: 200dvh;
+
                 font-size: 1.5em;
                 color: rgb(24, 0, 131);
 

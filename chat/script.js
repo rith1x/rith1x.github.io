@@ -74,7 +74,7 @@ if (currurl.includes("?r=")) {
 if (!namePush && currentRoom) {
     firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
         updat = snapshot.val();
-        console.log(updat);
+        // console.log(updat);
         if (updat != undefined) {
             if (updat.includes(currSender)) {
                 namePush = true
@@ -177,7 +177,7 @@ function geTime() {
 
 document.addEventListener("keyup", (e) => {
     const leb = document.getElementById("message").value
-    if (e.key === "Enter" && leb != "") {
+    if (!e.shiftKey && e.key === "Enter" && leb != "") {
         sendMessage()
     }
 });
@@ -361,8 +361,15 @@ function listMessages(snapshot) {
         const msgScr = document.getElementById("chatbox");
         var user = snapshot.val().sender;
         var time = snapshot.val().time;
+        var listy = Array(Object.keys(snapshot.val()))
+        console.log(listy)
+        var iUrl;
         var msg = snapshot.val().message;
-        msg = lklk.de(msg, `k${keyMaker(currentRoom)}`)
+        if (msg) {
+            msg = lklk.de(msg, `k${keyMaker(currentRoom)}`)
+        } else {
+            iUrl = snapshot.val().imgUrl
+        }
 
         if (msg == '') {
             msg = "<DECRYPTION TOKEN FAILURE>"
@@ -380,24 +387,39 @@ function listMessages(snapshot) {
             senP.id = "s" + snapshot.key;
             const topBar = document.createElement("div");
             topBar.className = "top-bar";
-            const msgP = document.createElement("p");
-            msgP.className = "msg";
-            msgP.id = "p" + snapshot.key;
+            if (msg) {
 
-            if (msg != "Deleted Message") {
-                liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
-                msgP.innerText = msg;
+                const msgP = document.createElement("p");
+                msgP.className = "msg";
+                msgP.id = "p" + snapshot.key;
+
+                if (msg != "Deleted Message") {
+                    liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
+                    msgP.innerText = msg;
+                } else {
+                    msgP.innerHTML = "<i>Deleted Message</i>"
+                    msgP.style.color = "#959595"
+                }
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
             } else {
-                msgP.innerHTML = "<i>Deleted Message</i>"
-                msgP.style.color = "#959595"
+                const msgP = document.createElement('img');
+                msgP.className = "mediaImg";
+                msgP.id = "m" + snapshot.key;
+                msgP.src = iUrl;
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
             }
-            const timP = document.createElement("p");
-            timP.className = "time";
-            timP.innerText = time;
-            topBar.appendChild(senP);
-            topBar.appendChild(timP);
-            liEl.appendChild(topBar);
-            liEl.appendChild(msgP);
             // console.log(muid)
 
         }
@@ -416,25 +438,58 @@ function listMessages(snapshot) {
 
             const topBar = document.createElement("div");
             topBar.className = "top-bar";
-            const msgP = document.createElement("p");
-            msgP.className = "msg";
-            msgP.id = "p" + snapshot.key;
-            msgP.id = "p" + snapshot.key;
+            // const msgP = document.createElement("p");
+            // msgP.className = "msg";
+            // msgP.id = "p" + snapshot.key;
+            // msgP.id = "p" + snapshot.key;
 
-            if (msg != "Deleted Message") {
-                msgP.innerText = msg;
+            // if (msg != "Deleted Message") {
+            //     msgP.innerText = msg;
+            // } else {
+            //     msgP.innerHTML = "<i>Deleted Message</i>"
+            //     msgP.style.color = "#959595"
+            // }
+            // const timP = document.createElement("p");
+            // timP.className = "time";
+            // timP.innerText = time;
+            // topBar.appendChild(senP);
+            // topBar.appendChild(timP);
+            // liEl.appendChild(topBar);
+            // liEl.appendChild(msgP);
+            // // console.log("new ")
+            if (msg) {
+
+                const msgP = document.createElement("p");
+                msgP.className = "msg";
+                msgP.id = "p" + snapshot.key;
+
+                if (msg != "Deleted Message") {
+                    liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
+                    msgP.innerText = msg;
+                } else {
+                    msgP.innerHTML = "<i>Deleted Message</i>"
+                    msgP.style.color = "#959595"
+                }
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
             } else {
-                msgP.innerHTML = "<i>Deleted Message</i>"
-                msgP.style.color = "#959595"
+                const msgP = document.createElement('img');
+                msgP.className = "mediaImg";
+                msgP.id = "m" + snapshot.key;
+                msgP.src = iUrl;
+                const timP = document.createElement("p");
+                timP.className = "time";
+                timP.innerText = time;
+                topBar.appendChild(senP);
+                topBar.appendChild(timP);
+                liEl.appendChild(topBar);
+                liEl.appendChild(msgP);
             }
-            const timP = document.createElement("p");
-            timP.className = "time";
-            timP.innerText = time;
-            topBar.appendChild(senP);
-            topBar.appendChild(timP);
-            liEl.appendChild(topBar);
-            liEl.appendChild(msgP);
-            // console.log("new ")
             if (syncer) {
                 playTone();
                 showNoti(user, currentRoom);
@@ -444,7 +499,7 @@ function listMessages(snapshot) {
 
 
         var reVe = snapshot.val().rId;
-        console.log(reVe)
+        // console.log(reVe)
 
 
         if (reVe) {
@@ -535,6 +590,7 @@ function replyingTo(event, key) {
 function cancelReply() {
     document.getElementById("replyArea").innerHTML = "";
 }
+
 function replyMessage() {
     document.getElementById("replyArea").innerHTML = "";
     console.log("replying")
@@ -564,6 +620,8 @@ function replyMessage() {
     cRply = "";
     sendMessage = () => normalMessage();
 }
+
+
 firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
     console.log(snapshot.key);
     if (currentRoom == snapshot.key) {
@@ -571,6 +629,56 @@ firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
         window.location.href = "/chat";
     }
 });
+
+
+function afterUpload(list) {
+    console.log(list)
+    const replyStage = document.getElementById("replyArea");
+    replyStage.innerHTML = ""
+    var rTemp = `
+    <p class="repTo">
+                            Share Image
+                        </p>
+                        <div class="rCon">
+                        <div class="rLeft">
+                        <img style="width:300px" src="${list[0]}" />
+                        
+                        </div>                            
+                            
+                            <div class="rRight">
+                                <button onclick=cancelReply()>
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        </div>`
+    replyStage.innerHTML = rTemp;
+    document.getElementById("mediaStage").value = list[0];
+    var messageel = document.getElementById("message");
+    messageel.value = " ";
+}
+
+
+function sendMedia() {
+    document.getElementById("replyArea").innerHTML = "";
+    console.log("Media")
+    var timex = geTime();
+    let rems = document.getElementById("mediaStage").value;
+
+    firebase.database().ref("ROOMS").child(currentRoom).push().set({
+        "sender": currSender,
+        "time": timex,
+        "imgUrl": rems,
+    })
+        .then(() => {
+            // console.log("Message sent successfully");
+        })
+        .catch((error) => {
+            // console.error("Error sending message:", error);
+        });
+    document.getElementById("mediaStage").value = "";
+
+    sendMessage = () => normalMessage();
+}
 
 function keyMaker(rc) {
     let nc = ""
@@ -583,36 +691,38 @@ function keyMaker(rc) {
     }
     return parseInt(rs) + parseInt(nc)
 }
-var storage = firebase.storage();
-function uploadImg() {
+async function uploadImg() {
     var file = document.getElementById("imgFile").files;
+    var storage = firebase.storage();
     var files = Array.from(file);
-    var finalUrl
     var storageRef = storage.ref();
-    const uploadPromises = files.map((img, index) => {
-        return new Promise((resolve, reject) => {
-            var thisref = storageRef.child('data').child(currentRoom).child("images").child(`img${index}`).put(img);
-            thisref.on(
-                "state_changed",
-                function (snapshot) {
-                    console.log(snapshot)
-                },
-                function (error) {
-                    reject(error);
-                },
-                function () {
-                    var downloadURL = thisref.snapshot.downloadURL;
-                    finalUrl = downloadURL
-                    resolve();
-                }
-            );
+
+    try {
+        const uploadPromises = files.map((img, index) => {
+            return new Promise((resolve, reject) => {
+                var thisref = storageRef.child('data').child(currentRoom).child("images").child(`img${index}`).put(img);
+                thisref.on(
+                    "state_changed",
+                    function (snapshot) {
+                        console.log(snapshot);
+                    },
+                    function (error) {
+                        reject(error);
+                    },
+                    async function () {
+                        const downloadURL = await thisref.snapshot.ref.getDownloadURL();
+                        resolve(downloadURL);
+                    }
+                );
+            });
         });
-    });
-    Promise.all(uploadPromises)
-        .then(() => {
-            console.log(finalUrl);
-        })
-        .catch(error => {
-            console.error('Error uploading images:', error);
-        });
+
+        const imgUrls = await Promise.all(uploadPromises);
+        sendMessage = () => sendMedia();
+
+        afterUpload(imgUrls) // Access the first image URL
+
+    } catch (error) {
+        console.error('Error uploading images:', error);
+    }
 }
