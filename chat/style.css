@@ -205,7 +205,7 @@ header button {
 }
 
 .mediaImg {
-    width: 300px;
+    width: 100%;
     border-radius: 11px;
     margin-top: 7px;
 }

@@ -1,4 +1,4 @@
-
+var chat_media = 0;
 const firebaseConfig = {
     apiKey: "AIzaSyD6KJ-ZZGsThD1aAxSpaZHsuPMmG-dvYqE",
     authDomain: "chatx-29ff8.firebaseapp.com",
@@ -184,7 +184,17 @@ document.addEventListener("keyup", (e) => {
 
 function deleteRoom() {
     firebase.database().ref("ROOMS").child(currentRoom).remove();
-    window.location.href = "../chat/"
+    if (chat_media != 0) {
+        var storage = firebase.storage();
+        var storageRef = storage.ref();
+        storageRef.child('data').child(currentRoom).deleteWithCompletion().then(() => {
+            alert("Chats and media were cleared from the cloud")
+            window.location.href = "../chat/"
+        }).error((er) => { console.log(er); })
+    } else {
+        window.location.href = "../chat/"
+
+    }
 }
 
 //SHARE ROOM
@@ -409,6 +419,7 @@ function listMessages(snapshot) {
                 liEl.appendChild(msgP);
             } else {
                 const msgP = document.createElement('img');
+                chat_media = 1;
                 msgP.className = "mediaImg";
                 msgP.id = "m" + snapshot.key;
                 msgP.src = iUrl;
@@ -659,6 +670,7 @@ function afterUpload(list) {
 
 
 function sendMedia() {
+    chat_media = 1;
     document.getElementById("replyArea").innerHTML = "";
     console.log("Media")
     var timex = geTime();
@@ -693,8 +705,8 @@ function keyMaker(rc) {
 }
 async function uploadImg() {
     var file = document.getElementById("imgFile").files;
-    var storage = firebase.storage();
     var files = Array.from(file);
+    var storage = firebase.storage();
     var storageRef = storage.ref();
 
     try {
