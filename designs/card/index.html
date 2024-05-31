@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Card</title>
+    </head>
+
+    <body>
+        <div class="deck">
+            <div class="whole">
+                <div class="heart card red">
+                    <div class="topleft"><span class="chr">A</span><span>{</span></div>
+                    <div class="centercnt">
+                        {
+                    </div>
+                    <div class="btmrght"><span class="chr">A</span><span>{</span></div>
+                </div>
+                <div class="cb">
+                    <img src="mand.png" alt="" draggable="false">
+                </div>
+            </div>
+
+            <div class="whole">
+                <div class="clover card">
+                    <div class="topleft"><span class="chr">A</span><span>]</span></div>
+                    <div class="centercnt">
+                        ]
+                    </div>
+                    <div class="btmrght"><span class="chr">A</span><span>]</span></div>
+                </div>
+                <div class="cb">
+                    <img src="mand.png" alt="" draggable="false">
+                </div>
+            </div>
+
+            <div class="whole">
+                <div class="diamond card red">
+                    <div class="topleft"><span class="chr">A</span><span>[</span></div>
+                    <div class="centercnt">
+                        [
+                    </div>
+                    <div class="btmrght"><span class="chr">A</span><span>[</span></div>
+                </div>
+                <div class="cb">
+                    <img src="mand.png" alt="" draggable="false">
+                </div>
+            </div>
+
+            <div class="whole">
+                <div class="ace card">
+                    <div class="topleft"><span class="chr">A</span><span>}</span></div>
+                    <div class="centercnt">
+                        }
+                    </div>
+                    <div class="btmrght"><span class="chr">A</span><span>}</span></div>
+                </div>
+                <div class="cb">
+                    <img src="mand.png" alt="" draggable="false">
+                </div>
+            </div>
+        </div>
+        <style>
+            @font-face {
+                font-family: cards;
+                src: url(font.ttf);
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: cards;
+
+            }
+
+            body {
+                margin: 0;
+                height: 100dvh;
+                display: flex;
+                align-items: center;
+
+                --s: 80px;
+                /* control the size*/
+                --c1: #5e8c6a;
+                --c2: #bfb35a;
+
+                --_s: calc(2*var(--s)) calc(2*var(--s));
+                --_g: 35.36% 35.36% at;
+                --_c: #0000 66%, var(--c2) 68% 70%, #0000 72%;
+                background:
+                    radial-gradient(var(--_g) 100% 25%, var(--_c)) var(--s) var(--s)/var(--_s),
+                    radial-gradient(var(--_g) 0 75%, var(--_c)) var(--s) var(--s)/var(--_s),
+                    radial-gradient(var(--_g) 100% 25%, var(--_c)) 0 0/var(--_s),
+                    radial-gradient(var(--_g) 0 75%, var(--_c)) 0 0/var(--_s),
+                    repeating-conic-gradient(var(--c1) 0 25%, #0000 0 50%) 0 0/var(--_s),
+                    radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s) var(--c1);
+            }
+
+            .deck {
+                width: 90%;
+                margin: auto;
+                display: flex;
+                gap: 25px;
+
+
+            }
+
+            .whole {
+
+                aspect-ratio: 1/1.39;
+                width: 100%;
+                font-family: cards;
+                border-radius: 26px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all .4s ease;
+                position: relative;
+                font-size: 35px;
+            }
+
+            .red {
+                color: #d80000;
+            }
+
+            .chr {
+                font-weight: 100;
+                font-size: 50px;
+            }
+
+            .card {
+                position: absolute;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                transition: all .3s ease;
+                box-shadow: 0 0 30px -10px rgb(71, 71, 71);
+
+                justify-content: center;
+                height: 100%;
+                font-family: cards;
+                background-color: #ededed;
+                border-radius: 26px;
+                z-index: 2;
+                opacity: 0;
+                transform: rotatey(90deg);
+            }
+
+            .cb {
+                width: 100%;
+                transition: all .3s ease;
+                z-index: 1;
+                padding: 15px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                background-color: #ededed;
+                opacity: 1;
+                border-radius: 26px;
+                transform: rotateY(0deg);
+                box-shadow: 0 0 30px -10px rgb(71, 71, 71);
+
+            }
+
+            .cb img {
+                width: 100%;
+                filter: invert(1) saturate(9) contrast(0.4) brightness(0.8);
+
+            }
+
+            .whole:hover .card {
+                opacity: 1;
+                transform: rotateY(0deg);
+            }
+
+            .whole:hover .cb {
+                opacity: 0;
+                transform: rotateY(90deg);
+            }
+
+            .topleft {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+
+            .centercnt {
+                align-self: center;
+                font-size: 1.8em;
+            }
+
+            .btmrght {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                rotate: 180deg;
+                align-items: center;
+                justify-content: space-between;
+                bottom: 10px;
+                right: 10px;
+            }
+        </style>
+    </body>
+
+</html>
