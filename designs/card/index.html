@@ -8,6 +8,9 @@
     </head>
 
     <body>
+        <div class="info">
+            Hover over cards to reveal • Designed by <a href="https://rith1x.github.io">Kiruthik Kumar</a>
+        </div>
         <div class="deck">
             <div class="whole">
                 <div class="heart card red">
@@ -79,6 +82,8 @@
                 margin: 0;
                 height: 100dvh;
                 display: flex;
+                flex-direction: column;
+                justify-content: center;
                 align-items: center;
 
                 --s: 80px;
@@ -105,6 +110,19 @@
                 gap: 25px;
 
 
+            }
+
+            .info {
+                color: #fff;
+                background-color: #000;
+                padding: 5px 15px;
+                border-radius: 30px;
+                margin-top: 30px;
+            }
+
+            a {
+                text-decoration: none;
+                color: rgb(255, 194, 119);
             }
 
             .whole {
@@ -159,7 +177,9 @@
                 align-items: center;
                 justify-content: center;
                 overflow: hidden;
-                background-color: #ededed;
+                /* background-color: #ededed; */
+                background-color: #001027;
+
                 opacity: 1;
                 border-radius: 26px;
                 transform: rotateY(0deg);
@@ -168,7 +188,7 @@
             }
 
             .cb img {
-                width: 100%;
+                width: 110%;
                 filter: invert(1) saturate(9) contrast(0.4) brightness(0.8);
 
             }
