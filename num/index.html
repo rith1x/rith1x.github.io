@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Number Converter</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                font-family: Martian Mono;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100dvh;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 500px;
+                /* background-color: #0f0; */
+                height: 100dvh;
+
+                margin: 0 auto;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            .box {
+                border: solid 2px rgb(224, 224, 224);
+                width: 100%;
+                padding: 15px;
+                border-radius: 21px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+            }
+
+            .field {
+                border: solid 1px rgb(220, 220, 220);
+                width: 100%;
+                position: relative;
+                transition: all .3s ease;
+                height: 50px;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            .field:has(h2) {
+                border: none;
+            }
+
+
+            .field input {
+                width: 100%;
+                height: 100%;
+                font-size: 24px;
+                text-align: center;
+                border-radius: 6px;
+                border: none;
+            }
+
+            .field:focus-within {
+                border-color: #00ab47;
+            }
+
+            .field:focus-within label {
+                color: #00ab47;
+            }
+
+            input:focus {
+                outline: none;
+            }
+
+            .field label {
+                position: absolute;
+                font-size: 12px;
+                left: 5px;
+                top: -8px;
+                padding-inline: 2px;
+                background-color: #ffffff;
+                color: #adadad;
+                font-weight: 300;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="box">
+                <div class="field">
+                    <h2>NUMBER CONVERTER</h2>
+                </div>
+                <div class="field"><label for="">
+                        Binary
+                    </label><input type="text" min="0" max="1" number="" oninput="convertbd()" id="bin"></div>
+                <div class="field"><label for="">
+                        Decimal
+                    </label><input type="text" number="" oninput="convertdb()" id="dec"></div>
+            </div>
+        </div>
+        <script>
+            function convertbd() {
+                const bip = document.getElementById('bin')
+                const dip = document.getElementById('dec')
+                let b = bip.value
+                let p = 1
+                let v = 0
+                while (b != 0) {
+                    
+                    v += p * (b % 10)
+                    b = parseInt(b / 10)
+                    p += p
+                }
+                dip.value = v
+            }
+            function convertdb() {
+                const bip = document.getElementById('bin')
+                const dip = document.getElementById('dec')
+                let d = parseInt(dip.value)
+                let x = ''
+                while (d > 1) {
+                    x += d % 2;
+                    d = parseInt(d / 2);
+                }
+                x += d
+                x = x.split("");
+                x = x.reverse();
+                x = x.join("");
+                bip.value = x;
+
+            }
+        </script>
+    </body>
+
+</html>
