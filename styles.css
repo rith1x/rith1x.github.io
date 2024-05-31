@@ -1,0 +1,336 @@
+html,
+body {
+    height: 100%;
+
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    font-family: "Euclid Circular A", "Poppins";
+    background: #8367c5;
+    color: #1a1a1a;
+}
+
+.banner,
+h1,
+button {
+    transition: 0.6s;
+}
+
+.banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    background: url("bg.webp");
+    background-size: 180%;
+    background-position: center;
+    transition: 0.5s;
+}
+
+.banner h1 {
+    font-size: 50px;
+    color: #f9f9f9;
+}
+
+.banner button {
+    padding: 12px 36px;
+    border-radius: 50px;
+    border: 0;
+    background: #221e6f;
+    color: #f9f9f9;
+    font-size: 18px;
+    font-family: inherit;
+    box-shadow: 0 0 15px #221e6f;
+}
+
+.container {
+    background: #ffffff;
+    padding: 20px;
+    /* box-shadow: 0 0 5px #fff; */
+}
+
+h2 {
+    font-size: 28px;
+}
+
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+hr.style-seven {
+    overflow: visible;
+    /* For IE */
+    height: 30px;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+hr.style-seven:before {
+    /* Not really supposed to work, but does */
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #00f;
+    background-image: linear-gradient(to right, #ccc, #000, #ccc);
+}
+
+hr.style-four {
+    height: 12px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
+
+hr.style-six {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+p {
+    text-align: justify;
+}
+
+.endnote {
+    font-size: 10px;
+    color: #aaa;
+
+}
+
+.skill-body {
+    display: flex;
+    gap: 10px;
+    padding: 20px 10px;
+    flex-wrap: wrap;
+
+
+}
+
+.skill {
+    color: #000;
+    background: #ddd;
+
+    height: 20px;
+    padding: 5px 15px;
+
+    width: fit-content;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 10px;
+    border-radius: 21px;
+}
+
+.skill {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill * {
+    z-index: 2;
+}
+
+.skill::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    background-color: #00ab4770;
+    left: 0;
+
+    top: 0;
+    border-radius: 20px;
+    bottom: 0;
+    z-index: 1;
+}
+
+.skill:nth-child(1)::before {
+    width: 60%;
+    background-color: #aba00070;
+
+}
+
+.skill:nth-child(2)::before {
+    width: 80%;
+
+}
+
+.skill:nth-child(3)::before {
+    width: 50%;
+    background-color: #8fab0070;
+
+
+}
+
+.skill:nth-child(4)::before {
+    width: 80%;
+
+}
+
+.skill:nth-child(5)::before {
+    width: 70%;
+
+}
+
+.skill:nth-child(6)::before {
+    width: 75%;
+
+}
+
+.skill:nth-child(7)::before {
+    width: 60%;
+
+}
+
+.skill:nth-child(8)::before {
+    width: 45%;
+    background-color: #ab4d0070;
+
+
+}
+
+.skill:nth-child(9)::before {
+    width: 35%;
+    background-color: #8fab0070;
+
+
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+
+
+.social {
+    border: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+#e1,
+#e2,
+#e3,
+#e4,
+#e5,
+#e6,
+#e7,
+#e8,
+#e9,
+#e10,
+#e11 {
+    font-size: 16px;
+    padding: 3px;
+    /* border: solid 0.5px #000; */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.25s ease-in-out;
+
+}
+
+#e1:hover,
+#e2:hover,
+#e3:hover,
+#e4:hover,
+#e5:hover,
+#e6:hover,
+#e7:hover,
+#e8:hover,
+#e9:hover,
+#e10:hover,
+#e11:hover {
+    transform: scale(1.25);
+}
+
+#e1 {
+    color: #221e6f;
+}
+
+#e9 {
+    color: #5865f2;
+}
+
+#e10 {
+    color: #e4e100;
+}
+
+#e11 {
+    color: #0088cc;
+}
+
+#e8 {
+    color: #00acee;
+}
+
+#e7 {
+    color: #3b5998;
+}
+
+#e6 {
+    color: #dd2a7b;
+}
+
+#e5 {
+    color: #f47f24;
+}
+
+#e4 {
+    color: #211f1f;
+}
+
+#e3 {
+    color: #000;
+
+}
+
+#e2 {
+    color: #0e76a8;
+}
+
+.bxn {
+    width: fit-content;
+    padding-inline: 10px;
+    height: 40px;
+    color: #fff;
+    border: solid 2px #221e6f;
+    border-radius: 21px;
+    background-color: transparent;
+    color: #221e6f;
+    font-size: 13px;
+    font-family: "Euclid Circular A", "Poppins";
+    margin-bottom: 5px;
+
+
+
+
+
+
+
+
+
+
+
+}
+
+#ext {
+    padding-left: 5px;
+
+}
