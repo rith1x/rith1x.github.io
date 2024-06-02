@@ -4,267 +4,246 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Keep</title>
     </head>
 
     <body>
-        <div class="container">
-            <div class="sheet">
-                <textarea oninput="hello()" id="noteData" rows="10">Write Something...</textarea>
-            </div>
-        </div>
-        <script>
-
-
-
-            function hello() {
-                console.log("hii");
-
-                const note = document.getElementById("noteData").value;
-
-                let card = {
-                    "note": note,
-                }
-                localStorage.setItem("keep", JSON.stringify(card));
-
-
-
-
-            }
-            (function syncer() {
-                const sync = JSON.parse(localStorage.getItem("keep"));
-
-
-                const note = document.getElementById("noteData");
-                note.value = sync.note;
-
-
-            })();
-
-
-            function viewNotes() {
-                var notecanvas = document.getElementById('list');
-                notecanvas.innerHTML = "";
-                for (var i = 0; i < Object.keys(grocerydata.groceryLists).length; i++) {
-                    var currentListId = Object.keys(listData.groceryLists)[i];
-                    var currentList = listData.groceryLists[currentListId];
-                    var newnote = document.createElement('div');
-                    newnote.className = "list-div";
-                    var listHead = document.createElement("div");
-                    listHead.className = "list-head";
-                    var listInfo = document.createElement("div");
-                    listInfo.className = "list-info";
-                    var listTitle = document.createElement("h1");
-                    listTitle.innerText = currentList.name;
-                    var listCreated = document.createElement("p");
-                    listCreated.innerText = currentList.created;
-                    listInfo.appendChild(listTitle);
-                    listInfo.appendChild(listCreated);
-
-                    var listAction = document.createElement("div");
-                    listAction.className = "listAction";
-                    var listShare = document.createElement("button");
-                    listShare.setAttribute("onclick", `shareList('${currentList.id}')`);
-                    listShare.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i>';
-
-                    var listDelete = document.createElement("button");
-                    listDelete.setAttribute("onclick", `deleteList('${currentList.id}')`);
-                    listDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
-                    listHead.appendChild(listInfo);
-                    listAction.appendChild(listShare);
-                    listAction.appendChild(listDelete);
-                    listHead.appendChild(listAction);
-
-                    var listItems = document.createElement("div");
-                    listItems.className = "list-items";
-
-                    for (var k = 0; k < Object.keys(listData.groceryLists[currentListId].items).length; k++) {
-                        var currentItemName = Object.keys(listData.groceryLists[currentListId].items)[k];
-
-                        var itemDiv = document.createElement("div");
-                        itemDiv.className = "item";
-                        var itemDivTxt = document.createElement("p");
-                        itemDivTxt.innerText = currentItemName;
-                        if (groceryData.groceryLists[currentList.id].items[currentItemName] === 1) {
-                            itemDiv.classList.add("done");
-                        }
-
-                        var itemDivBtn = document.createElement("button");
-
-                        itemDivBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
-                        itemDivBtn.setAttribute("onclick", `itemCheck('${currentList.id}','${currentItemName}')`);
-                        itemDiv.appendChild(itemDivTxt);
-                        itemDiv.appendChild(itemDivBtn);
-                        listItems.appendChild(itemDiv);
-                    }
-
-
-                    var listItemS = document.createElement("div");
-                    listItemS.className = "item";
-                    var listItemSinput = document.createElement("input");
-                    listItemSinput.setAttribute("type", "text");
-                    listItemSinput.id = `${currentList.id}-item`;
-                    listItemSinput.setAttribute("placeholder", "Add Item");
-                    var listItemSbtn = document.createElement("button");
-                    listItemSbtn.setAttribute("onclick", `itemAdder('${currentList.id}')`);
-                    listItemSbtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
-
-                    listItemS.appendChild(listItemSinput);
-                    listItemS.appendChild(listItemSbtn);
-                    listItems.appendChild(listItemS);
-
-
-                    newnote.appendChild(listHead);
-                    newnote.appendChild(listItems);
-
-                    notecanvas.appendChild(newnote);
-
-                }
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </script>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Satisfy&display=swap');
+            @font-face {
+                font-family: fonty;
+                src: url("Social District.otf");
+            }
 
             * {
-                margin: 0;
-                padding: 0;
                 box-sizing: border-box;
-                font-family: "Cedarville Cursive";
-                font-weight: 400;
-                font-style: normal;
+                margin: 0;
+                font-family: fonty;
+                padding: 0;
             }
 
             body {
                 margin: 0;
-                padding: 0;
+                background-color: #5d5d5d;
                 width: 100%;
-                height: 100dvh;
-
             }
 
-            .container {
-                width: 96%;
+            .space {
+                max-width: 800px;
                 margin: 0 auto;
-            }
-
-            /* .row {
-                /* padding: 10px; 
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: none;
-                /* gap: 10px;gi 
-
-            } */
-
-            .sheet {
-                /* border: solid 1px rgb(211, 211, 211); */
-                padding: 30px;
+                padding-block: 20px;
                 height: fit-content;
-                box-shadow: 0 0 50px #000;
-
-                /* border-radius: 21px; */
-            }
-
-            .note {
                 display: flex;
-                height: fit-content;
-
                 flex-direction: column;
-
-
+                align-items: center;
+                gap: 20px;
             }
 
+            .btns {
+                position: fixed;
+                bottom: 15px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                width: fit-content;
+            }
 
-
-            .content {
-                margin-block: 10px;
-                border: solid 2px #0f0;
-                aspect-ratio: 1.414/1;
-                width: 100%;
-                position: relative;
-                z-index: 0;
+            .btns button {
+                border: none;
+                backdrop-filter: blur(3px);
+                padding: 15px 25px;
+                border-radius: 25px;
+                color: #fff;
+                font-weight: 500;
                 font-size: 18px;
-
-
+                background-color: #00ab4780;
             }
 
-            .card:focus-within {
-                border: solid 1px #00ab47;
+            .btns button:last-child {
+                background-color: #0047ab80;
+            }
+
+            .page {
+                width: 100%;
+                aspect-ratio: 1 / 1.414;
+                box-shadow: 0 0 10px #4e4e4ebb;
+                padding: 30px;
+                position: relative;
+                border-radius: 1px;
+                background-color: #fff;
+            }
+
+            .delb {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                border: none;
+                padding: 4px 6px;
+                color: #dc3545;
+                transition: visibility .5s ease-in;
+                visibility: hidden;
+                border-radius: 6px;
+                background-color: #dc354550;
             }
 
             textarea {
-                background-color: transparent;
                 width: 100%;
-                padding-top: .3em;
+                height: 100%;
+                resize: none;
+                font-size: 20px;
                 border: none;
-                line-height: 1.3em;
-                height: 200dvh;
-
-                font-size: 1.5em;
-                color: rgb(24, 0, 131);
-
             }
 
+            @media print {
+                body {
+                    background-color: #fff;
+                }
 
+                .space {
+                    padding-block: 0;
+                    gap: 0;
+                }
+
+                .btns {
+                    display: none;
+                }
+
+                .delb {
+                    display: none;
+                }
+
+                .page {
+                    box-shadow: none;
+                    border: none;
+                }
+            }
+
+            .page:focus-within {
+                box-shadow: 0 0 0 2px #00ab47;
+            }
+
+            .page:focus-within .delb {
+                visibility: visible;
+            }
 
             textarea:focus {
                 outline: none;
-                border: none;
-            }
-
-
-            @media (max-width: 800px) {
-
-                .container {
-                    width: 90%;
-                }
-
-                .row {
-                    grid-template-columns: repeat(2, 1fr);
-                    grid-template-rows: none;
-                    gap: 10px;
-                }
-            }
-
-            @media (max-width: 600px) {
-                .container {
-                    width: 100%;
-                }
-
-                .row {
-                    grid-template-columns: repeat(1, 1fr);
-                    grid-template-rows: none;
-                    gap: 10px;
-                }
             }
         </style>
-    </body>
+        <div id="space" class="space">
+            <div class="note0 page">
+                <textarea oninput="typing('n0')" name="" id="n0"></textarea>
+            </div>
+        </div>
+        <div class="btns">
+            <button class="apb" onclick="addPage()">
+                + New Page
+            </button>
+            <button class="pb" onclick="printPage()">
+                Print Page
+            </button>
+        </div>
 
+        <script>
+            let notes = 0
+            let local = localStorage.getItem('notes');
+            if (local) {
+                notes = parseInt(local)
+                if (local > 0) {
+                    for (let i = 0; i < local; i++) {
+                        cPage(i + 1)
+                    }
+                }
+            }
+            else {
+                localStorage.setItem('notes', notes);
+            }
+
+            let persistent = localStorage.getItem('keepNotes');
+            if (!persistent) {
+                const temp = {}
+                localStorage.setItem('keepNotes', JSON.stringify(temp));
+            }
+            persistent = JSON.parse(localStorage.getItem('keepNotes'));
+            l2dSync();
+
+            function l2dSync() {
+                let c = Object.keys(persistent)
+                console.log(c)
+                c.forEach((key) => {
+                    document.getElementById(key).value = persistent[key]
+
+                })
+            }
+            function sync() {
+                localStorage.setItem('keepNotes', JSON.stringify(persistent))
+            }
+            function update() {
+                localStorage.setItem('notes', notes);
+
+            }
+            function cPage(n) {
+                const space = document.getElementById('space');
+                const nodiv = document.createElement('div');
+                nodiv.className = `note${n}`;
+                nodiv.classList.add('page');
+                const tbox = document.createElement('textarea')
+                tbox.id = `n${n}`
+                tbox.oninput = () => { typing(`${tbox.id}`) }
+                const delbtn = document.createElement('button')
+                delbtn.innerText = 'Delete Page'
+                delbtn.className = "delb"
+                delbtn.onclick = () => { delpage(`${tbox.id}`) }
+                nodiv.appendChild(delbtn)
+                nodiv.appendChild(tbox)
+                space.appendChild(nodiv)
+            }
+            function addPage() {
+                const space = document.getElementById('space');
+                const nodiv = document.createElement('div');
+                notes += 1;
+                update()
+                nodiv.className = `note${notes}`;
+                nodiv.classList.add('page');
+                const tbox = document.createElement('textarea')
+                tbox.id = `n${parseInt(notes)}`
+                tbox.oninput = () => { typing(`${tbox.id}`) }
+                const delbtn = document.createElement('button')
+                delbtn.innerText = 'Delete Page'
+                delbtn.className = "delb"
+
+                delbtn.onclick = () => { delpage(`${tbox.id}`) }
+                nodiv.appendChild(delbtn)
+                nodiv.appendChild(tbox)
+                space.appendChild(nodiv)
+
+            }
+            function typing(n) {
+                console.log(n)
+                let cNoteValue = document.getElementById(n).value
+                console.log(cNoteValue)
+
+                updateNote(n, cNoteValue)
+            }
+            function updateNote(n, val) {
+                persistent[n] = val;
+                sync()
+            }
+            function printPage() {
+                // const backup = document.body.innerHTML
+                // document.getElementById('space').style.paddingBlock = "none"
+                // document.getElementById('space').style.gap = "none"
+                // const printContent = document.getElementById('space').innerHTML
+                // document.body.innerHTML = printContent
+                window.print()
+                // document.body.innerHTML = backup
+            }
+            function delpage(id) {
+                const element = document.getElementById(id).parentElement;
+                element.parentElement.removeChild(element);
+                delete persistent[id];
+                sync();
+            }
+        </script>
+    </body>
 
 </html>

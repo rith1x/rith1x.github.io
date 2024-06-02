@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="sheet">
+                <textarea oninput="hello()" id="noteData" rows="10">Write Something...</textarea>
+            </div>
+        </div>
+        <script>
+
+
+
+            function hello() {
+                console.log("hii");
+
+                const note = document.getElementById("noteData").value;
+
+                let card = {
+                    "note": note,
+                }
+                localStorage.setItem("keep", JSON.stringify(card));
+
+
+
+
+            }
+            (function syncer() {
+                const sync = JSON.parse(localStorage.getItem("keep"));
+
+
+                const note = document.getElementById("noteData");
+                note.value = sync.note;
+
+
+            })();
+
+
+            function viewNotes() {
+                var notecanvas = document.getElementById('list');
+                notecanvas.innerHTML = "";
+                for (var i = 0; i < Object.keys(grocerydata.groceryLists).length; i++) {
+                    var currentListId = Object.keys(listData.groceryLists)[i];
+                    var currentList = listData.groceryLists[currentListId];
+                    var newnote = document.createElement('div');
+                    newnote.className = "list-div";
+                    var listHead = document.createElement("div");
+                    listHead.className = "list-head";
+                    var listInfo = document.createElement("div");
+                    listInfo.className = "list-info";
+                    var listTitle = document.createElement("h1");
+                    listTitle.innerText = currentList.name;
+                    var listCreated = document.createElement("p");
+                    listCreated.innerText = currentList.created;
+                    listInfo.appendChild(listTitle);
+                    listInfo.appendChild(listCreated);
+
+                    var listAction = document.createElement("div");
+                    listAction.className = "listAction";
+                    var listShare = document.createElement("button");
+                    listShare.setAttribute("onclick", `shareList('${currentList.id}')`);
+                    listShare.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket"></i>';
+
+                    var listDelete = document.createElement("button");
+                    listDelete.setAttribute("onclick", `deleteList('${currentList.id}')`);
+                    listDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                    listHead.appendChild(listInfo);
+                    listAction.appendChild(listShare);
+                    listAction.appendChild(listDelete);
+                    listHead.appendChild(listAction);
+
+                    var listItems = document.createElement("div");
+                    listItems.className = "list-items";
+
+                    for (var k = 0; k < Object.keys(listData.groceryLists[currentListId].items).length; k++) {
+                        var currentItemName = Object.keys(listData.groceryLists[currentListId].items)[k];
+
+                        var itemDiv = document.createElement("div");
+                        itemDiv.className = "item";
+                        var itemDivTxt = document.createElement("p");
+                        itemDivTxt.innerText = currentItemName;
+                        if (groceryData.groceryLists[currentList.id].items[currentItemName] === 1) {
+                            itemDiv.classList.add("done");
+                        }
+
+                        var itemDivBtn = document.createElement("button");
+
+                        itemDivBtn.innerHTML = `<i class="fa-solid fa-circle-check"></i>`;
+                        itemDivBtn.setAttribute("onclick", `itemCheck('${currentList.id}','${currentItemName}')`);
+                        itemDiv.appendChild(itemDivTxt);
+                        itemDiv.appendChild(itemDivBtn);
+                        listItems.appendChild(itemDiv);
+                    }
+
+
+                    var listItemS = document.createElement("div");
+                    listItemS.className = "item";
+                    var listItemSinput = document.createElement("input");
+                    listItemSinput.setAttribute("type", "text");
+                    listItemSinput.id = `${currentList.id}-item`;
+                    listItemSinput.setAttribute("placeholder", "Add Item");
+                    var listItemSbtn = document.createElement("button");
+                    listItemSbtn.setAttribute("onclick", `itemAdder('${currentList.id}')`);
+                    listItemSbtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+
+                    listItemS.appendChild(listItemSinput);
+                    listItemS.appendChild(listItemSbtn);
+                    listItems.appendChild(listItemS);
+
+
+                    newnote.appendChild(listHead);
+                    newnote.appendChild(listItems);
+
+                    notecanvas.appendChild(newnote);
+
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Satisfy&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Cedarville Cursive";
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100dvh;
+
+            }
+
+            .container {
+                width: 96%;
+                margin: 0 auto;
+            }
+
+            /* .row {
+                /* padding: 10px; 
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: none;
+                /* gap: 10px;gi 
+
+            } */
+
+            .sheet {
+                /* border: solid 1px rgb(211, 211, 211); */
+                padding: 30px;
+                height: fit-content;
+                box-shadow: 0 0 50px #000;
+
+                /* border-radius: 21px; */
+            }
+
+            .note {
+                display: flex;
+                height: fit-content;
+
+                flex-direction: column;
+
+
+            }
+
+
+
+            .content {
+                margin-block: 10px;
+                border: solid 2px #0f0;
+                aspect-ratio: 1.414/1;
+                width: 100%;
+                position: relative;
+                z-index: 0;
+                font-size: 18px;
+
+
+            }
+
+            .card:focus-within {
+                border: solid 1px #00ab47;
+            }
+
+            textarea {
+                background-color: transparent;
+                width: 100%;
+                padding-top: .3em;
+                border: none;
+                line-height: 1.3em;
+                height: 200dvh;
+
+                font-size: 1.5em;
+                color: rgb(24, 0, 131);
+
+            }
+
+
+
+            textarea:focus {
+                outline: none;
+                border: none;
+            }
+
+
+            @media (max-width: 800px) {
+
+                .container {
+                    width: 90%;
+                }
+
+                .row {
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-rows: none;
+                    gap: 10px;
+                }
+            }
+
+            @media (max-width: 600px) {
+                .container {
+                    width: 100%;
+                }
+
+                .row {
+                    grid-template-columns: repeat(1, 1fr);
+                    grid-template-rows: none;
+                    gap: 10px;
+                }
+            }
+        </style>
+    </body>
+
+
+</html>
