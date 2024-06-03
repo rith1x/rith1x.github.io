@@ -366,6 +366,9 @@
 
         <script>
             let score = 0;
+            let frequencyM = 2000;
+            let frequencyB = 2000;
+
 
 
             function showRand() {
@@ -381,14 +384,27 @@
                 randInt = Math.floor(Math.random() * 15);
 
                 document.getElementById(`mole${randInt}`).style.transform = "translateY(0%)";
-                setTimeout(() => {
+                let smoodhx = setTimeout(() => {
                     document.getElementById(`mole${randInt}`).style.transform = "translateY(100%)";
-                    showRand();
-                }, 2000)
+                    if (difficulty == 1) {
+                        showRand();
+                        clearTimeout(smoodhx)
+
+                        showRand();
+                    } else if (difficulty == 2) {
+                        showRand();
+                        clearTimeout(smoodhx)
+
+                        showRand();
+                    } else {
+                        showRand();
+                    }
+                }, frequencyM)
             }
             function clickMole(n) {
                 document.getElementById(`mole${n}`).style.transform = "translateY(100%)";
                 score += 1;
+                difficulty()
                 document.getElementById("score").innerText = score;
                 updateHighScore();
 
@@ -398,11 +414,21 @@
             function showBomb() {
                 randIntx = Math.floor(Math.random() * 15);
                 document.getElementById(`bomb${randIntx}`).style.transform = "translateY(0%)";
-                setTimeout(() => {
+                let smoodh = setTimeout(() => {
                     document.getElementById(`bomb${randIntx}`).style.transform = "translateY(100%)";
+                    if (difficulty == 1) {
+                        showRand();
+                        clearTimeout(smoodh)
+                        showRand();
+                    } else if (difficulty == 2) {
+                        showRand();
+                        clearTimeout(smoodh)
 
-                    showRand();
-                }, 2000)
+                        showRand();
+                    } else {
+                        showRand();
+                    }
+                }, frequencyB)
 
             }
             function clickBomb(n) {
@@ -425,6 +451,8 @@
             }
             function restart() {
                 showRand();
+                frequencyB = 2000;
+                frequencyM = 2000;
             }
 
             function updateHighScore() {
@@ -447,6 +475,22 @@
                 }
 
             }
+            function difficulty() {
+                if (score % 20 == 0 && score <= 40) {
+                    frequencyB -= 300
+                    frequencyM -= 300
+                } else if (score % 20 == 0 && score >= 60) {
+                    frequencyB -= 200
+                    frequencyM -= 200
+                    difficulty = 1
+                } else if (score % 20 == 0 && score >= 80) {
+                    frequencyB -= 100
+                    frequencyM -= 100
+                    difficulty = 2
+
+                }
+            }
+
 
 
 
