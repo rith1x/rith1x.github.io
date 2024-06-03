@@ -20,7 +20,7 @@
             body {
                 margin: 0;
                 height: 100dvh;
-                width: 100dvw;
+                width: 100%;
                 display: flex;
                 place-content: center;
                 place-items: center;
@@ -28,18 +28,15 @@
                 font-family: rem;
                 background-color: #000000;
                 opacity: 1;
-                background-image: radial-gradient(#444cf7 1.1500000000000001px, transparent 1.1500000000000001px), radial-gradient(#444cf7 1.1500000000000001px, #000000 1.1500000000000001px);
-                background-size: 46px 46px;
-                background-position: 0 0, 23px 23px;
 
             }
 
             .playSpace {
                 border: solid 1px rgba(28, 28, 28, 0.434);
-                width: 500px;
-                height: 500px;
+                width: 100%;
                 aspect-ratio: 1 / 1;
                 display: grid;
+                border: solid 2px #f00;
                 grid-template-columns: repeat(4, 1fr);
                 background-color: #00000060;
                 backdrop-filter: blur(3px);
@@ -155,35 +152,30 @@
                 animation-timing-function: ease;
             }
 
-            @media only screen and (max-width: 580px) {
-                .container {
-                    max-width: 450px;
-                    overflow: hidden;
-                    height: 100dvh;
-                    margin: 0 auto;
-                    /* border: solid 1px #f00; */
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: space-around;
-                    padding: 10px;
-                    gap: 1em;
+            .container {
+                max-width: 500px;
+                height: 100dvh;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                padding: 10px;
+                gap: 1em;
 
-                }
+            }
 
-                .playSpace {
-                    width: 100%;
-                    aspect-ratio: 1 / 1;
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    grid-template-rows: repeat(4, 1fr);
+            .playSpace {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(4, 1fr);
 
-                }
+            }
 
-                .scoreCard {
-                    width: 100%;
-                }
-
+            .scoreCard {
+                width: 100%;
             }
         </style>
 
