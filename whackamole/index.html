@@ -21,13 +21,21 @@
                 margin: 0;
                 height: 100dvh;
                 width: 100%;
-                display: flex;
-                place-content: center;
-                place-items: center;
-                flex-direction: column;
                 font-family: rem;
                 background-color: #000000;
-                opacity: 1;
+
+            }
+
+            .container {
+                max-width: 500px;
+                height: 100dvh;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                padding: 10px;
+                gap: 1em;
 
             }
 
@@ -36,7 +44,7 @@
                 width: 100%;
                 aspect-ratio: 1 / 1;
                 display: grid;
-                border: solid 2px #f00;
+                border: solid 2px rgb(24, 24, 24);
                 grid-template-columns: repeat(4, 1fr);
                 background-color: #00000060;
                 backdrop-filter: blur(3px);
@@ -152,18 +160,7 @@
                 animation-timing-function: ease;
             }
 
-            .container {
-                max-width: 500px;
-                height: 100dvh;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: space-around;
-                padding: 10px;
-                gap: 1em;
 
-            }
 
             .playSpace {
                 width: 100%;
