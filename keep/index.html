@@ -65,20 +65,9 @@
                 background-color: #282828;
             }
 
-
-            /* .btns button:last-child {
-                color: #0047ab;
-            }
-
-            .btns button:first-child {
-                color: #00ffd9;
-            } */
-
-
             .page {
                 width: 210mm;
                 height: 297mm;
-                /* aspect-ratio: 1 / 1.414; */
                 box-shadow: 0 0 10px #4e4e4ebb;
                 padding: 30px;
                 position: relative;
@@ -110,7 +99,6 @@
             @media print {
                 * {
                     font-size: 18px;
-
                 }
 
                 body {
@@ -140,8 +128,6 @@
                     page-break-inside: avoid;
                 }
 
-
-
                 @page {
                     size: A4;
                     margin: 0;
@@ -160,14 +146,18 @@
                 outline: none;
             }
 
+            /* Add media query for mobile devices */
             @media (max-width: 800px) {
                 .page {
                     width: calc(100% - 40px);
+                    /* 20px margin on each side */
                     height: auto;
+                    /* Maintain aspect ratio */
                 }
 
                 textarea {
                     font-size: 16px;
+                    /* Adjust font size for readability */
                 }
             }
         </style>
