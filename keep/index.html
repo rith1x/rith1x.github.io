@@ -159,10 +159,21 @@
             textarea:focus {
                 outline: none;
             }
+
+            @media (max-width: 800px) {
+                .page {
+                    width: calc(100% - 40px);
+                    height: auto;
+                }
+
+                textarea {
+                    font-size: 16px;
+                }
+            }
         </style>
         <div id="space" class="space">
             <div class="note0 page">
-                <textarea oninput="typing('n0')" name="" id="n0" placeholder="Type Something..."></textarea>
+                <textarea oninput="typing('n0')" name="" id="n0" placeholder="Type Something to keep..."></textarea>
             </div>
         </div>
         <div class="btns">
