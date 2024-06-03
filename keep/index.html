@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Keep</title>
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
@@ -42,7 +43,10 @@
                 position: fixed;
                 bottom: 15px;
                 left: 0;
+                border-radius: 30px;
                 right: 0;
+                background-color: #28282850;
+                padding: 5px;
                 margin: 0 auto;
                 width: fit-content;
             }
@@ -50,17 +54,24 @@
             .btns button {
                 border: none;
                 backdrop-filter: blur(3px);
-                padding: 15px 25px;
+                width: 45px;
+                height: 45px;
                 border-radius: 25px;
                 color: #fff;
                 font-weight: 500;
                 font-size: 18px;
-                background-color: #00ab4780;
+                background-color: #282828;
             }
 
-            .btns button:last-child {
-                background-color: #0047ab80;
+
+            /* .btns button:last-child {
+                color: #0047ab;
             }
+
+            .btns button:first-child {
+                color: #00ffd9;
+            } */
+
 
             .page {
                 width: 100%;
@@ -135,11 +146,14 @@
             </div>
         </div>
         <div class="btns">
+            <button class="stg">
+                <i class="fa-solid fa-gear"></i>
+            </button>
             <button class="apb" onclick="addPage()">
-                + New Page
+                <i class="fa-solid fa-plus"></i>
             </button>
             <button class="pb" onclick="printPage()">
-                Print Page
+                <i class="fa-solid fa-print"></i>
             </button>
         </div>
 
@@ -242,6 +256,8 @@
                 element.parentElement.removeChild(element);
                 delete persistent[id];
                 sync();
+                notes -= 1;
+                localStorage.setItem("notes", notes)
             }
         </script>
     </body>
