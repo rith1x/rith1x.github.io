@@ -92,7 +92,7 @@
                 width: 100%;
                 height: 100%;
                 resize: none;
-                font-size: 18px;
+                font-size: clamp(1.5rem, 5vw, 3rem);
                 border: none;
             }
 
@@ -125,7 +125,6 @@
                     border: none;
                     width: 210mm;
                     height: 297mm;
-                    font-size: 18px !important;
                     page-break-inside: avoid;
                 }
 
@@ -156,7 +155,7 @@
                 }
 
                 textarea {
-                    font-size: 6px !important;
+                    font-size: clamp(1.5rem, 5vw, 3rem);
                     /* Adjust font size for readability */
                 }
             }
