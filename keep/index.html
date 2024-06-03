@@ -134,7 +134,9 @@
                 .page {
                     box-shadow: none;
                     border: none;
-
+                    width: 210mm;
+                    height: 297mm;
+                    page-break-inside: avoid;
                     background-color: #00ab47;
                 }
 
@@ -144,7 +146,8 @@
                 }
 
                 @page {
-                    size: 210mm 297mm;
+                    size: A4;
+                    margin: 0;
                 }
             }
 
@@ -162,7 +165,7 @@
         </style>
         <div id="space" class="space">
             <div class="note0 page">
-                <textarea oninput="typing('n0')" name="" id="n0" placeholder="Updated 11.18am"></textarea>
+                <textarea oninput="typing('n0')" name="" id="n0" placeholder="Updated 11.31"></textarea>
             </div>
         </div>
         <div class="btns">
