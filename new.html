@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio</title>
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+        <link
+            href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=zodiak@400&f[]=sentient@400&f[]=boska@400&f[]=bonny@400&f[]=bebas-neue@400&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="nav">
+                <div class="left">
+                    <img src="logo.png" alt="">
+                </div>
+                <div class="right">
+                    <a href="">Home</a>
+                    <a href="">Projects</a>
+                    <a href="">About</a>
+                    <a href="">Contact</a>
+                </div>
+                <button class="mob-toggle" id="mbtn" onclick="showNav()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="mob-menu" id="menu">
+                    <a href="">Home</a>
+                    <a href="">Projects</a>
+                    <a href="">About</a>
+                    <a href="">Contact</a>
+                </div>
+            </div>
+            <div class="banner">
+                <div class="name">
+                    <h2>i am</h2>
+                    <h1>KIRUTHIK KUMAR</h1>
+                </div>
+                <div class="tag">
+                    <p>FREELANCE DEVELOPER • Student</p>
+                </div>
+            </div>
+            <div class="content">
+                <section>
+                    <h1>About Me</h1>
+                    <p>&emsp;&emsp;Full-stack developer with strong foundation in Python (Django), SQL, JavaScript, HTML
+                        & CSS. Passionate about building dynamic web applications and immersive user experiences.</p>
+                </section>
+                <section>
+                    <h1>Projects</h1>
+
+                    <div class="projects-box">
+
+                        <div class="project">
+                            <h2>Thulir ECO</h2>
+                            <p>Something</p>
+                            <a href="">Visit</a>
+                        </div>
+                        <div class="project">
+                            <h2>Thulir ECO</h2>
+                            <p>Something</p>
+                            <a href="">Visit</a>
+                        </div>
+                        <div class="project">
+                            <h2>Thulir ECO</h2>
+                            <p>Something</p>
+                            <a href="">Visit</a>
+                        </div>
+
+                    </div>
+
+
+                </section>
+                <section>
+                    <h1>Javascript Game Projects</h1>
+                    <div class="game-box">
+                        <div class="game" onclick="porter('whackamole')">
+                            <div class="gameico">
+                                <img src="whack-a-mole.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Whackamole</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('cricket')">
+                            <div class="gameico">
+                                <img src="cricket-player (1).png" alt="">
+                            </div>
+                            <h4 class="gameTitle">HandCricket</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('rps')">
+                            <div class="gameico">
+                                <img src="rock-paper-scissors.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Stone paper scissor v2</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('random')">
+                            <div class="gameico">
+                                <img src="choose.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Math Random</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('tictactoe')">
+                            <div class="gameico">
+                                <img src="tic-tac-toe.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Tic Tac Toe</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('trivia')">
+                            <div class="gameico">
+                                <img src="speech-bubble.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Trivia</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('stonepaperscissors')">
+                            <div class="gameico">
+                                <img src="rock-paper-scissors (1).png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Stone Paper Scissors</h4>
+
+                        </div>
+                        <div class="game" onclick="porter('flappy')">
+                            <div class="gameico">
+                                <img src="game.png" alt="">
+                            </div>
+                            <h4 class="gameTitle">Flappy - (Preview)</h4>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <script>
+            let nv = 0;
+            function showNav() {
+                if (nv == 0) {
+                    nv = 1
+                    document.getElementById('menu').style.transform = "translateX(0)"
+                    document.getElementById('mbtn').innerHTML = '<i class="fa-solid fa-arrow-right"></i>'
+                } else {
+                    nv = 0
+                    document.getElementById('menu').style.transform = "translateX(100%)"
+                    document.getElementById('mbtn').innerHTML = '<i class="fa-solid fa-bars"></i>'
+                }
+            }
+            function porter(dest) {
+                window.location.href = `https://rith1x.github.io/${dest}`
+            }
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: Bebas Neue;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                scroll-behavior: smooth;
+                width: 100%;
+                background-color: #fff;
+            }
+
+            .container {
+                width: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav {
+                position: fixed;
+                top: 20px;
+                width: 80%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-inline: 25px;
+                border-radius: 35px;
+                height: 70px;
+
+                background-color: #1a1a1ab8;
+                backdrop-filter: blur(5px);
+            }
+
+            .nav {
+                color: #fff;
+                font-size: 18px;
+                z-index: 20;
+            }
+
+            .nav .left {
+                display: flex;
+                align-items: center;
+                padding-block: 10px;
+            }
+
+            .nav .left img {
+                height: 35px;
+
+            }
+
+            .nav .right {
+                display: flex;
+                gap: 15px;
+            }
+
+            .nav .right a {
+                text-decoration: none;
+                color: #fff;
+                letter-spacing: 2px;
+            }
+
+            .mob-toggle {
+                height: 100%;
+                aspect-ratio: 1 / 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.3em;
+                display: none;
+                color: #fff;
+                background-color: transparent;
+                border: none;
+            }
+
+            .mob-menu {
+                position: absolute;
+                right: 0px;
+                top: 70px;
+                display: none;
+                flex-direction: column;
+                border-radius: 0 0 0 6px;
+                width: fit-content;
+                transition: transform .4s ease-in-out;
+                overflow: hidden;
+                transform: translateX(100%);
+            }
+
+            .mob-menu a {
+                padding: 1em 3em;
+                background-color: #000000;
+                text-decoration: none;
+                font-size: 1.2em;
+
+                border-top: solid 1px #47474760;
+                color: #fff;
+
+            }
+
+            .mob-menu a:hover {
+                text-decoration: underline;
+                background-color: #151515;
+            }
+
+            .banner {
+                width: 100%;
+                background: url('m.svg');
+                height: 100lvh;
+                display: flex;
+                position: relative;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                font-size: 6vw;
+                background-size: cover;
+
+                background-position: center;
+                background-attachment: fixed;
+                transition: all 1s ease-in-out;
+            }
+
+
+            .banner h1 {
+                font-weight: 1000;
+                font-size: 1em;
+
+                letter-spacing: 10px;
+                background: url(hhholographic.png);
+                background-attachment: fixed;
+                color: transparent;
+                background-clip: text;
+                border-bottom: solid 3px #fff;
+
+
+            }
+
+            .banner h2 {
+                color: #d5d5d5;
+                font-weight: 100;
+                font-size: .4em;
+                letter-spacing: .3em;
+
+            }
+
+            .banner .name {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+
+            }
+
+            .banner .tag {
+                color: #fff;
+                letter-spacing: .8em;
+                margin-top: 15px;
+                font-size: .24em;
+                font-weight: 100;
+            }
+
+            .content {
+                width: 100%;
+                padding-inline: 10%;
+                padding-block: 5vw;
+                height: fit-content;
+                font-weight: 600;
+                font-size: 18px;
+            }
+
+
+
+            section {
+                font-size: 17px;
+                margin-top: 50px;
+            }
+
+            section h1 {
+                font-size: 1.60em;
+                padding-block: .5em;
+                font-family: 'Libre Caslon Text';
+
+            }
+
+            section p {
+                font-size: 1em;
+                font-family: Sentient;
+                text-align: justify;
+                font-weight: 100;
+            }
+
+            .projects-box {
+                width: 100%;
+                height: 12em;
+                border-radius: 21px;
+                overflow-x: scroll;
+                display: flex;
+                align-items: center;
+                scroll-snap-type: x mandatory;
+                gap: 20px;
+                justify-content: space-between;
+                /* border: solid 1px #00f; */
+            }
+
+            .projects-box::-webkit-scrollbar {
+                display: none;
+            }
+
+            .game-box::-webkit-scrollbar {
+                display: none;
+            }
+
+            .project {
+                background-color: #cfffca;
+                height: 100%;
+                padding: 15px;
+                min-width: 300px;
+                scroll-snap-align: center;
+                border-radius: 21px;
+            }
+
+            .game-box {
+                display: flex;
+                width: 100%;
+                height: 12em;
+
+                overflow-x: scroll;
+                align-items: center;
+                scroll-snap-type: x mandatory;
+
+                justify-content: space-between;
+                gap: .5em;
+                border-radius: 21px;
+
+            }
+
+            .game {
+                height: 100%;
+                scroll-snap-align: start;
+                padding: 10px;
+                border-radius: 31px;
+                min-width: 130px;
+                display: flex;
+                flex-direction: column;
+
+                align-items: flex-start;
+                justify-content: start;
+                gap: .5em;
+            }
+
+            .gameico {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                background-color: #b2cafa;
+                padding: 15px;
+                border-radius: 21px;
+            }
+
+            .gameico img {
+                width: 100%;
+            }
+
+            .game h4 {
+                font-family: 'Gantari';
+
+            }
+
+
+            @media only screen and (max-width: 768px) {
+                .nav {
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
+                    border-radius: 0px;
+                    padding-right: 0px;
+                    background-color: #000;
+                }
+
+                .nav .right {
+                    display: none;
+                }
+
+                .mob-menu {
+                    display: flex;
+                }
+
+                .mob-toggle {
+                    display: flex;
+                }
+
+                .content {
+                    padding-inline: 5%;
+                }
+
+                .projects-box {
+                    height: 15em;
+                }
+
+                .banner {
+                    font-size: 8dvh;
+                    padding-left: 10%;
+
+                }
+
+                .banner h1 {
+                    width: fit-content;
+                    border-width: 1px;
+                    line-height: 1em;
+                }
+
+                .banner h2 {
+                    align-self: flex-start;
+                }
+
+                .banner p {
+                    font-size: 1.2em;
+
+                }
+            }
+        </style>
+
+    </body>
+
+</html>
