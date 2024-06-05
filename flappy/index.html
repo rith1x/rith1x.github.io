@@ -14,6 +14,7 @@
             <div id="hole">
             </div>
             <div id="char">
+                <img src="../game.png" alt="">
             </div>
         </div>
         <style>
@@ -30,7 +31,7 @@
             }
 
             #game {
-                max-width: 500px;
+                width: 100%;
                 height: 100dvh;
                 margin: 0 auto;
                 overflow: hidden;
@@ -40,9 +41,10 @@
                 width: 50px;
                 height: 100%;
                 background-color: #000;
+
                 position: relative;
                 left: 100%;
-                animation: block 2s infinite linear;
+                animation: block 4s infinite linear;
 
             }
 
@@ -63,17 +65,21 @@
                 position: relative;
                 left: 100%;
                 top: -100%;
-                animation: block 2s infinite linear;
+                animation: block 4s infinite linear;
 
             }
 
             #char {
-                width: 30px;
-                height: 30px;
-                background-color: #0047ab;
+                width: 50px;
+                height: 50px;
+                background-color: transparent;
                 position: absolute;
                 top: 100px;
                 border-radius: 50%;
+            }
+
+            #char img {
+                width: 100%;
             }
         </style>
         <script>
@@ -84,7 +90,9 @@
             var char = document.getElementById('char');
             var jpng = 0;
             var scr = 0;
-
+            window.addEventListener('keypress', (e) => {
+                if (e.keyCode == 32) { jump() }
+            }, false);
             hole.addEventListener('animationiteration', () => {
                 var rdm = -((Math.random() * 300) + 150);
                 hole.style.top = rdm + "px"
@@ -98,9 +106,9 @@
                 var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
                 var holeTop = parseInt(window.getComputedStyle(hole).getPropertyValue("top"));
                 var cTop = -(height - chartop);
-                if ((chartop > height - 30) || ((blockLeft < 20) && (blockLeft > -50) && ((cTop < holeTop) || (cTop > holeTop + 130)))) {
+                if ((chartop > height - 30) || ((blockLeft < 20) && (blockLeft > -50) && ((cTop < holeTop) || (cTop > holeTop + 150)))) {
                     alert('Game Over, Score = ' + scr);
-                    char.style.top = "100px"
+                    char.style.top = ((Math.floor(Math.random() * 400) + 100) + "px");
                     scr = 0;
                 }
 
@@ -108,18 +116,24 @@
             function jump() {
                 jpng = 1;
                 let jct = 0
+                let rot = 0;
+
                 var jmpiv = setInterval(() => {
+                    rot -= 1
+                    char.style.rotate = rot + 'deg';
                     var chartop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
                     if ((chartop > 6) && (scr < 15)) {
-                        char.style.top = (chartop - 3) + "px"
+                        char.style.top = (chartop - 2) + "px"
                     }
                     if (jct > 20) {
                         clearInterval(jmpiv)
                         jpng = 0
                         jct = 0
+                        char.style.rotate = 0 + 'deg';
                     }
                     jct++
-                }, 10);
+                }, 5);
+
             }
         </script>
     </body>
