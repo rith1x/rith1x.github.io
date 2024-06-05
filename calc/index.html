@@ -1,158 +1,138 @@
 <!DOCTYPE html>
- <html lang="en">
+<html>
+
   <head>
-   <meta charset="UTF-8" />
-   <meta name="viewport" content="initial-scale=1.0, width=device-width,user-scalable=no" />
-   <title>Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Samsung Calculator</title>
   </head>
+
   <body>
-   <link rel="stylesheet" href="style.css">
-    <div class="box">
-     <form action="" name="calculator"> 
-     <input class="disp" type="text" id="display" disabled>  
-     <br>  
-     <div class="r1">
-      <input class="like" type="button" value="♡" href="https://bit.ly/2k4xcc">
-      <input class="dm" type="button" value="🌙">
-      <input class="ope" type="button" value="%" onclick="calculator.display.value += '%'">
-      <input class="ope" type="button" value="/" onclick="calculator.display.value += '/'">  
-     </div>
-     <br>  
-     <div class="r2">
-      <input class="num" type="button" value="1" onclick="calculator.display.value += '1'">
-      <input class="num" type="button" value="2" onclick="calculator.display.value += '2'">
-      <input class="num" type="button" value="3" onclick="calculator.display.value += '3'">
-      <input class="ope" type="button" value="+" onclick="calculator.display.value += '+'">
-     </div>
-     <br>  
-     <div class="r3">
-      <input class="num" type="button" value="4" onclick="calculator.display.value += '4'">
-      <input class="num" type="button" value="5" onclick="calculator.display.value += '5'">
-      <input class="num" type="button" value="6" onclick="calculator.display.value += '6'">
-      <input class="ope" type="button" value="-" onclick="calculator.display.value += '-'">
-     </div>
-     <br>
-     <div class="r4">
-      <input class="num" type="button" value="7" onclick="calculator.display.value += '7'">
-      <input class="num" type="button" value="8" onclick="calculator.display.value += '8'">
-      <input class="num" type="button" value="9" onclick="calculator.display.value += '9'">
-      <input class="ope" type="button" value="*" onclick="calculator.display.value += '*'">
-     </div>
-     <br>  
-     <div class="r5">
-      <input class="num" type="button" value="." onclick="calculator.display.value += '.'">
-      <input class="num" type="button" value="0" onclick="calculator.display.value += '0'">
-      <input class="opex" type="button" value="=" onclick="calculator.display.value = eval(calculator.display.value)">
-      <input class="ope" type="button" value="c" onclick="calculator.display.value = ''">
-    </div>   
-   </form>
-  </div>
+    <center>
+      <div class="box">
+        <form action="#" name="forms">
+          <input type="text" name="answer" placeholder="0">
+          <div class="btns">
+            <div>
+              <input class="clr" type="button" value="C" onclick="forms.answer.value = ''">
+              <input class="arm" type="button" value="()" onclick="
+            forms.answer.value += '()'">
+
+              <input class="arm" type="button" value="%" onclick="forms.answer.value += '%'">
+
+              <input class="arm" type="button" value="÷" onclick="forms.answer.value += '/'">
+            </div>
+
+            <div>
+              <input class="nos" type="button" value="7" onclick="forms.answer.value += '7'">
+              <input class="nos" type="button" value="8" onclick="forms.answer.value += '8'">
+              <input class="nos" type="button" value="9" onclick="forms.answer.value += '9'">
+              <input class="arm" type="button" value="x" onclick="forms.answer.value += '*'">
+            </div>
+
+            <div>
+              <input class="nos" type="button" value="4" onclick="forms.answer.value += '4'">
+              <input class="nos" type="button" value="5" onclick="forms.answer.value += '5'">
+              <input class="nos" type="button" value="6" onclick="forms.answer.value += '6'">
+              <input class="arm" type="button" value="-" onclick="forms.answer.value += '-'">
+            </div>
+
+            <div>
+              <input class="nos" type="button" value="1" onclick="forms.answer.value += '1'">
+              <input class="nos" type="button" value="2" onclick="forms.answer.value += '2'">
+              <input class="nos" type="button" value="3" onclick="forms.answer.value += '3'">
+              <input class="arm" type="button" value="+" onclick="forms.answer.value += '+'">
+            </div>
+
+            <div>
+              <input class="nos" type="button" value="+/-" onclick="forms.answer.value += ">
+              <input class="nos" type="button" value="0" onclick="forms.answer.value += '0'">
+              <input class="nos" type="button" value="." onclick="forms.answer.value += '.'">
+              <input class="equ" type="button" value="=" onclick="forms.answer.value = eval(forms.answer.value)">
+            </div>
+          </div>
+        </form>
+      </div>
+    </center>
     <style>
-      
-@font-face { 
-font-family: myFirstFont; 
-src: url(love.ttf); 
-} 
-body{
-    margin: 0;
-    background-image: url(https://images.pexels.com/photos/7078628/pexels-photo-7078628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
-    font-size: 0;
-   
-    
-}
-.box{
-    width: 200px; 
-    height: 305px; 
-    border: none; 
-    position: absolute; 
-    overflow:hidden;
-    border-radius: 10px;
-    background: #ffffff35;
-    backdrop-filter: blur(5px);
-    padding: 2.5px;
-    top:0; 
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-    bottom: 0; 
-    left: 0; 
-    right: 0; 
-    margin: auto; 
-}
-.like, .ope, .dm, .opex, .num{
-    width: 40px;
-    height: 40px;
-    font-family: myFirstFont;
-    margin: 5px;
-    border-radius: 10px;
-    border: none;
-    color: #ffffffdd;
-    backdrop-filter: blur(5px);
-}
-.like{
-    background: #ff5e0025;
-    
-}
-.dm{
-    background: #00000025;
-}
-.ope{
-    background: #9055ff25;
-    
-}
-.num{
-    background: #006cff25;
-}
-.opex{
-    background: #26ff0025;
-}
-.disp{
-    width: 185px;
-    height: 40px;
-    border: none;
-    color: #fff;
-    margin: 5px;
-    font-family: myFirstFont;
-    border-radius: 10px;
-  background-color: #ffffff25;
-  backdrop-filter: blur(5px);   
-}
-@media screen and (min-width: 800px) {
+      body {
+        font-size: 0px;
+        height: 100dvh;
+        width: 100%;
 
-  .box{
-    width: 400px; 
-    height: 610px; 
-    border: none; 
-    position: absolute; 
-    overflow:hidden;
-    border-radius: 20px;
-    background: #ffffff25;
-    backdrop-filter: blur(5px);
-    padding: 2.5px;
-    top:0; 
-  }
-    .like, .ope, .dm, .opex, .num{
-    width: 80px;
-    height: 80px;
-    font-family: myFirstFont;
-    margin: 10px;
-    border-radius: 20px;
-    border: none;
-      font-size: 28px;
-    color: #ffffffdd;
-    backdrop-filter: blur(5px);
-}
-  .disp{
-    width: 370px;
-    font-size: 28px;
-    height: 80px;
-    border: none;
-    color: #fff;
-    margin: 10px;
-    font-family: myFirstFont;
-    border-radius: 20px;
-  background-color: #ffffff25;
-  backdrop-filter: blur(5px);   
-}
-}
+
+      }
+
+      .box {
+        max-width: 500px;
+        height: 100dvh;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 30px;
+        margin: 0 auto;
+        overflow-y: hidden;
+      }
+
+      .btns {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-direction: column;
+
+      }
+
+      .btns div {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+      }
+
+      .box input[type="text"] {
+        width: 100%;
+        height: 50px;
+        font-size: 40px;
+        text-align: right;
+        border: none;
+        color: black;
+        display: inline-flex;
+
+
+
+      }
+
+      .box input[type="button"] {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: none;
+        font-size: 30px;
+        font-weight: 450;
+      }
+
+      .arm {
+        color: #45BF30;
+        font-weight: 600;
+      }
+
+      .equ {
+        color: #fff;
+        background-color: #45BF30;
+        font-weight: 900;
+      }
+
+      .clr {
+        color: red;
+      }
     </style>
- </body>
+  </body>
+
 </html>
