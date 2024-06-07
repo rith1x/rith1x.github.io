@@ -54,20 +54,66 @@
                     <div class="projects-box">
 
                         <div class="project">
-                            <h2>Thulir ECO</h2>
-                            <p>Something</p>
-                            <a href="">Visit</a>
+                            <div class="prj-top">
+                                <h2>Thulir</h2>
+                                <div class="role">Individual</div>
+
+                            </div>
+                            <p>Simple Serverless end-to-end Ecommerce Website </p>
+                            <div class="stl">
+                                <div class="stack">
+                                    <span>HTML</span><span>CSS</span><span>Js+JSON</span>
+                                </div>
+                                <a href="">Visit</a>
+                            </div>
                         </div>
                         <div class="project">
-                            <h2>Thulir ECO</h2>
-                            <p>Something</p>
-                            <a href="">Visit</a>
+                            <div class="prj-top">
+
+                                <h2>Chatie</h2>
+                                <div class="role">Individual</div>
+                            </div>
+                            <p>Simple Firebase based chatroom witth end-to-end message encryption, chatroom vanishing
+                                and many more features
+                            </p>
+                            <div class="stl">
+                                <div class="stack">
+                                    <span>HTML</span><span>CSS</span><span>Javascript</span><span>Firebase</span>
+                                </div>
+                                <a href="">Visit</a>
+                            </div>
                         </div>
                         <div class="project">
-                            <h2>Thulir ECO</h2>
-                            <p>Something</p>
-                            <a href="">Visit</a>
+                            <div class="prj-top">
+
+                                <h2>Nutrivision - Frontend</h2>
+                                <div class="role">Team</div>
+                            </div>
+
+                            <p>Integration of Front-end with Python Computer vision backend</p>
+                            <div class="stl">
+                                <div class="stack">
+                                    <span>Django</span><span>Python</span><span>HTML, CSS, Js</span>
+                                </div>
+                                <a href="">Visit</a>
+                            </div>
                         </div>
+                        <div class="project">
+                            <div class="prj-top">
+
+                                <h2>Student Notifier System</h2>
+                                <div class="role">Team</div>
+                            </div>
+                            <p>Utilized PHP and JSON for realtime information sharing between faculties and students</p>
+                            <div class="stl">
+                                <div class="stack">
+                                    <span>PHP</span><span>HTML, CSS, Js</span>
+                                </div>
+                                <a href="">Visit</a>
+                            </div>
+                        </div>
+
+
 
                     </div>
 
@@ -127,7 +173,7 @@
                         </div>
                         <div class="app" onclick="porter('flappy')">
                             <div class="app-icon">
-                                <img src="app.png" alt="">
+                                <img src="game.png" alt="">
                             </div>
                             <h4 class="app-title">Flappy - (Preview)</h4>
 
@@ -586,6 +632,10 @@
                         </div>
                     </div>
                 </section>
+                <section>
+                    <h1>Achievements</h1>
+
+                </section>
             </div>
             <div class="footer">
                 <pre style="font-family: monospace;font-weight: 1000;font-size: 1vw">
@@ -848,7 +898,7 @@
 
             .projects-box {
                 width: 100%;
-                height: 12em;
+                height: 13em;
                 border-radius: 21px;
                 overflow-x: scroll;
                 display: flex;
@@ -872,12 +922,45 @@
             }
 
             .project {
-                background-color: #cfffca;
+                background-color: #eaeaea;
                 height: 100%;
                 padding: 15px;
-                min-width: 300px;
+                min-width: 330px;
+                font-family: Sentient;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+                justify-content: flex-start;
                 scroll-snap-align: center;
                 border-radius: 21px;
+                position: relative;
+            }
+
+            .project p {
+                justify-self: flex-start;
+                height: fit-content;
+            }
+
+            .project * {
+                font-family: Gantari;
+
+            }
+
+            .prj-top {
+                display: flex;
+                align-items: center;
+                font-family: Sentient;
+
+                justify-content: space-between;
+            }
+
+            .stl {
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .app-box {
@@ -951,7 +1034,7 @@
                 flex-direction: column;
 
                 align-items: flex-start;
-                justify-content: start;
+                justify-content: space-between;
                 gap: .5em;
             }
 
@@ -973,6 +1056,9 @@
                 gap: 5px;
                 align-items: center;
                 justify-content: center;
+                background-color: #d8d8d860;
+                border-radius: 21px;
+
                 width: 100%;
             }
 
@@ -983,7 +1069,6 @@
                 border-radius: 50%;
                 align-items: center;
                 justify-content: center;
-                background-color: #c4c4c460;
 
             }
 

@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: fit-content;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+    height: fit-content;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #0047ab;
+}
+
+body::-webkit-scrollbar:hover {
+    width: 15px;
+}
+
+header {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    z-index: 1;
+    font-size: 5em;
+    border-radius: 31px;
+    /* color: white; */
+    color: #fff;
+    font-size: 5em;
+    font-weight: bold;
+    font-family: 'Synonym', sans-serif;
+
+}
+
+header button {
+    z-index: 1;
+    padding: 15px 30px;
+    border-radius: 31px;
+    border: none;
+    background-color: #ffffff50;
+    backdrop-filter: blur(5px);
+    font-size: 1.1em;
+}
+
+header video {
+    width: 100%;
+    height: 100dvh;
+    filter: brightness(.7) saturate(1.4);
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.surfer {
+    position: absolute;
+    height: 600px;
+    filter: saturate(1.3);
+    animation-name: surf;
+    visibility: hidden;
+    animation-duration: 3s;
+    animation-timeline: scroll();
+    animation-timing-function: ease;
+}
+
+@keyframes surf {
+    from {
+        right: 0;
+        rotate: -15deg;
+        visibility: visible;
+        top: 0;
+        scale: 0.7;
+
+    }
+
+    60% {
+        rotate: 5deg;
+    }
+
+    50% {
+        rotate: 0;
+        display: block;
+
+        top: 60%;
+        scale: 1.2;
+        right: 100%;
+        opacity: 1;
+
+    }
+
+    60% {
+        opacity: 0;
+        visibility: hidden;
+        display: none;
+
+    }
+
+}
+
+main {
+    width: 100%;
+    font-family: 'Synonym', sans-serif;
+    position: relative;
+    height: fit-content;
+    background-color: #fff7e7;
+}
+
+main section:first-child {
+    width: 100%;
+    padding-inline: 13%;
+}
+
+main section:first-child {
+    background: linear-gradient(0deg, #ffe2a8 0%, #2F84D0 80%);
+    --mask:
+        radial-gradient(52.57px at 50% 71.25px, #000 99%, #0000 101%) calc(50% - 50px) 0/100px 51% repeat-x,
+        radial-gradient(52.57px at 50% -46.25px, #0000 99%, #000 101%) 50% 25px/100px calc(51% - 25px) repeat-x,
+        radial-gradient(52.57px at 50% calc(100% - 71.25px), #000 99%, #0000 101%) calc(50% - 50px) 100%/100px 51% repeat-x,
+        radial-gradient(52.57px at 50% calc(100% + 46.25px), #0000 99%, #000 101%) 50% calc(100% - 25px)/100px calc(51% - 25px) repeat-x;
+    -webkit-mask: var(--mask);
+    mask: var(--mask);
+    padding-top: 5rem;
+    padding-bottom: 6rem;
+
+    position: relative;
+
+}
+
+.padder {
+    width: 100%;
+    height: 40px;
+    background-color: #2F84D0;
+    position: absolute;
+    top: 0;
+}
+
+main section:first-child h2 {
+    color: #ffffff;
+    font-size: 3em;
+
+
+}
+
+main section:first-child p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.3rem;
+    text-align: justify;
+}
+
+main section:first-child p::before {
+    content: "_______";
+    color: transparent;
+
+}
+
+main section:nth-child(2) {
+    margin-top: 8em;
+    margin-bottom: 2em;
+}
+
+main section h2 {
+    color: #dbaf56;
+    font-size: 3em;
+    width: fit-content;
+    padding-bottom: 50px;
+    margin: 0 auto;
+
+}
+
+main section:nth-child(2) ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+
+}
+
+main section:nth-child(2) ul li {
+    margin-inline: 13%;
+    height: 200px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5em;
+    padding: 15px;
+    box-shadow: 0 0 15px 0 #aaaaaa40;
+    border-radius: 21px;
+}
+
+li span {
+    background-color: #ff979750;
+    padding: 3px 10px;
+    border-radius: 21px;
+    margin-right: 5px;
+}
