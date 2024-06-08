@@ -433,46 +433,6 @@ li p {
     align-items: center;
 }
 
-.infos {
-    width: 67%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-inline: 30px 7px;
-    margin-top: 10px;
-    height: 60px;
-    margin: 15px auto;
-    background-color: #000;
-    color: #fff;
-
-    border-radius: 30px;
-}
-
-.nowShowing {
-    font-size: 1.4em;
-
-    height: fit-content;
-    display: flex;
-    align-items: center;
-
-
-}
-
-.infos div {
-    display: flex;
-    gap: 5px;
-    height: 80%;
-
-}
-
-.infos div button {
-    height: 100%;
-    padding-inline: 15px;
-    font-size: 1em;
-    border-radius: 30px;
-    border: none;
-}
-
 .weather span {
     font-weight: 600;
     font-size: 1.2em;
@@ -575,9 +535,17 @@ li p {
 
 }
 
+.footer::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+    height: 8em;
+    background-color: #0099ff;
+}
+
 .footer div {
     width: 80%;
-    height: 50px;
     padding: 20px;
     border-radius: 11px;
     margin-bottom: 2em;
@@ -616,4 +584,111 @@ li p {
 
 #wavePath {
     animation: moveWave 4s infinite ease-in-out;
+}
+
+@media only screen and (max-width: 480px) {
+    header h1 {
+        font-size: 3em;
+        padding-inline: .5em;
+        text-align: center;
+    }
+
+    .surfdiv {
+        right: 0;
+        top: 0;
+        height: 300px;
+    }
+
+    main section:first-child {
+        padding-inline: 1em;
+    }
+
+    main section:first-child h2 {
+        line-height: 1em;
+        margin-bottom: .5em;
+        padding-left: .3em;
+        border-left: solid .1em #ffe2a8;
+    }
+
+    main section:first-child p {
+        color: #ffffff;
+        padding-inline: 1em;
+        border-radius: 6px;
+        padding-block: 1em;
+        background-color: #03003640;
+    }
+
+    main section:nth-child(2) ul {
+        padding: 1em;
+    }
+
+    .tagsdiv {
+        gap: 3px;
+
+    }
+
+    .tag {
+        height: 30px;
+    }
+
+    .tagicon {
+        font-size: .8em;
+    }
+
+    .tagtext {
+        padding-right: 10px;
+        font-size: .8em;
+    }
+
+
+    .rct {
+        display: flex;
+        gap: 10px;
+    }
+
+    .weather {
+        display: none;
+    }
+
+    .weather span {
+        font-weight: 600;
+        font-size: .9em;
+    }
+
+    li h3 {
+        font-size: 2em;
+        padding-block: 0px;
+        padding-left: .4em;
+        margin-bottom: 1em;
+        line-height: 1em;
+        border-left: solid .2em #ffe2a8;
+    }
+
+    li p {
+        font-size: .9em;
+    }
+
+    .hide {
+        filter: none;
+        scale: .9;
+    }
+
+    .show {
+        opacity: 1;
+        box-shadow: 0px 0px 20px 0px rgba(164, 164, 164, 0.787) !important;
+    }
+
+    .hide h3 {
+        font-size: 2em;
+        justify-self: flex-end;
+    }
+
+    .footer div span:last-child {
+        font-size: .7em;
+    }
+
+    .footer div span:nth-child(3) {
+        position: absolute;
+        bottom: 20px;
+    }
 }
