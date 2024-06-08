@@ -504,23 +504,6 @@ li p {
 
 }
 
-.gmap_canvas {
-    width: 100px;
-    height: 100px;
-    margin-left: 20px;
-    background-color: #ffffff50;
-    border-radius: 11px;
-    overflow: hidden;
-
-}
-
-.gmap_canvas iframe {
-    width: 100%;
-    margin-top: -50px;
-
-    height: calc(100% + 50px);
-    border: none;
-}
 
 .footer {
     width: 100%;
@@ -659,7 +642,7 @@ li p {
         font-size: 2em;
         padding-block: 0px;
         padding-left: .4em;
-        margin-bottom: 1em;
+        margin-bottom: .8em;
         line-height: 1em;
         border-left: solid .2em #ffe2a8;
     }
@@ -683,12 +666,61 @@ li p {
         justify-self: flex-end;
     }
 
+    .footer::after {
+        display: none;
+
+
+    }
+
+    .footer {
+        padding-block: 0em;
+        margin-top: 20dvh;
+        height: 15dvh;
+        justify-content: center;
+    }
+
+    .footer div {
+        padding: 0;
+    }
+
+    .footer svg {
+        width: 100%;
+        height: auto;
+    }
+
+    .footer * {}
+
+    #wavePath {
+        animation: none;
+        background-color: #0047ab;
+    }
+
     .footer div span:last-child {
         font-size: .7em;
     }
 
     .footer div span:nth-child(3) {
         position: absolute;
-        bottom: 20px;
+        bottom: 10px;
+    }
+
+    header a,
+    .tag,
+    li p {
+        backdrop-filter: none;
+    }
+
+    header a {
+        margin-top: 2em;
+        background-color: #ffe5b190;
+    }
+
+    .tag {
+        background-color: #fff;
+    }
+
+    .wish {
+        backdrop-filter: none;
+        background-color: #fff;
     }
 }
