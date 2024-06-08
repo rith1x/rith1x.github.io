@@ -1,3 +1,5 @@
+
+
 const vid = document.createElement('video');
 vid.src = "1739010-hd_1920_1080_30fps.mp4"
 vid.autoplay = true;
@@ -14,7 +16,9 @@ header[0].appendChild(banner_btn)
 const surfer = document.createElement('img');
 surfer.src = "Surfer-pana.svg";
 surfer.className = "surfer"
-document.body.appendChild(surfer)
+const surfdiv = document.createElement('div')
+surfdiv.className = "surfdiv"
+document.body.append(surfdiv)
 
 const pad = document.createElement('div')
 pad.className = "padder"
@@ -22,12 +26,17 @@ document.getElementsByTagName('main')[0].appendChild(pad)
 
 const sections = document.getElementsByTagName('section')
 sections[0].id = 'list';
+const nowShowing = document.createElement('div')
+nowShowing.className = "nowShowing"
+nowShowing.innerText = ""
+nowShowing.id = "nowShowing"
 
+sections[1].append(nowShowing);
 
 
 const h2tgs = document.getElementsByTagName('h2');
 h2tgs[1].innerHTML = 'Top Beaches <i class="fa-solid fa-umbrella-beach"></i>'
-
+h2tgs[1].style.fontFamily = "Synonymb"
 
 let tagsvg = [['<i class="fa-solid fa-person-swimming"></i>', '<i class="fa-solid fa-sun"></i>', '<i class="fa-solid fa-star"></i>'],
 ['<i class="fa-solid fa-water"></i>', '<i class="fa-solid fa-person-praying"></i>', '<i class="fa-solid fa-hotel"></i>'],
@@ -47,7 +56,7 @@ let tags = [['swim', 'sunbath', 'reef'], ['snorkel', 'dive', 'resort'], ['dive',
 let liels = document.getElementsByTagName('li')
 for (let i = 0; i < liels.length; i++) {
     liels[i].className = "hide"
-
+    liels[i].id = i;
     const topRow = document.createElement('div')
 
     const spandiv = document.createElement('div')
@@ -77,22 +86,26 @@ for (let i = 0; i < liels.length; i++) {
     wea.id = `Weather${i}`
 
     const rct = document.createElement('div')
+    rct.className = "rct"
     rct.appendChild(wea)
     rct.appendChild(wish)
 
     topRow.className = "toprow"
     topRow.appendChild(spandiv)
     topRow.appendChild(rct)
+
+    // https://maps.google.com/maps?q=${lat}, ${lon}&z=17&output=embed
+
     liels[i].prepend(topRow)
 }
-weatherUpdate()
+fakeWeather()
 function doObserve() {
     for (let i = 0; i < liels.length; i++) {
         observer.observe(liels[i]);
     }
 
 }
-let likeStatus = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+let likeStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 function likeToggle(beach) {
     if (likeStatus[beach] == 0) {
         document.getElementById(`Like${beach}`).innerHTML = '<i class="fa-solid fa-heart"></i>'
@@ -103,16 +116,20 @@ function likeToggle(beach) {
         document.getElementById(`Like${beach}`).innerHTML = '<i class="fa-regular fa-heart"></i>'
         likeStatus[beach] = 0;
         document.getElementById(`Like${beach}`).classList.remove("liked")
-
     }
 
 }
-likeStatus.forEach((el) => { likeToggle(el) })
 
+
+const h3els = document.getElementsByTagName('h3')
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-        if (entry.isIntersecting) { entry.target.className = 'show'; }
+        if (entry.isIntersecting) {
+            entry.target.className = 'show';
+            // document.getElementById('nowShowing').innerText = h3els[entry.target.id].innerText
+
+        }
         else { entry.target.className = 'hide'; }
     });
 }, { threshold: 0.4 });
@@ -135,24 +152,31 @@ function isElementInViewport(el) {
 document.body.onscroll = (e) => {
     if (isElementInViewport(h2tgs[1])) {
         doObserve();
+    } else if (isElementInViewport(document.getElementById('nowShowing'))) {
+        doObserve();
     }
 }
 
 
 
-async function weatherUpdate() {
+function fakeWeather() {
     const h3els = document.getElementsByTagName('h3')
     for (let j = 0; j < h3els.length; j++) {
-        let curr_location = h3els[j].innerText;
-        fetch(`https://wttr.in/${location}?format=j2`)
+        let curr_location = (h3els[j].innerText.split(','))[1];
+        let weather = ((Math.random() * 10) + 20).toFixed(0)
+        document.getElementById(`Weather${j}`).innerHTML = curr_location + `&nbsp;<span>${weather}°C</span>`
 
-            .then(response => response.json())
-            .then(data => {
-                weather = data;
-                const avgtempC = weather.current_condition[0].temp_C;
-                const location = weather.nearest_area[0].areaName[0].value;
-                console.log(clWeather, cloc)
-            })
-            .catch((err) => { console.log(err) })
     }
 }
+const footer = document.createElement('div')
+
+const footernotes = document.createElement('div')
+footernotes.innerHTML = "<span>Designed by Kiruthik</span><span>Frontend Challenge v24.05.29</span>"
+const attr = document.createElement('span')
+attr.innerText = "Icons by FontAwesome, Video by Pexels, Image by Adobe Firefly"
+footernotes.appendChild(attr)
+footer.className = 'footer'
+footer.innerHTML = `<svg id="wavePath" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,154.7C672,117,768,75,864,69.3C960,64,1056,96,1152,106.7C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>`
+footer.append(footernotes)
+document.body.appendChild(footer)
+
