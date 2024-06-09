@@ -1,16 +1,16 @@
 @font-face {
     font-family: Synonym;
-    src: url('fonts/Synonym-Regular.otf');
+    src: url('../fonts/Synonym-Regular.otf');
 }
 
 @font-face {
     font-family: Synonymm;
-    src: url('fonts/Synonym-Medium.otf');
+    src: url('../fonts/Synonym-Medium.otf');
 }
 
 @font-face {
     font-family: Synonymb;
-    src: url('fonts/Synonym-Bold.otf');
+    src: url('../fonts/Synonym-Bold.otf');
 }
 
 * {
@@ -103,7 +103,7 @@ header video {
     height: 500px;
     aspect-ratio: 1 / 1;
     overflow: hidden;
-    background-image: url('img/Surfer-pana.svg');
+    background-image: url('../img/Surfer-pana.svg');
     filter: saturate(1.3);
     animation-name: surf;
     /* visibility: hidden; */
@@ -310,43 +310,43 @@ li p::before {
 }
 
 li:nth-child(1) {
-    background-image: url('img/beach-1.jpg');
+    background-image: url('../img/beach-1.jpg');
 }
 
 li:nth-child(2) {
-    background-image: url('img/beach-2.jpg');
+    background-image: url('../img/beach-2.jpg');
 }
 
 li:nth-child(3) {
-    background-image: url('img/beach-3.jpg');
+    background-image: url('../img/beach-3.jpg');
 }
 
 li:nth-child(4) {
-    background-image: url('img/beach-4.jpg');
+    background-image: url('../img/beach-4.jpg');
 }
 
 li:nth-child(5) {
-    background-image: url('img/beach-5.jpg');
+    background-image: url('../img/beach-5.jpg');
 }
 
 li:nth-child(6) {
-    background-image: url('img/beach-6.jpg');
+    background-image: url('../img/beach-6.jpg');
 }
 
 li:nth-child(7) {
-    background-image: url('img/beach-7.jpg');
+    background-image: url('../img/beach-7.jpg');
 }
 
 li:nth-child(8) {
-    background-image: url('img/beach-8.jpg');
+    background-image: url('../img/beach-8.jpg');
 }
 
 li:nth-child(9) {
-    background-image: url('img/beach-9.jpg');
+    background-image: url('../img/beach-9.jpg');
 }
 
 li:nth-child(10) {
-    background-image: url('img/beach-10.jpg');
+    background-image: url('../img/beach-10.jpg');
 }
 
 .hide {
