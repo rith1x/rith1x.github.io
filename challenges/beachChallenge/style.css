@@ -541,11 +541,16 @@ li p {
     justify-content: space-between;
 }
 
+.footer a {
+    text-decoration: none;
+    color: #00426e;
+}
+
 .footer div span:last-child {
     font-family: Synonym;
 }
 
-.footer svg {
+.footer>svg {
     position: absolute;
     width: 100%;
     height: 50dvh;
@@ -567,6 +572,7 @@ li p {
 
 #wavePath {
     animation: moveWave 4s infinite ease-in-out;
+    background-color: transparent;
 }
 
 @media only screen and (max-width: 480px) {
@@ -629,8 +635,13 @@ li p {
         gap: 10px;
     }
 
-    .weather {
-        display: none;
+    .rct {
+        flex-direction: column-reverse;
+        align-items: end;
+    }
+
+    .toprow {
+        align-items: start;
     }
 
     .weather span {
@@ -668,15 +679,24 @@ li p {
 
     .footer::after {
         display: none;
-
-
     }
 
     .footer {
         padding-block: 0em;
-        margin-top: 20dvh;
-        height: 15dvh;
+        margin-top: 10dvh;
+        height: fit-content;
+        background-color: #2F84D0;
+        overflow: hidden;
+        padding-top: 2em;
+        position: relative;
         justify-content: center;
+    }
+
+    .footer div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: flex-start;
+        row-gap: 1em;
     }
 
     .footer div {
@@ -684,25 +704,21 @@ li p {
     }
 
     .footer svg {
-        width: 100%;
-        height: auto;
+        display: none;
     }
 
-    .footer * {}
 
     #wavePath {
         animation: none;
-        background-color: #0047ab;
     }
 
     .footer div span:last-child {
+        grid-area: 2 / 1 / 2 / 3;
         font-size: .7em;
     }
 
-    .footer div span:nth-child(3) {
-        position: absolute;
-        bottom: 10px;
-    }
+
+
 
     header a,
     .tag,
@@ -722,5 +738,55 @@ li p {
     .wish {
         backdrop-filter: none;
         background-color: #fff;
+    }
+}
+
+@media only screen and (max-width: 1070px) {
+    .rct {
+        flex-direction: column-reverse;
+        align-items: end;
+    }
+
+    .toprow {
+        align-items: start;
+    }
+
+    .tagsdiv {
+        width: 50%;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+}
+
+@media only screen and (max-width: 960px) {
+
+    main section:nth-child(2) ul {
+        padding: 1em;
+    }
+
+    .footer div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: flex-start;
+        row-gap: 1em;
+
+    }
+
+
+    .footer div span:last-child {
+        grid-area: 2 / 1 / 2 / 3;
+        font-size: .7em;
+    }
+
+}
+
+@media only screen and (max-width: 402px) {
+
+    .footer div {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
     }
 }
