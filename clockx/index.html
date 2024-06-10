@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clock V2</title>
+    </head>
+
+    <body>
+        <div class="box">
+            <div class="clock">
+                <div class="pointers">
+                    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="sec animate"></div>
+                <div class="min animate"></div>
+                <div class="hrs animate"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: #181818;
+                height: 100dvh;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box {
+                height: 80dvh;
+                border-radius: 10dvh;
+                aspect-ratio: 1 / 1;
+                padding: 4dvh;
+                background-color: black;
+
+            }
+
+            .clock {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                position: relative;
+
+            }
+
+            .pointers {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                align-items: center;
+                border: solid 3px #1d1d1d40;
+                justify-content: center;
+                border-radius: 50%;
+
+            }
+
+            .pointers span {
+                width: 2px;
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                /* border: solid 1px #0f0; */
+                display: flex;
+                align-items: flex-start;
+                color: rgb(64, 64, 64);
+                justify-content: center;
+                padding-top: 5px;
+                font-family: monospace;
+
+                font-weight: 1000;
+                font-size: 10px;
+
+                height: 100%;
+                border-top: solid 10px #1d1d1d;
+            }
+
+            .pointers span h1 {
+                color: #474747;
+                position: absolute;
+                top: 25px;
+
+                font-size: 3em;
+                left: -5px;
+            }
+
+            .sec,
+            .min,
+            .hrs {
+                width: 5px;
+                height: 100%;
+                position: absolute;
+                border-radius: 2.5px;
+                inset: 0;
+                margin: auto;
+                transform-origin: 50% 100%;
+            }
+
+
+
+
+
+            .sec {
+                height: 40%;
+                animation-duration: 60s;
+                width: 2px;
+                background-color: rgb(255, 179, 28);
+
+            }
+
+            .min {
+                height: 35%;
+                background-color: #fff;
+                /* border: solid 2px rgb(98, 98, 98); */
+
+                animation-duration: 3600s;
+
+            }
+
+            .hrs {
+                height: 30%;
+                background-color: #fff;
+                /* border: solid 2px #ffffff; */
+                animation-duration: 43200s;
+            }
+
+            .dot {
+                inset: 0;
+                margin: auto;
+                width: 10px;
+                height: 10px;
+                position: absolute;
+                border-radius: 5px;
+                border: solid 2px #fff;
+
+                background-color: rgb(0, 0, 0);
+            }
+
+            .animate {
+                animation-name: rotate;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: translateY(-50%) rotate(0deg);
+                }
+
+                to {
+                    transform: translateY(-50%) rotate(360deg);
+
+                }
+
+            }
+
+            @media only screen and (max-width: 630px) {
+                .box {
+                    height: 80dvw;
+                }
+
+                .pointers span h4 {
+                    font-size: .4em;
+                }
+
+                .pointers span h1 {
+                    color: #474747;
+                    position: absolute;
+                    top: 1em;
+
+                    font-size: 1.1em;
+                    left: -.25em;
+                }
+
+                .min,
+                .hrs {
+                    width: 1.3px;
+                }
+
+                .sec {
+                    width: 1px;
+                }
+
+                .dot {
+                    width: .3em;
+                    height: .3em;
+                    border-width: 1px;
+                }
+
+            }
+        </style>
+        <script>
+            let deg = 0;
+            let mpr = 0;
+            let hpr = 0;
+            const ptrs = document.getElementsByTagName('span')
+            for (let i = 0; i < 60; i++) {
+                const element = ptrs[i];
+                element.style.rotate = `${deg}deg`
+                deg += 6;
+                if (i % 5 == 0) {
+
+                    element.style.borderTop = "Solid 10px #aaa"
+                    const mrel = document.createElement('h4');
+                    mrel.innerText = mpr
+                    mpr += 5
+                    const hrel = document.createElement('h1');
+                    hrel.className = "hrlabel"
+                    if (hpr == 0) {
+                        hrel.textContent = 12
+                    } else {
+                        hrel.textContent = hpr
+
+                    }
+                    hrel.style.rotate = `-${deg - 5}deg`
+                    mrel.style.rotate = `-${deg - 5}deg`
+                    hpr += 1
+                    element.style.borderColor = "#366fff"
+                    element.append(mrel)
+                    element.append(hrel)
+
+
+                }
+            }
+            const h = document.querySelector('.hrs')
+            const m = document.querySelector('.min')
+            const s = document.querySelector('.sec')
+
+            const now = new Date();
+            (function action() {
+                const ss = now.getSeconds(),
+                    ms = now.getMinutes() * 60,
+                    hs = now.getHours() * 3600;
+
+                s.style.animationDelay = `-${ss}s`
+                m.style.animationDelay = `-${ms}s`
+                h.style.animationDelay = `-${hs}s`
+
+            })();
+        </script>
+    </body>
+
+</html>
