@@ -27,7 +27,7 @@
             }
 
             body {
-                background-color: #181818;
+                background-color: #000000;
                 height: 100dvh;
                 width: 100%;
                 display: flex;
@@ -40,6 +40,7 @@
                 border-radius: 10dvh;
                 aspect-ratio: 1 / 1;
                 padding: 4dvh;
+                box-shadow: 0 0 2em 0 rgb(7, 7, 7);
                 background-color: black;
 
             }
@@ -57,7 +58,7 @@
                 height: 100%;
                 width: 100%;
                 align-items: center;
-                border: solid 3px #1d1d1d40;
+                /* border: solid 3px #1d1d1d40; */
                 justify-content: center;
                 border-radius: 50%;
 
@@ -118,7 +119,7 @@
 
             .min {
                 height: 35%;
-                background-color: #fff;
+                background-color: #c5c5c5;
                 /* border: solid 2px rgb(98, 98, 98); */
 
                 animation-duration: 3600s;
@@ -127,7 +128,7 @@
 
             .hrs {
                 height: 30%;
-                background-color: #fff;
+                background-color: #c5c5c5;
                 /* border: solid 2px #ffffff; */
                 animation-duration: 43200s;
             }
@@ -148,6 +149,11 @@
                 animation-name: rotate;
                 animation-iteration-count: infinite;
                 animation-timing-function: linear;
+            }
+
+            .pointers span h4 {
+                margin-top: -.5em;
+                color: rgba(0, 106, 159, 0.654);
             }
 
             @keyframes rotate {
@@ -208,7 +214,7 @@
                 deg += 6;
                 if (i % 5 == 0) {
 
-                    element.style.borderTop = "Solid 10px #aaa"
+                    element.style.borderTop = "Solid 10px #aaaaaa30"
                     const mrel = document.createElement('h4');
                     mrel.innerText = mpr
                     mpr += 5
@@ -223,7 +229,8 @@
                     hrel.style.rotate = `-${deg - 5}deg`
                     mrel.style.rotate = `-${deg - 5}deg`
                     hpr += 1
-                    element.style.borderColor = "#366fff"
+                    element.style.borderColor = "#366fff30"
+                    element.style.borderWidth = '0px'
                     element.append(mrel)
                     element.append(hrel)
 
