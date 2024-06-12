@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pomodoro</title>
+    </head>
+
+    <body>
+        <div class="counter" id="ctr">
+            <h2 id="time"></h2>
+            <div id="ctrball">
+                <span></span>
+            </div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100dvh;
+                background-color: #000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            .counter {
+                width: 500px;
+                height: 500px;
+                background: conic-gradient(red 60deg, rgb(0, 0, 0) 0deg);
+                border-radius: 50%;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                transition: background 1s ease;
+                justify-content: center;
+                position: relative;
+            }
+
+            #ctrball {
+                position: absolute;
+
+                top: 0;
+                border-radius: 50px;
+
+                z-index: 2;
+                background-color: transparent;
+                height: 100%;
+                width: calc(500px - 95%);
+                display: flex;
+                align-items: start;
+                justify-content: flex-start;
+            }
+
+            #ctrball span {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                background-color: rgb(255, 0, 0);
+            }
+
+            h2 {
+                z-index: 2;
+
+            }
+
+            .counter::after {
+                content: '';
+                width: 90%;
+                height: 90%;
+                position: absolute;
+                background-color: rgb(0, 0, 0);
+                inset: 0;
+                margin: auto;
+                z-index: 1;
+                border-radius: 50%;
+            }
+        </style>
+        <script>
+            const ctrelem = document.getElementById('ctr')
+            const h2el = document.getElementById('time')
+            const ball = document.getElementById('ctrball')
+            let x = 360;
+            let delay = 30000;
+            let dura = delay;
+            let interval = delay / 360
+
+
+            h2el.innerText = dura / 1000
+            var count = setInterval(() => {
+                dura -= 1000
+                h2el.innerText = dura / 1000
+                if (dura == 0) {
+                    clearInterval(count)
+                }
+            }, 1000)
+
+            var ctdn = setInterval(() => {
+
+                x -= 1
+                ball.style.rotate = `${x}deg`
+                ctrelem.style.background = `conic-gradient(red ${x}deg, rgb(0, 0, 0) 0deg)`
+                if (x == 0) {
+                    x = 345
+                    // clearInterval(ctdn)
+                }
+            }, interval)
+        </script>
+    </body>
+
+</html>
