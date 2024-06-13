@@ -65,6 +65,7 @@
                 width: 100%;
                 aspect-ratio: 1 / 1;
                 border-radius: 50%;
+                visibility: hidden;
                 background-color: rgb(255, 0, 0);
             }
 
@@ -86,34 +87,38 @@
             }
         </style>
         <script>
-            const ctrelem = document.getElementById('ctr')
-            const h2el = document.getElementById('time')
-            const ball = document.getElementById('ctrball')
-            let x = 360;
-            let delay = 30000;
-            let dura = delay;
-            let interval = delay / 360
+            function runTimer(duration) {
+                clearInterval(count)
+                clearInterval(ctdn)
 
-
-            h2el.innerText = dura / 1000
-            var count = setInterval(() => {
-                dura -= 1000
+                const ctrelem = document.getElementById('ctr')
+                const h2el = document.getElementById('time')
+                const ball = document.getElementById('ctrball')
+                let x = 360;
+                let delay = parseInt(duration) * 1000;
+                let dura = delay;
+                let interval = delay / 360
                 h2el.innerText = dura / 1000
-                if (dura == 0) {
-                    clearInterval(count)
-                }
-            }, 1000)
+                var count = setInterval(() => {
+                    dura -= 1000
+                    h2el.innerText = dura / 1000
+                    if (dura == 0) {
+                        clearInterval(count)
+                    }
+                }, 1000)
+                var ctdn = setInterval(() => {
+                    ball.style.visibility = "visible"
+                    x -= 1
+                    ball.style.rotate = `${x}deg`
+                    ctrelem.style.background = `conic-gradient(red ${x}deg, rgb(0, 0, 0) 00deg)`
+                    if (x == 0) {
+                        clearInterval(ctdn)
+                    }
+                }, interval)
+                return
+            }
+            runTimer(5)
 
-            var ctdn = setInterval(() => {
-
-                x -= 1
-                ball.style.rotate = `${x}deg`
-                ctrelem.style.background = `conic-gradient(red ${x}deg, rgb(0, 0, 0) 0deg)`
-                if (x == 0) {
-                    x = 345
-                    // clearInterval(ctdn)
-                }
-            }, interval)
         </script>
     </body>
 
