@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monopoly</title>
+    </head>
+
+    <body>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                background-color: #000;
+            }
+
+            #gamespace {
+                height: 100dvh;
+                aspect-ratio: 1 / 1;
+                padding: 3px;
+                display: grid;
+                gap: 3px;
+                grid-template-columns: repeat(10, 1fr);
+                grid-template-rows: repeat(10, 1fr);
+            }
+
+            .tile {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 6px;
+                background-color: transparent;
+                display: flex;
+                color: #fff;
+                font-size: 12px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            .filler {
+                background-color: #000000;
+                border-radius: 6px;
+                grid-area: 2 / 2 / 10 / 10;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <div id="gamespace">
+
+        </div>
+        <script>
+            const games = document.getElementById('gamespace')
+
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < 10; j++) {
+                    const tile = document.createElement('div')
+                    if (j == 0 || i == 0 || i == 9 || j == 9) {
+                        tile.className = "tile"
+                        tile.id = `t${i}${j}`
+                        tile.innerText = `${i}${j}`
+                        games.append(tile)
+                    }
+                }
+            }
+            const space = document.createElement('div')
+            space.className = "filler"
+            games.append(space)
+            let blob = 0;
+            const board = [
+                { name: "Go", type: "Special", value: 0 },                   // 1
+                { name: "Mumbai", type: "Property", value: 100 },            // 2
+                { name: "Pune", type: "Property", value: 120 },              // 3
+                { name: "Income Tax", type: "Tax", value: 200 },             // 4
+                { name: "Nagpur", type: "Property", value: 140 },            // 5
+                { name: "Thane", type: "Property", value: 160 },             // 6
+                { name: "Community Chest", type: "Special", value: 0 },      // 7
+                { name: "Nashik", type: "Property", value: 180 },            // 8
+                { name: "Aurangabad", type: "Property", value: 200 },        // 9
+                { name: "Jail (Just Visiting)", type: "Special", value: 0 }, // 10
+                { name: "Ahmedabad", type: "Property", value: 220 },         // 11
+                { name: "Surat", type: "Property", value: 240 },             // 12
+                { name: "Chance", type: "Special", value: 0 },               // 13
+                { name: "Rajkot", type: "Property", value: 260 },            // 14
+                { name: "Vadodara", type: "Property", value: 280 },          // 15
+                { name: "Community Chest", type: "Special", value: 0 },      // 16
+                { name: "Jaipur", type: "Property", value: 300 },            // 17
+                { name: "Jodhpur", type: "Property", value: 320 },           // 18
+                { name: "Free Parking", type: "Special", value: 0 },         // 19
+                { name: "Bengaluru", type: "Property", value: 340 },         // 20
+                { name: "Mysuru", type: "Property", value: 360 },            // 21
+                { name: "Chance", type: "Special", value: 0 },               // 22
+                { name: "Mangaluru", type: "Property", value: 380 },         // 23
+                { name: "Udupi", type: "Property", value: 400 },             // 24
+                { name: "Community Chest", type: "Special", value: 0 },      // 25
+                { name: "Hyderabad", type: "Property", value: 420 },         // 26
+                { name: "Warangal", type: "Property", value: 440 },          // 27
+                { name: "Go to Jail", type: "Special", value: 0 },           // 28
+                { name: "Chennai", type: "Property", value: 460 },           // 29
+                { name: "Coimbatore", type: "Property", value: 480 },        // 30
+                { name: "Luxury Tax", type: "Tax", value: 100 },             // 31
+                { name: "Madurai", type: "Property", value: 500 },           // 32
+                { name: "Trichy", type: "Property", value: 520 },            // 33
+                { name: "Community Chest", type: "Special", value: 0 },      // 34
+                { name: "Kochi", type: "Property", value: 540 },             // 35
+                { name: "Chance", type: "Special", value: 0 },               // 36
+                { name: "Kolkata", type: "Property", value: 560 },           // 37
+                { name: "Airport", type: "Special", value: 0 },              // 38
+                { name: "Delhi", type: "Property", value: 580 },             // 39
+                { name: "Airport", type: "Special", value: 0 }               // 40
+            ];
+
+
+            function assignLabel(i, j, b) {
+                const ctile = document.getElementById(`t${i}${j}`)
+                ctile.innerText = ""
+                const namel = document.createElement('p')
+                namel.innerText = board[b].name
+                ctile.appendChild(namel)
+                const valel = document.createElement('p')
+                valel.innerText = board[b].value
+                valel.style.color = "#000"
+                valel.style.width = "50%"
+                valel.style.fontWeight = 1000
+                valel.style.fontFamily = "monospace"
+                valel.style.textAlign = "center"
+                valel.style.background = "gold"
+                ctile.appendChild(valel)
+                if (board[b].type == "Special") {
+                    ctile.style.border = "solid 2px #f006"
+                } else if (board[b].type == "Property") {
+                    ctile.style.border = "solid 2px #0f06"
+
+                } else {
+                    ctile.style.border = "solid 2px #00f6"
+
+                }
+
+            }
+
+
+            function filling(i, j, d) {
+                if (d == 0) {
+                    for (let x = i; x > 0; x--) {
+                        assignLabel(i, x, blob)
+                        blob += 1
+
+                    }
+                    filling(9, 0, 1)
+                } else if (d == 1) {
+                    for (let x = i; x > 0; x--) {
+                        assignLabel(x, j, blob)
+
+
+                        blob += 1
+                    }
+                    filling(0, 0, 2)
+                } else if (d == 2) {
+                    for (let x = i; x < 9; x++) {
+                        assignLabel(i, x, blob)
+
+
+                        blob += 1
+                    }
+                    filling(0, 9, 3)
+                } else {
+                    for (let x = i; x < 9; x++) {
+                        assignLabel(x, j, blob)
+
+                        blob += 1
+                    }
+                }
+            }
+            filling(9, 9, 0);
+
+        </script>
+    </body>
+
+
+</html>
