@@ -246,6 +246,17 @@
                     }
                 }
                 await delay(1000);
+                visited = 0;
+                texon = ['', 'B', 'Y', 'R', 'I', 'T', 'H', '1', 'X']
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.color = "blue"
+                        document.getElementById(`t${i}${j}`).innerText = texon[visited]
+                        visited++
+                        await delay(100)
+                    }
+                }
+                await delay(1000);
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
