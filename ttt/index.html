@@ -32,9 +32,12 @@
                 justify-content: center;
             }
 
+
+
             #gameboard {
-                height: 500px;
-                width: 500px;
+                height: 80dvh;
+                width: auto;
+                aspect-ratio: 1 / 1;
                 background-color: #000;
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
@@ -42,6 +45,15 @@
                 padding: 5px;
                 border-radius: 11px;
                 grid-template-rows: repeat(3, 1fr);
+            }
+
+            @media only screen and (max-width: 750px) {
+
+                #gameboard {
+                    width: 90%;
+                    height: auto;
+                    aspect-ratio: 1/1;
+                }
             }
 
             .tile {
@@ -94,7 +106,6 @@
                 }
             }
             let gameState = [['e', 'e', 'e'], ['e', 'e', 'e'], ['e', 'e', 'e']];
-            let currentPlayer = "U";
             let filled = 0;
 
 
@@ -262,10 +273,12 @@
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
                         document.getElementById(`t${i}${j}`).innerText = ''
                         gameState[i][j] = 'e'
+                        console.table(gameState)
                         visited++
                     }
                     await delay(100)
                 }
+                filled = 0
 
             }
             createBoard();
