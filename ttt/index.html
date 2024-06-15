@@ -67,11 +67,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                animation-name: press;
-                animation-duration: .5s;
-                animation-play-state: paused;
-                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
-                animation-iteration-count: 1;
+
             }
 
             @keyframes press {
@@ -112,7 +108,10 @@
             function tileClick(x, y) {
                 if (gameState[x][y] == 'e') {
                     gameState[x][y] = 'X'
-                    document.getElementById(`t${x}${y}`).style.animationPlayState = 'running' //#2836ff
+                    document.getElementById(`t${x}${y}`).style.animation = 'none';
+
+                    document.getElementById(`t${x}${y}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
+
                     document.getElementById(`t${x}${y}`).style.color = '#2836ff'
 
                     document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-xmark"></i>'
@@ -136,7 +135,10 @@
                 } while (gameState[x][y] != 'e' && filled < 8);
                 filled += 1;
                 gameState[x][y] = 'O'
-                document.getElementById(`t${x}${y}`).style.animationPlayState = 'running' // #ff2828
+                document.getElementById(`t${x}${y}`).style.animation = 'none';
+
+                document.getElementById(`t${x}${y}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
+
                 document.getElementById(`t${x}${y}`).style.color = '#ff2828'
                 document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-o"></i>'
                 checkBoard()
@@ -267,11 +269,13 @@
                         await delay(100)
                     }
                 }
-                await delay(1000);
+                await delay(800);
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
                         document.getElementById(`t${i}${j}`).innerText = ''
+                        document.getElementById(`t${i}${j}`).style.animation = 'none';
+                        document.getElementById(`t${i}${j}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
                         gameState[i][j] = 'e'
                         console.table(gameState)
                         visited++
