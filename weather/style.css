@@ -50,11 +50,20 @@ body {
     background-color: var(--theme);
 }
 
+
+.sub,
+.navbar,
+.dayn,
+.otr,
+.endnote {
+    width: calc(100% - 20px);
+    margin: auto;
+}
+
 .container {
     max-width: 400px;
     height: 100dvh;
     margin: 0 auto;
-    padding: 10px;
 
     /* border: solid 3px #00f; */
 }
