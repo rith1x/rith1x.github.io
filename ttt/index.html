@@ -12,6 +12,11 @@
 
     <body>
         <style>
+            @font-face {
+                font-family: moni;
+                src: url(fonts.ttf);
+            }
+
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -44,7 +49,8 @@
                 height: 100%;
                 border-radius: 6px;
                 width: 100%;
-
+                font-family: moni;
+                color: lime;
                 font-size: 5em;
                 display: flex;
                 align-items: center;
@@ -127,29 +133,105 @@
 
             function checkBoard() {
                 if (filled > 5) {
-                    if (gameState[0][0] == 'O' && gameState[1][1] == 'O' && gameState[2][2] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][2] == 'O' && gameState[1][1] == 'O' && gameState[2][0] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][0] == 'O' && gameState[0][1] == 'O' && gameState[0][2] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[1][0] == 'O' && gameState[1][1] == 'O' && gameState[1][2] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[2][0] == 'O' && gameState[2][1] == 'O' && gameState[2][2] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][0] == 'O' && gameState[1][0] == 'O' && gameState[2][0] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][1] == 'O' && gameState[1][1] == 'O' && gameState[2][1] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][2] == 'O' && gameState[1][2] == 'O' && gameState[2][2] == 'O') { console.log("Computer Wins!") }
-                    else if (gameState[0][0] == 'X' && gameState[1][1] == 'X' && gameState[2][2] == 'X') { console.log("CUserWins!") }
-                    else if (gameState[0][2] == 'X' && gameState[1][1] == 'X' && gameState[2][0] == 'X') { console.log("User Wins!") }
-                    else if (gameState[0][0] == 'X' && gameState[0][1] == 'X' && gameState[0][2] == 'X') { console.log("User Wins!") }
-                    else if (gameState[1][0] == 'X' && gameState[1][1] == 'X' && gameState[1][2] == 'X') { console.log("User Wins!") }
-                    else if (gameState[2][0] == 'X' && gameState[2][1] == 'X' && gameState[2][2] == 'X') { console.log("User Wins!") }
-                    else if (gameState[0][0] == 'X' && gameState[1][0] == 'X' && gameState[2][0] == 'X') { console.log("User Wins!") }
-                    else if (gameState[0][1] == 'X' && gameState[1][1] == 'X' && gameState[2][1] == 'X') { console.log("User Wins!") }
-                    else if (gameState[0][2] == 'X' && gameState[1][2] == 'X' && gameState[2][2] == 'X') { console.log("User Wins!") }
+                    if (gameState[0][0] == 'O' && gameState[1][1] == 'O' && gameState[2][2] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][2] == 'O' && gameState[1][1] == 'O' && gameState[2][0] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][0] == 'O' && gameState[0][1] == 'O' && gameState[0][2] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[1][0] == 'O' && gameState[1][1] == 'O' && gameState[1][2] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[2][0] == 'O' && gameState[2][1] == 'O' && gameState[2][2] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][0] == 'O' && gameState[1][0] == 'O' && gameState[2][0] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][1] == 'O' && gameState[1][1] == 'O' && gameState[2][1] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][2] == 'O' && gameState[1][2] == 'O' && gameState[2][2] == 'O') {
+                        console.log("Computer Wins!")
+                        gameOver()
+                    }
+                    else if (gameState[0][0] == 'X' && gameState[1][1] == 'X' && gameState[2][2] == 'X') {
+                        console.log("UserWins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[0][2] == 'X' && gameState[1][1] == 'X' && gameState[2][0] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[0][0] == 'X' && gameState[0][1] == 'X' && gameState[0][2] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[1][0] == 'X' && gameState[1][1] == 'X' && gameState[1][2] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[2][0] == 'X' && gameState[2][1] == 'X' && gameState[2][2] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[0][0] == 'X' && gameState[1][0] == 'X' && gameState[2][0] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[0][1] == 'X' && gameState[1][1] == 'X' && gameState[2][1] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
+                    else if (gameState[0][2] == 'X' && gameState[1][2] == 'X' && gameState[2][2] == 'X') {
+                        console.log("User Wins!")
+                        gameOver(1)
+                    }
                     else {
-                        console.log("Tie")
+                        if (filled > 7) {
+
+                            gameOver(0)
+                        }
                     }
                 }
             }
+            function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+            async function gameOver(x) {
+                await delay(1000)
+                let visited = 0;
+                let texon;
+                if (x == 0) {
+                    texon = ['T', 'I', 'E', 'T', 'I', 'E', 'T', 'I', 'E']
 
-            createBoard();</script>
+                } else if (x == 1) {
+                    texon = ['Y', 'O', 'U', '', '', '', 'W', 'O', 'N']
+                } else {
+                    texon = ['C', 'O', 'M', '', '', '', 'W', 'O', 'N']
+
+                }
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.color = "#fff"
+                        document.getElementById(`t${i}${j}`).innerText = texon[visited]
+                        visited++
+                        await delay(100)
+                    }
+                }
+            }
+            createBoard();
+        </script>
     </body>
 
 </html>
