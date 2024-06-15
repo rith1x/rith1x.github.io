@@ -44,7 +44,7 @@
                 height: 100%;
                 border-radius: 6px;
                 width: 100%;
-                color: #f00;
+
                 font-size: 5em;
                 display: flex;
                 align-items: center;
@@ -95,7 +95,8 @@
             function tileClick(x, y) {
                 if (gameState[x][y] == 'e') {
                     gameState[x][y] = 'X'
-                    document.getElementById(`t${x}${y}`).style.animationPlayState = 'running'
+                    document.getElementById(`t${x}${y}`).style.animationPlayState = 'running' //#2836ff
+                    document.getElementById(`t${x}${y}`).style.color = '#2836ff'
 
                     document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-xmark"></i>'
                     filled += 1
@@ -117,7 +118,8 @@
                 } while (gameState[x][y] != 'e' && filled < 8);
                 filled += 1;
                 gameState[x][y] = 'O'
-                document.getElementById(`t${x}${y}`).style.animationPlayState = 'running'
+                document.getElementById(`t${x}${y}`).style.animationPlayState = 'running' // #ff2828
+                document.getElementById(`t${x}${y}`).style.color = '#ff2828'
                 document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-o"></i>'
                 checkBoard()
                 console.table(gameState)
