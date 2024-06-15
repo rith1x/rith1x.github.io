@@ -102,6 +102,8 @@ function fetchWeather(theURL) {
         uvtag = "EXTREME"
         uvc = 5
       }
+      document.getElementById("lut").innerText = "Observed at " + weather.current_condition[0].localObsDateTime
+
       document.getElementById('uvi').innerHTML = `${weather.current_condition[0].uvIndex} <span class="${"u" + uvc} uvt">${uvtag}</span>`
       distemp.innerHTML = avgtempC + '<sup>°C</sup>';
       var wcd = weather.current_condition[0].weatherCode;
