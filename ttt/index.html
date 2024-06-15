@@ -250,6 +250,7 @@
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
                         document.getElementById(`t${i}${j}`).innerText = ''
+                        gameState[i][j] = 'e'
                         visited++
                     }
                     await delay(100)
