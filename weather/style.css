@@ -6,6 +6,12 @@
     font-style: normal;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+
+:root {
+    --borad: 12px;
+
+}
 
 
 * {
@@ -16,6 +22,15 @@
 
 }
 
+body.light {
+    --theme: #f3f6fc40;
+
+}
+
+body.dark {
+    --theme: #1e1e1e40;
+
+}
 
 body {
     margin: 0;
@@ -23,6 +38,15 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
 
+}
+
+.sub,
+.navbar,
+.dayn>div,
+.otr>div,
+.endnote {
+    border: var(--border);
+    background-color: var(--theme);
 }
 
 .container {
@@ -33,24 +57,27 @@ body {
     /* border: solid 3px #00f; */
 }
 
+#mph {
+    font-family: "Noto Color Emoji", sans-serif !important;
+}
 
 
 .navbar {
-    height: 60px;
+    height: 50px;
     padding: 8px;
-    /* border: solid 1px #00f; */
     display: flex;
     width: 90%;
     margin: 5px auto;
-
-    border-radius: 11px;
+    margin-top: 10px;
+    border-radius: var(--borad);
     gap: 5px;
     align-items: center;
-    background-color: #f3f6fc30;
+    /* background-color: #f3f6fc40; */
     backdrop-filter: blur(9px);
     justify-content: space-between;
     position: sticky;
-    top: 5px;
+    top: 10px;
+    z-index: 1;
     flex-grow: initial;
     align-items: stretch;
 
@@ -60,7 +87,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: transparent;
-    border-radius: 6px;
+    /* border-radius: var(--borad); */
     font-size: 1.3em;
     padding-inline: 10px;
     border: none;
@@ -73,11 +100,11 @@ body {
     aspect-ratio: 1 / 1;
     display: flex;
     margin-top: 10px;
-    border-radius: 21px;
+    border-radius: var(--borad);
     align-items: center;
     justify-content: center;
     /* border: solid 1px #00f; */
-    background-color: #f3f6fc40;
+    /* background-color: #f3f6fc40; */
 
     margin-inline: 5%;
 }
@@ -117,15 +144,15 @@ sup {
     gap: 10px;
     /* margin-block: 0px; */
     margin-inline: 5%;
-    border-radius: 21px;
+    border-radius: var(--borad);
 
 }
 
 .dayn div {
     width: 33%;
-    background-color: #f3f6fc30;
+    /* background-color: #f3f6fc40; */
 
-    border-radius: 11px;
+    border-radius: var(--borad);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -161,7 +188,7 @@ sup {
     aspect-ratio: 1 / 1;
     display: flex;
     padding: 10px;
-    border-radius: 6px;
+    border-radius: var(--borad);
     border: none;
     color: #ffffff;
     background-color: transparent;
@@ -177,8 +204,8 @@ sup {
     width: 90%;
     height: 50px;
     margin: 0 auto;
-    border-radius: 11px;
-    background-color: #f3f6fc40;
+    border-radius: var(--borad);
+    /* background-color: #f3f6fc40; */
 
     display: flex;
     justify-content: space-between;
@@ -198,7 +225,7 @@ sup {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: var(--borad);
 }
 
 .locbox {
@@ -208,10 +235,10 @@ sup {
     overflow: hidden;
     /* border: solid 1px #f00; */
     padding-inline: 8px;
-    background-color: #f3f6fc40;
+    /* background-color: #f3f6fc; */
     padding-right: 15px;
     padding-block: 1px;
-    border-radius: 15px;
+    border-radius: var(--borad);
 
 }
 
@@ -219,10 +246,10 @@ sup {
     width: 90%;
     margin: 10px auto;
     flex-direction: column;
-    background-color: #f3f6fc40;
+    /* background-color: #f3f6fc40; */
 
     padding: 3%;
-    border-radius: 11px;
+    border-radius: var(--borad);
     height: fit-content;
     padding-bottom: calc(3% + 5px);
 }
@@ -289,4 +316,3 @@ input:focus {
     border: none;
     outline: none;
 }
-

@@ -1,8 +1,25 @@
+
+const moonobj = {
+  "new moon": "🌑",
+  "waxing crescent": "🌒",
+  "first quarter": "🌓",
+  "waxing gibbous": "🌔",
+  "full moon": "🌕",
+  "waning gibbous": "🌖",
+  "last quarter": "🌗",
+  "waning crescent": "🌘"
+}
+
+
+
+
+
 function fetchWeather(theURL) {
   fetch(theURL)
     .then(response => response.json())
     .then(data => {
       weather = data;
+      console.log(weather)
       const avgtempC = weather.current_condition[0].temp_C;
       const maxt = weather.weather[0].maxtempC;
       const mint = weather.weather[0].mintempC;
@@ -49,10 +66,12 @@ function fetchWeather(theURL) {
       document.getElementById('tem3').innerHTML = d3tem + '<sup>°C</sup>';
       document.getElementById('pressure').textContent = pressure + ' mbar';
       document.getElementById('moonphase').textContent = moonphase;
+      document.getElementById('moonillum').innerHTML = `<span id="mph">${moonobj[(moonphase.toLowerCase())]}</span>` + weather.weather[0].astronomy[0].moon_illumination;
+      document.getElementById('mph').style.opacity = "0." + weather.weather[0].astronomy[0].moon_illumination;
       document.getElementById('humidity').textContent = humidity + '%';
       document.getElementById('cloudcover').textContent = cloudcover + '%';
-      document.getElementById('winspeed').innerHTML = winspeed + " Kmph";
-      document.getElementById('windeg').style.rotate = windir + 'deg';
+      document.getElementById('winspeed').innerHTML = winspeed + " km/h";
+      document.getElementById('windeg').style.rotate = windir + 'deg'; // 
       document.getElementById('weee').textContent = weee;
       minmax = maxt + '<sup>°C</sup>' + '/' + mint + '<sup>°C</sup>';
       document.getElementById('minmax').innerHTML = minmax;
@@ -128,5 +147,16 @@ function fetchloc() {
   localStorage.setItem('location', locationip);
   getWeather();
 }
-localStorage.setItem('location','Salem,Tamilnadu');
- getWeather();
+localStorage.setItem('location', 'Salem,Tamilnadu');
+getWeather();
+
+
+document.addEventListener('keypress', (Event) => {
+  if (Event.key === 'Enter') {
+    document.getElementById('location').textContent = "Please Wait!";
+
+    fetchloc();
+  }
+})
+
+//                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
