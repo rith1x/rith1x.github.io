@@ -66,7 +66,7 @@ function fetchWeather(theURL) {
       document.getElementById('tem3').innerHTML = d3tem + '<sup>°C</sup>';
       document.getElementById('pressure').textContent = pressure + ' mbar';
       document.getElementById('moonphase').textContent = moonphase;
-      document.getElementById('moonillum').innerHTML = `<span id="mph">${moonobj[(moonphase.toLowerCase())]}</span>` + weather.weather[0].astronomy[0].moon_illumination;
+      document.getElementById('moonillum').innerHTML = `<span id="mph">${moonobj[(moonphase.toLowerCase())]}</span> ` + weather.weather[0].astronomy[0].moon_illumination;
       document.getElementById('mph').style.opacity = "0." + weather.weather[0].astronomy[0].moon_illumination;
       document.getElementById('humidity').textContent = humidity + '%';
       document.getElementById('cloudcover').textContent = cloudcover + '%';

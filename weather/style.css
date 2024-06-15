@@ -46,6 +46,7 @@ body {
 .otr>div,
 .endnote {
     border: var(--border);
+    width: 100%;
     background-color: var(--theme);
 }
 
@@ -53,6 +54,7 @@ body {
     max-width: 400px;
     height: 100dvh;
     margin: 0 auto;
+    padding: 5px;
 
     /* border: solid 3px #00f; */
 }
@@ -66,8 +68,6 @@ body {
     height: 50px;
     padding: 8px;
     display: flex;
-    width: 90%;
-    margin: 5px auto;
     margin-top: 10px;
     border-radius: var(--borad);
     gap: 5px;
@@ -96,7 +96,6 @@ body {
 
 
 .sub {
-    width: 90%;
     aspect-ratio: 1 / 1;
     display: flex;
     margin-top: 10px;
@@ -106,7 +105,6 @@ body {
     /* border: solid 1px #00f; */
     /* background-color: #f3f6fc40; */
 
-    margin-inline: 5%;
 }
 
 .mbox {
@@ -137,19 +135,17 @@ sup {
 
 .dayn {
     /* border: solid 1px #f0f; */
-    width: 90%;
     aspect-ratio: 20 / 9;
     display: flex;
     padding-block: 10px;
     gap: 10px;
     /* margin-block: 0px; */
-    margin-inline: 5%;
     border-radius: var(--borad);
 
 }
 
 .dayn div {
-    width: 33%;
+    width: 100%;
     /* background-color: #f3f6fc40; */
 
     border-radius: var(--borad);
@@ -163,7 +159,6 @@ sup {
 
 .otr {
     /* border: solid 1px #f00; */
-    width: 100%;
     gap: 10px;
     display: flex;
 
@@ -201,7 +196,6 @@ sup {
 }
 
 .otr div {
-    width: 90%;
     height: 50px;
     margin: 0 auto;
     border-radius: var(--borad);
@@ -243,7 +237,6 @@ sup {
 }
 
 .endnote {
-    width: 90%;
     margin: 10px auto;
     flex-direction: column;
     /* background-color: #f3f6fc40; */
