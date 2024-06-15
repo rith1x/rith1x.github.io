@@ -59,10 +59,10 @@
                         </svg>
                         <p id="location"></p>
                     </span>
-                    <h1 lux="09" id="weather"><span id="weacel"></span></h1>
                     <span id="image">
-                        <img id="wemg" src="" alt="">
+                        <img draggable="false" id="wemg" src="" alt="">
                     </span>
+                    <h1 lux="09" id="weather"><span id="weacel"></span></h1>
                     <span lux="10" id="feels"></span>
                     <p lux="11" class="weatxt"><span id="weee"></span> <span id="minmax"></span></p>
                 </div>
@@ -132,6 +132,14 @@
                         <p id="winspeed"></p>
                     </span>
                 </div>
+                <div class="otrx2">
+                    <span>
+                        <p>UV Index</p>
+                    </span>
+                    <span>
+                        <p id="uvi"></p>
+                    </span>
+                </div>
                 <div class="otrx4">
                     <span>
                         <p>Moon Phase</p>
@@ -175,6 +183,14 @@
                 </div>
                 <div class="otrx5">
                     <span>
+                        <p>Sun Hours</p>
+                    </span>
+                    <span>
+                        <p id="sunhrs"></p>
+                    </span>
+                </div>
+                <div class="otrx5">
+                    <span>
                         <p>Moonrise</p>
                     </span>
                     <span>
@@ -188,6 +204,9 @@
                     <span>
                         <p id="moonset"></p>
                     </span>
+                </div>
+                <div id="ifra">
+                    <iframe src="" id="mapview" frameborder="0"></iframe>
                 </div>
                 <div id="otrx">
                     <button id="modes" onclick="toggleMode()">Toggle Dark Mode</button>

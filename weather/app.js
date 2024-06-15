@@ -39,6 +39,10 @@ function fetchWeather(theURL) {
       const d2tem = weather.weather[1].avgtempC;
       const d3min = weather.weather[2].mintempC;
       const d3max = weather.weather[2].maxtempC;
+      const lat = weather.nearest_area[0].latitude
+      const lon = weather.nearest_area[0].longitude
+      console.log(lat, lon)
+      document.getElementById('mapview').src = `https://maps.google.com/maps?q=${lat}, ${lon}&z=12&output=embed`
       const location = weather.nearest_area[0].areaName[0].value;
       const d3tem = weather.weather[2].avgtempC;
       const sunrise = weather.weather[0].astronomy[0].sunrise;
@@ -50,7 +54,7 @@ function fetchWeather(theURL) {
       document.getElementById('sunset').textContent = sunset;
       document.getElementById('moonrise').textContent = moonrise;
       document.getElementById('moonset').textContent = moonset;
-
+      document.getElementById('sunhrs').innerText = weather.weather[0].sunHour + " Hours"
       document.getElementById('location').textContent = location;
       document.getElementById('tem1').innerHTML = d1tem + '<sup>°C</sup>';
       document.getElementById('d1min').innerHTML = d1min + '<sup>°C</sup>';
@@ -77,10 +81,31 @@ function fetchWeather(theURL) {
       document.getElementById('minmax').innerHTML = minmax;
       document.getElementById('feels').innerHTML = '<p>Feels like ' + feelLike + '<sup>°C</sup></p>';
       const distemp = document.getElementById('weacel');
+
+      let uvtag = "";
+      let uvc = '';
+
+      const uvi = weather.current_condition[0].uvIndex
+      if (uvi >= 0 && uvi < 3) {
+        uvtag = "SAFE"
+        uvc = 1
+      } else if (uvi >= 3 && uvi < 6) {
+        uvtag = "MODERATE"
+        uvc = 2
+      } else if (uvi >= 6 && uvi < 8) {
+        uvtag = "HIGH"
+        uvc = 3
+      } else if (uvi >= 8 && uvi < 11) {
+        uvtag = "VERY HIGH"
+        uvc = 4
+      } else {
+        uvtag = "EXTREME"
+        uvc = 5
+      }
+      document.getElementById('uvi').innerHTML = `${weather.current_condition[0].uvIndex} <span class="${"u" + uvc} uvt">${uvtag}</span>`
       distemp.innerHTML = avgtempC + '<sup>°C</sup>';
       var wcd = weather.current_condition[0].weatherCode;
       const wemg = document.getElementById('wemg');
-      console.log(wcd);
 
       function boxBgchange() {
         const hourss = new Date().getHours();

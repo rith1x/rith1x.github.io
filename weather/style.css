@@ -35,6 +35,7 @@ body.dark {
 body {
     margin: 0;
     color: #ffffff;
+    border-radius: 21px;
     background-repeat: no-repeat;
     background-attachment: fixed;
 
@@ -116,6 +117,8 @@ body {
 
 }
 
+
+
 .mbox {
     width: fit-content;
     /* border: solid 1px #00f; */
@@ -129,8 +132,7 @@ body {
 }
 
 .mbox h1 {
-    font-size: 5em;
-    padding-block: 2px;
+    font-size: 4em;
 
 }
 
@@ -216,6 +218,35 @@ sup {
     padding-inline: 4%;
 }
 
+.uvt {
+    /* font-size: 13px; */
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.u1 {
+    background-color: #66BB6A;
+}
+
+.u2 {
+    background-color: #e1ca00;
+}
+
+.u3 {
+    background-color: #FF9800;
+}
+
+.u4 {
+    background-color: #F44336;
+}
+
+.u5 {
+    background-color: #D32F2F;
+}
+
+
 .toii {
     display: flex;
     gap: 10px;
@@ -238,10 +269,11 @@ sup {
     overflow: hidden;
     /* border: solid 1px #f00; */
     padding-inline: 8px;
+    background-color: var(--theme);
     /* background-color: #f3f6fc; */
     padding-right: 15px;
     padding-block: 1px;
-    border-radius: var(--borad);
+    border-radius: 21px;
 
 }
 
@@ -290,10 +322,9 @@ a {
 }
 
 #image {
-    width: 70px;
+    width: fit-content;
     aspect-ratio: 1 / 1;
     display: flex;
-    margin-top: -20px;
     /* overflow: hidden; */
     align-items: center;
     justify-content: center;
@@ -301,6 +332,7 @@ a {
 
 #image img {
     transform: scale(2);
+    border: none;
 
 }
 
@@ -331,4 +363,21 @@ input:focus {
     background-color: transparent;
     color: #fff;
     font-size: 1em;
+}
+
+#ifra {
+    width: 100%;
+    height: 200px;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+#ifra iframe {
+    width: 100%;
+    height: 100%;
+}
+
+iframe:focus {
+    outline: none;
 }
