@@ -54,7 +54,7 @@ body {
     max-width: 400px;
     height: 100dvh;
     margin: 0 auto;
-    padding: 5px;
+    padding: 10px;
 
     /* border: solid 3px #00f; */
 }
@@ -308,4 +308,18 @@ input {
 input:focus {
     border: none;
     outline: none;
+}
+
+#otrx {
+    padding: 0px;
+    overflow: hidden;
+}
+
+#otrx button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1em;
 }
