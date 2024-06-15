@@ -112,7 +112,8 @@
                 }
             }
 
-            function computerPlay() {
+            async function computerPlay() {
+                await delay(800);
                 function randPos() {
                     const x = Math.floor(Math.random() * 3)
                     const y = Math.floor(Math.random() * 3)
@@ -229,8 +230,34 @@
                         await delay(100)
                     }
                 }
+                await delay(1000);
+                newGame()
+            }
+
+            async function newGame() {
+                let visited = 0;
+                let texon = ['T', 'I', 'C', 'T', 'A', 'C', 'T', 'O', 'E']
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.color = "lime"
+                        document.getElementById(`t${i}${j}`).innerText = texon[visited]
+                        visited++
+                        await delay(100)
+                    }
+                }
+                await delay(1000);
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.color = "#fff"
+                        document.getElementById(`t${i}${j}`).innerText = ''
+                        visited++
+                    }
+                    await delay(100)
+                }
+
             }
             createBoard();
+            newGame()
         </script>
     </body>
 
