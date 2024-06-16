@@ -17,6 +17,11 @@
                 src: url(fonts.ttf);
             }
 
+            @font-face {
+                font-family: monosa;
+                src: url(../digi/font.ttf);
+            }
+
             * {
                 box-sizing: border-box;
                 margin: 0;
@@ -27,15 +32,17 @@
                 width: 100%;
                 height: 100dvh;
                 display: flex;
-                background-color: rgb(36, 36, 36);
+                flex-direction: column;
+                background-color: #1f1f1f;
                 align-items: center;
+                gap: 1em;
                 justify-content: center;
             }
 
 
 
             #gameboard {
-                height: 80dvh;
+                height: 70dvh;
                 width: auto;
                 aspect-ratio: 1 / 1;
                 background-color: #000;
@@ -47,12 +54,87 @@
                 grid-template-rows: repeat(3, 1fr);
             }
 
+            .scoreBoard {
+                width: 450px;
+                background: #000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: .5em;
+                height: 60px;
+                gap: .5em;
+                border-radius: 11px;
+            }
+
+
+
+            .scoreBoard div {
+                width: 100%;
+                height: 100%;
+            }
+
+            .scoreBoard div:first-child {
+                display: flex;
+            }
+
+            .scoreBoard div span {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                text-shadow: 0 0 5px;
+
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5em;
+                font-weight: 100;
+                font-family: monosa;
+            }
+
+            .scoreBoard span:nth-child(even) {
+                border: solid 1px #2e2e2e;
+                border-radius: 6px;
+                background-color: #1c1c1c;
+            }
+
+            .cspn {
+                color: #d75dff;
+            }
+
+            .pspn {
+                color: #5da0ff;
+            }
+
+            .hspn {
+                color: #5dff98 !important;
+            }
+
+            .scoreBoard div:last-child {
+                display: flex;
+
+            }
+
+            #hscr,
+            #pscr,
+            #cscr {
+                color: #ff0;
+                font-weight: 100;
+                font-style: italic;
+            }
+
             @media only screen and (max-width: 750px) {
 
                 #gameboard {
-                    width: 90%;
+                    width: 88%;
                     height: auto;
                     aspect-ratio: 1/1;
+                }
+
+                .tile {
+                    font-size: 2em;
+                }
+
+                .scoreBoard {
+                    width: 88%;
                 }
             }
 
@@ -61,15 +143,22 @@
                 height: 100%;
                 border-radius: 6px;
                 width: 100%;
+
                 font-family: moni;
-                font-weight: 800;
+                font-weight: 500;
                 color: lime;
                 font-size: 5em;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+            }
+
+            .tile:hover {
+                scale: 0.95;
 
             }
+
 
             @keyframes press {
                 from {
@@ -85,12 +174,54 @@
                     scale: 1;
                 }
             }
+
+            .tag {
+                color: #494949;
+                padding: 3px 6px;
+                border-radius: 6px;
+                font-size: 13px;
+                font-family: monospace;
+            }
+
+            .tag a {
+                text-decoration: none;
+                color: #5da0ff;
+            }
         </style>
         <script>
             function createBoard() {
                 const gameBoard = document.createElement('div')
                 gameBoard.id = 'gameboard'
-                document.body.append(gameBoard)
+                const scrbd = document.createElement('div')
+                const shold = document.createElement('div')
+                const com = document.createElement('div')
+                const cspn = document.createElement('span')
+                cspn.innerText = "COM"
+                cspn.className = "cspn"
+                const pspn = document.createElement('span')
+                pspn.innerText = "YOU"
+                pspn.className = "pspn"
+                const hspn = document.createElement('span')
+                hspn.innerText = "HIGH"
+                hspn.className = "hspn"
+                const cscr = document.createElement('span')
+                cscr.id = "cscr"
+                const pscr = document.createElement('span')
+                pscr.id = "pscr"
+                const hscx = document.createElement('span')
+                hscx.id = "hscr"
+                const plr = document.createElement('div')
+                com.append(cspn, cscr)
+                plr.append(pspn, pscr)
+                shold.append(com, plr)
+                scrbd.className = "scoreBoard"
+                const hscr = document.createElement('div')
+                hscr.append(hspn, hscx)
+                scrbd.append(shold, hscr)
+                const tag = document.createElement('p')
+                tag.className = 'tag'
+                tag.innerHTML = `Designed and Developed by <a href="../">Kiruthik Kumar</a>`
+                document.body.append(scrbd, gameBoard, tag)
                 const board = document.getElementById('gameboard');
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
@@ -104,25 +235,19 @@
             }
             let gameState = [['e', 'e', 'e'], ['e', 'e', 'e'], ['e', 'e', 'e']];
             let filled = 0;
-
-
+            let cWins = 0;
+            let pWins = 0;
             function tileClick(x, y) {
                 if (gameState[x][y] == 'e') {
                     gameState[x][y] = 'X'
                     document.getElementById(`t${x}${y}`).style.animation = 'none';
-
                     document.getElementById(`t${x}${y}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
-
                     document.getElementById(`t${x}${y}`).style.color = '#2836ff'
-
                     document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-xmark"></i>'
                     filled += 1
-                    console.table(gameState)
                     checkBoard()
-                    computerPlay()
                 }
             }
-
             async function computerPlay() {
                 await delay(800);
                 function randPos() {
@@ -137,13 +262,10 @@
                 filled += 1;
                 gameState[x][y] = 'O'
                 document.getElementById(`t${x}${y}`).style.animation = 'none';
-
                 document.getElementById(`t${x}${y}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
-
                 document.getElementById(`t${x}${y}`).style.color = '#ff2828'
                 document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-o"></i>'
-                checkBoard()
-                console.table(gameState)
+                checkBoard(1)
             }
             async function drawBorder(x, y, z) {
                 document.getElementById(x).style.border = 'solid 3px #fff'
@@ -155,98 +277,86 @@
                 document.getElementById(z).style.border = 'solid 3px #fff'
                 document.getElementById(z).style.background = '#ffffff30'
             }
-            async function checkBoard() {
-                if (filled > 5) {
+            async function checkBoard(n) {
+                if (filled >= 5) {
                     if (gameState[0][0] == 'O' && gameState[1][1] == 'O' && gameState[2][2] == 'O') {
-                        console.log("Computer Wins!")
                         await drawBorder('t00', 't11', 't22')
                         gameOver()
                     }
                     else if (gameState[0][2] == 'O' && gameState[1][1] == 'O' && gameState[2][0] == 'O') {
                         await drawBorder('t02', 't11', 't20')
-                        console.log("Computer Wins!s")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'O' && gameState[0][1] == 'O' && gameState[0][2] == 'O') {
                         await drawBorder('t00', 't01', 't02')
-
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[1][0] == 'O' && gameState[1][1] == 'O' && gameState[1][2] == 'O') {
                         await drawBorder('t10', 't11', 't12')
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[2][0] == 'O' && gameState[2][1] == 'O' && gameState[2][2] == 'O') {
                         await drawBorder('t20', 't21', 't22')
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'O' && gameState[1][0] == 'O' && gameState[2][0] == 'O') {
                         await drawBorder('t00', 't10', 't20')
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][1] == 'O' && gameState[1][1] == 'O' && gameState[2][1] == 'O') {
                         await drawBorder('t01', 't11', 't21')
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][2] == 'O' && gameState[1][2] == 'O' && gameState[2][2] == 'O') {
                         await drawBorder('t02', 't12', 't22')
-                        console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'X' && gameState[1][1] == 'X' && gameState[2][2] == 'X') {
                         await drawBorder('t00', 't11', 't22')
-                        console.log("UserWins!")
                         gameOver(1)
                     }
                     else if (gameState[0][2] == 'X' && gameState[1][1] == 'X' && gameState[2][0] == 'X') {
                         await drawBorder('t02', 't11', 't20')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][0] == 'X' && gameState[0][1] == 'X' && gameState[0][2] == 'X') {
                         await drawBorder('t00', 't01', 't02')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[1][0] == 'X' && gameState[1][1] == 'X' && gameState[1][2] == 'X') {
                         await drawBorder('t10', 't11', 't12')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[2][0] == 'X' && gameState[2][1] == 'X' && gameState[2][2] == 'X') {
                         await drawBorder('t20', 't21', 't22')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][0] == 'X' && gameState[1][0] == 'X' && gameState[2][0] == 'X') {
                         await drawBorder('t00', 't10', 't20')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][1] == 'X' && gameState[1][1] == 'X' && gameState[2][1] == 'X') {
                         await drawBorder('t01', 't11', 't21')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][2] == 'X' && gameState[1][2] == 'X' && gameState[2][2] == 'X') {
                         await drawBorder('t02', 't12', 't22')
-                        console.log("User Wins!")
                         gameOver(1)
                     }
                     else {
-                        if (filled > 7) {
-
+                        if (filled > 8) {
                             gameOver(0)
+                        } else if (n != 1) {
+                            computerPlay()
                         }
+                    }
+                } else {
+                    if (n != 1) {
+                        computerPlay()
                     }
                 }
             }
-            function delay(ms) {
+            async function delay(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
             async function gameOver(x) {
@@ -255,19 +365,20 @@
                 let texon;
                 if (x == 0) {
                     texon = ['T', 'I', 'E', 'T', 'I', 'E', 'T', 'I', 'E']
-
                 } else if (x == 1) {
-                    texon = ['Y', 'O', 'U', '', '', '', 'W', 'O', 'N']
+                    texon = ['Y', 'O', 'U', '🏆', '🏆', '🏆', 'W', 'O', 'N']
+                    pWins += 1
+                    scoreUpdate()
                 } else {
-                    texon = ['C', 'O', 'M', '', '', '', 'W', 'O', 'N']
-
+                    texon = ['C', 'O', 'M', '🤖', '🤖', '🤖', 'W', 'O', 'N']
+                    cWins += 1
+                    scoreUpdate()
                 }
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.border = "none"
                         document.getElementById(`t${i}${j}`).style.background = "#1f1f1f"
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
-
                         document.getElementById(`t${i}${j}`).innerText = texon[visited]
                         visited++
                         await delay(100)
@@ -276,30 +387,33 @@
                 await delay(1000);
                 newGame()
             }
-
-            async function newGame() {
+            async function newGame(n) {
                 let visited = 0;
                 let texon = ['T', 'I', 'C', 'T', 'A', 'C', 'T', 'O', 'E']
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "lime"
                         document.getElementById(`t${i}${j}`).innerText = texon[visited]
+                        document.getElementById(`t${i}${j}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
                         visited++
                         await delay(100)
                     }
                 }
-                await delay(1000);
-                visited = 0;
-                texon = ['', 'B', 'Y', 'R', 'i', 't', 'h', '1', 'x']
-                for (let i = 0; i < 3; i++) {
-                    for (let j = 0; j < 3; j++) {
-                        document.getElementById(`t${i}${j}`).style.color = "blue"
-                        document.getElementById(`t${i}${j}`).innerText = texon[visited]
-                        visited++
-                        await delay(100)
+                if (n == 1) {
+                    await delay(1000);
+                    visited = 0;
+                    texon = ['', 'B', 'Y', 'R', 'i', 't', 'h', '1', 'x']
+                    for (let i = 0; i < 3; i++) {
+                        for (let j = 0; j < 3; j++) {
+                            document.getElementById(`t${i}${j}`).style.color = "#db6dff"
+                            document.getElementById(`t${i}${j}`).innerText = texon[visited]
+                            visited++
+                            await delay(100)
+                        }
                     }
                 }
                 await delay(800);
+                visited = 0
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
@@ -307,7 +421,6 @@
                         document.getElementById(`t${i}${j}`).style.animation = 'none';
                         document.getElementById(`t${i}${j}`).style.animation = 'press 0.5s cubic-bezier(0.175, 0.885, 0.32, 1) 1';
                         gameState[i][j] = 'e'
-                        console.table(gameState)
                         visited++
                     }
                     await delay(100)
@@ -319,10 +432,20 @@
                     }
                 }
                 filled = 0
-
+            }
+            function scoreUpdate() {
+                let localScr = localStorage.getItem('ttthscr');
+                if (localScr == null || pWins >= parseInt(localStorage.getItem('ttthscr'))) {
+                    localStorage.setItem('ttthscr', pWins)
+                }
+                let hscr = localStorage.getItem('ttthscr');
+                document.getElementById('pscr').innerText = pWins
+                document.getElementById('cscr').innerText = cWins
+                document.getElementById('hscr').innerText = hscr
             }
             createBoard();
-            newGame()
+            newGame(1)
+            scoreUpdate()
         </script>
     </body>
 
