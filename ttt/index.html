@@ -57,11 +57,12 @@
             }
 
             .tile {
-                background-color: rgb(31, 31, 31);
+                background-color: #1f1f1f;
                 height: 100%;
                 border-radius: 6px;
                 width: 100%;
                 font-family: moni;
+                font-weight: 800;
                 color: lime;
                 font-size: 5em;
                 display: flex;
@@ -144,70 +145,96 @@
                 checkBoard()
                 console.table(gameState)
             }
-
-            function checkBoard() {
+            async function drawBorder(x, y, z) {
+                document.getElementById(x).style.border = 'solid 3px #fff'
+                document.getElementById(x).style.background = '#ffffff30'
+                await delay(100)
+                document.getElementById(y).style.border = 'solid 3px #fff'
+                document.getElementById(y).style.background = '#ffffff30'
+                await delay(100)
+                document.getElementById(z).style.border = 'solid 3px #fff'
+                document.getElementById(z).style.background = '#ffffff30'
+            }
+            async function checkBoard() {
                 if (filled > 5) {
                     if (gameState[0][0] == 'O' && gameState[1][1] == 'O' && gameState[2][2] == 'O') {
                         console.log("Computer Wins!")
+                        await drawBorder('t00', 't11', 't22')
                         gameOver()
                     }
                     else if (gameState[0][2] == 'O' && gameState[1][1] == 'O' && gameState[2][0] == 'O') {
-                        console.log("Computer Wins!")
+                        await drawBorder('t02', 't11', 't20')
+                        console.log("Computer Wins!s")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'O' && gameState[0][1] == 'O' && gameState[0][2] == 'O') {
+                        await drawBorder('t00', 't01', 't02')
+
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[1][0] == 'O' && gameState[1][1] == 'O' && gameState[1][2] == 'O') {
+                        await drawBorder('t10', 't11', 't12')
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[2][0] == 'O' && gameState[2][1] == 'O' && gameState[2][2] == 'O') {
+                        await drawBorder('t20', 't21', 't22')
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'O' && gameState[1][0] == 'O' && gameState[2][0] == 'O') {
+                        await drawBorder('t00', 't10', 't20')
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][1] == 'O' && gameState[1][1] == 'O' && gameState[2][1] == 'O') {
+                        await drawBorder('t01', 't11', 't21')
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][2] == 'O' && gameState[1][2] == 'O' && gameState[2][2] == 'O') {
+                        await drawBorder('t02', 't12', 't22')
                         console.log("Computer Wins!")
                         gameOver()
                     }
                     else if (gameState[0][0] == 'X' && gameState[1][1] == 'X' && gameState[2][2] == 'X') {
+                        await drawBorder('t00', 't11', 't22')
                         console.log("UserWins!")
                         gameOver(1)
                     }
                     else if (gameState[0][2] == 'X' && gameState[1][1] == 'X' && gameState[2][0] == 'X') {
+                        await drawBorder('t02', 't11', 't20')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][0] == 'X' && gameState[0][1] == 'X' && gameState[0][2] == 'X') {
+                        await drawBorder('t00', 't01', 't02')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[1][0] == 'X' && gameState[1][1] == 'X' && gameState[1][2] == 'X') {
+                        await drawBorder('t10', 't11', 't12')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[2][0] == 'X' && gameState[2][1] == 'X' && gameState[2][2] == 'X') {
+                        await drawBorder('t20', 't21', 't22')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][0] == 'X' && gameState[1][0] == 'X' && gameState[2][0] == 'X') {
+                        await drawBorder('t00', 't10', 't20')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][1] == 'X' && gameState[1][1] == 'X' && gameState[2][1] == 'X') {
+                        await drawBorder('t01', 't11', 't21')
                         console.log("User Wins!")
                         gameOver(1)
                     }
                     else if (gameState[0][2] == 'X' && gameState[1][2] == 'X' && gameState[2][2] == 'X') {
+                        await drawBorder('t02', 't12', 't22')
                         console.log("User Wins!")
                         gameOver(1)
                     }
@@ -237,7 +264,10 @@
                 }
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.border = "none"
+                        document.getElementById(`t${i}${j}`).style.background = "#1f1f1f"
                         document.getElementById(`t${i}${j}`).style.color = "#fff"
+
                         document.getElementById(`t${i}${j}`).innerText = texon[visited]
                         visited++
                         await delay(100)
@@ -260,7 +290,7 @@
                 }
                 await delay(1000);
                 visited = 0;
-                texon = ['', 'B', 'Y', 'R', 'I', 'T', 'H', '1', 'X']
+                texon = ['', 'B', 'Y', 'R', 'i', 't', 'h', '1', 'x']
                 for (let i = 0; i < 3; i++) {
                     for (let j = 0; j < 3; j++) {
                         document.getElementById(`t${i}${j}`).style.color = "blue"
@@ -281,6 +311,12 @@
                         visited++
                     }
                     await delay(100)
+                }
+                await delay(800)
+                for (let i = 0; i < 3; i++) {
+                    for (let j = 0; j < 3; j++) {
+                        document.getElementById(`t${i}${j}`).style.animation = 'none';
+                    }
                 }
                 filled = 0
 
