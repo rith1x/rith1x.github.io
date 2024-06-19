@@ -21,7 +21,8 @@
             }
 
             :root {
-                --clr: #00ff0040;
+                --clr: gold;
+                --str: 0.2px;
             }
 
             body {
@@ -37,33 +38,36 @@
             }
 
             .texty {
-                font-size: 3em;
-                font-family: Space Mono;
+                font-size: 5vw;
+                font-family: pasi;
                 font-weight: 100;
                 fill: transparent;
-                animation: 30s infinite alternate anima;
+                animation: 10s 1 alternate anima;
+                stroke: var(--clr);
+                stroke-width: var(--str);
+                fill: transparent;
+                filter: drop-shadow(0 0 3px var(--clr));
             }
 
             @keyframes anima {
                 0% {
                     fill: transparent;
                     stroke: var(--clr);
-                    stroke-width: 1;
+                    stroke-width: var(--str);
                     stroke-dashoffset: 0%;
                     stroke-dasharray: 0 20%;
                 }
 
                 50% {
                     stroke: var(--clr);
-                    stroke-width: 1;
-                    stroke-dasharray: 10px 10px;
+                    stroke-width: var(--str);
 
                     fill: transparent;
                 }
 
                 90% {
                     fill: transparent;
-                    stroke-width: 1;
+                    stroke-width: var(--str);
 
                 }
 
@@ -74,25 +78,23 @@
                     fill: transparent;
                     stroke: var(--clr);
 
-                    stroke-width: 1;
+                    stroke-width: var(--str);
 
 
                 }
 
                 100% {
                     stroke: var(--clr);
-                    stroke-width: 1;
+                    stroke-width: var(--str);
                     fill: transparent;
-                    filter: drop-shadow(0 0 1px var(--clr));
-                    /* fill: var(--clr); */
-                    font-size: 3em;
+                    filter: drop-shadow(0 0 3px var(--clr));
                 }
 
             }
         </style>
         <svg viewbox="0 0 400 160">
             <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="texty">
-                Cyborg
+                KIRUTHIK
             </text>
         </svg>
     </body>
