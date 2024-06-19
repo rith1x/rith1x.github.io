@@ -846,6 +846,8 @@
                 color: transparent;
                 background-clip: text;
                 border-bottom: solid 3px #fff;
+                animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
 
 
             }
@@ -1097,6 +1099,25 @@
 
 
             }
+
+
+
+            @keyframes focus-in-contract-bck {
+                0% {
+                    letter-spacing: 1em;
+                    transform: translateZ(200px);
+                    filter: blur(12px);
+                    opacity: 0;
+                    font-size: 1em;
+                }
+
+                100% {
+                    transform: translateZ(12px);
+                    filter: blur(0px);
+                    opacity: 1;
+                }
+            }
+
 
             @media only screen and (max-width: 768px) {
                 .nav {
