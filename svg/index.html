@@ -92,11 +92,16 @@
 
             }
         </style>
-        <svg viewbox="0 0 400 160">
+        <svg viewbox="0 0 400 160" id="val">
             <text x="50%" y="50%" dy=".32em" text-anchor="middle" class="texty">
                 KIRUTHIK
             </text>
         </svg>
+        <script>
+            const url = window.location.href
+            const arr = url.split('?q=')
+            document.getElementById('val').innerHTML = `<text x="50%" y="50%" dy=".32em" text-anchor="middle" class="texty">${arr[1]}</text>`
+        </script>
     </body>
 
 </html>
