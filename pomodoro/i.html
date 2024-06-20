@@ -9,6 +9,11 @@
 
     <body>
         <style>
+            @font-face {
+                font-family: noi;
+                src: url(../digi/font.ttf);
+            }
+
             * {
                 box-sizing: border-box;
                 padding: 0;
@@ -21,7 +26,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: #000;
+                background-color: #d1c8b8;
             }
 
             svg {
@@ -30,8 +35,8 @@
                 rotate: -90deg;
                 stroke-width: 5;
                 fill: transparent;
-                opacity: 0;
-                stroke: lime;
+                opacity: 0.2;
+                stroke: #5d3256;
                 stroke-linecap: round;
                 transition: all .5s linear;
             }
@@ -50,22 +55,24 @@
             .controls input {
                 height: 60px;
                 width: 200px;
-                background-color: #1e1e1e;
+                background-color: #c09c8e;
                 border: none;
-                color: #fff;
+                color: rgb(67, 35, 35);
+                font-weight: 500;
                 transition: all .5s linear;
                 font-size: 1.5em;
                 text-align: center;
                 border-radius: 6px;
             }
 
-            input:focus {
-                outline: solid 2px #0f0;
-            }
 
             input:user-invalid {
                 outline: solid 2px #f00;
 
+            }
+
+            *:focus {
+                outline: none;
             }
 
             button {
@@ -76,7 +83,15 @@
                 text-transform: uppercase;
                 font-weight: 700;
                 color: #fff;
-                background-color: #0047ab;
+                background-color: #639696;
+            }
+
+            .controls h1 {
+                text-align: center;
+                font-family: noi;
+                font-size: 4em;
+                color: #5d3256;
+                font-weight: 100;
             }
         </style>
         <svg viewBox="0 0 100 100" id="round">
@@ -85,12 +100,15 @@
             </circle>
         </svg>
         <div class="controls">
+            <h1 id="time">Timer</h1>
             <input type="number" id="input" required>
             <button onclick="runTimer()" type="submit">Start</button>
         </div>
         <script>
 
             let current;
+            let timect;
+            let timelimit;
             let percentage = 100;
 
 
@@ -98,12 +116,15 @@
                 let durationc = parseInt(document.getElementById('input').value)
                 if (current != null) {
                     clearInterval(current)
+                    clearInterval(timect)
                     current = null;
+                    timect = null;
                     percentage = 100;
                     const circ = document.getElementById('round');
                     circ.style.strokeDasharray = `none`
-                    circ.style.opacity = 0
+                    circ.style.opacity = 0.2
                 }
+                timelimit = durationc;
                 console.log(durationc)
                 durationc *= 1000
                 duration = durationc / 100
@@ -112,12 +133,23 @@
                     circ.style.opacity = 1
                     const cicu = 2 * 40 * Math.PI
                     const drew = percentage * cicu / 100
-                    circ.style.strokeDasharray = `${drew} 999`
+                    circ.style.strokeDasharray = ` ${drew} 999`
                     percentage -= 1;
                     if (percentage < 0) {
                         circ.style.opacity = 0
                     }
                 }, duration)
+                timect = setInterval(() => {
+                    const h1e = document.getElementById('time');
+                    h1e.innerText = timelimit - 1;
+                    timelimit -= 1;
+                    if (timelimit == 0) {
+                        h1e.innerText = 'Done'
+                        clearInterval(timect)
+                    }
+
+                }, 1000)
+
 
             }
 
