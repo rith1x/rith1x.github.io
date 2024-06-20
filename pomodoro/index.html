@@ -38,7 +38,9 @@
                 opacity: 0.2;
                 stroke: #5d3256;
                 stroke-linecap: round;
-                transition: all .5s linear;
+                transition-duration: 0.4s;
+                transition-property: all;
+                transition-timing-function: linear;
             }
 
             .controls {
@@ -60,7 +62,7 @@
                 border: none;
                 color: rgb(67, 35, 35);
                 font-weight: 500;
-                transition: all .5s linear;
+
                 font-size: 1.5em;
                 text-align: center;
                 border-radius: 6px;
@@ -131,6 +133,7 @@
                 duration = durationc / 100
                 current = setInterval(() => {
                     const circ = document.getElementById('round');
+                    circ.style.transitionDuration = `${duration}ms`
                     circ.style.opacity = 1
                     const cicu = 2 * 40 * Math.PI
                     const drew = percentage * cicu / 100
