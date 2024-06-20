@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pomodoro</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="counter" id="ctr">
+                <h2 id="time"></h2>
+                <div id="ctrball">
+                    <span></span>
+                </div>
+            </div>
+            <div class="times">
+                <div class="ips">
+                    <input type="number" placeholder="HH" id="hr" min="0" value="0" max="59">
+                    <input type="number" placeholder="MM" id="mi" min="0" value="0" max="59">
+                    <input type="number" placeholder="SS" id="se" min="0" value="0" max="59">
+                </div>
+                <button onclick="start()">Start</button>
+            </div>
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100dvh;
+                background-color: #000;
+
+
+            }
+
+            .container {
+                height: 100dvh;
+                max-width: 450px;
+                margin: 0 auto;
+                display: flex;
+                gap: 5dvh;
+                flex-direction: column;
+                padding: 20px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .counter {
+                width: 100%;
+                aspect-ratio: 1/1;
+                background: conic-gradient(rgb(0, 153, 255) 0deg, rgb(0, 0, 0) 0deg);
+                border-radius: 50%;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+            }
+
+            #time {
+                font-family: monospace;
+                font-size: 3em;
+                font-weight: 100;
+                color: rgb(0, 153, 255);
+            }
+
+            #ctrball {
+                position: absolute;
+
+                top: 0;
+                border-radius: 50px;
+
+                z-index: 2;
+                background-color: transparent;
+                height: 100%;
+                width: calc(500px - 95%);
+                display: flex;
+                align-items: start;
+                justify-content: flex-start;
+            }
+
+            #ctrball span {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-radius: 50%;
+                visibility: hidden;
+                background-color: rgb(0, 153, 255);
+            }
+
+            h2 {
+                z-index: 2;
+
+            }
+
+            .counter::after {
+                content: '';
+                width: 90%;
+                height: 90%;
+                position: absolute;
+                background-color: rgb(0, 0, 0);
+                inset: 0;
+                margin: auto;
+                z-index: 1;
+                border-radius: 50%;
+            }
+
+            .time {
+                width: 100%;
+                height: 105px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .ips,
+            button {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                gap: 5px;
+            }
+
+            .ips input {
+                width: 100%;
+                background-color: #37373790;
+                border-radius: 6px;
+                border: none;
+                text-align: center;
+                font-size: 1.4em;
+                color: #fff;
+                font-family: monospace;
+
+            }
+
+            button {
+                background-color: #00ab47;
+                border: none;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2em;
+                color: #fff;
+                border-radius: 6px;
+            }
+        </style>
+        <script>
+
+            function start() {
+                let hv = 0
+                let mv = 0
+                let sv = 0
+
+                hv = parseInt(document.getElementById('hr').value)
+                mv = parseInt(document.getElementById('mi').value)
+                sv = parseInt(document.getElementById('se').value)
+
+                let tots = 0;
+                tots += sv;
+                tots += mv * 60
+                tots += hv * 3600
+                runTimer(tots)
+            }
+
+            function runTimer(duration) {
+                clearInterval(count)
+                clearInterval(ctdn)
+
+                const ctrelem = document.getElementById('ctr')
+                const h2el = document.getElementById('time')
+                const ball = document.getElementById('ctrball')
+                let x = 360;
+                let delay = parseInt(duration) * 1000;
+                let dura = delay;
+                let interval = delay / 360
+                var count = setInterval(() => {
+                    dura -= 1000
+                    let dse = dura / 1000
+                    const hours = Math.floor(dse / 3600);
+                    const minutes = Math.floor((dse % 3600) / 60);
+                    const seconds = dse % 3600 % 60;
+                    const h = String(hours).padStart(2, '0');
+                    const m = String(minutes).padStart(2, '0');
+                    const s = String(seconds).padStart(2, '0');
+                    h2el.innerText = `${h}:${m}:${s}`
+                    if (dura == 0) {
+                        clearInterval(count)
+                    }
+                }, 1000)
+                var ctdn = setInterval(() => {
+                    ball.style.visibility = "visible"
+                    x -= 1
+                    ball.style.rotate = `${x}deg`
+                    ctrelem.style.background = `conic-gradient(rgb(0,153,255) ${x}deg, rgb(0, 0, 0) 0deg)`
+                    if (x == 0) {
+                        clearInterval(ctdn)
+                    }
+                }, interval)
+                return
+            }
+
+        </script>
+    </body>
+
+</html>
