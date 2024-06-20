@@ -366,7 +366,7 @@
 
         <script>
             let score = 0;
-            
+
 
 
 
@@ -385,9 +385,9 @@
                 document.getElementById(`mole${randInt}`).style.transform = "translateY(0%)";
                 let smoodhx = setTimeout(() => {
                     document.getElementById(`mole${randInt}`).style.transform = "translateY(100%)";
-                    
-                        showRand();
-                    
+
+                    showRand();
+
                 }, 2000)
             }
             function clickMole(n) {
@@ -405,8 +405,8 @@
                 document.getElementById(`bomb${randIntx}`).style.transform = "translateY(0%)";
                 let smoodh = setTimeout(() => {
                     document.getElementById(`bomb${randIntx}`).style.transform = "translateY(100%)";
-                    
-                        showRand();
+
+                    showRand();
                 }, 2000)
 
             }
@@ -428,7 +428,7 @@
                 document.getElementById("gameOver").style.display = "flex";
 
             }
-           
+
 
             function updateHighScore() {
                 localStorage.setItem("whackamoleCurrscore", score);
@@ -450,7 +450,7 @@
                 }
 
             }
-          
+
 
 
 
