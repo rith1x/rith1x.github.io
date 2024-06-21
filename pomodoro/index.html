@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title id="header">Pomodoro Timer</title>
     </head>
 
     <body>
@@ -85,6 +85,9 @@
                 text-align: center;
             }
 
+            input::placeholder {
+                color: #5d3256;
+            }
 
             input:user-invalid {
                 outline: solid 2px #f00;
@@ -126,7 +129,7 @@
 
             <div class="controls">
                 <h1 id="time">Timer</h1>
-                <input placeholder="Seconds" type="number" id="input" required>
+                <input placeholder="Second" type="number" id="input" required>
                 <button onclick="runTimer()" type="submit">Start</button>
             </div>
         </div>
@@ -140,6 +143,10 @@
 
             function runTimer() {
                 let durationc = parseInt(document.getElementById('input').value)
+                if (durationc == NaN) {
+                    alert("Enter Valid Input");
+                    return;
+                }
                 if (current != null) {
                     clearInterval(current)
                     clearInterval(timect)
@@ -151,7 +158,6 @@
                     circ.style.opacity = 0.2
                 }
                 timelimit = durationc;
-                console.log(durationc)
                 durationc *= 1000
                 duration = durationc / 100
                 current = setInterval(() => {
@@ -170,8 +176,13 @@
                     const h1e = document.getElementById('time');
                     h1e.innerText = timelimit - 1;
                     timelimit -= 1;
-                    if (timelimit == 0) {
-                        h1e.innerText = '---'
+                    document.getElementById('header').innerText = `${timelimit} Seconds Left`
+                    if (timelimit <= 0) {
+                        h1e.innerText = '-x-'
+                        document.getElementById('header').innerText = `Timer Completed`
+                        alert("Timer Has been Completed!")
+                        document.getElementById('header').innerText = `Pomodoro Timer`
+
                         clearInterval(timect)
                     }
 
@@ -180,7 +191,11 @@
 
             }
 
-
+            document.addEventListener('keydown', (e) => {
+                if (e.keyCode === 13) {
+                    runTimer()
+                }
+            })
 
 
         </script>
