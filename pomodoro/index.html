@@ -176,7 +176,7 @@
                     const h1e = document.getElementById('time');
                     h1e.innerText = timelimit - 1;
                     timelimit -= 1;
-                    document.getElementById('header').innerText = `${timelimit} Seconds Left`
+                    document.getElementById('header').innerText = `${timelimit} ${(timelimit == 1) ? "Second" : "Seconds"} Left`
                     if (timelimit <= 0) {
                         h1e.innerText = '-x-'
                         document.getElementById('header').innerText = `Timer Completed`
