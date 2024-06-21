@@ -174,8 +174,7 @@ function fetchloc() {
   localStorage.setItem('location', locationip);
   getWeather();
 }
-localStorage.setItem('location', 'Salem,Tamilnadu');
-getWeather();
+
 
 
 document.addEventListener('keypress', (Event) => {
@@ -197,4 +196,15 @@ function toggleMode() {
     document.getElementById('modes').innerText = "Toggle Dark Mode"
 
   }
-}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+}
+
+var currurl = window.location.href;
+if (currurl.includes("?l=")) {
+  spliced = currurl.split("?l=");
+  locationu = spliced[1];
+  localStorage.setItem('location', locationu);
+  getWeather();
+} else {
+  localStorage.setItem('location', "Salem,Tamilnadu");
+  getWeather();
+}
