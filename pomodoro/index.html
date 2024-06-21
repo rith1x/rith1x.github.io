@@ -138,6 +138,7 @@
             let current;
             let timect;
             let timelimit;
+            let durationCurr
             let percentage = 100;
 
 
@@ -158,6 +159,7 @@
                     circ.style.opacity = 0.2
                 }
                 timelimit = durationc;
+                durationCurr = durationc
                 durationc *= 1000
                 duration = durationc / 100
                 current = setInterval(() => {
@@ -176,7 +178,7 @@
                     const h1e = document.getElementById('time');
                     h1e.innerText = timelimit - 1;
                     timelimit -= 1;
-                    document.getElementById('header').innerText = `${timelimit} ${(timelimit == 1) ? "Second" : "Seconds"} Left`
+                    document.getElementById('header').innerText = `${timelimit} ${(timelimit == 1) ? "Second" : "Seconds"} Left • (${durationCurr}s Timer)`
                     if (timelimit <= 0) {
                         h1e.innerText = '-x-'
                         document.getElementById('header').innerText = `Timer Completed`
