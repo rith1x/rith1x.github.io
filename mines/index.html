@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Minesweeper</title>
+    </head>
+
+    <body>
+        <div id="game"></div>
+        <div id="metrics">
+            <div>Flags left: <span id="fleft"></span></div>
+            <div>Minesweeper Game by @rith1x</div>
+        </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                margin: 0;
+                width: 100%;
+                height: 100dvh;
+                background-color: #dcd6bc;
+                display: flex;
+                gap: 10px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            #game {
+                height: 80dvh;
+                aspect-ratio: 1 / 1;
+                background-color: #dcd6bc;
+                display: grid;
+                padding: 8px;
+                border-radius: 6px;
+                grid-template-columns: repeat(10, 1fr);
+                grid-template-rows: repeat(10, 1fr);
+            }
+
+            #game>div {
+                width: 100%;
+                height: 100%;
+                border: solid 2px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
+                font-family: 'Space Mono';
+                font-size: 1.3em;
+                font-weight: 600;
+            }
+
+            #game div svg {
+                width: 60%;
+                fill: rgb(49, 49, 49);
+                height: 60%;
+            }
+
+            #metrics {
+                width: 80dvh;
+                height: 5dvh;
+                border-radius: 11px;
+                background-color: #dcd6bc;
+                color: #000;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                font-family: 'Space Mono';
+                font-style: italic;
+                font-weight: 700;
+                padding-inline: 8px;
+
+            }
+
+
+
+            .c {
+                border: none !important;
+            }
+
+            .one {
+                color: #e76346;
+            }
+
+            .two {
+                color: #4199d3;
+            }
+
+            .thr {
+                color: #57da59;
+            }
+
+            .fou {
+                color: #bb41d3;
+            }
+
+            @media only screen and (max-width: 750px) {
+                #game {
+                    width: 100dvw !important;
+                    height: 100dvw !important;
+                    aspect-ratio: 1 / 1;
+
+                }
+            }
+        </style>
+        <script>
+            const game = document.getElementById('game')
+            const metric = document.getElementById('metrics')
+            const fleft = document.getElementById('fleft')
+            const width = 10
+            let bombs = 20
+            let boxes = []
+            let flags = 0
+            let gameOver = false
+            const bombArray = Array(bombs).fill('b')
+            const emptArray = Array(width * width - bombs).fill('v')
+            const gameArray = emptArray.concat(bombArray)
+            const shuffledA = gameArray.sort(() => Math.random() - 0.5)
+            console.log(shuffledA)
+
+            function createBoard() {
+
+                fleft.innerText = bombs
+                for (let i = 0; i < width * width; i++) {
+                    const box = document.createElement('div')
+                    box.id = i
+                    box.className = shuffledA[i]
+                    box.addEventListener('click', () => clicked(box))
+                    box.addEventListener('contextmenu', () => addFlag(box))
+                    boxes.push(box)
+                    game.appendChild(box)
+                }
+
+
+                for (let i = 0; i < boxes.length; i++) {
+                    let total = 0;
+                    const isLeftE = (i % width === 0)
+                    const isRghtE = (i % width === width - 1)
+
+                    // LEFT , 
+
+                    if (boxes[i].classList.contains('v')) {
+                        if (i > 0 && !isLeftE && boxes[i - 1].classList.contains('b')) total++
+                        if (i > 9 && !isRghtE && boxes[i + 1 - width].classList.contains('b')) total++
+                        if (i > 10 && boxes[i - width].classList.contains('b')) total++
+                        if (i > 11 && !isLeftE && boxes[i - width - 1].classList.contains('b')) total++
+                        if (i < 99 && !isRghtE && boxes[i + 1].classList.contains('b')) total++
+                        if (i < 90 && !isLeftE && boxes[i - 1 + width].classList.contains('b')) total++
+                        if (i < 88 && !isRghtE && boxes[i + 1 + width].classList.contains('b')) total++
+                        if (i < 89 && boxes[i + width].classList.contains('b')) total++
+                        boxes[i].setAttribute('data', total)
+                        // document.getElementById(i).innerText = total
+                    }
+
+
+                }
+            }
+
+            function addFlag(box) {
+                if (gameOver) return
+                if (!box.classList.contains('c') && flags < bombs) {
+                    if (!box.classList.contains('f')) {
+                        box.classList.add('f')
+                        flags++
+                        box.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z"/></svg>`
+                        fleft.innerText = bombs - flags
+                        checkWin()
+                    } else {
+                        box.classList.remove('f')
+                        flags--
+                        box.innerHTML = ''
+                        fleft.innerHTML = bombs - flags
+                    }
+                }
+            }
+
+            function clicked(box) {
+                if (gameOver || box.classList.contains('c') || box.classList.contains('f')) return
+
+                if (box.classList.contains('b')) {
+                    game0ver()
+                } else {
+                    let total = box.getAttribute('data')
+                    if (total != 0) {
+                        if (total == 1) box.classList.add('one')
+                        if (total == 2) box.classList.add('two')
+                        if (total == 3) box.classList.add('thr')
+                        if (total == 4) box.classList.add('fou')
+                        box.innerHTML = total
+                        return
+                    }
+                    checkBox(box)
+                }
+                box.classList.add('c')
+
+
+
+                let current = box.id
+
+            }
+            function game0ver() {
+                gameOverScreen()
+                gameOver = true
+                boxes.forEach((boxx) => {
+                    if (boxx.classList.contains('b')) {
+                        boxx.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M459.1 52.4L442.6 6.5C440.7 2.6 436.5 0 432.1 0s-8.5 2.6-10.4 6.5L405.2 52.4l-46 16.8c-4.3 1.6-7.3 5.9-7.2 10.4c0 4.5 3 8.7 7.2 10.2l45.7 16.8 16.8 45.8c1.5 4.4 5.8 7.5 10.4 7.5s8.9-3.1 10.4-7.5l16.5-45.8 45.7-16.8c4.2-1.5 7.2-5.7 7.2-10.2c0-4.6-3-8.9-7.2-10.4L459.1 52.4zm-132.4 53c-12.5-12.5-32.8-12.5-45.3 0l-2.9 2.9C256.5 100.3 232.7 96 208 96C93.1 96 0 189.1 0 304S93.1 512 208 512s208-93.1 208-208c0-24.7-4.3-48.5-12.2-70.5l2.9-2.9c12.5-12.5 12.5-32.8 0-45.3l-80-80zM200 192c-57.4 0-104 46.6-104 104v8c0 8.8-7.2 16-16 16s-16-7.2-16-16v-8c0-75.1 60.9-136 136-136h8c8.8 0 16 7.2 16 16s-7.2 16-16 16h-8z"/></svg>`
+                        boxx.classList.remove('b')
+                        boxx.classList.add('c')
+                    }
+                })
+            }
+            function checkBox(box) {
+                const isLefE = (box.id % width === 0)
+                const isrgtE = (box.id % width === width - 1)
+
+                setTimeout(() => {
+                    if (box.id > 0 && !isLefE) {
+                        const newId = parseInt(box.id) - 1
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id > 9 && !isrgtE) {
+                        const newId = parseInt(box.id) + 1 - width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id > 10) {
+                        const newId = parseInt(box.id) - width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id > 11 && !isLefE) {
+                        const newId = parseInt(box.id) - 1 - width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id < 98 && !isrgtE) {
+                        const newId = parseInt(box.id) + 1
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id < 90 && !isLefE) {
+                        const newId = parseInt(box.id) - 1 + width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id < 88 && !isrgtE) {
+                        const newId = parseInt(box.id) + 1 + width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+                    if (box.id < 89) {
+                        const newId = parseInt(box.id) + width
+                        const newSqr = document.getElementById(newId)
+                        clicked(newSqr)
+                    }
+
+                }, 10)
+            }
+            function checkWin() {
+                let matches = 0
+                for (let i = 0; i < boxes.length; i++) {
+                    if (boxes[i].classList.contains('b') && boxes[i].classList.contains('f')) {
+                        matches++
+                    }
+                    if (matches === bombs) {
+                        gameOverScreen()
+
+                    }
+                }
+            }
+            async function delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms))
+            }
+            async function gameOverScreen() {
+                const gameOverPixelArt = [
+                    "*", "*", "*", "*", "*", "*", "*", "*", "*", "*",
+                    "*", "*", "*", "G", "A", "M", "E", "*", "*", "*",
+                    "*", "*", "*", "O", "V", "E", "R", "*", "*", "*",
+                    "*", "*", "*", "*", "*", "*", "*", "*", "*", "*",
+                    "*", "*", "*", "*", "*", "*", "*", "*", "*", "*",
+                    "*", "*", "*", "W", "E", "L", "L", "*", "*", "*",
+                    "*", "*", "P", "L", "A", "Y", "E", "D", "*", "*",
+                    "*", "*", "*", "M", "A", "T", "E", "*", "*", "*",
+                    "*", "*", "*", "*", "*", "*", "*", "*", "*", "*",
+                    "*", "*", "*", "*", "*", "*", "*", "*", "*", "*"
+                ];
+
+
+                for (let i = 0; i < boxes.length; i++) {
+                    document.getElementById(i).innerText = gameOverPixelArt[i]
+                    await delay(20)
+
+                }
+                await delay(3000)
+                game.innerHTML = ''
+                createBoard()
+            }
+            createBoard()
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <section>
+            <svg viewbox="0 0 400 200" id="val">
+                <text x="50%" y="50%" text-anchor="middle" class="texty">
+                    KIRUTHIK KUMAR
+                </text>
+                <text x="50%" y="70%" text-anchor="middle" class="texty2">
+                    Portfolio
+                </text>
+
+            </svg>
+        </section>
+        <style>
+            @font-face {
+                font-family: pasi;
+                src: url(../fonts.ttf);
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            :root {
+                --clr: rgb(193, 68, 255);
+                --str: .5px;
+            }
+
+            body {
+                height: 100dvh;
+                background:
+                    #000;
+                overflow: hidden;
+            }
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            .texty {
+                font-size: 2.5vw;
+                font-family: pasi;
+                font-weight: 100;
+                fill: transparent;
+                animation: 5s 1 alternate anima;
+                stroke: var(--clr);
+                stroke-width: var(--str);
+                fill: transparent;
+            }
+
+            .texty2 {
+                font-size: 1vw;
+                font-family: pasi;
+                font-weight: 100;
+                fill: transparent;
+                animation: 8s 1 alternate anima2;
+                stroke: #fff;
+                stroke-width: .1;
+                fill: transparent;
+            }
+
+            @keyframes anima2 {
+                0% {
+                    fill: transparent;
+                    stroke: var(--clr);
+                    stroke-width: .1;
+                    stroke-dasharray: 0 20%;
+                }
+
+                50% {
+                    stroke: var(--clr);
+                    stroke-width: .1;
+                    fill: transparent;
+                }
+
+                90% {
+                    fill: transparent;
+                    stroke-width: .1;
+                }
+
+                97% {
+                    stroke-dasharray: 30% 0;
+                    fill: transparent;
+                    stroke: var(--clr);
+                    stroke-width: .1;
+                }
+
+                100% {
+                    stroke: var(--clr);
+                    stroke-width: .1;
+                    fill: transparent;
+                }
+            }
+
+            @keyframes anima {
+                0% {
+                    fill: transparent;
+                    stroke: var(--clr);
+                    stroke-width: var(--str);
+                    /* stroke-dashoffset: 0%; */
+                    stroke-dasharray: 0 20%;
+                }
+
+                50% {
+                    stroke: var(--clr);
+                    stroke-width: var(--str);
+                    fill: transparent;
+                }
+
+                90% {
+                    fill: transparent;
+                    stroke-width: var(--str);
+                }
+
+                97% {
+                    stroke-dasharray: 30% 0;
+                    /* stroke-dashoffset: 100%; */
+                    fill: transparent;
+                    stroke: var(--clr);
+                    stroke-width: var(--str);
+                }
+
+                100% {
+                    stroke: var(--clr);
+                    stroke-width: var(--str);
+                    fill: transparent;
+                }
+            }
+        </style>
+    </body>
+
+</html>
