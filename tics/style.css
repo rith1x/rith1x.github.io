@@ -1,0 +1,262 @@
+@font-face {
+    font-family: moni;
+    src: url(../ttt/fonts.ttf);
+}
+
+@font-face {
+    font-family: monosa;
+    src: url(../digi/font.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100dvh;
+    width: 100%;
+    background-color: #000;
+}
+
+.display {
+    height: 100dvh;
+    margin: 0 auto;
+    max-width: 450px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    display: flex;
+    scroll-snap-type: x mandatory;
+}
+
+.display>div {
+    height: 100%;
+    scroll-snap-align: center;
+    min-width: 100%;
+}
+
+.display .screen-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    background: linear-gradient(45deg, #fc466b, #3f5efb);
+}
+
+.display::-webkit-scrollbar {
+    display: none;
+}
+
+.display .screen-main .box {
+    width: 80%;
+    aspect-ratio: 1/1;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen-game {
+    width: 100%;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    align-items: center;
+    gap: 1em;
+    justify-content: center;
+}
+
+.field {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.field button {
+    font-family: monospace;
+    font-weight: 600;
+    background-color: #ffffff30;
+    font-size: 1.4em;
+    width: 100%;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    height: 100%;
+}
+
+.field input {
+    width: 80%;
+    height: 100%;
+    padding-left: .8em;
+    border: none;
+    border-bottom: solid 2px #fff;
+    font-size: 2em;
+    text-transform: uppercase;
+    color: #fff;
+    font-family: monospace;
+    font-weight: 1000;
+    letter-spacing: .8em;
+    text-align: center;
+    background-color: transparent;
+}
+
+.field input:focus {
+    outline: none;
+}
+
+#gameboard {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #000;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 5px;
+    border-radius: 11px;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.scoreBoard {
+    width: 450px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5em;
+    height: 60px;
+    gap: .5em;
+    border-radius: 11px;
+}
+
+
+
+.scoreBoard div {
+    width: 100%;
+    height: 100%;
+}
+
+.scoreBoard div:first-child {
+    display: flex;
+}
+
+.scoreBoard div span {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    text-shadow: 0 0 5px;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: 100;
+    font-family: monosa;
+}
+
+
+
+
+
+
+.cspn {
+    color: #d75dff;
+}
+
+.pspn {
+    color: #5da0ff;
+}
+
+.hspn {
+    color: #5dff98 !important;
+}
+
+.scoreBoard div:last-child {
+    display: flex;
+    /* border: solid 1px #494949aa; */
+
+}
+
+#hscr,
+#pscr,
+#cscr {
+    color: #ff0;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.tile {
+    background-color: #1f1f1f;
+    height: 100%;
+    border-radius: 6px;
+    width: 100%;
+
+    font-family: moni;
+    font-weight: 500;
+    color: lime;
+    font-size: 5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.5s cubic-bezier(0.175, 0.885, 0.32, 1);
+}
+
+.tile:hover {
+    scale: 0.95;
+
+}
+
+@media only screen and (max-width: 750px) {
+
+    #gameboard {
+        width: 88%;
+        height: auto;
+        aspect-ratio: 1/1;
+    }
+
+    .tile {
+        font-size: 3em;
+    }
+
+    .scoreBoard {
+        width: 88%;
+    }
+
+    .tile:hover {
+        scale: 1;
+
+    }
+}
+
+
+
+@keyframes press {
+    from {
+        scale: 1;
+    }
+
+    50% {
+        scale: 0.95;
+
+    }
+
+    to {
+        scale: 1;
+    }
+}
+
+.tag {
+    color: #494949;
+    padding: 3px 6px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: monospace;
+}
+
+.tag a {
+    text-decoration: none;
+    color: #5da0ff;
+}
