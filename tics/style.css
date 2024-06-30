@@ -1,11 +1,11 @@
 @font-face {
     font-family: moni;
-    src: url(../ttt/fonts.ttf);
+    src: url(fonts.ttf) ;
 }
 
 @font-face {
     font-family: monosa;
-    src: url(../digi/font.ttf);
+    src: url(font.ttf);
 }
 
 * {
@@ -40,7 +40,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    display: none;
+    /*  */
     background: linear-gradient(45deg, #fc466b, #3f5efb);
 }
 
@@ -109,6 +109,7 @@ body {
     outline: none;
 }
 
+
 #gameboard {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -119,6 +120,15 @@ body {
     padding: 5px;
     border-radius: 11px;
     grid-template-rows: repeat(3, 1fr);
+}
+
+.rmcdediv {
+    color: #5dff98;
+    font-family: monosa;
+    font-size: 1.5em;
+    font-style: italic;
+    text-shadow: 0 0 5px;
+
 }
 
 .scoreBoard {
@@ -182,7 +192,8 @@ body {
 
 #hscr,
 #pscr,
-#cscr {
+#cscr,
+#rmcde {
     color: #ff0;
     font-weight: 100;
     font-style: italic;

@@ -23,7 +23,11 @@ function createBoard() {
     const tag = document.createElement('p')
     tag.className = 'tag'
     tag.innerHTML = `Designed and Developed by <a href="../">Kiruthik Kumar</a>`
-    document.getElementById('gameBoard').append(scrbd, gameBoard, tag)
+
+    const rmcdediv = document.createElement('div')
+    rmcdediv.className = 'rmcdediv'
+    rmcdediv.innerHTML = 'GameRoom: <span id="rmcde"></span>'
+    document.getElementById('gameBoard').append(rmcdediv, scrbd, gameBoard, tag)
     const board = document.getElementById('gameboard');
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -36,6 +40,36 @@ function createBoard() {
     }
 }
 
+function playerNameGen() {
+    function toSentenceCase(str) {
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    }
+    let pre = [
+        'epic', 'ninja', 'fuzzy', 'dizzy', 'crazy', 'wild', 'zany',
+        'spooky', 'silly', 'funky', 'wacky', 'goofy', 'hyper',
+        'glitter', 'sparkly', 'sneaky', 'bouncy', 'quirky'
+    ];
+
+    let suf = [
+        'panda', 'unicorn', 'wizard', 'ninja', 'bunny', 'hamster',
+        'duck', 'pirate', 'robot', 'kitten', 'puppy', 'monkey',
+        'alien', 'ghost', 'dragon', 'zombie', 'cyclops', 'phoenix'
+    ];
+
+    let nux = toSentenceCase(pre[Math.floor(Math.random() * pre.length)])
+    nux += ' '
+    nux += toSentenceCase(suf[Math.floor(Math.random() * suf.length)])
+    return nux
+}
+
+function codeGenerator() {
+    let vals = "ABCEFGHJKLMNOPQRSTUVWXYZ2346789"
+    let code = "";
+    while (code.length != 6) {
+        code += vals[Math.floor(Math.random() * vals.length)];
+    }
+    return code;
+}
 
 const firebaseConfig = {
     apiKey: "AIzaSyBr6VDBd2wYuAyZwxRN-hyDORchDUAgHDs",
@@ -46,35 +80,89 @@ const firebaseConfig = {
     messagingSenderId: "772171930360",
     appId: "1:772171930360:web:89ea6f271f449df7c3790d"
 };
+let c = firebase.initializeApp(firebaseConfig);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var currentRoom
+var activeUpdate = false
+var currentPlayer
+var p1name
+var p2name
+var gmaeState = 'paused'
 let gameState = [['e', 'e', 'e'], ['e', 'e', 'e'], ['e', 'e', 'e']];
+
+const pr = (msg) => { console.log(msg) }
+createBoard();
+createRoom()
+
+function createRoom() {
+    pr("Creating")
+    currentRoom = codeGenerator()
+    pr(currentRoom)
+    p1name = playerNameGen()
+    pr(p1name)
+    document.getElementById('rmcde').innerText = currentRoom
+
+
+    firebase.database().ref("ROOMS").child("tics").child(currentRoom).set({
+        "roomcode": currentRoom,
+        "p1name": p1name
+    })
+    currentPlayer = "p1"
+
+    syncer()
+
+}
+function joinRoom() {
+
+    let rcode = document.getElementById('rmcinput').value
+    if (rcode.length != 6) {
+        pr("Invalid")
+        return;
+    }
+    pr(rcode)
+    currentRoom = rcode
+    p2name = playerNameGen()
+    firebase.database().ref("ROOMS").child("tics").child(currentRoom).child('p2name').set(p2name)
+
+    currentPlayer = "p1"
+}
+
+
+
+firebase.database().ref("ROOMS").child("tics").child(currentRoom).once("value", function (snapshot) {
+    console.log(snapshot)
+});
+
+
+
+
+
+
+
+
+function syncer() {
+
+    firebase.database().ref("ROOMS").child("tics").child(currentRoom).child('gamestate').set(gameState)
+
+
+}
+
+
+
+
+
+
+function swapPlayer(){
+    if(currentPlayer == "p1"){
+        currentPlayer = "p2"
+    } else{
+        currentPlayer = "p1"
+    }
+}
+
+
 let filled = 0;
-let cWins = 0;
-let pWins = 0;
+
 function tileClick(x, y) {
     if (gameState[x][y] == 'e') {
         gameState[x][y] = 'X'
@@ -83,7 +171,10 @@ function tileClick(x, y) {
         document.getElementById(`t${x}${y}`).style.color = '#2836ff'
         document.getElementById(`t${x}${y}`).innerHTML = '<i class="fa-solid fa-xmark"></i>'
         filled += 1
+        syncer()
+
         checkBoard()
+        swapPlayer()
     }
 }
 async function computerPlay() {
@@ -184,13 +275,7 @@ async function checkBoard(n) {
         else {
             if (filled > 8) {
                 gameOver(0)
-            } else if (n != 1) {
-                computerPlay()
             }
-        }
-    } else {
-        if (n != 1) {
-            computerPlay()
         }
     }
 }
@@ -279,8 +364,5 @@ function scoreUpdate() {
     let hscr = localStorage.getItem('ttthscr');
     document.getElementById('pscr').innerText = pWins
     document.getElementById('cscr').innerText = cWins
-    document.getElementById('hscr').innerText = hscr
 }
-createBoard();
-newGame(1)
-scoreUpdate()
+
