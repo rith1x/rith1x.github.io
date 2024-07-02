@@ -32,9 +32,10 @@ body {
 }
 
 .nav {
-    position: fixed;
+    position: sticky;
     top: 20px;
     width: 80%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -116,67 +117,9 @@ body {
     background-color: #151515;
 }
 
-.banner {
-    width: 100%;
-    background: url('m.svg');
-    height: 100lvh;
-    display: flex;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 6vw;
-    background-size: cover;
-
-    background-position: center;
-    background-attachment: fixed;
-    transition: all 1s ease-in-out;
-}
-
-
-.banner h1 {
-    font-weight: 1000;
-    font-size: 1em;
-
-    letter-spacing: 10px;
-    background: url(hhholographic.png);
-    background-attachment: fixed;
-    color: transparent;
-    background-clip: text;
-    border-bottom: solid 3px #fff;
-    animation: focus-in-contract-bck 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-
-
-
-}
-
-.banner h2 {
-    color: #d5d5d5;
-    font-weight: 100;
-    font-size: .4em;
-    letter-spacing: .3em;
-
-}
-
-.banner .name {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-}
-
-.banner .tag {
-    color: #fff;
-    letter-spacing: .8em;
-    margin-top: 15px;
-    font-size: .24em;
-    font-weight: 100;
-}
-
 .content {
     width: 100%;
-    padding-inline: 10%;
+    padding-inline: 5%;
     padding-block: 5vw;
     height: fit-content;
     font-weight: 600;
@@ -187,7 +130,7 @@ body {
 
 section {
     font-size: 17px;
-    margin-top: 50px;
+    width: 100%;
 }
 
 section h1 {
@@ -504,100 +447,5 @@ section p {
         height: 15em;
     }
 
-    .banner {
-        font-size: 8dvh;
-        padding-left: 10%;
-
-    }
-
-    .banner h1 {
-        width: fit-content;
-        border-width: 1px;
-        line-height: 1em;
-    }
-
-    .banner h2 {
-        align-self: flex-start;
-    }
-
-    .banner p {
-        font-size: 1.2em;
-
-    }
-}
-
-@font-face {
-    font-family: pasi;
-    src: url(../fonts.ttf);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --clr: #ffffff;
-    --str: 1px;
-}
-
-body {
-    height: 100dvh;
-}
-
-svg {
-    height: fit-content;
-    border: solid 1px #0f0;
-}
-
-.texty {
-    /* font-size: ; */
-    font-family: pasi;
-    font-weight: 100;
-    fill: transparent;
-    animation: 10s 1 alternate anima;
-    stroke: var(--clr);
-    stroke-width: var(--str);
-    fill: #fff;
-}
-
-@keyframes anima {
-    0% {
-        fill: transparent;
-        stroke: var(--clr);
-        stroke-width: var(--str);
-        stroke-dashoffset: 0%;
-        stroke-dasharray: 0 20%;
-    }
-
-    50% {
-        stroke: var(--clr);
-        stroke-width: var(--str);
-
-        fill: transparent;
-    }
-
-    90% {
-        fill: transparent;
-        stroke-width: var(--str);
-
-    }
-
-    97% {
-        stroke-dasharray: 30% 0;
-        stroke-dashoffset: 100%;
-        fill: transparent;
-        stroke: var(--clr);
-        stroke-width: var(--str);
-
-
-    }
-
-    100% {
-        stroke: var(--clr);
-        stroke-width: var(--str);
-        fill: var(--clr);
-    }
 
 }
