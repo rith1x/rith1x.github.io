@@ -24,7 +24,7 @@ function worksBox() {
 
     const works = [
         {
-            "title": "Thulir",
+            "title": "Thulir Ecommerce",
             "role": "Individual",
             "description": "Simple Serverless end-to-end Ecommerce Website",
             "stack": ["HTML", "CSS", "Js+JSON"],
@@ -102,3 +102,68 @@ function worksBox() {
 
 }
 worksBox()
+
+function gamesBox() {
+    const gamesDiv = document.getElementById("proGames");
+
+    const games = [
+        {
+            "title": "Whackamole",
+            "icon": "whack-a-mole.png",
+            "onclick": "porter('whackamole')"
+        },
+        {
+            "title": "HandCricket",
+            "icon": "cricket-player (1).png",
+            "onclick": "porter('cricket')"
+        },
+        {
+            "title": "Stone paper scissor v2",
+            "icon": "rock-paper-scissors.png",
+            "onclick": "porter('rps')"
+        },
+        {
+            "title": "Math Random",
+            "icon": "choose.png",
+            "onclick": "porter('random')"
+        },
+        {
+            "title": "Tic Tac Toe",
+            "icon": "tic-tac-toe.png",
+            "onclick": "porter('tictactoe')"
+        },
+        {
+            "title": "Trivia",
+            "icon": "speech-bubble.png",
+            "onclick": "porter('trivia')"
+        },
+        {
+            "title": "Stone Paper Scissors",
+            "icon": "rock-paper-scissors (1).png",
+            "onclick": "porter('stonepaperscissors')"
+        },
+        {
+            "title": "Flappy - (Preview)",
+            "icon": "game.png",
+            "onclick": "porter('flappy')"
+        }
+    ]
+
+    games.forEach((game) => {
+        const gBox = document.createElement('div');
+        gBox.className = "app"
+        gBox.onclick = () => { game.onclick }
+        const gIco = document.createElement('div')
+        gIco.className = "app-icon"
+        const gImg = document.createElement('img')
+        gImg.src = game.icon;
+        gIco.append(gImg)
+        const gH4e = document.createElement('h4')
+        gH4e.className = "app-title"
+        gH4e.innerText = game.title
+        gBox.append(gIco, gH4e)
+        gamesDiv.appendChild(gBox)
+    })
+
+}
+gamesBox()
