@@ -15,7 +15,7 @@
 
             @font-face {
                 font-family: rem;
-                src: url(../digi/fontx.ttf);
+                src: url(../digi/font.ttf);
             }
 
             body {
@@ -87,7 +87,8 @@
 
             #score {
                 color: rgb(255, 230, 0);
-                font-weight: 600;
+                font-weight: 200;
+                font-style: italic;
                 font-size: 2.5em;
             }
 
@@ -106,7 +107,7 @@
                 align-items: center;
                 justify-content: space-between;
                 gap: 1em;
-                font-weight: 600;
+                font-weight: 100;
 
             }
 
@@ -120,8 +121,7 @@
                 position: absolute;
                 height: 100dvh;
                 width: 100dvw;
-                background-color: #00000050;
-                backdrop-filter: blur(4px);
+                background-color: #000000c0;
                 inset: 0;
                 display: flex;
                 color: #fff;
@@ -149,12 +149,13 @@
 
             .gameOver h1 {
                 font-size: 2.5em;
-                font-weight: 800;
+                font-weight: 100;
             }
 
             .gameOver h2 {
                 font-size: 1.5em;
-                font-weight: 500;
+                font-weight: 100;
+
                 color: #ff0;
                 animation-play-state: running;
                 animation-name: flasdh;
@@ -393,7 +394,6 @@
             function clickMole(n) {
                 document.getElementById(`mole${n}`).style.transform = "translateY(100%)";
                 score += 1;
-                difficulty()
                 document.getElementById("score").innerText = score;
                 updateHighScore();
 

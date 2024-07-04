@@ -6,6 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link rel="stylesheet" href="i.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+            integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link
+            href="https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=zodiak@400&f[]=sentient@400&f[]=boska@400&f[]=bonny@400&f[]=bebas-neue@400&display=swap"
+            rel="stylesheet">
+        <script src="mega.js" defer></script>
+
         <style>
             @font-face {
                 font-family: pasi;
@@ -60,7 +69,7 @@
                 fill: transparent;
             }
 
-            section:first-child {
+            body>section:first-child {
                 width: 100%;
                 height: 100dvh;
                 background-color: #edede4;
@@ -68,6 +77,12 @@
                 align-items: center;
                 justify-content: center;
             }
+
+            section:nth-child(2) {
+                width: 100%;
+            }
+
+
 
             @media only screen and (max-width: 1300px) {
                 svg {
@@ -168,7 +183,7 @@
     </head>
 
     <body>
-        <section>
+        <section class="grain">
             <svg viewBox="0 0 500 500" id="val">
                 <text x="50%" y="50%" text-anchor="middle" class="texty">
                     KIRUTHIK

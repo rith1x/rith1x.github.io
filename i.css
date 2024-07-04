@@ -19,7 +19,6 @@ body {
     padding: 0;
     scroll-behavior: smooth;
     width: 100%;
-    background-color: #fff;
 }
 
 .container {
@@ -119,28 +118,32 @@ body {
 
 .content {
     width: 100%;
+    background-color: transparent;
     padding-inline: 5%;
     padding-block: 5vw;
     height: fit-content;
     font-weight: 600;
     font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5em;
 }
 
 
 
-section {
+.content section {
     font-size: 17px;
     width: 100%;
 }
 
-section h1 {
+.content section h1 {
     font-size: 1.60em;
     padding-block: .5em;
     font-family: 'Libre Caslon Text';
 
 }
 
-section p {
+.content section p {
     font-size: 1em;
     font-family: Sentient;
     text-align: justify;
@@ -174,10 +177,10 @@ section p {
 }
 
 .project {
-    border: solid 2px #eaeaea;
-    height: 230px;
-    padding: 15px;
-    min-width: 340px;
+    height: 250px;
+    padding: 20px;
+    min-width: 360px;
+    background-color: #fff;
     font-family: Sentient;
     display: flex;
     flex-direction: column;
@@ -220,14 +223,14 @@ section p {
     display: flex;
     width: 100%;
     height: 12em;
+    padding: .5em;
 
     overflow-x: scroll;
     align-items: center;
     scroll-snap-type: x mandatory;
 
     justify-content: start;
-    gap: .5em;
-    border-radius: 21px;
+    gap: .8em;
 
 }
 
@@ -235,22 +238,29 @@ section p {
     height: 100%;
     scroll-snap-align: start;
     padding: 10px;
-    border-radius: 31px;
+    min-width: 120px;
     aspect-ratio: 1.2 / 2;
     display: flex;
+    border-radius: 11px;
     flex-direction: column;
 
     align-items: flex-start;
     justify-content: start;
     gap: .5em;
+    transition: box-shadow .3s ease-in-out;
+
+}
+
+.app:hover {
+    box-shadow: 0px 0px 10px #bfbfbf;
 }
 
 .app-icon {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #f1f1f1;
+    background-color: #e3e0d4;
     padding: 15px;
-    border-radius: 21px;
+    border-radius: 6px;
 }
 
 .app-icon img {
