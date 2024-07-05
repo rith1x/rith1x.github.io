@@ -267,7 +267,7 @@ body {
 
 .app-icon img {
     width: 100%;
-    filter: sepia(1);
+    /* filter: sepia(1); */
 }
 
 .app h4 {
