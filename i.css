@@ -191,7 +191,7 @@ body {
     border-radius: 21px;
     position: relative;
 
-    border: solid 1px;
+    border: solid 2px;
 }
 
 .project p {
@@ -245,7 +245,7 @@ body {
     display: flex;
     border-radius: 11px;
     flex-direction: column;
-
+    border: solid 2px;
     align-items: flex-start;
     justify-content: start;
     gap: .5em;
@@ -267,6 +267,7 @@ body {
 
 .app-icon img {
     width: 100%;
+    filter: sepia(1);
 }
 
 .app h4 {
@@ -285,7 +286,7 @@ body {
 
     justify-content: start;
     gap: .5em;
-    border-radius: 21px;
+    border-radius: 11px;
 
 }
 
@@ -293,7 +294,8 @@ body {
     height: 100%;
     scroll-snap-align: start;
     padding: 10px;
-    border-radius: 31px;
+
+    border-radius: 11px;
     aspect-ratio: 1.2 / 2;
     display: flex;
     flex-direction: column;
@@ -301,6 +303,7 @@ body {
     align-items: flex-start;
     justify-content: space-between;
     gap: .5em;
+    border: solid 2px;
 }
 
 .iconn {
@@ -320,9 +323,9 @@ body {
     grid-template-columns: repeat(3, 1fr);
     gap: 5px;
     align-items: center;
+    background-color: #000;
     justify-content: center;
-    background-color: #d8d8d860;
-    border-radius: 21px;
+    border-radius: 6px;
 
     width: 100%;
 }
@@ -333,6 +336,7 @@ body {
     aspect-ratio: 1/1;
     border-radius: 50%;
     align-items: center;
+    color: #fff !important;
     justify-content: center;
 
 }
@@ -487,7 +491,7 @@ body {
     /* background-color: #fff; */
     padding: 20px;
     border-radius: 11px;
-    border: solid 1px;
+    border: solid 2px;
 
 }
 
