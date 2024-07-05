@@ -40,7 +40,7 @@ body {
     justify-content: space-between;
     padding-inline: 25px;
     border-radius: 35px;
-    height: 70px;
+    height: 60px;
 
     background-color: #1a1a1ab8;
     backdrop-filter: blur(5px);
@@ -90,7 +90,7 @@ body {
 .mob-menu {
     position: absolute;
     right: 0px;
-    top: 70px;
+    top: 60px;
     display: none;
     flex-direction: column;
     border-radius: 0 0 0 6px;
@@ -656,3 +656,4 @@ body {
 * {
     border-color: #00000025 !important;
 }
+
