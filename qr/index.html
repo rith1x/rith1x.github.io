@@ -14,6 +14,7 @@
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://rith1x.github.io/qr/" />
         <meta property="twitter:title" content="QR Generator" />
+        <meta name="theme-color" id="metacl" content="#000000" />
         <meta property="twitter:description" content="Text to QR using QRServer API." />
     </head>
 
@@ -55,7 +56,6 @@
                 flex-direction: column;
                 align-items: center;
                 justify-content: space-between;
-                border-radius: 11px;
                 margin: 0 auto;
             }
 
@@ -128,7 +128,7 @@
             }
             function changeColor() {
                 var genClr = getRandomHexColor();
-                currentColor = genClr;
+                document.getElementById("metacl").content = genClr
                 document.getElementById("container").style.backgroundColor = genClr;
             }
             changeColor();
