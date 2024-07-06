@@ -515,6 +515,13 @@ body {
 
 }
 
+@media only screen and (max-width: 768px) {
+    .socialbox {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+}
+
 .socialbox div {
     width: 100%;
     height: 50px;
@@ -656,4 +663,3 @@ body {
 * {
     border-color: #00000025 !important;
 }
-
