@@ -5,12 +5,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>QR Generator</title>
+        <meta name="title" content="QR Generator" />
+        <meta name="description" content="Text to QR using QRServer API." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://rith1x.github.io/qr/" />
+        <meta property="og:title" content="QR Generator" />
+        <meta property="og:description" content="Text to QR using QRServer API." />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://rith1x.github.io/qr/" />
+        <meta property="twitter:title" content="QR Generator" />
+        <meta property="twitter:description" content="Text to QR using QRServer API." />
     </head>
 
     <body>
         <div class="container" id="container">
             <div class="qrArea" id="qrArea">
-                <div class="qImg">
+                <div class="qImg" id="qrHold">
                     <img lazyload="true"
                         src="https://placehold.jp/aaaaaa/000000/100x100.png?text=Type Something to generate QR" alt=""
                         id="qrcode">
