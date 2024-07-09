@@ -66,7 +66,7 @@ function worksBox() {
     //         <a href="">Learn more</a>
     //     </div>
     // </div>
-    works.forEach((wrk, index) => {
+    works.forEach((wrk) => {
         const prDiv = document.createElement('div');
         prDiv.className = "project"
 
@@ -154,10 +154,10 @@ function gamesBox() {
         gBox.className = "app"
         gBox.onclick = () => { game.onclick }
         const gIco = document.createElement('div')
-        gIco.className = "app-icon"
-        const gImg = document.createElement('img')
-        gImg.src = game.icon;
-        gIco.append(gImg)
+        // gIco.className = "app-icon"
+        // const gImg = document.createElement('img')
+        // gImg.src = game.icon;
+        gIco.innerHTML = `<i class="fa-solid fa-arrow-right"></i>`
         const gH4e = document.createElement('h4')
         gH4e.className = "app-title"
         gH4e.innerText = game.title

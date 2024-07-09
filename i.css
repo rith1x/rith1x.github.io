@@ -242,21 +242,25 @@ body {
     width: 100%;
     aspect-ratio: 1.2 / 2;
     display: flex;
+    flex-direction: row-reverse;
     border-top: dashed 1px #000;
     align-items: center;
     gap: 1em;
-    justify-content: start;
+    justify-content: space-between;
     transition: all .3s ease-in-out;
 
 }
 
 
 .app-icon {
-    display: none;
     height: 100%;
     aspect-ratio: 1 / 1;
     background-color: #e3e0d4;
     padding: 15px;
+}
+
+.app:hover .app-icon {
+    rotate: -45deg;
 }
 
 .app-icon img {
@@ -274,12 +278,20 @@ body {
 
 .app:hover {
     box-shadow: 0px 0px 10px #bfbfbf;
-    padding-left: 20px;
+    padding-left: 30px;
     font-weight: 900;
     background-color: #000000d0;
     color: bisque;
-    height: 70px;
+
+
 }
+
+.app:hover svg {
+    fill: #f00 !important;
+    rotate: 20deg;
+}
+
+
 
 
 .filters {
