@@ -154,9 +154,7 @@ function gamesBox() {
         gBox.className = "app"
         gBox.onclick = () => { game.onclick }
         const gIco = document.createElement('div')
-        // gIco.className = "app-icon"
-        // const gImg = document.createElement('img')
-        // gImg.src = game.icon;
+        gIco.className = "app-icon"
         gIco.innerHTML = `<i class="fa-solid fa-arrow-right"></i>`
         const gH4e = document.createElement('h4')
         gH4e.className = "app-title"

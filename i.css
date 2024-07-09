@@ -236,7 +236,7 @@ body {
 }
 
 .app {
-    height: 60px;
+    height: 90px;
     scroll-snap-align: start;
     padding: 10px;
     width: 100%;
@@ -255,12 +255,23 @@ body {
 .app-icon {
     height: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #e3e0d4;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 15px;
+    transition: all .3s ease-in-out;
 }
+
+.app-icon {
+    font-size: 2em;
+}
+
+
 
 .app:hover .app-icon {
     rotate: -45deg;
+    color: #edede4;
 }
 
 .app-icon img {
@@ -273,22 +284,23 @@ body {
     font-family: 'Gantari';
     font-size: 1.2em;
     font-weight: 500;
-
+    transition: all .3s ease-in-out;
 }
 
+
 .app:hover {
-    box-shadow: 0px 0px 10px #bfbfbf;
     padding-left: 30px;
     font-weight: 900;
     background-color: #000000d0;
-    color: bisque;
+    color: #edede4;
 
 
 }
 
-.app:hover svg {
-    fill: #f00 !important;
-    rotate: 20deg;
+.app:hover h4 {
+    color: #edede4;
+
+    font-size: 25px;
 }
 
 
