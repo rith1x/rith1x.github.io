@@ -317,7 +317,7 @@ body {
 
 .qrhold img {
     width: 100%;
-    filter: invert(1) brightness(.5);
+    filter: invert(1);
 }
 
 .exportList .field {
