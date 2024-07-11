@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To-Do List</title>
+    </head>
+
+    <body>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: "Gantari";
+            }
+
+            body {
+                background-color: #000;
+                width: 100%;
+                height: 100dvh;
+            }
+
+            .container {
+                height: 100dvh;
+                max-width: 450px;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #101223;
+            }
+
+            .header {
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                padding: 20px;
+                color: #fff;
+                font-size: 1.3em;
+                box-shadow: 0 0 5px #00000050;
+            }
+
+            .list {
+                width: 100%;
+                position: relative;
+                height: 100%;
+            }
+
+            .addList {
+                position: absolute;
+                width: fit-content;
+                padding-inline: 20px;
+                height: 50px;
+                border: none;
+                border-radius: 30px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: space-between;
+                bottom: 20px;
+                left: 0;
+                background-color: rgb(57, 54, 246);
+                font-size: 15px;
+                right: 0;
+                margin: 0 auto;
+                font-weight: 600;
+            }
+
+            svg {
+                height: 25px;
+            }
+        </style>
+        <div class="container">
+            <div class="header">
+                <div class="h1">
+                    Todo List
+                </div>
+            </div>
+            <div class="list" id="list"></div>
+        </div>
+        <script>
+            const list = document.getElementById('list');
+            let data;
+            function syncer() {
+                const localData = JSON.parse(localStorage.getItem('todolist'))
+                if (!localData) {
+                    const newData = JSON.stringify({})
+                    localStorage.setItem('todolist', newData);
+                    data = JSON.parse(newData)
+                } else {
+                    data = localData
+                }
+            }
+
+            function listList() {
+                const addlist = document.createElement('button');
+
+
+
+                addlist.className = "addList"
+                addlist.onclick = () => { addList() }
+                addlist.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>Add a task`
+                list.append(addlist)
+            }
+            function addList() {
+                const task = document.createElement('li');
+                
+
+            }
+            function idGen() {
+                let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+                let genId = ""
+                while (genId.length != 10) {
+                    genId += chars[Math.floor(Math.random() * 62)]
+                }
+                return genId;
+            }
+            syncer()
+            listList()
+        </script>
+
+    </body>
+
+</html>
