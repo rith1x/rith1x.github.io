@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Whack a Mole!</title>
+        <meta name="theme-color" content="#000000" />
+        <style>
+            * {
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+            }
+
+            @font-face {
+                font-family: rem;
+                src: url(../digi/font.ttf);
+            }
+
+            body {
+                margin: 0;
+                height: 100dvh;
+                width: 100%;
+                font-family: rem;
+                background-color: #000;
+
+            }
+
+            .container {
+                max-width: 500px;
+                height: 96dvh;
+                margin: 2dvh auto;
+                border-radius: 31px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                padding: 10px;
+                gap: 1em;
+
+            }
+
+            .playSpace {
+                border: solid 1px rgba(28, 28, 28, 0.434);
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                display: grid;
+                overflow: hidden;
+                border-radius: 21px;
+                border: solid 2px rgb(24, 24, 24);
+                grid-template-columns: repeat(4, 1fr);
+                background-color: #29292960;
+                backdrop-filter: blur(3px);
+
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .room {
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                position: relative;
+                border: solid 1px rgba(49, 49, 49, 0.239);
+            }
+
+            .room div {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                position: absolute;
+                justify-content: center;
+                align-items: flex-end;
+            }
+
+            .room div:first-child img {
+                width: 100%;
+
+            }
+
+            .room div:nth-child(2) img {
+                width: 70%;
+                margin: 7px;
+
+            }
+
+            #score {
+                color: rgb(255, 230, 0);
+                font-weight: 200;
+                font-style: italic;
+                font-size: 2.5em;
+            }
+
+            .scoreCard {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                width: 500px;
+                color: #fff;
+            }
+
+            .scoreCard>h1 {
+                font-weight: 1000;
+                font-style: italic;
+                background-color: #772f1a;
+                padding-block: 2px;
+                padding-inline: 5px;
+                color: transparent;
+                background-clip: text;
+                border-radius: 3px;
+                background-image: linear-gradient(in hsl 45deg, rgb(255, 88, 88), rgb(255, 0, 179));
+                /* background-image: linear-gradient(315deg, #772f1a 0%, #f2a65a 74%); */
+
+            }
+
+            .bom {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1em;
+                font-weight: 100;
+
+            }
+
+            .bom div {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+            }
+
+            .gameOver {
+                position: absolute;
+                height: 100dvh;
+                width: 100dvw;
+                background-color: #000000c0;
+                inset: 0;
+                display: flex;
+                color: #fff;
+                gap: 1em;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                a {
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+
+            @keyframes flasdh {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+
+                }
+            }
+
+            .gameOver h1 {
+                font-size: 2.5em;
+                font-weight: 100;
+            }
+
+            .gameOver h2 {
+                font-size: 1.5em;
+                font-weight: 100;
+
+                color: #ff0;
+                animation-play-state: running;
+                animation-name: flasdh;
+                animation-duration: .7s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                animation-timing-function: ease;
+            }
+
+
+
+            .playSpace {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(4, 1fr);
+
+            }
+
+            .scoreCard {
+                width: 100%;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="scoreCard">
+                <h1>Whack a mole</h1>
+
+                <div class="bom">
+                    <div class="">High Score: <h1 id="hscore">0</h1>
+                    </div>
+                    <div class="">Score: <h1 id="score">0</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="playSpace">
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('0')" id="mole0" class="mole0"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('0')" id="bomb0" class="bomb0"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast0" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('1')" id="mole1" class="mole1"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('1')" id="bomb1" class="bomb1"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast1" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('2')" id="mole2" class="mole2"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('2')" id="bomb2" class="bomb2"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast2" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('3')" id="mole3" class="mole3"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('3')" id="bomb3" class="bomb3"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast3" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('4')" id="mole4" class="mole4"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('4')" id="bomb4" class="bomb4"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast4" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('5')" id="mole5" class="mole5"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('5')" id="bomb5" class="bomb5"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast5" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('6')" id="mole6" class="mole6"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('6')" id="bomb6" class="bomb6"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast6" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('7')" id="mole7" class="mole7"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('7')" id="bomb7" class="bomb7"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast7" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('8')" id="mole8" class="mole8"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('8')" id="bomb8" class="bomb8"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast8" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('9')" id="mole9" class="mole9"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('9')" id="bomb9" class="bomb9"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast9" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('10')" id="mole10" class="mole10"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('10')" id="bomb10" class="bomb10"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast10" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('11')" id="mole11" class="mole11"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('11')" id="bomb11" class="bomb11"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast11" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('12')" id="mole12" class="mole12"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('12')" id="bomb12" class="bomb12"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast12" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('13')" id="mole13" class="mole13"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('13')" id="bomb13" class="bomb13"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast13" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('14')" id="mole14" class="mole14"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('14')" id="bomb14" class="bomb14"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast14" style="background-color: #fff;display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+                <div class="room">
+                    <div style="transform:translatey(100%);" onclick="clickMole('15')" id="mole15" class="mole15"><img
+                            src="mole.png" alt=""></div>
+                    <div style="transform:translatey(100%);" onclick="clickBomb('15')" id="bomb15" class="bomb15"><img
+                            src="bomb.png" alt=""></div>
+                    <div class="blast" id="blast15" style="background-color: #fff; display:none;"><img src="blast.gif"
+                            alt="">
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="gameOver" id="gameOver" style="display: none;">
+                <h1>GAME OVER!</h1>
+                <a href="" onclick="restart()">
+                    <h2>Retry!</h2>
+                </a>
+            </div>
+        </div>
+
+        <script>
+            let score = 0;
+
+
+
+
+            function showRand() {
+
+                choice = Math.floor(Math.random() * 10);
+                if (choice >= 8) {
+                    showBomb();
+                } else {
+                    showMole();
+                }
+            }
+            function showMole() {
+                randInt = Math.floor(Math.random() * 15);
+
+                document.getElementById(`mole${randInt}`).style.transform = "translateY(0%)";
+                let smoodhx = setTimeout(() => {
+                    document.getElementById(`mole${randInt}`).style.transform = "translateY(100%)";
+
+                    showRand();
+
+                }, 2000)
+            }
+            function clickMole(n) {
+                document.getElementById(`mole${n}`).style.transform = "translateY(100%)";
+                score += 1;
+                document.getElementById("score").innerText = score;
+                updateHighScore();
+
+                // showRand()
+            }
+
+            function showBomb() {
+                randIntx = Math.floor(Math.random() * 15);
+                document.getElementById(`bomb${randIntx}`).style.transform = "translateY(0%)";
+                let smoodh = setTimeout(() => {
+                    document.getElementById(`bomb${randIntx}`).style.transform = "translateY(100%)";
+
+                    showRand();
+                }, 2000)
+
+            }
+            function clickBomb(n) {
+                document.getElementById(`blast${n}`).style.display = "block";
+
+                setTimeout(() => {
+                    document.getElementById(`blast${n}`).style.display = "none";
+                    score = 0;
+                    document.getElementById("score").innerText = score;
+                    localStorage.setItem("whackamoleCurrscore", score);
+
+
+
+
+                }, 1000);
+
+                document.getElementById(`bomb${n}`).style.transform = "translateY(100%)";
+                document.getElementById("gameOver").style.display = "flex";
+
+            }
+
+
+            function updateHighScore() {
+                localStorage.setItem("whackamoleCurrscore", score);
+
+                hs = localStorage.getItem("whackamoleHighscore");
+                console.log(hs)
+                if (hs == null) {
+                    localStorage.setItem("whackamoleHighscore", score);
+
+                } else {
+                    if (score >= hs) {
+                        localStorage.setItem("whackamoleHighscore", score);
+                        hsnew = localStorage.getItem("whackamoleHighscore");
+                        document.getElementById("hscore").innerText = hsnew;
+                        document.getElementById("hscore").style.color = "#444cF7";
+
+
+                    }
+                }
+
+            }
+
+
+            showRand();
+
+            high = localStorage.getItem("whackamoleHighscore")
+            document.getElementById("hscore").innerText = high;
+
+
+
+        </script>
+    </body>
+
+</html>
