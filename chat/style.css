@@ -305,7 +305,6 @@ header button {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
 }
 
 
@@ -317,6 +316,8 @@ header button {
     width: 100%;
     padding: 10px;
     padding-top: 70px;
+    overflow: scroll;
+
 }
 
 .chatme {
@@ -337,6 +338,7 @@ header button {
     padding: 8px;
     width: fit-content;
     display: flex;
+    min-width: 5%;
     max-width: 50%;
     /* padding-block: 10px; */
     transition: all .3s ease;
@@ -370,14 +372,14 @@ header button {
 
 .incoming {
     align-self: flex-start;
-    border-radius: 12px;
+    border-radius: 8px;
     color: var(--chat-r-c);
     background-color: var(--chat-r-bg);
 }
 
 .outgoing {
     align-self: flex-end;
-    border-radius: 13px;
+    border-radius: 8px;
     color: var(--chat-s-c);
     background: var(--chat-s-bg);
     /* align-items: flex-end; */
@@ -422,7 +424,19 @@ header button {
 
 .time {
     font-size: 10px;
-    color: #808080;
+
+}
+
+.outgoing .time {
+    color: var(--chat-s-c);
+    opacity: .8;
+}
+
+.incoming .time {
+    color: var(--chat-r-c);
+    opacity: .8;
+
+
 }
 
 .sender {
@@ -633,7 +647,7 @@ input::placeholder {
     width: 98%;
     background-color: var(--input-bg);
     min-height: 60px;
-    box-shadow: 0 0 10px #00000030;
+    box-shadow: 0 0 5px #00000030;
 
     /* box-shadow: 0 0 10px #2e2e2e; */
     border-radius: 30px;
@@ -881,6 +895,7 @@ input[type="file"] {
 .room-option {
     position: absolute;
     width: fit-content;
+    opacity: 0;
     height: fit-content;
     right: 0;
     top: 60px;

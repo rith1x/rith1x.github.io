@@ -741,9 +741,11 @@ let menu = 0;
 function showOptions() {
     if (menu == 0) {
         document.getElementById('ropt').style.transform = "translatex(0)"
+        document.getElementById('ropt').style.opacity = 1
         menu = 1
     } else {
         document.getElementById('ropt').style.transform = "translatex(100%)"
+        document.getElementById('ropt').style.opacity = 0
         menu = 0
 
     }
@@ -813,7 +815,9 @@ const themes = {
 function themeApplier(theme) {
 
 
+    // document.body.style.background = themes[theme][0];
     document.getElementById("themenav").content = themes[theme][0];
+    document.getElementById("mex").style.background = themes[theme][0];
     document.body.style.setProperty('--nav-color', themes[theme][0]);
     document.body.style.setProperty('--nav-text', themes[theme][1]);
     document.body.style.setProperty('--chat-bg', themes[theme][2]);
