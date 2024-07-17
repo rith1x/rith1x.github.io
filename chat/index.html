@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chatie | theskuare</title>
+        <meta name="theme-color" id="metacl" content="#E3F2FD" />
+
         <link rel="stylesheet" href="style.css">
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -13,7 +15,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="./script.js" defer></script>
 
-        <meta id="themenav" name="theme-color" content="#000000" />
 
     </head>
 
@@ -134,6 +135,7 @@
                     <button title="Leave room" onclick="leaveRoom()">
                         <i class="fa-solid fa-person-running"></i> Exit Room
                     </button>
+                    <button title="Theme" onclick="showThemeMenu()"><i class="fa-solid fa-palette"></i>Theme</button>
                 </div>
                 <div id="contextMenu" class="context-menu">
                     <ul>
@@ -143,6 +145,18 @@
 
 
                     </ul>
+                </div>
+                <div id="themeprompt">
+                    <div class="field">
+                        <p>Select Theme</p>
+                        <select name="" id="themeip" oninput="setTheme()">
+                            <option value="white">Light</option>
+                            <option value="black">Dark</option>
+                            <option value="bubble">Bubble Tea</option>
+                            <option value="avocado">Avocado Green</option>
+                        </select>
+                    </div>
+
                 </div>
             </div>
 

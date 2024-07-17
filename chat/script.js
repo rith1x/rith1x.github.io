@@ -203,7 +203,9 @@ function shareRoom() {
     const theUrl = `https://rith1x.github.io/chat/?r=${currentRoom}`;
     const qrBase = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
     const masterQr = qrBase + theUrl;
+    showOptions()
     sharePop(masterQr, theUrl);
+
 }
 
 function sharePop(qrsrc, txtsrc) {
@@ -777,19 +779,34 @@ document.addEventListener("contextmenu", (event) => {
         document.getElementById('op1').onclick = (e) => { copyMessage(e, par.id) }
     } else {
         console.log("invalid")
+        return;
     }
     console.log(par.classList)
 
     const contextMenu = document.getElementById("contextMenu");
-    contextMenu.style.top = event.pageY + "px";
-    contextMenu.style.left = event.pageX + "px";
+    const menuWidth = contextMenu.offsetWidth;
+    const menuHeight = contextMenu.offsetHeight;
+    const pageWidth = window.innerWidth;
+    const pageHeight = window.innerHeight;
+    let mouseX = event.pageX;
+    let mouseY = event.pageY;
+
+    if (mouseX + menuWidth > pageWidth) {
+        mouseX -= menuWidth;
+    }
+    if (mouseY + menuHeight > pageHeight) {
+        mouseY -= menuHeight;
+    }
+
+    contextMenu.style.top = mouseY + "px";
+    contextMenu.style.left = mouseX + "px";
 
     contextMenu.style.display = "block";
 
 
 
-
 });
+
 document.addEventListener("click", (event) => {
 
     const contextMenu = document.getElementById("contextMenu");
@@ -805,18 +822,37 @@ function copyMessage(e, id) {
     let clips = document.getElementById("p" + id).innerText;
     console.log(clips)
 }
+let thm = 0;
+function showThemeMenu() {
+    const thmen = document.getElementById('themeprompt');
+    if (thm == 0) {
+        thmen.style.display = 'flex'
+        thm = 1
+    } else {
+        thmen.style.display = 'none'
+        thm = 0
+    }
+    showOptions()
 
-
-const themes = {
-    white: ["#f5f5f5", "#000000", "#ffffff", "#ffffff", "#007bff", "#e9e9eb", "#007bff", "#000000", "#ffffff"],
-    black: []
 }
+function setTheme() {
+    const option = document.getElementById('themeip').value
+    themeApplier(option)
+}
+const themes = {
+    //------ navclr---- navtxt---- chatbg ----inputbg --inputclr ---senderm ---recm ------sendc -----rec c
+    white: ["#f5f5f5", "#000000", "#ffffff", "#ffffff", "#007bff", "#e9e9eb", "#007bff", "#000000", "#ffffff"],
+    black: ["#0c0c0c", "#ffffff", "#000000", "#0c0c0c", "#067dfe", "#212027", "#007bff", "#efefef", "#ffffff"],
+    bubble: ["#804d3a", "#ae8070", "#814e3b", "#3b261d", "#ca8c53", "#4e2b01", "#CB7F45", "#efefef", "#ffffff", "bubble.jpg"],
+    avocado: ["#effedd", "#268700", "#effedd", "#effedd", "#268700", "#f7ffc1", "#8ac573", "#268700", "#ffffff", "avocado.jpg"],
+}
+
 
 function themeApplier(theme) {
 
 
     // document.body.style.background = themes[theme][0];
-    document.getElementById("themenav").content = themes[theme][0];
+    document.getElementById("metacl").content = themes[theme][0];
     document.getElementById("mex").style.background = themes[theme][0];
     document.body.style.setProperty('--nav-color', themes[theme][0]);
     document.body.style.setProperty('--nav-text', themes[theme][1]);
@@ -827,7 +863,7 @@ function themeApplier(theme) {
     document.body.style.setProperty('--chat-s-bg', themes[theme][6]);
     document.body.style.setProperty('--chat-r-c', themes[theme][7]);
     document.body.style.setProperty('--chat-s-c', themes[theme][8]);
-
+    if (themes[theme][9]) {
+        document.getElementById('chatx').style.background = `url(theme/${themes[theme][9]})`
+    }
 }
-themeApplier('black')
-themeApplier('white')
