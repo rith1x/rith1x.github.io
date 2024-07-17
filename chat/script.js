@@ -340,12 +340,10 @@ function showNoti(sender, room) {
 
 
 function deleteMsg(e, idxx, msg) {
-
+    let content = profanityCleaner("Deleted Message")
     var permis = window.confirm(`Do you want to delete the message "${msg}"?`);
     if (permis) {
-        if (msg != "Deleted Message") {
-            firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set("Deleted Message")
-        }
+        firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set(content)
     }
 
 }
@@ -390,7 +388,7 @@ function listMessages(snapshot) {
         if (user == currSender) {
             liEl.classList.add("chat", "outgoing");
             liEl.id = snapshot.key
-            liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
+            // liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
             const senP = document.createElement("p");
             senP.className = "sender";
             senP.innerText = user;
@@ -404,7 +402,7 @@ function listMessages(snapshot) {
                 msgP.id = "p" + snapshot.key;
 
                 if (msg != "Deleted Message") {
-                    liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
+                    // liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
                     msgP.innerText = msg;
                 } else {
                     msgP.innerHTML = "<i>Deleted Message</i>"
@@ -440,7 +438,7 @@ function listMessages(snapshot) {
         else {
             liEl.classList.add("chat", "incoming");
             liEl.id = snapshot.key;
-            liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
+            // liEl.onclick = (ev) => { replyingTo(ev, snapshot.key) }
 
             const senP = document.createElement("p");
             senP.className = "sender";
@@ -475,7 +473,7 @@ function listMessages(snapshot) {
                 msgP.id = "p" + snapshot.key;
 
                 if (msg != "Deleted Message") {
-                    liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
+                    // liEl.oncontextmenu = (el) => { deleteMsg(el, muid, msg) };
                     msgP.innerText = msg;
                 } else {
                     msgP.innerHTML = "<i>Deleted Message</i>"
@@ -738,3 +736,94 @@ async function uploadImg() {
         console.error('Error uploading images:', error);
     }
 }
+
+let menu = 0;
+function showOptions() {
+    if (menu == 0) {
+        document.getElementById('ropt').style.transform = "translatex(0)"
+        menu = 1
+    } else {
+        document.getElementById('ropt').style.transform = "translatex(100%)"
+        menu = 0
+
+    }
+}
+
+document.addEventListener("contextmenu", (event) => {
+    event.preventDefault(); // Prevent default right-click menu
+
+
+
+
+    let par = event.target;
+    if (!par.classList.contains('chatbox')) {
+        while (!(par.classList.contains('chat'))) {
+            par = par.parentElement
+        }
+    }
+    if (par.classList.contains('outgoing')) {
+        console.log("sent")
+        document.getElementById('op3').style.display = "block"
+        let ms = document.getElementById('p' + par.id).innerText
+        document.getElementById('op3').onclick = (el) => { deleteMsg(el, par.id, ms) }
+        document.getElementById('op2').onclick = (e) => { replyingTo(e, par.id) }
+        document.getElementById('op1').onclick = (e) => { copyMessage(e, par.id) }
+    } else if (par.classList.contains('incoming')) {
+        console.log("recieves")
+        document.getElementById('op3').style.display = "none"
+        document.getElementById('op2').onclick = (e) => { replyingTo(e, par.id) }
+        document.getElementById('op1').onclick = (e) => { copyMessage(e, par.id) }
+    } else {
+        console.log("invalid")
+    }
+    console.log(par.classList)
+
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.top = event.pageY + "px";
+    contextMenu.style.left = event.pageX + "px";
+
+    contextMenu.style.display = "block";
+
+
+
+
+});
+document.addEventListener("click", (event) => {
+
+    const contextMenu = document.getElementById("contextMenu");
+    if (
+        event.target !== contextMenu &&
+        !contextMenu.contains(event.target)
+    ) {
+        contextMenu.style.display = "none";
+
+    }
+});
+function copyMessage(e, id) {
+    let clips = document.getElementById("p" + id).innerText;
+    console.log(clips)
+}
+
+
+const themes = {
+    white: ["#f5f5f5", "#000000", "#ffffff", "#ffffff", "#007bff", "#e9e9eb", "#007bff", "#000000", "#ffffff"],
+    black: []
+}
+
+function themeApplier(theme) {
+
+
+    document.getElementById("themenav").content = themes[theme][0];
+    document.body.style.setProperty('--nav-color', themes[theme][0]);
+    document.body.style.setProperty('--nav-text', themes[theme][1]);
+    document.body.style.setProperty('--chat-bg', themes[theme][2]);
+    document.body.style.setProperty('--input-bg', themes[theme][3]);
+    document.body.style.setProperty('--input-clr', themes[theme][4]);
+    document.body.style.setProperty('--chat-r-bg', themes[theme][5]);
+    document.body.style.setProperty('--chat-s-bg', themes[theme][6]);
+    document.body.style.setProperty('--chat-r-c', themes[theme][7]);
+    document.body.style.setProperty('--chat-s-c', themes[theme][8]);
+
+}
+themeApplier('black')
+themeApplier('white')

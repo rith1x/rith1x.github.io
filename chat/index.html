@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Chatie | CDK</title>
+        <title>Chatie | theskuare</title>
         <link rel="stylesheet" href="style.css">
         <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -12,15 +12,17 @@
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="./script.js" defer></script>
-        <script src="starter.js" defer></script>
 
-        <meta name="theme-color" content="#000000" />
+        <meta id="themenav" name="theme-color" content="#000000" />
 
     </head>
 
     <body>
         <div class="container" id="mex">
             <div class="screen1" id="welcx">
+                <div class="welcome">
+                    <img src="welcome.svg" alt="">
+                </div>
                 <div class="box">
                     <div class="field">
                         <h1>Welcome to Chatie</h1>
@@ -28,16 +30,21 @@
                     <div class="field">
                         <input type="text" id="name" placeholder="Enter name" required>
                     </div>
-                    <div class="field">
+                    <div class="field" id="omnibar">
                         <button class="cr" onclick="createRoom()">Create Room</button>
-                    </div>
-                    <div class="field">
-                        <input type="text" id="roomcode" placeholder="RoomCode" maxlength="6"><button class="jr"
-                            onclick="joinRoom()">Join
-                            room</button>
-                    </div>
+
+                        <div id="jrr">
+                            <input type="text" id="roomcode" placeholder="RoomCode" maxlength="6"><button class="jr"
+                                onclick="joinRoom()">Join</button>
 
 
+                        </div>
+                    </div>
+                    <hr class="style-two">
+
+                    <div class="fieldzz">
+                        <img src="by.svg" alt="">
+                    </div>
                 </div>
             </div>
             <div class="backend-elements" style="display: none;">
@@ -48,21 +55,17 @@
 
                 <header>
                     <div class="roomdetails">
+
                         <h2 id="rmcode">Room&nbsp;<span id="rc"></span></h2>
                         <p id="members"></p>
                     </div>
 
                     <div class="option">
-                        <button title="Share roomcode" onclick="shareRoom()">
-                            <i class="fa-solid fa-share-from-square"></i>
-                        </button>
-                        <button title="Delete Room" onclick="deleteRoom()">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                        <button title="Leave room" onclick="leaveRoom()">
-                            <i class="fa-solid fa-person-running"></i>
-                        </button>
+                        <button title="Options" onclick="showOptions()"><i
+                                class="fa-solid fa-ellipsis-vertical"></i></button>
+
                     </div>
+
                 </header>
 
                 <ul class="chatbox" id="chatbox">
@@ -121,7 +124,26 @@
                         <button onclick="declineAlert()">No</button><button onclick="acceptAlert()">Yes</button>
                     </div>
                 </div>
+                <div class="room-option" id="ropt">
+                    <button title="Share roomcode" onclick="shareRoom()">
+                        <i class="fa-solid fa-share-from-square"></i> Share Room
+                    </button>
+                    <button title="Delete Room" onclick="deleteRoom()">
+                        <i class="fa-solid fa-trash-can"></i> Delete Room
+                    </button>
+                    <button title="Leave room" onclick="leaveRoom()">
+                        <i class="fa-solid fa-person-running"></i> Exit Room
+                    </button>
+                </div>
+                <div id="contextMenu" class="context-menu">
+                    <ul>
+                        <li id="op1">Copy message</li>
+                        <li id="op2">Reply to</li>
+                        <li id="op3">Delete message</li>
 
+
+                    </ul>
+                </div>
             </div>
 
         </div>

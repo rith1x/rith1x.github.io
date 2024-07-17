@@ -22,7 +22,7 @@ body {
 
 .container {
     flex-grow: 1;
-    max-width: 1200px;
+    max-width: 100%;
     height: 100dvh;
     background-color: black;
     margin: 0 auto;
@@ -42,17 +42,45 @@ body {
     scroll-snap-align: center;
     min-width: 100%;
     height: 100%;
-    background-color: #E3F2FD;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    background-image: url(bg.jpeg);
     background-position: right;
     transition: all .3s ease;
 
     background-size: cover;
+}
+
+.screen1 {
+    display: flex;
+    padding: 30px;
+    background-color: #E3F2FD;
+
+    gap: 30px;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.screen1 .welcome {
+    height: 100%;
+
+    border-radius: 31px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome img {
+    width: 100%;
+    border-radius: 31px;
+
+    background-color: #c7d3ff;
 }
 
 .box {
@@ -60,14 +88,12 @@ body {
     height: fit-content;
     padding: 20px;
     display: flex;
-    position: absolute;
     backdrop-filter: blur(4px);
     flex-direction: column;
-    color: #fff;
+    color: #000;
     inset: 0;
     margin: auto;
-    background-color: #00000050;
-    gap: 15px;
+    gap: 20px;
     border-radius: 21px;
 }
 
@@ -76,25 +102,25 @@ body {
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
 }
 
 h1 {
     padding-left: 8px;
+
     border-left: solid 5px #7158d6;
 }
 
 #roomcode {
     width: 100%;
+    border-radius: 0px;
     height: 100%;
     padding-left: 10px;
-    border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 5PX;
     font-weight: 700;
     font-size: 20px;
-    border: none;
-    background-color: #00000060;
+    border-bottom: solid 2px #7158d6;
 }
 
 .roomdetails {
@@ -122,10 +148,12 @@ h1 {
 }
 
 #rc {
-    color: #006eff;
+    color: var(--nav-text);
+    border: solid 2px var(--nav-text);
+
     padding-inline: 4px;
     border-radius: 6px;
-    background-color: #001a3b;
+
 }
 
 
@@ -138,44 +166,94 @@ input {
     font-weight: 700;
     font-size: 20px;
     border: none;
-    color: #fff;
-    background-color: #00000060;
+    color: #000;
+    background-color: transparent;
 }
 
 .field input::placeholder {
     opacity: 0.5;
 }
 
+
+
 .cr {
     background-color: #654acf;
     border: none;
     height: 100%;
+    font-size: 1.1em;
     width: 100%;
     color: #fff;
     border-radius: 6px;
 }
 
+#jrr {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
 .jr {
-    background-color: #654acf;
+    background-color: transparent;
     border: none;
+    display: none;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    font-size: 16px;
+    position: absolute;
     height: 100%;
     width: fit-content;
-    padding: 0 20px;
-    color: #fff;
+    padding: 0 10px;
+    color: #654acf;
     border-radius: 6px;
+}
+
+
+#jrr:focus-within button.jr {
+    display: block;
+}
+
+.fieldzz {
+    width: 100%;
+    height: fit-content;
+}
+
+hr.style-two {
+    border: 0;
+    height: 1px;
+    margin-block: 20px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+}
+
+.fieldzz img {
+    height: 100px;
+}
+
+body {
+    --nav-color: #f5f5f5;
+    --nav-text: #000000;
+    --chat-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-clr: #007bff;
+    --chat-r-bg: #e9e9eb;
+    --chat-s-bg: #007bff;
+    --chat-r-c: #000000;
+    --chat-s-c: #ffffff;
+}
+
+.screen2 {
+    background: var(--chat-bg);
 }
 
 header {
     padding: 8px 8px 8px 20px;
-    color: #fff;
+    color: var(--nav-text);
     z-index: 2;
-    background-color: #000;
-    width: 98%;
-    margin-top: 6px;
+    background-color: var(--nav-color);
+    width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
-    border-radius: 30px 30px;
     justify-content: space-between;
     /* box-shadow: 0 2px 10px #000000; */
 }
@@ -186,22 +264,19 @@ header h2 {
 }
 
 header button {
-    background-color: #000;
     border: none;
+
+    background-color: transparent;
     height: 100%;
     aspect-ratio: 1/ 1;
 
-    border: solid 1px hsla(0, 0%, 25%, 0.314);
     font-size: 1em;
-    border-radius: 31px;
 
     cursor: pointer;
 }
 
 header button {
-    color: #2b8800;
-    /* background-color: #d2ffd2; */
-
+    color: var(--nav-text);
 }
 
 .mediaImg {
@@ -210,16 +285,7 @@ header button {
     margin-top: 7px;
 }
 
-header button:nth-child(2) {
-    color: #b45a00;
-    /* background-color: #ffe9d2; */
-}
 
-header button:last-child {
-    color: #ce2525;
-    /* background-color: #ffd2d2; */
-
-}
 
 .option {
     display: flex;
@@ -227,7 +293,6 @@ header button:last-child {
     width: fit-content;
     justify-content: flex-end;
     gap: 3px;
-    background-color: #3f3f3f40;
     border-radius: 30px;
     padding: 3px;
 }
@@ -263,26 +328,30 @@ header button:last-child {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-bottom: 70px;
+    padding-bottom: 80px;
 }
+
 
 .chatbox .chat {
     list-style: none;
     padding: 8px;
     width: fit-content;
     display: flex;
-    min-width: 25%;
+    max-width: 50%;
+    /* padding-block: 10px; */
     transition: all .3s ease;
-    color: #fff;
-    max-width: 80%;
     position: relative;
+    box-shadow: 0 0 4px #00000030;
     flex-direction: column;
-    background-color: #121212;
-
+    /* overflow: hidden; */
 
 }
 
+.chat>p {
+    width: 100%;
+    overflow-wrap: break-word;
 
+}
 
 
 .chatbox::-webkit-scrollbar {
@@ -294,21 +363,23 @@ header button:last-child {
 }
 
 .chatbox::-webkit-scrollbar-thumb {
-    background-color: #c4c4c4;
+    background-color: var(--nav-color);
     border-radius: 2px;
 }
 
+
 .incoming {
     align-self: flex-start;
-    border-radius: 3px;
-    border-left: solid 4px #a115ff;
+    border-radius: 12px;
+    color: var(--chat-r-c);
+    background-color: var(--chat-r-bg);
 }
 
 .outgoing {
-    /* align-self: flex-end; */
-    border-radius: 3px;
-    border-left: solid 4px #ff06ac;
-
+    align-self: flex-end;
+    border-radius: 13px;
+    color: var(--chat-s-c);
+    background: var(--chat-s-bg);
     /* align-items: flex-end; */
 
 }
@@ -365,7 +436,7 @@ header button:last-child {
 }
 
 .outgoing p.sender {
-    color: #ff06ac;
+    color: transparent;
 
 }
 
@@ -506,10 +577,11 @@ input::placeholder {
     /* columns: 1; */
     position: relative;
     padding-block: 10px;
+    line-height: 1.5;
     padding-left: 0px;
     background-color: transparent;
     font-size: 20px;
-    color: #fff;
+    color: var(--input-clr);
 
 }
 
@@ -536,7 +608,7 @@ input::placeholder {
 
 .dynax button:last-child svg {
     height: 60%;
-    color: var(--dynamic-color);
+    color: var(--input-clr);
 }
 
 .dynax input#message:valid~button:last-child {
@@ -559,10 +631,11 @@ input::placeholder {
 
 .dynamix {
     width: 98%;
-    background-color: #000000;
+    background-color: var(--input-bg);
     min-height: 60px;
+    box-shadow: 0 0 10px #00000030;
+
     /* box-shadow: 0 0 10px #2e2e2e; */
-    border: solid 1px #4f4f4f90;
     border-radius: 30px;
     display: flex;
     transition: all .3s ease-in-out;
@@ -570,8 +643,9 @@ input::placeholder {
     align-items: center;
     justify-content: center;
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
+    color: var(--input-clr);
     right: 0;
     margin: 0 auto;
 }
@@ -586,13 +660,14 @@ input::placeholder {
 
 .rCon {
     margin: 5px 15px;
+    position: relative;
     /* padding: 15px; */
     border-radius: 3px;
     display: flex;
     justify-content: space-between;
     align-items: start;
-    background-color: #121212;
-    border-left: solid 5px #ff06ac;
+    background-color: #00000010;
+    color: var(--input-clr);
 
 }
 
@@ -600,9 +675,17 @@ input::placeholder {
     background-color: transparent;
     height: 40px;
     width: 40px;
+    right: 0;
+    top: -20px;
+    border-radius: 20px;
+    background-color: var(--input-bg);
+    box-shadow: 0 0 10px #00000030;
     border: none;
+    position: absolute;
+
     font-size: 1.2em;
-    color: #848484;
+    color: var(--input-clr);
+
 }
 
 
@@ -611,8 +694,10 @@ input::placeholder {
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow-wrap: break-word;
     border-radius: 3px;
-    color: #fff;
+    color: var(--input-clr);
+
 
 
 }
@@ -620,7 +705,8 @@ input::placeholder {
 .rLeft h3 {
     text-transform: uppercase;
     font-size: 14px;
-    color: #ff06ac;
+    color: #000000;
+    font-weight: 900;
 }
 
 .repTo {
@@ -721,43 +807,53 @@ input:focus {
     background-color: #00aa00;
 }
 
-.replyEnc {
-    border-radius: 3px;
-    height: fit-content;
+
+
+
+
+.replyEnc .top-bar p {
+    color: rgb(0, 0, 0) !important;
     width: fit-content;
-    display: flex;
-    flex-direction: column;
-    background-color: #121212;
-    padding: 5px;
-    border-left: solid 4px #a115ff;
-}
-
-
-.replyEnc .top-bar {
-    color: #f00;
 }
 
 .replyEnc .chat {
-    width: 100%;
+    width: fit-content;
 }
+
 
 .replyEnc li li {
     width: 100%;
+
     margin-top: 5px;
-    border-left: solid 5px #ff06ac;
     border-radius: 3px;
+
 
 }
 
 .replyEnc li {
     width: 100%;
+    width: fit-content;
 
 
 }
 
 .repLos {
-    border: none;
+    border: solid 2px #f00;
     padding: none;
+    width: fit-content;
+    justify-self: flex-end;
+
+    border-radius: 3px;
+    justify-self: flex-end;
+    display: flex;
+    border: solid 1px #00f;
+    height: fit-content;
+    flex-direction: column;
+
+}
+
+.repLos * {
+    color: #f00;
 }
 
 input[type="file"] {
@@ -779,5 +875,109 @@ input[type="file"] {
 }
 
 .custom-file-upload svg {
-    color: #1962ff;
+    color: var(--input-clr);
+}
+
+.room-option {
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    right: 0;
+    top: 60px;
+    z-index: 10;
+    transform: translateX(100%);
+    overflow: hidden;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-option button {
+    padding: 15px;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border: none;
+    background-color: transparent;
+}
+
+.room-option button:nth-child(1) svg {
+    color: rgb(53, 198, 0);
+    font-size: 1.2em;
+}
+
+.room-option button:nth-child(2) svg {
+    color: rgb(255, 38, 38);
+    font-size: 1.2em;
+
+}
+
+.room-option button:nth-child(3) svg {
+    color: rgb(255, 157, 0);
+    font-size: 1.2em;
+
+}
+
+.room-option button:hover {
+    background-color: #212121;
+}
+
+@media screen and (max-width:1050px) {
+    .screen1 {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width:640px) {
+
+
+    #omnibar {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    #omnibar button,
+    #omnibar>div {
+        height: 50px;
+    }
+
+    .box {
+        width: 100%;
+        padding: 0px;
+    }
+}
+
+
+.context-menu {
+    position: absolute;
+    display: none;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background-color: #474747;
+}
+
+.context-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.context-menu li {
+    padding-block: 10px;
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 12px;
+    color: #ececec;
+    padding-inline: 10px;
+    cursor: pointer;
+}
+
+.context-menu li:hover {
+    background-color: rgb(101, 101, 101);
 }
