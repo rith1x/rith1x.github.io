@@ -7,6 +7,7 @@ grid.randomEmptyCell().tile = new Tile(game)
 grid.randomEmptyCell().tile = new Tile(game)
 console.log(grid.cellsByColumn)
 setupInput()
+setupSwipe()
 function setupInput() {
     window.addEventListener("keydown", handleInput, { once: true })
 }
