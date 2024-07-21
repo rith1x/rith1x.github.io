@@ -831,6 +831,7 @@ function showThemeMenu() {
     } else {
         thmen.style.display = 'none'
         thm = 0
+        showOptions()
     }
     showOptions()
 
@@ -838,6 +839,7 @@ function showThemeMenu() {
 function setTheme() {
     const option = document.getElementById('themeip').value
     themeApplier(option)
+    showThemeMenu()
 }
 const themes = {
     //------ navclr---- navtxt---- chatbg ----inputbg --inputclr ---senderm ---recm ------sendc -----rec c
@@ -845,9 +847,11 @@ const themes = {
     black: ["#0c0c0c", "#ffffff", "#000000", "#0c0c0c", "#067dfe", "#212027", "#007bff", "#efefef", "#ffffff"],
     bubble: ["#804d3a", "#ae8070", "#814e3b", "#3b261d", "#ca8c53", "#4e2b01", "#CB7F45", "#efefef", "#ffffff", "bubble.jpg"],
     avocado: ["#effedd", "#268700", "#effedd", "#effedd", "#268700", "#f7ffc1", "#8ac573", "#268700", "#ffffff", "avocado.jpg"],
+    boo: ["#adccfa", "#268700", "#effedd", "#fff", "#f00", "#f7ffc1", "#8ac573", "#268700", "#ffffff", "boo.jpg"],
+
 }
 
-
+themeApplier('avocado')
 function themeApplier(theme) {
 
 
