@@ -8,6 +8,7 @@ body {
     width: 100%;
     height: 100dvh;
     align-items: center;
+    overscroll-behavior: none;
     justify-content: center;
     background-color: #000;
     display: flex;
@@ -20,6 +21,7 @@ body {
     border-radius: 2vmin;
     position: relative;
     padding: var(--g-gap);
+    overscroll-behavior: none;
     background-color: #90909090;
     grid-template-columns: repeat(var(--g-size), var(--c-size));
     grid-template-rows: repeat(var(--g-size), var(--c-size));
