@@ -126,3 +126,83 @@ function canMove(cells) {
         })
     })
 }
+
+let startX, startY;
+
+element.addEventListener('touchstart', (event) => {
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY;
+});
+
+element.addEventListener('touchend', (event) => {
+    const endX = event.changedTouches[0].clientX;
+    const endY = event.changedTouches[0].clientY;
+
+    const diffX = startX - endX;
+    const diffY = startY - endY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 0) {
+            handleSwipe("lf")
+        } else {
+            handleSwipe("rg")
+        }
+    } else {
+        if (diffY > 0) {
+            handleSwipe("up")
+        } else {
+            handleSwipe("dn")
+        }
+    }
+});
+
+async function handleSwipe(dir) {
+    switch (dir) {
+        case "up":
+            if (!canMoveUp()) {
+                setupSwipe()
+                return;
+            }
+            await moveUp()
+            break
+        case "dn":
+            if (!canMoveDown()) {
+                setupSwipe()
+                return;
+            }
+            await moveDown()
+            break
+        case "lf":
+            if (!canMoveLeft()) {
+                setupSwipe()
+                return;
+            }
+            await moveLeft()
+            break
+        case "rg":
+            if (!canMoveRight()) {
+                setupSwipe()
+                return;
+            }
+            await moveRight()
+            break
+        default:
+            setupSwipe()
+            return;
+    }
+    grid.cells.forEach(cell => cell.mergeTiles())
+
+    const newTile = new Tile(game)
+
+    grid.randomEmptyCell().tile = newTile
+
+    if (!canMoveDown() && !canMoveLeft() && !canMoveRight() && !canMoveUp()) {
+        newTile.waitForTransition(true).then(() => {
+            alert("Game Over!")
+        })
+        return
+    }
+    setupSwipe()
+
+
+}
