@@ -48,7 +48,7 @@ body {
     animation: rise .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 1vmin;
     /* transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275); */
-    transition: 1s ease;
+    transition: .5s ease;
     left: calc(var(--x) * (var(--c-size) + var(--g-gap)) + var(--g-gap));
     top: calc(var(--y) * (var(--c-size) + var(--g-gap)) + var(--g-gap));
     background-color: hsl(30, 50%, var(--bg-lightness));

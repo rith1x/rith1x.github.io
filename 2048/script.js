@@ -130,12 +130,12 @@ function canMove(cells) {
 function setupSwipe() {
     let startX, startY;
 
-    element.addEventListener('touchstart', (event) => {
+    game.addEventListener('touchstart', (event) => {
         startX = event.touches[0].clientX;
         startY = event.touches[0].clientY;
-    });
+    }, { once: true });
 
-    element.addEventListener('touchend', (event) => {
+    game.addEventListener('touchend', (event) => {
         const endX = event.changedTouches[0].clientX;
         const endY = event.changedTouches[0].clientY;
 
@@ -155,7 +155,7 @@ function setupSwipe() {
                 handleSwipe("dn")
             }
         }
-    });
+    }, { once: true });
 }
 async function handleSwipe(dir) {
     switch (dir) {
