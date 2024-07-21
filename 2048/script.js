@@ -126,36 +126,36 @@ function canMove(cells) {
         })
     })
 }
+function setupSwipe() {
+    let startX, startY;
 
-let startX, startY;
+    element.addEventListener('touchstart', (event) => {
+        startX = event.touches[0].clientX;
+        startY = event.touches[0].clientY;
+    });
 
-element.addEventListener('touchstart', (event) => {
-    startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY;
-});
+    element.addEventListener('touchend', (event) => {
+        const endX = event.changedTouches[0].clientX;
+        const endY = event.changedTouches[0].clientY;
 
-element.addEventListener('touchend', (event) => {
-    const endX = event.changedTouches[0].clientX;
-    const endY = event.changedTouches[0].clientY;
+        const diffX = startX - endX;
+        const diffY = startY - endY;
 
-    const diffX = startX - endX;
-    const diffY = startY - endY;
-
-    if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 0) {
-            handleSwipe("lf")
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                handleSwipe("lf")
+            } else {
+                handleSwipe("rg")
+            }
         } else {
-            handleSwipe("rg")
+            if (diffY > 0) {
+                handleSwipe("up")
+            } else {
+                handleSwipe("dn")
+            }
         }
-    } else {
-        if (diffY > 0) {
-            handleSwipe("up")
-        } else {
-            handleSwipe("dn")
-        }
-    }
-});
-
+    });
+}
 async function handleSwipe(dir) {
     switch (dir) {
         case "up":
