@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #000;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#board {
+    height: 80dvh;
+    aspect-ratio: 1 / 1;
+    background-color: #000;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.group {
+    border: solid 1px #2f2f2f;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.group .cell {
+    border: solid .1px #161616;
+    height: 100%;
+    width: 100%;
+
+}
