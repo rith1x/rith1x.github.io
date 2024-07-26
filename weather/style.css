@@ -381,3 +381,142 @@ input:focus {
 iframe:focus {
     outline: none;
 }
+
+@media screen and (min-width:992px) {
+    .container {
+        min-width: 80%;
+
+        padding: 0px;
+        height: 100dvh;
+        gap: 5px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 10dvh 30dvh 30dvh 30dvh;
+    }
+
+    .sub {
+        grid-area: 1 / 1 /4/3;
+        margin: 0px;
+        background-color: transparent;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100%;
+        /* background-color: #00f; */
+    }
+
+
+
+    .mbox {
+        width: 100%;
+        height: 100%;
+        font-size: 1.2em;
+        align-items: flex-start;
+    }
+
+    .dayn {
+        grid-area: 4/1/5/3;
+        padding: 0px;
+        gap: 0px;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+    }
+
+    .dayn div {
+        background-color: transparent;
+        border-radius: 0px;
+        font-size: 1.1em;
+        padding-block: 20px;
+        height: fit-content;
+    }
+
+    .dayn div:nth-child(2) {
+        border-inline: solid 2px #ffffff50;
+    }
+
+    .navbar {
+        grid-area: 1/3/2/5;
+        background-color: transparent;
+        border-radius: 0px;
+        border-bottom: solid 1px #ffffff30;
+    }
+
+    .endnote {
+        grid-area: 4/4/5/5;
+        margin: 0px;
+        width: 100%;
+        border-radius: 0px;
+        background-color: transparent;
+        height: 100%;
+    }
+
+    #ifra {
+        grid-area: 4/3/5/4;
+        height: 100%;
+        width: 100%;
+        border-radius: 0px;
+        margin: 0px;
+
+        padding: 10px;
+    }
+
+    #ifra iframe {
+        border-radius: var(--borad);
+    }
+
+    #otrx {
+        display: none;
+    }
+
+    .otr {
+        grid-area: 2/3/4/5;
+
+        display: grid;
+        margin: 0px;
+        padding: 0px;
+        gap: 0px;
+        width: 100%;
+
+        height: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .otr div {
+        width: 60%;
+        height: 100%;
+        flex-direction: column-reverse;
+        justify-content: center;
+        border-radius: 0px;
+        background-color: transparent;
+        border-top: solid 1px #ffffff45;
+    }
+
+    .otr div:nth-child(1),
+    .otr div:nth-child(2) {
+        border-top: none;
+    }
+
+    .otr div span:last-child {
+        font-size: 1.2em;
+    }
+
+    .otr div span:first-child {
+        font-size: .9em;
+        opacity: .8;
+    }
+
+    span#image {
+        height: 120px;
+    }
+
+    span#image img {
+        width: 90%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    * {
+        text-shadow: 0 0 5px #00000050;
+    }
+}

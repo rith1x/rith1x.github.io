@@ -11,9 +11,6 @@ const moonobj = {
 }
 
 
-
-
-
 function fetchWeather(theURL) {
   fetch(theURL)
     .then(response => response.json())
@@ -109,7 +106,7 @@ function fetchWeather(theURL) {
       var wcd = weather.current_condition[0].weatherCode;
       const wemg = document.getElementById('wemg');
 
-      function boxBgchange() {
+      (function boxBgchange() {
         const hourss = new Date().getHours();
         const chkdns = hourss > 6 && hourss < 18;
         if (chkdns === true) {
@@ -119,8 +116,7 @@ function fetchWeather(theURL) {
           document.body.style.backgroundImage = "linear-gradient(315deg, #6050dc 0%, #000080 94%)";
           boxbg = "img/ncloudy.svg";
         }
-      }
-      boxBgchange();
+      })()
 
       function getimgSrc() {
         if (wcd == 116 || wcd == 119) {
@@ -197,7 +193,13 @@ function toggleMode() {
 
   }
 }
-
+// function isMobile() {
+//   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+//     boxBgchange();
+//   } else {
+//   }
+// }
+// isMobile();
 var currurl = window.location.href;
 if (currurl.includes("?l=")) {
   spliced = currurl.split("?l=");
