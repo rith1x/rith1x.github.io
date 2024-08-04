@@ -1,3 +1,18 @@
+@font-face {
+    font-family: mogos;
+    src: url(/fonts.ttf);
+}
+
+@font-face {
+    font-family: mogo;
+    src: url(/custom.otf);
+}
+
+@font-face {
+    font-family: mo;
+    src: url(/font4.ttf);
+}
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -60,25 +75,6 @@ header video {
 
 }
 
-@font-face {
-    font-family: mogos;
-    src: url(/fonts.ttf);
-}
-
-@font-face {
-    font-family: mogo;
-    src: url(/custom.otf);
-}
-
-/* @font-face {
-    font-family: mog;
-    src: url(/font3.ttf);
-} */
-
-@font-face {
-    font-family: mo;
-    src: url(/font4.ttf);
-}
 
 :root {
     --clr: #ffffff;
