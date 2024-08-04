@@ -1,16 +1,16 @@
 @font-face {
-    font-family: mogos;
-    src: url(/fonts.ttf);
+    font-family: mogos !important;
+    src: url(/fonts.ttf) !important;
 }
 
 @font-face {
-    font-family: mogo;
-    src: url(/custom.otf);
+    font-family: mogo !important;
+    src: url(/custom.otf) !important;
 }
 
 @font-face {
-    font-family: mo;
-    src: url(/font4.ttf);
+    font-family: mo !important;
+    src: url(/font4.ttf) !important;
 }
 
 * {
