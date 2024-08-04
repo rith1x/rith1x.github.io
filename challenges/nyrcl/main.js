@@ -33,7 +33,7 @@ svgdivs.className = "stamp"
 
 document.getElementsByTagName('header')[0].append(bgelement)
 document.body.append(svgdivs)
-// document.body.append(svgdiv)
+document.body.append(svgdiv)
 
 const mid3s = document.getElementsByTagName('section')
 
