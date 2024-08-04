@@ -90,7 +90,9 @@ header video {
     animation: 5s 1 forwards hidey ease;
 
     width: 100%;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100dvh;
     font-family: mogos;
 }
@@ -461,7 +463,6 @@ iframe:focus {
     align-items: center;
     justify-content: space-between;
     gap: 3px;
-    scale: 1.2;
     padding: 8px 15px;
     border-radius: 21px;
     transition: background-color .3s ease, color .3s ease;
@@ -654,8 +655,14 @@ body>section:nth-child(3)>section:nth-child(1) span:nth-child(2) {
     background-color: #670041;
     border: none;
     border-radius: 6px;
+    transition: all .3s ease-in-out;
     font-family: inherit;
     color: #fff;
+}
+
+.form button:hover {
+    background-color: #93005d;
+
 }
 
 .end-banner {
@@ -814,5 +821,13 @@ body>section:nth-child(3)>section:nth-child(1) span:nth-child(2) {
         flex-direction: column-reverse !important;
         height: 100dvh;
         gap: 30px;
+    }
+
+    #form {
+        width: 80%;
+    }
+
+    .form {
+        width: 100%;
     }
 }
