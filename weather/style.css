@@ -385,10 +385,11 @@ iframe:focus {
 @media screen and (min-width:992px) {
     .container {
         min-width: 80%;
-
+        overflow: hidden;
         padding: 0px;
         height: 100dvh;
-        gap: 5px;
+
+        /* gap: 5px; */
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 10dvh 30dvh 30dvh 30dvh;
@@ -432,7 +433,7 @@ iframe:focus {
     }
 
     .dayn div:nth-child(2) {
-        border-inline: solid 2px #ffffff50;
+        border-inline: solid 1px #ffffff30;
     }
 
     .navbar {
@@ -517,6 +518,6 @@ iframe:focus {
     }
 
     * {
-        text-shadow: 0 0 5px #00000050;
+        text-shadow: .5px .5px 1px #00000050;
     }
 }
