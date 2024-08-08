@@ -165,3 +165,39 @@ function gamesBox() {
 
 }
 gamesBox()
+
+const cmts = [
+    {
+        by: "dev.to moderator",
+        cmt: "Congrats to @rith1x for building a beautiful, responsive website in the Glam Up My Markup prompt!. \nThis submission exudes personality and professionalism and makes and creates a delightful and accessible user experience. It makes us want to visit one of these beaches!"
+    }, {
+        by: "dev.to moderator",
+        cmt: "@rith1x takes the win with a beautiful, custom landing page. The New York Cricket League would be stoked to have this as their site, if they existed. 😉"
+    }, {
+        by: "dev.to user",
+        cmt: "The attention to detail is amazing 🤩 Awesome work."
+    }, {
+        by: "dev.to user",
+        cmt: "AMAZED BY THE EFFORT PUT INTO THIS. DEFINITELY ONE OF THE WINNERS ! Great work"
+    }, {
+        by: "dev.to user",
+        cmt: "Looks pretty ✨."
+    }, {
+        by: "dev.to user",
+        cmt: "Nice work! 😊 \nCongratulations on winning the Glam Up My Markup Beaches June Challenge! 🎉 Keep up the amazing work! 👏"
+    }
+]
+const cms = document.getElementById('comments');
+
+cmts.forEach((el) => {
+    const cmtbox = document.createElement("div")
+    cmtbox.className = "cmtbox"
+    const cmtby = document.createElement('h4')
+    cmtby.className = "cmtby"
+    cmtby.innerText = el.by
+    const cmtbody = document.createElement('div')
+    cmtbody.className = "cmtbody"
+    cmtbody.innerText = el.cmt
+    cmtbox.append(cmtby, cmtbody)
+    cms.append(cmtbox)
+})

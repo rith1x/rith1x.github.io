@@ -102,3 +102,7 @@ endMsg.innerHTML = `Submitted for Frontend Challenge v24.07.24 by&nbsp;<a href="
 endMsg.className = "endmsg"
 footer.insertAdjacentElement('afterend', endMsg)
 footer.insertAdjacentElement('afterbegin', btn)
+
+
+
+const comments = []
