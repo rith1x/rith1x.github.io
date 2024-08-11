@@ -152,11 +152,15 @@ body {
 
 .projects-box {
     width: 100%;
-    height: fit-content;
+
+    min-height: 280px;
     border-radius: 21px;
     overflow-x: scroll;
     display: flex;
+    padding: 20px;
     align-items: center;
+    box-shadow: inset -5px 0px 6px 0px #00000030,
+        inset 5px 0px 6px 0 #00000030;
 
     scroll-snap-type: x mandatory;
     gap: 20px;
@@ -166,6 +170,7 @@ body {
 
 .projects-box::-webkit-scrollbar {
     display: none;
+
 }
 
 .app-box::-webkit-scrollbar {
@@ -177,7 +182,7 @@ body {
 }
 
 .project {
-    height: 250px;
+    height: 100%;
     padding: 20px;
     min-width: 340px;
     /* background-color: #fff; */
