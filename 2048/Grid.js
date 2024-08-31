@@ -2,7 +2,6 @@ const GRID_SIZE = 4;
 const CELL_SIZE = 20;
 const CELL_GAP = 1;
 
-
 export default class Grid {
     #cells
     constructor(gridel) {
@@ -86,6 +85,7 @@ class Cell {
         if (this.tile == null || this.mergeTile == null) return
         this.tile.value = this.tile.value + this.mergeTile.value
         this.mergeTile.remove()
+
         this.mergeTile = null
 
     }
@@ -100,3 +100,4 @@ function createCells(gridel) {
     }
     return cells
 }
+

@@ -8,7 +8,13 @@ grid.randomEmptyCell().tile = new Tile(game)
 console.log(grid.cellsByColumn)
 setupInput()
 setupSwipe()
+function randomTheme() {
+    // setTheme(Math.floor(Math.random() * 360), 90)
+    setTheme(45, 50)
+}
 function setupInput() {
+    // randomTheme()
+
     window.addEventListener("keydown", handleInput, { once: true })
 }
 async function handleInput(e) {
@@ -204,6 +210,13 @@ async function handleSwipe(dir) {
         return
     }
     setupSwipe()
+
+
+}
+
+function setTheme(hue, saturation) {
+    document.body.style.setProperty("--bg-intense", `${saturation}%`)
+    document.body.style.setProperty("--bg-hue", hue)
 
 
 }
