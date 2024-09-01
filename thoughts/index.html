@@ -274,12 +274,9 @@
             }
 
             .texty {
-                display: flex;
                 height: 100%;
                 font-size: 40px;
                 width: 100%;
-                align-content: center;
-                justify-content: flex-start;
             }
 
             .texty p {
@@ -288,7 +285,7 @@
                 font-size: 30px;
             }
 
-            .texty:focus {
+            .texty p:focus {
                 outline: none;
             }
         </style>
@@ -302,9 +299,10 @@
                     <div class="topquote qtes" tag-2 style="display: none;">
                         <i class="fa-solid fa-quote-left"></i>
                     </div>
-                    <div class="texty" id="rxd" contenteditable="true">
-                        <p id="tess">Write Your Thoughts...</p>
+                    <div class="texty" id="rxd">
+                        <p contenteditable="true" id="tess">Write Your Thoughts...</p>
                     </div>
+
                     <div class="btmquote qtes" tag-1 style="display: none;">
                         <i class="fa-solid fa-quote-right"></i>
                     </div>
