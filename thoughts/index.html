@@ -88,8 +88,9 @@
                 margin-top: 50px;
                 padding: 20px;
                 height: fit-content;
-                background-color: #ffffff90;
+                background-color: #ffffff30;
                 border-radius: 30px;
+                backdrop-filter: blur(5px);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -288,6 +289,15 @@
             .texty p:focus {
                 outline: none;
             }
+
+            .rdm::-webkit-scrollbar {
+                display: none;
+
+            }
+
+            .rdm {
+                width: fit-content;
+            }
         </style>
     </head>
 
@@ -302,7 +312,9 @@
                     <div class="texty" id="rxd">
                         <p contenteditable="true" id="tess">Write Your Thoughts...</p>
                     </div>
-
+                    <div id="author" contenteditable="true">
+                        By You
+                    </div>
                     <div class="btmquote qtes" tag-1 style="display: none;">
                         <i class="fa-solid fa-quote-right"></i>
                     </div>
@@ -323,6 +335,10 @@
                 <button onclick="changeColor()"><i class="fa-solid fa-palette"></i></button>
                 <button onclick="changeModel()"><i class="fa-solid fa-quote-left"></i></button>
                 <button onclick="putBorder()"><i class="fa-solid fa-border-top-left"></i></button>
+                <button onclick="changeOpacity()"><i class="fa-solid fa-eye"></i></button>
+                <button onclick="changeBlurness()"><i class="fa-solid fa-eye-dropper"></i></button>
+                <input type="color" name="" id="textclr" oninput="changeTextColor()">
+                <input type="file" id="background-upload" accept="image/*">
             </div>
             <button id="shareButton" onclick="copyboard()">Share Thoughts</button>
         </div>
@@ -441,16 +457,27 @@
                     let meg = currentColor.split("#");
                     console.log(meg[1])
                     document.getElementById("rxd").style.color = getTextColor(meg[1]);
+                    document.getElementById("author").style.color = getTextColor(meg[1]);
 
 
                 } else {
 
                     document.getElementById("rxd").style.color = "#000";
+                    document.getElementById("author").style.color = "#000";
 
 
 
                 }
             }
+
+            function changeTextColor() {
+                const tclr = document.getElementById("textclr").value
+                document.getElementById("rxd").style.color = tclr;
+                document.getElementById("author").style.color = tclr;
+
+            }
+
+
             changeColor();
             let i = 0;
             function changeLook() {
@@ -460,6 +487,55 @@
                     i = 0
                 }
                 document.getElementById("rxd").style.transform = styles[i];
+
+            }
+            let v = 0
+            function changeBlurness() {
+                const stylev = [
+                    "blur(2px)",
+                    "blur(4px)",
+                    "blur(6px)",
+                    "blur(8px)",
+                    "blur(10px)",
+                    "blur(12px)",
+                    "blur(14px)",
+                    "blur(16px)",
+                    "blur(18px)",
+                    "blur(20px)",
+                    "blur(8px) brightness(90%)",
+                    "grayscale(50%) contrast(120%)",
+                    "sepia(40%) saturate(180%)",
+                    "blur(5px) contrast(80%)",
+                    "blur(10px) brightness(110%)",
+                    "grayscale(80%) invert(100%)",
+                    "blur(3px) sepia(30%)",
+                    "hue-rotate(90deg) blur(4px)",
+                    "saturate(150%) blur(6px)",
+                    "invert(50%) brightness(120%)",
+                    "grayscale(70%) contrast(90%)",
+                    "blur(12px) opacity(80%)",
+                    "blur(4px) saturate(200%)",
+                    "hue-rotate(45deg) sepia(20%)",
+                    "contrast(110%) blur(7px)"
+                ];
+
+                v += 1
+                if (v >= stylev.length) {
+                    v = 0
+                }
+                document.getElementById("rxd").style.backdropFilter = stylev[v];
+
+            }
+            let o = 0;
+            function changeOpacity() {
+                const styleo = ["#00000000", "#00000025", "#00000050", "#00000075", "#00000090", "#000000a0", "#000000c0", "#000000ee", "#000000ff", "#ffffff00", "#ffffff25", "#ffffff50", "#ffffff75", "#ffffff90", "#ffffffa0", "#ffffffc0", "#ffffffee", "#ffffffff"]
+                    ;
+                o += 1
+                if (o >= styleo.length) {
+                    o = 0
+                }
+                console.log(styleo[o])
+                document.getElementById("rxd").style.backgroundColor = styleo[o];
 
             }
             let f = -1;
@@ -511,6 +587,22 @@
                     bi = 0
                 }
             }
+            const backgroundUpload = document.getElementById('background-upload');
+            backgroundUpload.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        document.getElementById('fullscreenDiv').style.backgroundImage = `url(${e.target.result})`;
+                    };
+
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please upload a valid image file.');
+                }
+            });
 
         </script>
 
