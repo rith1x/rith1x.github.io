@@ -110,42 +110,42 @@ function gamesBox() {
         {
             "title": "Whackamole",
             "icon": "whack-a-mole.png",
-            "onclick": "porter('whackamole')"
+            "onclick": () => porter('whackamole')
         },
         {
             "title": "HandCricket",
             "icon": "cricket-player (1).png",
-            "onclick": "porter('cricket')"
+            "onclick": () => porter('cricket')
         },
         {
             "title": "Stone paper scissor v2",
             "icon": "rock-paper-scissors.png",
-            "onclick": "porter('rps')"
+            "onclick": () => porter('rps')
         },
         {
             "title": "Math Random",
             "icon": "choose.png",
-            "onclick": "porter('random')"
+            "onclick": () => porter('random')
         },
         {
             "title": "Tic Tac Toe",
             "icon": "tic-tac-toe.png",
-            "onclick": "porter('tictactoe')"
+            "onclick": () => porter('tictactoe')
         },
         {
             "title": "Trivia",
             "icon": "speech-bubble.png",
-            "onclick": "porter('trivia')"
+            "onclick": () => porter('trivia')
         },
         {
             "title": "Stone Paper Scissors",
             "icon": "rock-paper-scissors (1).png",
-            "onclick": "porter('stonepaperscissors')"
+            "onclick": () => porter('stonepaperscissors')
         },
         {
             "title": "Flappy - (Preview)",
             "icon": "game.png",
-            "onclick": "porter('flappy')"
+            "onclick": () => porter('flappy')
         }
     ]
 
@@ -159,6 +159,7 @@ function gamesBox() {
         const gH4e = document.createElement('h4')
         gH4e.className = "app-title"
         gH4e.innerText = game.title
+        gBox.onclick = game.onclick
         gBox.append(gIco, gH4e)
         gamesDiv.appendChild(gBox)
     })

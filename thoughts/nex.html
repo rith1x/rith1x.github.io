@@ -44,12 +44,11 @@
                 display: flex;
                 flex-direction: column;
                 background-color: transparent;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
-                background-size: cover;
-                background-position: 50% 50%;
-                background-image: url(../xxc.jpg);
                 padding: 25px;
+                background-position: center;
+                background-size: cover;
 
             }
 
@@ -87,21 +86,19 @@
             .quotebox {
                 /* box-shadow: 0 0 20px #1a1a1a62; */
                 width: 100%;
-                height: 100%;
+                min-height: 50%;
+                margin-top: 50px;
                 padding: 20px;
                 height: fit-content;
                 background-color: #ffffff30;
+                border-radius: 30px;
+                backdrop-filter: blur(5px);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                background-origin: border-box;
-                background-size: contain;
-                background-position: 50% 50% !important;
                 transition: all .3s ease-in-out;
                 justify-content: space-between;
-                z-index: 1;
             }
-
 
             #author {
                 color: #161616;
@@ -303,71 +300,6 @@
             .rdm {
                 width: fit-content;
             }
-
-            input[type="file"] {
-                display: none;
-            }
-
-            .custom-file-upload {
-                cursor: pointer;
-                width: 60px;
-                height: 60px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: none;
-                font-size: 1.3em;
-                color: inherit;
-                background-color: transparent;
-
-            }
-
-            .custom-file-upload svg {
-                color: inherit;
-            }
-
-            #rxd {
-                background-color: transparent;
-            }
-
-            .megabox {
-                width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                height: fit-content;
-                overflow: hidden;
-                border-radius: 31px;
-                position: relative;
-            }
-
-            .quotebox {}
-
-            .filler {
-                position: absolute;
-                inset: 0;
-                margin: auto;
-                min-width: 100%;
-                min-height: 100%;
-
-                background-color: #ffffff00;
-            }
-
-
-
-            .megabox {
-                position: relative;
-                width: 90%;
-                height: 80%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .filler {
-                background-color: #000;
-            }
         </style>
     </head>
 
@@ -375,28 +307,25 @@
 
         <div class="container">
             <div id="fullscreenDiv">
-                <div class="megabox">
-                    <div class="filler"></div>
-                    <div class="quotebox" id="rxd">
-                        <div class="topquote qtes" tag-2 style="display: none;">
-                            <i class="fa-solid fa-quote-left"></i>
-                        </div>
-                        <div class="texty" id="rpd">
-                            <p contenteditable="true" id="tess">Write Your Thoughts...</p>
-                        </div>
-                        <div id="author" contenteditable="true">
-                            By You
-                        </div>
-                        <div class="btmquote qtes" tag-1 style="display: none;">
-                            <i class="fa-solid fa-quote-right"></i>
-                        </div>
+                <div class="quotebox" id="rxd">
+                    <div class="topquote qtes" tag-2 style="display: none;">
+                        <i class="fa-solid fa-quote-left"></i>
                     </div>
-                </div>
+                    <div class="texty" id="rxd">
+                        <p contenteditable="true" id="tess">Write Your Thoughts...</p>
+                    </div>
+                    <div id="author" contenteditable="true">
+                        By You
+                    </div>
+                    <div class="btmquote qtes" tag-1 style="display: none;">
+                        <i class="fa-solid fa-quote-right"></i>
+                    </div>
 
-                <!-- <div class="ad" id="ad">
+                </div>
+                <div class="ad" id="ad">
 
                     rith1x.github.io/thoughts
-                </div> -->
+                </div>
             </div>
             <div class="rdm">
                 <button onclick="changeFont()"><i class="fa-solid fa-font"></i></button>
@@ -411,16 +340,14 @@
                 <button onclick="changeOpacity()"><i class="fa-solid fa-eye"></i></button>
                 <button onclick="changeBlurness()"><i class="fa-solid fa-eye-dropper"></i></button>
                 <input type="color" name="" id="textclr" oninput="changeTextColor()">
-                <label for="background-upload" class="custom-file-upload">
-                    <i class="fa-solid fa-camera"></i>
-                </label>
                 <input type="file" id="background-upload" accept="image/*">
             </div>
             <button id="shareButton" onclick="copyboard()">Share Thoughts</button>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rasterizehtml/1.2.4/rasterizeHTML.allinone.js"></script>
 
-        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
         <script>
             let fsz = 30
             const qrdx = document.getElementById('tess')
@@ -447,9 +374,9 @@
             function changeModel() {
                 if (view == 0) {
                     const elementToSave = document.getElementById("fullscreenDiv");
-                    // const ad = document.getElementById("ad");
-                    // ad.style.visibility = "hidden";
-                    elementToSave.style.height = "100dvh";
+                    const ad = document.getElementById("ad");
+                    ad.style.visibility = "hidden";
+                    elementToSave.style.height = "fit-content";
 
                     elementToSave.style.justifyContent = "center";
                     document.getElementById("rxd").style.margin = "none";
@@ -465,10 +392,11 @@
                     const elementoSave = document.getElementById("fullscreenDiv");
 
                     elementoSave.style.height = "100dvh";
-                    // const ad = document.getElementById("ad");
-                    // ad.style.visibility = "visible";
+                    const ad = document.getElementById("ad");
+                    ad.style.visibility = "visible";
                     const elementToSave = document.getElementById("fullscreenDiv");
-                    elementToSave.style.justifyContent = "center";
+                    elementToSave.style.justifyContent = "space-between";
+                    document.getElementById("rxd").style.marginTop = "50px";
                     document.getElementById("rxd").style.background = "";
                     document.querySelector('[tag-1]').style.display = "none";
                     document.querySelector('[tag-2]').style.display = "none";
@@ -484,22 +412,57 @@
                 return luminance > 0.5 ? '#000000' : '#ffffff';
             }
 
-            const elementToSave = document.getElementById("fullscreenDiv");
+            // const elementToSave = document.getElementById("fullscreenDiv");
+            // function copyboard() {
+            //     html2canvas(elementToSave, {
+            //         scale: 5,
+            //         width: elementToSave.scrollWidth - 1,
+            //         height: elementToSave.scrollHeight - 1
+            //     }).then(canvas => {
+            //         var dataUrl = canvas.toDataURL("image/jpeg");
+            //         const a = document.createElement('a');
+            //         a.href = dataUrl;
+            //         a.download = 'quote.png';
+
+            //         a.click();
+            //     });
+
+            // }
             function copyboard() {
-                html2canvas(elementToSave, {
-                    scale: 5,
-                    width: elementToSave.scrollWidth - 1,
-                    height: elementToSave.scrollHeight - 1
-                }).then(canvas => {
-                    var dataUrl = canvas.toDataURL("image/jpeg");
-                    const a = document.createElement('a');
-                    a.href = dataUrl;
-                    a.download = 'quote.png';
+                const fullscreenDiv = document.getElementById('fullscreenDiv');
 
-                    a.click();
+                // Synchronously draw the HTML content
+                rasterizeHTML.drawHTML(fullscreenDiv.outerHTML, function (renderResult) {
+                    const canvas = renderResult.image;
+
+                    if (canvas) {
+                        // Convert canvas to image and trigger download
+                        const dataUrl = canvas.toDataURL('image/png');
+                        const link = document.createElement('a');
+                        link.href = dataUrl;
+                        link.download = 'screenshot.png';
+                        document.body.appendChild(link); // Append link to body
+                        link.click();
+                        document.body.removeChild(link); // Remove link from body
+
+                        // Copy the canvas image to the clipboard (if supported by the browser)
+                        canvas.toBlob(function (blob) {
+                            const item = new ClipboardItem({ "image/png": blob });
+                            navigator.clipboard.write([item]).then(function () {
+                                console.log('Image copied to clipboard successfully!');
+                            }).catch(function (error) {
+                                console.error('Failed to copy image to clipboard:', error);
+                            });
+                        });
+                    } else {
+                        console.error('Failed to render canvas.');
+                    }
+                }, function (error) {
+                    console.error('Failed to render the HTML to canvas:', error);
                 });
-
             }
+
+
 
             function poppshow() {
                 document.getElementById("popp").style.visibility = "visible"
@@ -515,49 +478,29 @@
             function getRandomHexColor() {
                 const letters = '0123456789ABCDEF';
                 let color = '#';
-                for (let i = 0; i < 6; i++) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
+                for (let i = 0; i < 6; i++) { color += letters[Math.floor(Math.random() * 16)]; } return color;
             }
             const meta = document.getElementById('metacl')
             function changeColor() {
                 var genClr = getRandomHexColor();
-                currentColor = genClr;
-                document.body.style.backgroundColor = genClr;
+                currentColor = genClr; document.body.style.backgroundColor = genClr;
                 document.getElementById("fullscreenDiv").style.backgroundColor = genClr;
-                document.getElementById("fullscreenDiv").style.borderColor = genClr;
-                meta.content = genClr;
-                if (view == 1) {
-                    let meg = currentColor.split("#");
-                    console.log(meg[1])
+                document.getElementById("fullscreenDiv").style.borderColor = genClr; meta.content = genClr; if (view == 1) {
+                    let
+                        meg = currentColor.split("#"); console.log(meg[1])
                     document.getElementById("rxd").style.color = getTextColor(meg[1]);
                     document.getElementById("author").style.color = getTextColor(meg[1]);
-
-
                 } else {
-
-                    document.getElementById("rxd").style.color = "#000";
-                    document.getElementById("author").style.color = "#000";
-
-
-
+                    document.getElementById("rxd").style.color = "#000"; document.getElementById("author").style.color = "#000";
                 }
-            }
-
-            function changeTextColor() {
+            } function changeTextColor() {
                 const tclr = document.getElementById("textclr").value
-                document.getElementById("rxd").style.color = tclr;
-                document.getElementById("author").style.color = tclr;
-
+                document.getElementById("rxd").style.color = tclr; document.getElementById("author").style.color = tclr;
             }
-
-
             changeColor();
-            let i = 0;
-            function changeLook() {
-                const styles = ["rotate(0deg)", "rotate(-5deg)", "rotate(5deg)"];
-                i += 1
+            let i = 0; function changeLook() {
+                const styles = ["rotate(0deg)", "rotate(-5deg)"
+                    , "rotate(5deg)"]; i += 1
                 if (i >= styles.length) {
                     i = 0
                 }
@@ -603,7 +546,9 @@
             }
             let o = 0;
             function changeOpacity() {
-                const styleo = ["#00000000", "#00000025", "#00000050", "#00000075", "#00000090", "#000000a0", "#000000c0", "#000000ee", "#000000ff", "#ffffff00", "#ffffff25", "#ffffff50", "#ffffff75", "#ffffff90", "#ffffffa0", "#ffffffc0", "#ffffffee", "#ffffffff"]
+                const styleo = ["#00000000", "#00000025", "#00000050", "#00000075", "#00000090", "#000000a0", "#000000c0",
+                    "#000000ee", "#000000ff", "#ffffff00", "#ffffff25", "#ffffff50", "#ffffff75", "#ffffff90", "#ffffffa0",
+                    "#ffffffc0", "#ffffffee", "#ffffffff"]
                     ;
                 o += 1
                 if (o >= styleo.length) {
@@ -615,7 +560,8 @@
             }
             let f = -1;
             function changeFont() {
-                const fonts = ["Libre Caslon Text", "Playfair Display", "EB Garamond", "DM Serif Display", "Cedarville Cursive", 'Clash Display', 'Zodiak', 'Sentient', 'Boska', 'Bonny', 'Bebas Neue', 'Baskervville SC', 'Pacifico']
+                const fonts = ["Libre Caslon Text", "Playfair Display", "EB Garamond", "DM Serif Display", "Cedarville Cursive", 'Clash Display', 'Zodiak', 'Sentient', 'Boska', 'Bonny', 'Bebas Neue', 'Baskervville SC',
+                    'Pacifico']
 
 
 
