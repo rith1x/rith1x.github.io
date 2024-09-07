@@ -5,558 +5,66 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>CGPA Calculator</title>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&display=swap');
-
-            * {
-                margin: 0;
-                box-sizing: border-box;
-                padding: 0;
-                font-family: "Gantari", sans-serif;
-                font-optical-sizing: auto;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-
-                * {
-                    font-family: Gantari, sans-serif;
-                }
-
-                .container {
-                    height: 100dvh;
-                    max-width: 450px;
-                    margin: 0 auto;
-                    padding: 0 15px;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    align-items: center;
-                    position: relative;
-
-
-                    .subjects {
-                        max-width: 400px;
-                        height: fit-content;
-                        box-shadow: 0 0 10px -3px #a2a2a2;
-                        padding: 15px;
-                        background-color: #fff;
-                        border-radius: 21px;
-                        inset: 0;
-                        margin: auto;
-                        display: flex;
-                        position: absolute;
-
-                        flex-direction: column;
-
-                        gap: 30px;
-
-                        .field {
-                            width: 100%;
-                            height: 50px;
-                            position: relative;
-                            transition: all .3s ease-in-out;
-
-
-                            button {
-                                width: 100%;
-                                height: 100%;
-                                font-size: 1em;
-                                background-color: #a046f5;
-                                border: none;
-                                color: #fff;
-                                border-radius: 6px;
-                            }
-
-                            input {
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 6px;
-                                outline: none;
-                                border: solid 1px #a2a2a2;
-                                padding-left: 10px;
-                                font-size: 1.3em;
-                            }
-
-                            label {
-                                position: absolute;
-                                z-index: 1;
-                                top: -9px;
-                                background-color: #fff;
-                                padding: 0 3px;
-                                left: 9px;
-                                font-size: 14px;
-                                color: #a2a2a2;
-
-                            }
-
-                        }
-
-
-                        .field:focus-within {
-                            label {
-                                color: #a046f5;
-                            }
-
-                            input {
-                                border: solid 2px #a046f5;
-                            }
-                        }
-
-                        .grades {
-                            display: grid;
-                            padding: 10px;
-                            border-radius: 6px;
-                            border: solid 1px #a2a2a2;
-                            gap: 10px;
-                            position: relative;
-                            grid-template-rows: repeat(2, 1fr);
-                            grid-template-columns: repeat(3, 1fr);
-
-                            p {
-                                position: absolute;
-                                z-index: 1;
-                                top: -10px;
-                                background-color: #fff;
-                                padding: 0 3px;
-                                left: 9px;
-                                font-size: 14px;
-                                color: #a2a2a2;
-
-                            }
-
-
-
-                        }
-
-                        .grades:focus-within {
-                            border-color: #a046f5;
-
-                            label {
-                                color: #a046f5;
-                            }
-                        }
-
-                        .navx {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-
-                            button {
-                                background-color: transparent;
-                                height: 100%;
-                                aspect-ratio: 1 /1;
-                                border: none;
-                                font-size: 1.3em;
-                                font-weight: bolder;
-                                color: #ab0000;
-                                cursor: pointer;
-                            }
-                        }
-
-                        .fieldg {
-
-                            display: flex;
-                            align-items: center;
-                            gap: 10px;
-
-                            h3 {
-                                font-size: 1.2em;
-                            }
-
-                            input {
-                                height: 40px;
-                                width: 100%;
-                                font-size: 1.1em;
-                                padding-left: 10px;
-                                border: none;
-                                border-bottom: solid 1px #a2a2a2;
-                            }
-
-                            input:focus {
-                                outline: none;
-                                border-color: #a046f5;
-                            }
-                        }
-                    }
-
-                    .topbar {
-                        display: flex;
-                        width: 100%;
-                        justify-content: space-between;
-                        align-items: center;
-                        height: 50px;
-
-                        h3 {
-                            color: #b300ff;
-                            font-weight: bolder;
-                            font-family: monospace;
-                            font-weight: 800;
-                            font-size: 1.5em;
-                        }
-
-                        button {
-                            height: 100%;
-                            padding-inline: 10px;
-                            background: transparent;
-                            border: none;
-                            font-size: 1em;
-                            color: #005dde;
-                        }
-                    }
-
-                    .gpaform {
-                        width: 100%;
-                        padding: 10px;
-                        display: flex;
-                        flex-direction: column;
-
-                        .field {
-                            width: 100%;
-                            height: 40px;
-                            display: grid;
-                            border-bottom: solid 1px #000;
-
-                            grid-template-columns: 0.6fr 0.4fr 0.6fr 0.6fr;
-
-                            div {
-                                overflow: hidden;
-                                width: 100%;
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                border-right: solid 1px #000;
-
-
-                                input {
-                                    width: 100%;
-                                    height: 100%;
-                                    border: none;
-                                    text-align: center;
-                                    text-transform: uppercase;
-
-                                    background-color: transparent;
-                                }
-
-                                input:focus {
-                                    outline: none;
-                                }
-
-                            }
-
-                            div:focus-within {
-                                background-color: rgb(167, 214, 255);
-                            }
-
-                            div:first-child {
-                                border-left: solid 1px #000;
-                            }
-
-                        }
-
-                        .field:first-child {
-                            border-top: solid 1px #000;
-                        }
-
-
-
-
-
-
-                    }
-
-                    .gpa {
-                        height: 66px;
-                        width: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-around;
-
-
-                        button {
-                            width: 100%;
-                            margin-bottom: 5px;
-                            height: 50px;
-                            background-color: #a046f5;
-                            border: none;
-                            color: #fff;
-                            font-size: 1.2em;
-                            border-radius: 11px;
-                        }
-
-                    }
-
-                    #gpa {
-                        color: #8000b6;
-                        background-color: #e0beff;
-                        padding: 3px 6px;
-                        border-radius: 6px;
-                    }
-
-                    .copy {
-                        height: 16px;
-
-                        p {
-                            font-size: 12px;
-                            margin-bottom: 7px;
-                            text-align: center;
-
-                        }
-                    }
-                }
-            }
-        </style>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
-        <div class="container">
-            <div class="subjects" id="settings" style="display: none;">
-                <div class="navx">
-                    <h1>Settings</h1>
-                    <button onclick="closeMenu()">⨉</button>
-                </div>
-                <div class="grades" id="grades">
-                    <p>Grades Editor:</p>
-                    <div class="fieldg">
-                        <h3>O:</h3>
-                        <input type="number" value="10" id="go">
-                    </div>
-                    <div class="fieldg">
-                        <h3>A+:</h3>
-                        <input type="number" value="9" name="" id="gap">
-                    </div>
-                    <div class="fieldg">
-                        <h3>A:</h3>
-                        <input type="number" value="8" name="" id="ga">
-                    </div>
-                    <div class="fieldg">
-                        <h3>B+:</h3>
-                        <input type="number" value="7" name="" id="gbp">
-                    </div>
-                    <div class="fieldg">
-                        <h3>B:</h3>
-                        <input type="number" value="6" name="" id="gb">
-                    </div>
-                    <div class="fieldg">
-                        <h3>C:</h3>
-                        <input type="number" value="5" name="" id="gc">
-                    </div>
-                </div>
-
-
-                <div class="field">
-                    <label for="subs">
-                        Number of Subjects:
-                    </label>
-                    <input type="number" value="6" id="subs">
-                </div>
-                <div class="field"><button onclick="settings()">Submit</button></div>
+        <div class="popup" style="display: none;">
+            <h1>Grade Preferences</h1>
+            <div class="grade-section">
+                <div class="grade"><input type="text" name="" id="grd1" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val1" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd2" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val2" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd3" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val3" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd4" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val4" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd5" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val5" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd6" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val6" min="0" max="10"></div>
+                <div class="grade"><input type="text" name="" id="grd7" minlength="1" maxlength="1"><input type="number"
+                        name="" id="val7" min="0" max="10"></div>
             </div>
-
-
-            <div class="topbar">
-                <h3>CGPA Calculator</h3>
-                <button onclick="showMenu()">Preferences</button>
-            </div>
-            <div class="sup">
-                <h3>Fill the datas to calculate GPA</h3>
-            </div>
-            <div class="gpaform" id="gpaform">
-
-
-            </div>
-
-            <div id="dos">
-                <h3 id="gpa"></h3>
-            </div>
-            <div class="gpa">
-                <button onclick="calculate()">Calculate GPA</button>
-                <div class="copy">
-                    <p>Designed and Developed by <a href="https://rith1x.github.io/">Kiruthik Kumar</a></p>
-                </div>
-            </div>
-
-
-
-
         </div>
 
+        <div class="container">
+            <div class="nav-bar">
+                <h1>CGPA Calculator</h1>
+                <div class="menu">
+                    x
+                </div>
+            </div>
+            <div id="addSemMenu">
+                <div class="menu-header">
+                    <h1>Add Semester</h1>
+                    <button onclick="closeMenu()">Cancel</button>
+                </div>
+                <div class="field">
+                    <label for="">Title</label>
+                    <input type="text" id="semName" value="" />
+                </div>
+                <div class="field">
+                    <label for="">Subjects</label>
+                    <input type="number" id="semSubs" value="" />
+                </div>
+                <div class="field">
+                    <input type="button" value="Create" onclick="addSemester()">
+                </div>
+            </div>
+            <div class="cgpa">
+                <h4>CGPA: <span id="cgpa"></span></h4>
+            </div>
+            <div id="semContainer"></div>
+            <div class="addbtn">
+                <button class="add-sem" onclick="addSemesterMenu()">
+                    Add Semester
+                </button>
+            </div>
+        </div>
 
-
-
-
-
-        <script>
-            function closeMenu() {
-                const settings = document.getElementById("settings");
-                settings.style.display = "none";
-            }
-            function showMenu() {
-                const settings = document.getElementById("settings");
-                settings.style.display = "flex";
-            }
-            function settings() {
-                closeMenu();
-                loadTemplate();
-            }
-            let p = (x) => { console.log(x); }
-
-            document.addEventListener('DOMContentLoaded', loadTemplate);
-            function loadTemplate() {
-                console.log("Hii")
-                const gpaform = document.getElementById("gpaform");
-                gpaform.innerHTML = "";
-                const subs = parseInt(document.getElementById("subs").value);
-                let headField = document.createElement("div");
-                headField.className = "field";
-                let c1 = document.createElement("div");
-                let c2 = document.createElement("div");
-                let c3 = document.createElement("div");
-                let c4 = document.createElement("div");
-                let j1 = document.createElement("h4");
-                let j2 = document.createElement("h4");
-                let j3 = document.createElement("h4");
-                let j4 = document.createElement("h4");
-                j1.innerText = "Subject Code";
-                j2.innerText = "Grade";
-                j3.innerText = "GradePoint";
-                j4.innerText = "Credits";
-                c1.appendChild(j1);
-                c2.appendChild(j2);
-                c3.appendChild(j3);
-                c4.appendChild(j4);
-                headField.appendChild(c1);
-                headField.appendChild(c2);
-                headField.appendChild(c3);
-                headField.appendChild(c4);
-                gpaform.appendChild(headField);
-                for (i = 0; i < subs; i++) {
-                    let fieldDiv = document.createElement("div");
-                    fieldDiv.className = "field";
-
-
-                    let subCode = document.createElement("div");
-                    let grade = document.createElement("div");
-                    let credit = document.createElement("div");
-                    let gradePoint = document.createElement("div");
-                    let iSc = document.createElement("input");
-                    let iGr = document.createElement("input");
-                    let iCr = document.createElement("input");
-                    let iGp = document.createElement("input");
-                    iGr.id = `iGr${i}`;
-                    iGp.id = `iGp${i}`;
-                    iCr.id = `iCr${i}`;
-                    iGr.setAttribute("type", "text");
-                    iGr.setAttribute("oninput", `grtogp("${i}")`);
-                    iGp.setAttribute("type", "number");
-                    iGp.setAttribute("readonly", "true");
-                    iCr.setAttribute("type", "number");
-
-                    if (i == subs - 1) {
-                        iCr.setAttribute("oninput", `calculate()`);
-
-                    }
-                    subCode.appendChild(iSc);
-                    grade.appendChild(iGr);
-                    credit.appendChild(iCr);
-                    gradePoint.appendChild(iGp);
-                    fieldDiv.appendChild(subCode);
-                    fieldDiv.appendChild(grade);
-                    fieldDiv.appendChild(gradePoint);
-                    fieldDiv.appendChild(credit);
-
-                    gpaform.appendChild(fieldDiv);
-                }
-
-
-
-            }
-            function grtogp(ind) {
-                const go = parseInt(document.getElementById("go").value);
-                const gap = parseInt(document.getElementById("gap").value);
-                const ga = parseInt(document.getElementById("ga").value);
-                const gbp = parseInt(document.getElementById("gbp").value);
-                const gb = parseInt(document.getElementById("gb").value);
-                const gc = parseInt(document.getElementById("gc").value);
-
-                const cGr = document.getElementById(`iGr${ind}`).value;
-                const cGp = document.getElementById(`iGp${ind}`);
-
-                switch (cGr) {
-                    case "O":
-                        cGp.value = go;
-                        break;
-
-                    case "A+":
-                        cGp.value = gap;
-                        break;
-
-                    case "A":
-                        cGp.value = ga;
-                        break;
-
-                    case "B+":
-                        cGp.value = gbp;
-                        break;
-
-                    case "B":
-                        cGp.value = gb;
-                        break;
-                    case "C":
-                        cGp.value = gc;
-                        break;
-                    case "o":
-                        cGp.value = go;
-                        break;
-
-                    case "a+":
-                        cGp.value = gap;
-                        break;
-
-                    case "a":
-                        cGp.value = ga;
-                        break;
-
-                    case "b+":
-                        cGp.value = gbp;
-                        break;
-
-                    case "b":
-                        cGp.value = gb;
-                        break;
-                    case "c":
-                        cGp.value = gc;
-                        break;
-                }
-
-
-            }
-
-
-            function calculate() {
-                const subs = parseInt(document.getElementById("subs").value);
-                let overall = 0;
-                for (j = 0; j < subs; j++) {
-                    let cGp = parseInt(document.getElementById(`iGp${j}`).value);
-                    let cCr = parseFloat(document.getElementById(`iCr${j}`).value);
-                    let subGpa = cGp * cCr;
-                    overall += subGpa;
-                }
-
-                let totalCredits = 0;
-                for (j = 0; j < subs; j++) {
-                    let cCr = parseFloat(document.getElementById(`iCr${j}`).value);
-                    totalCredits += cCr;
-                }
-                let gpa = overall / totalCredits;
-
-                const gpdiv = document.getElementById("gpa");
-                gpdiv.innerText = "GPA: " + gpa.toFixed(2);
-            }
-
-        </script>
-
+        <script src="main.js"></script>
     </body>
 
 </html>

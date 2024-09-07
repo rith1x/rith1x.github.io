@@ -267,6 +267,15 @@ html {
     margin: 0;
 }
 
+#tint {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    margin: auto;
+}
+
 h1 {
     z-index: 1;
     font-size: 28px;
