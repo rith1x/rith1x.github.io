@@ -2,6 +2,8 @@
 const quoteel = document.getElementById("quote");
 const authel = document.getElementById("author")
 const backdrop = document.getElementById('backdrop')
+const tintel = document.getElementById('tint')
+const cardel = document.getElementById('card')
 
 
 function capture() {
@@ -160,4 +162,88 @@ function tamilFont() {
 
     quoteel.style.fontFamily = `f${fnt}`
 
+}
+const tint = {
+    opacity: 0,
+    clr: '#000000',
+}
+function tintColor() {
+    tint.clr = document.getElementById('tcl').value
+    tintBg()
+}
+let to = 0
+function tintOpacity() {
+    if (to <= 250) {
+        to += 5
+    } else {
+        to = 0
+    }
+    tint.opacity = to
+    tintBg()
+}
+function tintBg() {
+    tintel.style.background = `${tint.clr}${tint.opacity.toString(16)}`
+}
+function qteClr() {
+    quoteel.style.color = document.getElementById('qcl').value
+    authel.style.color = document.getElementById('qcl').value
+}
+
+let br = 0
+function borderRad() {
+    if (br <= 100) {
+        br += 3
+    } else {
+        br = 0
+    }
+    cardel.style.borderRadius = br + "px"
+}
+function changeBg() {
+    const file = document.getElementById('bgIm').files[0];
+
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            document.getElementById('canvas').style.backgroundImage = `url(${e.target.result})`;
+            backdrop.style.background = `url(${e.target.result})`;
+            backdrop.style.backgroundSize = 'cover'
+            backdrop.style.backgroundPosition = 'center'
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert('Please upload a valid image file.');
+    }
+}
+
+const borde = {
+    style: "solid",
+    width: 0,
+    color: '#ffffff'
+}
+function bordColor() {
+    borde.color = document.getElementById('bcl').value
+    setBorder()
+}
+
+
+function borderSize() {
+    if (borde.width <= 9) {
+        borde.width += 1
+    } else {
+        borde.width = 0
+    }
+    setBorder()
+}
+let xz = 0
+let stylz = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset']
+function borderStyle() {
+    if (xz == stylz.length - 1) xz = 0
+    borde.style = stylz[xz++]
+    setBorder()
+}
+
+function setBorder() {
+    cardel.style.border = `${borde.style} ${borde.width}px ${borde.color}`
 }

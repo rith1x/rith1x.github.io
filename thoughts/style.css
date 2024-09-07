@@ -226,7 +226,6 @@ html {
 .canvas {
     width: 100%;
     height: 100%;
-    background: url(./dale.png);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -243,15 +242,18 @@ html {
 .card {
     width: 80%;
     aspect-ratio: 1/1;
-    border-radius: 31px;
     position: relative;
     padding: 20px;
     overflow: hidden;
     color: #fff;
     display: flex;
+    border-style: solid;
+    border-width: 0px;
+    
     flex-direction: column;
     justify-content: space-between;
     z-index: 1;
+    transition: border-radius .3s ease-in-out;
 }
 
 .card-bg {
@@ -261,7 +263,6 @@ html {
     background-color: transparent;
     inset: 0;
     z-index: -1;
-    background-image: url(./dale.png);
     background-position: center;
     background-size: 220%;
     margin: 0;
@@ -284,6 +285,7 @@ h1 {
 
 #author {
     align-self: flex-end;
+    z-index: 1;
 }
 
 *:focus {
@@ -307,8 +309,9 @@ h1 {
     display: none;
 }
 
-button {
-    border-radius: 16px;
+button,
+.controls span {
+    border-radius: 30px;
     border: none;
     background: #ffffffdd;
     color: #000;
@@ -320,20 +323,28 @@ button {
 
 }
 
-button img {
+button img,
+.controls span img {
     height: 90%;
     aspect-ratio: 1/1;
     object-fit: cover;
+
     scale: .7;
 
 
 
 }
 
-button p {
-    height: 20px;
+
+
+button p,
+span label {
+    height: 100%;
+    display: flex;
+    align-items: center;
     line-height: 1.5;
     font-size: 14px;
+    font-family: arial;
 }
 
 .footer {
@@ -385,4 +396,24 @@ button p {
 
 .capture button img {
     scale: 1;
+}
+
+input[type="color"] {
+    border: none;
+    width: 30px;
+    border-radius: 15px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+}
+
+input[type="file"] {
+    display: none;
 }
