@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@100..800&family=Arima:wght@100..700&family=Kavivanar&family=Mukta+Malar:wght@200;300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Tiro+Tamil:ital@0;1&display=swap');
+
+@font-face {
+    font-family: 'f1';
+    src: url('./fonts/f1.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f2';
+    src: url('./fonts/f2.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f3';
+    src: url('./fonts/f3.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f4';
+    src: url('./fonts/f4.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f5';
+    src: url('./fonts/f5.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f6';
+    src: url('./fonts/f6.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f7';
+    src: url('./fonts/f7.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f8';
+    src: url('./fonts/f8.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f9';
+    src: url('./fonts/f9.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f10';
+    src: url('./fonts/f10.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f11';
+    src: url('./fonts/f11.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f12';
+    src: url('./fonts/f12.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f13';
+    src: url('./fonts/f13.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f14';
+    src: url('./fonts/f14.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f15';
+    src: url('./fonts/f15.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f16';
+    src: url('./fonts/f16.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f17';
+    src: url('./fonts/f17.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f18';
+    src: url('./fonts/f18.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f19';
+    src: url('./fonts/f19.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f20';
+    src: url('./fonts/f20.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f21';
+    src: url('./fonts/f21.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f22';
+    src: url('./fonts/f22.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f23';
+    src: url('./fonts/f23.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f24';
+    src: url('./fonts/f24.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f25';
+    src: url('./fonts/f25.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f26';
+    src: url('./fonts/f26.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f27';
+    src: url('./fonts/f27.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f28';
+    src: url('./fonts/f28.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f29';
+    src: url('./fonts/f29.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f30';
+    src: url('./fonts/f30.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f31';
+    src: url('./fonts/f31.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f32';
+    src: url('./fonts/f32.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f33';
+    src: url('./fonts/f33.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f34';
+    src: url('./fonts/f34.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f35';
+    src: url('./fonts/f35.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'f36';
+    src: url('./fonts/f36.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f37';
+    src: url('./fonts/f37.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'f38';
+    src: url('./fonts/f38.ttf') format('truetype');
+}
+
+
+
+
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    height: 100%;
+    font-family: "Libre Caslon text", serif;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0px;
+}
+
+.container {
+    max-width: 400px;
+    height: 100dvh;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+
+    flex-direction: column;
+}
+
+.canvas {
+    width: 100%;
+    height: 100%;
+    background: url(./dale.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas h1,
+.canvas p {
+
+    transition: all .3s ease-in-out;
+}
+
+.card {
+    width: 80%;
+    aspect-ratio: 1/1;
+    border-radius: 31px;
+    position: relative;
+    padding: 20px;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.card-bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: transparent;
+    inset: 0;
+    z-index: -1;
+    background-image: url(./dale.png);
+    background-position: center;
+    background-size: 220%;
+    margin: 0;
+}
+
+h1 {
+    z-index: 1;
+    font-size: 28px;
+
+}
+
+#author {
+    align-self: flex-end;
+}
+
+*:focus {
+    outline: none;
+}
+
+.controls {
+    height: 50px;
+    position: absolute;
+    top: 0;
+    padding: 5px;
+    width: 100%;
+    overflow: scroll hidden;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.controls::-webkit-scrollbar {
+    display: none;
+}
+
+button {
+    border-radius: 16px;
+    border: none;
+    background: #ffffffdd;
+    color: #000;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding-inline: 5px 15px;
+    justify-content: center;
+
+}
+
+button img {
+    height: 90%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    scale: .7;
+
+
+
+}
+
+button p {
+    height: 20px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.footer {
+    position: absolute;
+    right: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    bottom: 5px;
+    color: #fff5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-height: 28px;
+}
+
+.footer span {
+    font-size: 8px;
+    height: 10px;
+    font-style: italic;
+    display: flex;
+    width: 100%;
+    align-items: end;
+    justify-content: flex-end;
+}
+
+.footer span:last-child {
+    font-style: normal;
+    font-size: 12px;
+}
+
+.capture {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.capture button {
+    padding: 15px 20px;
+    font-size: 16px;
+    display: flex;
+    font-weight: 600;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.capture button img {
+    scale: 1;
+}
