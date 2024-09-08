@@ -4,15 +4,40 @@ const authel = document.getElementById("author")
 const backdrop = document.getElementById('backdrop')
 const tintel = document.getElementById('tint')
 const cardel = document.getElementById('card')
+const canvaas = document.getElementById('canvas')
 
 
 function capture() {
-    domtoimage.toBlob(document.getElementById('canvas'), {
-        quality: 2,
-    })
-        .then(function (blob) {
-            saveAs(blob, 'export.png');
+    // domtoimage.toBlob(document.getElementById('canvas'), {
+    //     quality: 2,
+    // })
+    //     .then(function (blob) {
+    //         saveAs(blob, 'export.png');
+    //     });
+    domtoimage.toPng(canvaas)
+        .then(function (dataUrl) {
+            var img = new Image();
+            img.src = dataUrl;
+
+            // Convert the data URL to a Blob
+            var byteString = atob(dataUrl.split(',')[1]);
+            var mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+
+            var ab = new ArrayBuffer(byteString.length);
+            var ia = new Uint8Array(ab);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+
+            var blob = new Blob([ab], { type: mimeString });
+
+            // Use FileSaver.js to save the blob as an image file
+            saveAs(blob, 'image.png');
+        })
+        .catch(function (error) {
+            console.error('oops, something went wrong!', error);
         });
+
 }
 
 
@@ -88,7 +113,7 @@ function changeLineHeight() {
 let sz = 95
 
 function bgAdjust() {
-    if (sz <= 300) {
+    if (sz <= 400) {
         sz += 5
         backdrop.style.backgroundSize = sz + "%"
     } else {
@@ -237,7 +262,7 @@ function borderSize() {
     setBorder()
 }
 let xz = 0
-let stylz = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset']
+let stylz = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none']
 function borderStyle() {
     if (xz == stylz.length - 1) xz = 0
     borde.style = stylz[xz++]
