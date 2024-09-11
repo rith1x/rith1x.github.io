@@ -39,19 +39,9 @@ function capture() {
         });
 
 }
-
-
-let f = 0;
 function changeFont() {
-    const fonts = ["Libre Caslon Text",
-        "Playfair Display",
-        "EB Garamond",
-        "DM Serif Display", "Cedarville Cursive", 'Clash Display', 'Zodiak', 'Sentient', 'Boska', 'Bonny', 'Bebas Neue', 'Baskervville SC',
-        'Pacifico']
-    f += 1;
-    if (f >= fonts.length) f = 0
-    document.getElementById("canvas").style.fontFamily = fonts[f];
-
+    document.getElementById("canvas").style.fontFamily = document.getElementById('fonFam').value;
+    console.log(document.getElementById('fonFam').value)
 }
 let bold = 0
 function changeBold() {
@@ -81,35 +71,52 @@ function changeItalic() {
 
     }
 }
-let wght = 100
 function changeWeight() {
-    if (wght == 1000) wght = 100
-    quoteel.style.fontWeight = wght;
-    authel.style.fontWeight = wght;
-    wght += 100
+    quoteel.style.fontWeight = document.getElementById('fWIp').value;
+    authel.style.fontWeight = document.getElementById('fWIp').value;
 }
+function changeWeightx() {
+    document.getElementById('fWIp').value = document.getElementById('fonWei').value
+    changeWeight()
+}
+
 
 let fSize = 28
 
 function fontSizeI() {
     if (fSize <= 40) {
         fSize++
-        quoteel.style.fontSize = fSize + "px";
+        document.getElementById('fsz').value = fSize
     }
+    fontSize()
+
 }
 function fontSizeD() {
     if (fSize > 12) {
         fSize--
-        quoteel.style.fontSize = fSize + "px";
+        document.getElementById('fsz').value = fSize
     }
+    fontSize()
+}
+function fontSize() {
+    let fsz = parseInt(document.getElementById('fsz').value)
+    if (fsz >= 12 && fsz <= 65)
+        fSize = fsz
+    quoteel.style.fontSize = fSize + "px";
+
 }
 let lhght = 1.15
 function changeLineHeight() {
-    lhght += .05
+    let lh = parseFloat(document.getElementById('lhIp').value)
+    console.log(lh)
+    if (lh >= 0.05 && lh <= 2.00)
+        lhght = lh
     quoteel.style.lineHeight = lhght
-    if (lhght > 2.00) lhght = 0.05
 }
-
+function changeLineHeightx() {
+    document.getElementById('lhIp').value = parseFloat(document.getElementById('lhIpx').value)
+    changeLineHeight()
+}
 let sz = 95
 
 function bgAdjust() {
@@ -123,71 +130,99 @@ function bgAdjust() {
 let blur = 0
 
 
+function glassEffectx() {
+    document.getElementById('bFil').value = parseInt(document.getElementById('bFilx').value)
+    glassEffect()
+}
 function glassEffect() {
-    if (mapping.blur < 25)
-        mapping.blur++
-    else
-        mapping.blur = 0
+    let bval = parseFloat(document.getElementById('bFil').value)
+    if (bval >= 0 && bval <= 20)
+        mapping.blur = bval
     filterApplication()
 }
 
+function bgSaturatex() {
+    document.getElementById('sFil').value = parseFloat(document.getElementById('sFilx').value)
+    bgSaturate()
+}
 function bgSaturate() {
-    if (mapping.saturate <= 4)
-        mapping.saturate += .2
-    else
-        mapping.saturate = 0
+    let sval = parseFloat(document.getElementById('sFil').value)
+    mapping.saturate = sval
     filterApplication()
+}
+function bgHuex() {
+    document.getElementById('hFil').value = parseFloat(document.getElementById('hFilx').value)
+    bgHue()
 }
 function bgHue() {
-    if (mapping.hue <= 350)
-        mapping.hue += 10
-    else
-        mapping.hue = 0
+    let hval = parseFloat(document.getElementById('hFil').value)
+    mapping.hue = hval
     filterApplication()
 }
-function bgSepia() {
-    if (mapping.sepia <= 2)
-        mapping.sepia += .1
-    else
-        mapping.sepia = 0
-    filterApplication()
-}
+// function bgSepia() {
+//     if (mapping.sepia <= 2)
+//         mapping.sepia += .1
+//     else
+//         mapping.sepia = 0
+//     filterApplication()
+// }
 const mapping = {
     blur: 0,
     saturate: 1,
-    hue: 0,
-    sepia: 0
+    hue: 0
 }
 
 function filterApplication() {
-    backdrop.style.filter = `saturate(${mapping.saturate}) blur(${mapping.blur}px) hue-rotate(${mapping.hue}deg) sepia(${mapping.sepia})`
+    backdrop.style.filter = `saturate(${mapping.saturate}) blur(${mapping.blur}px) hue-rotate(${mapping.hue}deg)`
 
 }
 let auth = 'r'
 function alignAuthor() {
     if (auth == 'r') {
         auth = 'l'
+        document.getElementById("authAl").innerText = "Left"
         authel.style.alignSelf = "flex-start"
     } else if (auth == 'l') {
         auth = 'c'
+        document.getElementById("authAl").innerText = "Center"
+
         authel.style.alignSelf = "center"
     } else {
         auth = 'r'
+        document.getElementById("authAl").innerText = "Right"
+
         authel.style.alignSelf = "flex-end"
+    }
+}
+let alqte = 'r'
+function alignQuote() {
+    if (auth == 'r') {
+        auth = 'l'
+        document.getElementById("qteAl").innerText = "Left"
+        quoteel.style.textAlign = "left"
+    } else if (auth == 'l') {
+        auth = 'c'
+        document.getElementById("qteAl").innerText = "Center"
+        quoteel.style.textAlign = "center"
+
+    } else if (auth == 'c') {
+        auth = 'j'
+        document.getElementById("qteAl").innerText = "Justify"
+        quoteel.style.textAlign = "justify"
+
+
+
+    } else {
+        auth = 'r'
+        document.getElementById("qteAl").innerText = "Right"
+        quoteel.style.textAlign = "right"
+
     }
 }
 
 let fnt = 0
 
-function tamilFont() {
-    if (fnt < 38)
-        fnt++
-    else
-        fnt = 0
 
-    quoteel.style.fontFamily = `f${fnt}`
-
-}
 const tint = {
     opacity: 0,
     clr: '#000000',
@@ -196,14 +231,18 @@ function tintColor() {
     tint.clr = document.getElementById('tcl').value
     tintBg()
 }
-let to = 0
+
+
+function tintOpacityx() {
+    document.getElementById('tOp').value = parseInt(document.getElementById('tOpx').value)
+    tintOpacity()
+}
+
+
 function tintOpacity() {
-    if (to <= 250) {
-        to += 5
-    } else {
-        to = 0
-    }
-    tint.opacity = to
+    let tOp = parseInt(document.getElementById('tOp').value)
+    if (tOp <= 255 && tOp >= 0)
+        tint.opacity = tOp
     tintBg()
 }
 function tintBg() {
@@ -215,12 +254,14 @@ function qteClr() {
 }
 
 let br = 0
+function borderRadx() {
+    document.getElementById('bRad').value = parseInt(document.getElementById('bRadx').value)
+    borderRad()
+}
 function borderRad() {
-    if (br <= 100) {
-        br += 3
-    } else {
-        br = 0
-    }
+    let brr = parseInt(document.getElementById('bRad').value)
+    if (brr >= 0 && brr <= 50)
+        br = brr
     cardel.style.borderRadius = br + "px"
 }
 function changeBg() {
@@ -252,23 +293,70 @@ function bordColor() {
     setBorder()
 }
 
+function borderSizex() {
+    document.getElementById('bsIp').value = document.getElementById('bsIpx').value
+    borderSize()
+}
 
 function borderSize() {
-    if (borde.width <= 9) {
-        borde.width += 1
-    } else {
-        borde.width = 0
-    }
+    let bs = parseInt(document.getElementById('bsIp').value)
+    if (bs <= 10 && bs >= 0)
+        borde.width = bs
     setBorder()
 }
+
+
 let xz = 0
 let stylz = ['dotted', 'dashed', 'solid', 'double', 'groove', 'ridge', 'inset', 'outset', 'none']
 function borderStyle() {
-    if (xz == stylz.length - 1) xz = 0
-    borde.style = stylz[xz++]
+    borde.style = stylz[parseInt(document.getElementById('bsxIp').value)]
     setBorder()
 }
 
 function setBorder() {
     cardel.style.border = `${borde.style} ${borde.width}px ${borde.color}`
+}
+
+function openUpSettings() {
+    const chn = document.getElementById('selector').children
+
+    for (let i = 1; i < chn.length; i++)
+        chn[i].style.display = "none"
+
+    document.getElementById('selector').style.transform = "translateY(0%)"
+}
+function closeSettings() {
+    document.getElementById('selector').style.transform = "translateY(100%)"
+
+}
+function showBgCtrls() {
+    openUpSettings()
+    document.getElementById('settingss').style.display = "block"
+}
+
+showBgCtrls()
+function bgSzValChange() { document.getElementById('bgSzIp').value = document.getElementById('bgSz').value; bgSzChg() }
+function bgAxXValChange() { document.getElementById('bgAxXIp').value = document.getElementById('bgAxX').value; bgxChg() }
+function bgAxYValChange() { document.getElementById('bgAxYIp').value = document.getElementById('bgAxY').value; bgyChg() }
+function cvSzx() { document.getElementById('cvSz').value = document.getElementById('cvSzx').value; cvSz() }
+function cvAxx() { document.getElementById('cvAx').value = document.getElementById('cvAxx').value; cvAx() }
+function cvAyx() { document.getElementById('cvAy').value = document.getElementById('cvAyx').value; cvAy() }
+
+function bgSzChg() {
+    canvaas.style.backgroundSize = parseInt(document.getElementById('bgSzIp').value) + "%"
+}
+function bgxChg() {
+    canvaas.style.backgroundPositionX = parseInt(document.getElementById('bgAxXIp').value) + "%"
+}
+function bgyChg() {
+    canvaas.style.backgroundPositionY = parseInt(document.getElementById('bgAxYIp').value) + "%"
+}
+function cvSz() {
+    backdrop.style.backgroundSize = parseInt(document.getElementById('cvSz').value) + "%"
+}
+function cvAx() {
+    backdrop.style.backgroundPositionX = parseInt(document.getElementById('cvAx').value) + "%"
+}
+function cvAy() {
+    backdrop.style.backgroundPositionY = parseInt(document.getElementById('cvAy').value) + "%"
 }

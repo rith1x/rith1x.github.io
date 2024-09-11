@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thoughts</title>
+        <meta name="theme-color" id="metacl" content="#000000" />
+        <link rel="stylesheet" href="style.css">
+        <script src="main.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="controls">
+                <span>
+                    <input type="file" name="" id="bgIm" accept="image/*" oninput="changeBg()">
+                    <img src="./ico/imgg.svg" alt="">
+                    <label for="bgIm">Background&nbsp;Image</label>
+                </span>
+                <button onclick="changeFont()"><img src="./ico/font.svg" alt="">
+                    <p>Font</p>
+                </button>
+                <button onclick="changeBold()"><img src="./ico/bold.svg" alt="">
+                    <p>Bold</p>
+                </button>
+                <button onclick="changeWeight()"><img src="./ico/fwei.svg" alt="">
+                    <p>Weight</p>
+                </button>
+                <button onclick="changeItalic()"><img src="./ico/itallic.svg" alt="">
+                    <p>Italic</p>
+                </button>
+                <span>
+                    <input oninput="qteClr()" type="color" name="" id="qcl">
+                    <label for="qcl">Quote&nbsp;Color</label>
+
+                </span>
+                <button onclick="fontSizeI()"><img src="./ico/fsinc.svg" alt="">
+                    <p>Increase</p>
+                </button>
+                <button onclick="fontSizeD()"><img src="./ico/fsdec.svg" alt="">
+                    <p>Decrease</p>
+                </button>
+                <button onclick="changeLineHeight()"><img src="./ico/lhght.svg" alt="">
+                    <p>Line&nbsp;Height</p>
+                </button>
+                <button onclick="bgAdjust()"><img src="./ico/bgadj.svg" alt="">
+                    <p>Adjust</p>
+                </button>
+                <button onclick="borderRad()"><img src="./ico/border.svg" alt="">
+                    <p>Border&nbsp;radius</p>
+                </button>
+                <span>
+                    <input oninput="bordColor()" type="color" name="" id="bcl">
+                    <label for="bcl">Border&nbsp;Color</label>
+
+                </span>
+                <button onclick="borderSize()"><img src="./ico/border.svg" alt="">
+                    <p>Border&nbsp;Size</p>
+                </button>
+                <button onclick="borderStyle()"><img src="./ico/border.svg" alt="">
+                    <p>Border&nbsp;Style</p>
+                </button>
+                <!-- <button onclick="tintColor()"><img src="./ico/paint.svg" alt="">
+                </button> -->
+                <span>
+                    <input oninput="tintColor()" type="color" name="" id="tcl">
+                    <label for="tcl">Tint&nbsp;Color</label>
+
+                </span>
+                <button onclick="tintOpacity()"><img src="./ico/paint.svg" alt="">
+                    <p>Tint&nbsp;Opacity</p>
+                </button>
+
+                <button onclick="glassEffect()"><img src="./ico/glass.svg" alt="">
+                    <p>Glass&nbsp;Effect</p>
+                </button>
+                <button onclick="bgSaturate()"><img src="./ico/drop.svg" alt="">
+                    <p>Saturate</p>
+                </button>
+                <button onclick="bgHue()"><img src="./ico/hue.svg" alt="">
+                    <p>Hue</p>
+                </button>
+                <button onclick="bgSepia()"><img src="./ico/paint.svg" alt="">
+                    <p>Sepia</p>
+                </button>
+                <button disabled><img src="./ico/quote.svg" alt="">
+                    <p>Quote</p>
+                </button>
+                <button onclick="alignAuthor()"><img src="./ico/align.svg" alt="">
+                    <p>Author&nbsp;Align</p>
+                </button>
+                <button onclick="tamilFont()"><img src="./ico/heart.svg" alt="">
+                    <p>Tamil&nbsp;Font</p>
+                </button>
+
+            </div>
+            <div class="canvas" id="canvas">
+                <div class="card" id="card">
+                    <h1 id="quote" contenteditable="true">Write Your Thoughts!</h1>
+                    <p id="author" contenteditable="true">You✨</p>
+                    <div class="card-bg" id="backdrop"></div>
+                    <div class="card-lay2" id="tint"></div>
+                </div>
+                <div class="footer">
+                    <span>Made with </span><span>Thoughts</span>
+                </div>
+            </div>
+            <dialog id="colorSelector" style="display:none">
+
+            </dialog>
+            <div onclick="capture()" class="capture" style="font-family: 'Times New Roman', Times, serif;"><button><img
+                        src="./ico/capture.svg" alt=""><span>Capture!</span></button></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+    </body>
+
+</html>

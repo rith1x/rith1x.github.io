@@ -1,211 +1,9 @@
-
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400&f[]=zodiak@400&f[]=sentient@400&f[]=boska@400&f[]=bonny@400&f[]=bebas-neue@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=DM+Serif+Display:ital@0;1&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@100..800&family=Arima:wght@100..700&family=Kavivanar&family=Mukta+Malar:wght@200;300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@100..900&family=Tiro+Tamil:ital@0;1&display=swap');
-
-@font-face {
-    font-family: 'f1';
-    src: url('./fonts/f1.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f2';
-    src: url('./fonts/f2.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f3';
-    src: url('./fonts/f3.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f4';
-    src: url('./fonts/f4.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f5';
-    src: url('./fonts/f5.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f6';
-    src: url('./fonts/f6.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f7';
-    src: url('./fonts/f7.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f8';
-    src: url('./fonts/f8.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f9';
-    src: url('./fonts/f9.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f10';
-    src: url('./fonts/f10.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f11';
-    src: url('./fonts/f11.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f12';
-    src: url('./fonts/f12.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f13';
-    src: url('./fonts/f13.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f14';
-    src: url('./fonts/f14.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f15';
-    src: url('./fonts/f15.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f16';
-    src: url('./fonts/f16.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f17';
-    src: url('./fonts/f17.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f18';
-    src: url('./fonts/f18.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f19';
-    src: url('./fonts/f19.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f20';
-    src: url('./fonts/f20.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f21';
-    src: url('./fonts/f21.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f22';
-    src: url('./fonts/f22.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f23';
-    src: url('./fonts/f23.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f24';
-    src: url('./fonts/f24.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f25';
-    src: url('./fonts/f25.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f26';
-    src: url('./fonts/f26.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f27';
-    src: url('./fonts/f27.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f28';
-    src: url('./fonts/f28.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f29';
-    src: url('./fonts/f29.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f30';
-    src: url('./fonts/f30.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f31';
-    src: url('./fonts/f31.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f32';
-    src: url('./fonts/f32.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f33';
-    src: url('./fonts/f33.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f34';
-    src: url('./fonts/f34.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f35';
-    src: url('./fonts/f35.otf') format('opentype');
-}
-
-@font-face {
-    font-family: 'f36';
-    src: url('./fonts/f36.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f37';
-    src: url('./fonts/f37.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'f38';
-    src: url('./fonts/f38.ttf') format('truetype');
-}
-
-
-
-
-
 body,
 html {
     margin: 0;
     padding: 0;
     background-color: #000;
     height: 100%;
-    font-family: "Libre Caslon text", serif;
 
 }
 
@@ -213,7 +11,6 @@ html {
     box-sizing: border-box;
     margin: 0;
     padding: 0px;
-    font-family: Libre Caslon text;
 }
 
 .container {
@@ -222,7 +19,7 @@ html {
     margin: 0 auto;
     position: relative;
     display: flex;
-
+    overflow: hidden;
     flex-direction: column;
 }
 
@@ -230,7 +27,7 @@ html {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center;
+    background-position: 50% 50%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,6 +49,7 @@ html {
     display: flex;
     border-style: solid;
     border-width: 0px;
+
 
     flex-direction: column;
     justify-content: space-between;
@@ -312,7 +110,7 @@ h1 {
     display: none;
 }
 
-button,
+.controls button,
 .controls span {
     border-radius: 30px;
     border: none;
@@ -321,7 +119,7 @@ button,
     height: 100%;
     display: inline-flex;
     align-items: center;
-    padding-inline: 5px 15px;
+    padding-inline: 15px 15px;
     justify-content: center;
 
 }
@@ -388,6 +186,7 @@ button:disabled {
     left: 0;
     right: 0;
     width: fit-content;
+
     margin: 0 auto;
 }
 
@@ -399,6 +198,8 @@ button:disabled {
     align-items: center;
     gap: 5px;
     justify-content: center;
+    border: none;
+    border-radius: 41px;
 }
 
 .capture button img {
@@ -421,6 +222,201 @@ input[type="color"]::-webkit-color-swatch {
     border: none;
 }
 
-input[type="file"] {
+/* input[type="file"] {
     display: none;
+} */
+.selectors {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    height: 200px;
+    background-color: #ffffff;
+    z-index: 3;
+    border-radius: 31px 31px 0 0;
+    padding: 20px;
+    overflow-y: scroll;
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.selectors::-webkit-scrollbar {
+    display: none;
+}
+
+.topbar {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border: none !important;
+    justify-content: space-between;
+}
+
+.topbar button {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+}
+
+.selectors * {
+    font-family: 'Noto Sans';
+
+}
+
+.selectors>div:not(.topbar) {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-block: 10px;
+    border-bottom: solid 1px #00000020;
+}
+
+/* .field * {
+    padding-left: 20px;
+
+} */
+
+.field label:not(.switch) {
+    font-size: 14px;
+    padding-left: 0px;
+}
+
+.field span:not(.fszz) {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.field span input[type="number"] {
+    height: 100%;
+    width: 60px;
+    border: solid 1px #00000040;
+    text-align: center;
+    border-radius: 6px;
+
+}
+
+input[type="range"] {
+    width: 100%;
+
+
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    border: solid 1px #00000050;
+    border-radius: 6px;
+    background-color: transparent;
+    padding: 10px 15px;
+}
+
+.field input {
+    text-align: center;
+}
+
+.field span button {
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 6px;
+    border: solid 1px #00000040;
+
+}
+
+.field select {
+    height: 40px;
+    background-color: transparent;
+    border: solid 1px #00000060;
+    border-radius: 6px;
+    padding-inline: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 26px;
+}
+
+.switch input {
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    background-color: #000;
+    border-radius: 20px;
+    opacity: 0;
+
+}
+
+.switch .plh {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #00000050;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.switch .plh::before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    left: 3px;
+    width: 22px;
+    border-radius: 12px;
+    background-color: #fff;
+    transition: .3s;
+    scale: .8;
+}
+
+.switch input:checked+.plh {
+    background-color: #00ab47;
+}
+
+.switch input:checked+.plh::before {
+    transform: translateX(24px);
+    scale: 1;
+}
+
+.sepa {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fszz {
+    display: flex;
+    height: 40px;
+    gap: 5px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#authAl,
+#qteAl {
+    height: 40px;
+    width: 100px;
+    border-radius: 6px;
+    border: solid 1px #00000050;
+    background-color: transparent;
 }
