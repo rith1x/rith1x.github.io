@@ -14,29 +14,82 @@ function capture() {
     //     .then(function (blob) {
     //         saveAs(blob, 'export.png');
     //     });
-    domtoimage.toPng(canvaas)
-        .then(function (dataUrl) {
-            var img = new Image();
-            img.src = dataUrl;
 
-            // Convert the data URL to a Blob
-            var byteString = atob(dataUrl.split(',')[1]);
-            var mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+    document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+            
+            // domtoimage
+            //     .toJpeg(document.getElementById('canvas'), { quality: 1.0, width: canvaas.offsetWidth * 3, height: canvaas.offsetHeight * 3 })
+            //     .then(function (dataUrl) {
+            //         var link = document.createElement('a');
+            //         link.download = 'my-image-name.jpeg';
+            //         link.href = dataUrl;
+            //         link.click();
+            //     });
 
-            var ab = new ArrayBuffer(byteString.length);
-            var ia = new Uint8Array(ab);
-            for (var i = 0; i < byteString.length; i++) {
-                ia[i] = byteString.charCodeAt(i);
-            }
+            // Select all elements inside the body
+            // const allElements = document.querySelectorAll('body *');
 
-            var blob = new Blob([ab], { type: mimeString });
+            // Loop through each element and apply the scale
+            // allElements.forEach((element) => {
+            //     element.style.transform = 'scale(3)';
+            //     element.style.transformOrigin = 'top left'; // Ensure the scale happens from the top-left
+            // });
 
-            // Use FileSaver.js to save the blob as an image file
-            saveAs(blob, 'image.png');
+
+            // domtoimage.toBlob(document.getElementById('canvas'), {
+            //     quality: 2, width: canvaas.offsetWidth * 3, height: canvaas.offsetHeight * 3
+            // })
+            //     .then(function (blob) {
+            //         saveAs(blob, 'export.png');
+            //     });
+            // allElements.forEach((element) => {
+            //     element.style.transform = 'scale(1)'; // Reset the scale back to normal
+            // });
+
+            html2canvas(canvaas, {
+                scale: 5,
+                width: canvaas.scrollWidth - 1,
+                height: canvaas.scrollHeight - 1
+            }).then(canvas => {
+                var dataUrl = canvas.toDataURL("image/jpeg");
+                const a = document.createElement('a');
+                a.href = dataUrl;
+                a.download = 'quote.png';
+
+                a.click();
+            });
+
+
+            // domtoimage.toPng(canvaas)
+            //     .then(function (dataUrl) {
+            //         var img = new Image();
+            //         img.src = dataUrl;
+
+            //         // Convert the data URL to a Blob
+            //         var byteString = atob(dataUrl.split(',')[1]);
+            //         var mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+
+            //         var ab = new ArrayBuffer(byteString.length);
+            //         var ia = new Uint8Array(ab);
+            //         for (var i = 0; i < byteString.length; i++) {
+            //             ia[i] = byteString.charCodeAt(i);
+            //         }
+
+            //         var blob = new Blob([ab], { type: mimeString });
+
+            //         // Use FileSaver.js to save the blob as an image file
+            //         saveAs(blob, 'image.png');
+            //     })
+            //     .catch(function (error) {
+            //         console.error('oops, something went wrong!', error);
+            //     });
+
+
         })
-        .catch(function (error) {
-            console.error('oops, something went wrong!', error);
-        });
+    })
+
+
 
 }
 function changeFont() {
@@ -194,7 +247,7 @@ function alignAuthor() {
         authel.style.alignSelf = "flex-end"
     }
 }
-let alqte = 'r'
+let alqte = 'l'
 function alignQuote() {
     if (auth == 'r') {
         auth = 'l'

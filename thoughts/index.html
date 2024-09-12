@@ -221,9 +221,7 @@
             </div>
             <div class="canvas" id="canvas">
                 <div class="card" id="card">
-                    <h1 id="quote" contenteditable="true">அன்பை தருபவர்களை விட
-                        அனுபவத்தை தருபவர்கள் தான்
-                        வாழ்க்கையில் அதிகம்..</h1>
+                    <h1 id="quote" contenteditable="true">Share Your thoughts.</h1>
                     <p id="author" contenteditable="true">You✨</p>
                     <div class="card-bg" id="backdrop"></div>
                     <div class="card-lay2" id="tint"></div>
@@ -254,17 +252,17 @@
                     <div class="field">
                         <label for="">Background Alignment X</label>
                         <span>
-                            <input type="range" name="" id="bgAxX" min="0" oninput="bgAxXValChange()" max="400"
+                            <input type="range" name="" id="bgAxX" min="0" oninput="bgAxXValChange()" max="100"
                                 value="50">
-                            <input type="number" name="" id="bgAxXIp" min="25" max="400" value="50" oninput="bgxChg()">
+                            <input type="number" name="" id="bgAxXIp" min="0" max="100" value="50" oninput="bgxChg()">
                         </span>
                     </div>
                     <div class="field">
                         <label for="">Background Alignment Y</label>
                         <span>
-                            <input type="range" name="" id="bgAxY" min="0" oninput="bgAxYValChange()" max="400"
+                            <input type="range" name="" id="bgAxY" min="0" oninput="bgAxYValChange()" max="100"
                                 value="50">
-                            <input type="number" name="" id="bgAxYIp" min="25" max="400" value="50" oninput="bgyChg()">
+                            <input type="number" name="" id="bgAxYIp" min="0" max="100" value="50" oninput="bgyChg()">
                         </span>
                     </div>
                     <div class="field">
@@ -277,15 +275,15 @@
                     <div class="field">
                         <label for="">Canvas Background Alignment X</label>
                         <span>
-                            <input type="range" name="" id="cvAxx" min="0" oninput="cvAxx()" max="400" value="50">
-                            <input type="number" name="" id="cvAx" min="25" max="400" value="50" oninput="cvAx()">
+                            <input type="range" name="" id="cvAxx" min="0" oninput="cvAxx()" max="100" value="50">
+                            <input type="number" name="" id="cvAx" min="0" max="100" value="50" oninput="cvAx()">
                         </span>
                     </div>
                     <div class="field">
                         <label for="">Canvas Background Alignment Y</label>
                         <span>
-                            <input type="range" name="" id="cvAyx" min="0" oninput="cvAyx()" max="400" value="50">
-                            <input type="number" name="" id="cvAy" min="25" max="400" value="50" oninput="cvAy()">
+                            <input type="range" name="" id="cvAyx" min="0" oninput="cvAyx()" max="100" value="50">
+                            <input type="number" name="" id="cvAy" min="0" max="100" value="50" oninput="cvAy()">
                         </span>
                     </div>
                     <div class="field">
@@ -402,7 +400,7 @@
                     </div>
                     <div class="field sepa">
                         <label for="">Quote Alignment</label>
-                        <button id="qteAl" onclick="alignQuote()">Right</button>
+                        <button id="qteAl" onclick="alignQuote()">Left</button>
                     </div>
                     <div class="field">
                         <label for="lineHei">Border Size</label>
@@ -454,6 +452,14 @@
 
                     </div>
                     <div class="field">
+                        <label for="">Canvas Rotation Angle</label>
+                        <span>
+                            <input type="range" oninput="canvasRotatex()" id="cRx" max="359" min="0" value="0">
+                            <input type="number" oninput="canvasRotate()" id="cR" min="0" max="359" value="0">
+                        </span>
+
+                    </div>
+                    <div class="field">
                         <label for="">Saturation Filter</label>
                         <span>
                             <input type="range" oninput="bgSaturatex()" id="sFilx" max="3" min="0" value="1"
@@ -486,6 +492,8 @@
             <div onclick="capture()" class="capture" style="font-family: 'Times New Roman', Times, serif;"><button><img
                         src="./ico/capture.svg" alt=""><span>Capture!</span></button></div>
         </div>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+
         <script src="https://cdn.jsdelivr.net/npm/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
