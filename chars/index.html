@@ -5,7 +5,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Char Count</title>
+        <title>Char Counter - Word, char, WPM...</title>
         <link rel="stylesheet" href="style.css" </head>
 
     <body>
@@ -13,21 +13,73 @@
             <div class="box">
                 <h1 id="count">Start Typing</h1>
                 <textarea name="" id="data" oninput="countChar()" cols="30" rows="10"></textarea>
+                <div id="word-usage">
+                    <div>
+                        Word Usage Frequency
+                        <table id="wordFreq"></table>
+                    </div>
+                    <div>
+                        <h3>WPM</h3>
+                        <h1 id="WPM"></h1>
+                    </div>
+
+                </div>
+
             </div>
         </div>
         <script>
+            let startTime = null
+            let elapsed = 0;
             function countChar() {
                 var data = document.getElementById('data').value;
-                var ct = data.length;
-                if (ct == 0) {
-                    document.getElementById(
-                        'count'
-                    ).innerText = `${ct} Characters, Start Typing...`;
-                } else if (ct == 1) {
-                    document.getElementById('count').innerText = `${ct} Character`;
+                var ct = data.trim().length;
+                let chrs = ""
+                if (ct == 1) {
+                    chrs = `${ct} Character`;
                 } else {
-                    document.getElementById('count').innerText = `${ct} Characters`;
+                    chrs = `${ct} Characters`;
                 }
+                let words = data.trim().split(" ")
+                console.log(words)
+                if (words.length == 0 || words[0] == '') {
+                    chrs += "Start Typing..."
+                } else if (words.length == 1) {
+                    chrs += ", 1 Word"
+                } else {
+                    chrs += `, ${words.length} Words`
+                }
+                document.getElementById('count').innerText = chrs
+                if (!startTime) {
+                    startTime = new Date();
+                } else {
+                    let curr = new Date()
+                    elapsed = Math.floor((curr - startTime) / 1000)
+                }
+                calculateWPM(words.length)
+                wordFreq(data)
+            }
+            function calculateWPM(n) {
+                document.getElementById('WPM').innerText = parseInt((n * 60) / elapsed)
+            }
+            function wordFreq(paragh) {
+                const cleaned = paragh.toLowerCase().replace(/[.,!?;:()~`@#$%^&*-_+="'<>/]/g, "")
+                const cleaned_a = cleaned.split(/\s/g)
+                const freq_tab = {}
+                cleaned_a.forEach(wrd => {
+                    if (wrd) {
+                        freq_tab[wrd] = (freq_tab[wrd] || 0) + 1;
+                    }
+                })
+                const sorted = Object.entries(freq_tab).sort((a, b) => b[1] - a[1])
+                let vals = ""
+                sorted.forEach(([wrd, ct], i) => {
+                    vals += `<tr><td>${i}</td><td>${wrd}</td><td>${ct}</td></tr>`
+                })
+                document.getElementById('wordFreq').innerHTML = "<th>Rank</th><th>Word</th><th>Frequency</th>" + vals
+                console.table(sorted)
+
+
+
             }
         </script>
         <style>
@@ -45,7 +97,7 @@
             }
 
             .container {
-                max-width: 450px;
+                width: 100%;
                 margin: 0 auto;
                 height: 100dvh;
                 display: flex;
@@ -55,10 +107,9 @@
             }
 
             .box {
-                border: solid 1px #1a1a1a50;
 
                 width: 100%;
-                height: 300px;
+                height: 100%;
                 padding: 15px;
                 border-radius: 21px;
                 display: flex;
@@ -71,12 +122,47 @@
                 border: solid 1px #1a1a1a50;
                 border-radius: 11px;
                 padding: 10px;
+                font-size: 18px;
                 height: 100%;
             }
 
             textarea:focus {
                 border: solid 1px #009e0ded;
                 outline: none;
+            }
+
+            #word-usage {
+                height: 100px;
+                font-size: 14px;
+                padding: 5px;
+                display: flex;
+                align-items: center;
+
+                overflow: hidden;
+                justify-content: space-between;
+                box-shadow: inset 0 -5px 5px #aaaaaa90;
+            }
+
+            #word-usage div:first-child {
+                overflow: hidden scroll;
+                height: 100%;
+
+            }
+
+
+
+            td {
+                width: 30%;
+                text-align: center;
+                height: 15px;
+            }
+
+            #word-usage div:last-child {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding-right: 10px;
             }
         </style>
     </body>

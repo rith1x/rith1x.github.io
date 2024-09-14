@@ -6,7 +6,6 @@ const tintel = document.getElementById('tint')
 const cardel = document.getElementById('card')
 const canvaas = document.getElementById('canvas')
 
-
 function capture() {
     // domtoimage.toBlob(document.getElementById('canvas'), {
     //     quality: 2,
@@ -17,7 +16,7 @@ function capture() {
 
     document.fonts.ready.then(() => {
         requestAnimationFrame(() => {
-            
+
             // domtoimage
             //     .toJpeg(document.getElementById('canvas'), { quality: 1.0, width: canvaas.offsetWidth * 3, height: canvaas.offsetHeight * 3 })
             //     .then(function (dataUrl) {
@@ -47,19 +46,22 @@ function capture() {
             //     element.style.transform = 'scale(1)'; // Reset the scale back to normal
             // });
 
-            html2canvas(canvaas, {
-                scale: 5,
-                width: canvaas.scrollWidth - 1,
-                height: canvaas.scrollHeight - 1
-            }).then(canvas => {
-                var dataUrl = canvas.toDataURL("image/jpeg");
-                const a = document.createElement('a');
-                a.href = dataUrl;
-                a.download = 'quote.png';
+            // html2canvas(canvaas, {
+            //     scale: 5,
+            //     width: canvaas.scrollWidth - 1,
+            //     height: canvaas.scrollHeight - 1
+            // }).then(canvas => {
+            //     var dataUrl = canvas.toDataURL("image/jpeg");
+            //     const a = document.createElement('a');
+            //     a.href = dataUrl;
+            //     a.download = 'quote.png';
 
-                a.click();
-            });
+            //     a.click();
+            // });
 
+
+
+            screenshot(canvaas).download()
 
             // domtoimage.toPng(canvaas)
             //     .then(function (dataUrl) {
