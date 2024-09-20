@@ -9,7 +9,7 @@ const firebaseConfig = {
     appId: "1:1007710976666:web:71c3895500b964d816fd23"
 };
 firebase.initializeApp(firebaseConfig);
-
+const db = firebase.database()
 var currentRoom;
 var currentUser;
 var syncer = false;
@@ -26,53 +26,69 @@ const lklk = {
     de: (_ms, _ky) => { return CryptoJS.AES.decrypt(_ms, _ky).toString(CryptoJS.enc.Utf8); }
 };
 
-var currurl = window.location.href;
-console.log(currurl)
-if (currurl.includes("?r=")) {
-    let spliced = currurl.split("?r=");
-    let codie = spliced[1];
-    let frontpt = spliced[0]
-    // let namey = localStorage.getItem("chatName")
-    // let dat = [namey];
-    // console.log(dat)
-    // firebase.database().ref("ROOMS").child(codie).child("active").set(dat);
-    console.log(codie)
-    document.getElementById("roomcode").value = codie;
-    if (codie != undefined) {
-        if (codie.length == 6) {
-            var currSender = localStorage.getItem("chatName");
-            if (!currSender) {
-                currSender = prompt("Enter Your Name")
-                if (currSender) {
+document.addEventListener('DOMContentLoaded', connectRoom())
+
+async function connectRoom() {
+    var currurl = window.location.href;
+    console.log(currurl)
+    if (currurl.includes("?r=")) {
+        let spliced = currurl.split("?r=");
+        let codie = spliced[1];
+        let frontpt = spliced[0]
+        // let namey = localStorage.getItem("chatName")
+        // let dat = [namey];
+        // console.log(dat)
+        // db.ref("ROOMS").child(codie).child("active").set(dat);
+        console.log(codie)
+        document.getElementById("roomcode").value = codie;
+        if (codie != undefined) {
+            let flag = await checkPresence()
+            console.log(flag)
+            if (!flag) {
+                window.alert("Room doesn't exists")
+            }
+            if (codie.length == 6 && flag) {
+
+
+                var currSender = localStorage.getItem("chatName");
+                if (!currSender) {
+                    currSender = prompt("Enter Your Name")
+                    if (currSender) {
+                        wscr.style.display = "none";
+                        localStorage.setItem("chatName", currSender);
+                        document.getElementById("name").value = currSender;
+                        currentRoom = codie.toUpperCase();
+                        console.log(currentRoom);
+                        let rmcodeElement = document.getElementById("rc")
+                        rmcodeElement.innerText = currentRoom;
+
+                    }
+
+                } else {
                     wscr.style.display = "none";
+
                     localStorage.setItem("chatName", currSender);
                     document.getElementById("name").value = currSender;
                     currentRoom = codie.toUpperCase();
-                    console.log(currentRoom);
+
                     let rmcodeElement = document.getElementById("rc")
                     rmcodeElement.innerText = currentRoom;
-
                 }
 
             } else {
-                wscr.style.display = "none";
-
-                localStorage.setItem("chatName", currSender);
-                document.getElementById("name").value = currSender;
-                currentRoom = codie.toUpperCase();
-
-                let rmcodeElement = document.getElementById("rc")
-                rmcodeElement.innerText = currentRoom;
+                window.location.href = frontpt;
             }
-
-        } else {
-            window.location.href = frontpt;
         }
-    }
 
+    }
 }
+
+
+
+
+
 if (!namePush && currentRoom) {
-    firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
+    db.ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
         updat = snapshot.val();
         // console.log(updat);
         if (updat != undefined) {
@@ -83,20 +99,37 @@ if (!namePush && currentRoom) {
                 namePush = true
                 updat.push(currentUser);
                 console.log(updat)
-                firebase.database().ref("ROOMS").child(currentRoom).child("active").set(updat);
+                db.ref("ROOMS").child(currentRoom).child("active").set(updat);
             }
             updateActiveBar();
         }
     })
 }
+async function checkPresence(code) {
+    const actRef = db.ref('METADATA/activeRooms')
+    actRef.once('value')
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const arr = snapshot.val()
+                console.log(arr)
+                if (arr.includes(code)) return true
+                else return false
+
+            } else {
+                return false
+            }
+        }).catch((err) => {
+            console.error(err)
+        })
+}
 function leaveRoom() {
-    firebase.database().ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
+    db.ref("ROOMS").child(currentRoom).child("active").on("value", function (snapshot) {
         updat = snapshot.val();
         console.log(updat);
         if (updat != undefined) {
             updat.pop(currentUser);
             console.log(updat)
-            firebase.database().ref("ROOMS").child(currentRoom).child("active").set(updat);
+            db.ref("ROOMS").child(currentRoom).child("active").set(updat);
             updateActiveBar();
         }
     })
@@ -183,7 +216,7 @@ document.addEventListener("keyup", (e) => {
 });
 
 function deleteRoom() {
-    firebase.database().ref("ROOMS").child(currentRoom).remove();
+    db.ref("ROOMS").child(currentRoom).remove();
     if (chat_media != 0) {
         var storage = firebase.storage();
         var storageRef = storage.ref();
@@ -251,18 +284,21 @@ function codeGenerator() {
 
 // CREATE OR JOIN ROOM
 
-function createRoom() {
+async function createRoom() {
     let vali = nameValidate();
     if (vali) {
         currentRoom = codeGenerator();
-        window.location.href += `?c?r=${currentRoom}`
+        await activateRoom(currentRoom)
+        window.location.href += `?r=${currentRoom}`
     }
 }
+
+
 
 function joinRoom() {
     let vali = nameValidate();
     if (vali) {
-        currentRoom = codeGenerator();
+        // currentRoom = codeGenerator();
         var jrCode = document.getElementById("roomcode").value.toUpperCase();
         window.location.href += `?r=${jrCode}`
     }
@@ -295,7 +331,7 @@ function normalMessage() {
     message = message.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
     if (message != " " || message != "") {
         var timex = geTime();
-        firebase.database().ref("ROOMS").child(currentRoom).push().set({
+        db.ref("ROOMS").child(currentRoom).push().set({
             "sender": currSender,
             "message": message,
             "time": timex
@@ -345,7 +381,7 @@ function deleteMsg(e, idxx, msg) {
     let content = profanityCleaner("Deleted Message")
     var permis = window.confirm(`Do you want to delete the message "${msg}"?`);
     if (permis) {
-        firebase.database().ref("ROOMS").child(currentRoom).child(idxx).child("message").set(content)
+        db.ref("ROOMS").child(currentRoom).child(idxx).child("message").set(content)
     }
 
 }
@@ -519,7 +555,7 @@ function listMessages(snapshot) {
             liElx.className = "chat";
             const repP = document.createElement("li");
             repP.className = "replyEnc"
-            const repSender = firebase.database().ref("ROOMS").child(currentRoom).child(reVe);
+            const repSender = db.ref("ROOMS").child(currentRoom).child(reVe);
             repSender.once('value').then(snapshot => {
                 const rSen = snapshot.val().sender
                 const rMsg = snapshot.val().message
@@ -556,13 +592,13 @@ function listMessages(snapshot) {
     }
 }
 if (currentRoom) {
-    firebase.database().ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
+    db.ref("ROOMS").child(currentRoom).on("child_added", (snapshot) => {
         listMessages(snapshot);
         const msgScr = document.getElementById("chatbox");
         msgScr.scrollTop = msgScr.scrollHeight;
 
     });
-    firebase.database().ref("ROOMS").child(currentRoom).on("child_changed", (snapshot) => {
+    db.ref("ROOMS").child(currentRoom).on("child_changed", (snapshot) => {
         document.getElementById("p" + snapshot.key).innerHTML = '<i>Deleted Message</i>'
         document.getElementById("p" + snapshot.key).style.color = '#959595'
     });
@@ -613,7 +649,7 @@ function replyMessage() {
     if (message != " " || message != "") {
         var timex = geTime();
         var rems = cRply;
-        firebase.database().ref("ROOMS").child(currentRoom).push().set({
+        db.ref("ROOMS").child(currentRoom).push().set({
             "sender": currSender,
             "message": message,
             "time": timex,
@@ -633,7 +669,7 @@ function replyMessage() {
 }
 
 
-firebase.database().ref("ROOMS").on("child_removed", (snapshot) => {
+db.ref("ROOMS").on("child_removed", (snapshot) => {
     console.log(snapshot.key);
     if (currentRoom == snapshot.key) {
         currentRoom = "";
@@ -676,7 +712,7 @@ function sendMedia() {
     var timex = geTime();
     let rems = document.getElementById("mediaStage").value;
 
-    firebase.database().ref("ROOMS").child(currentRoom).push().set({
+    db.ref("ROOMS").child(currentRoom).push().set({
         "sender": currSender,
         "time": timex,
         "imgUrl": rems,

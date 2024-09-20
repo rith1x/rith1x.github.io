@@ -1,0 +1,111 @@
+@font-face {
+    font-family: spc;
+    src: url('./assets/font/Good\ Old\ DOS.ttf');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: spc;
+}
+
+body {
+    color: #fff;
+    background: #000;
+    height: 100dvh;
+    width: 100%;
+    font-weight: 100;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+
+
+}
+
+h1 {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    height: 100dvh;
+    display: flex;
+    padding: 20px;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid {
+    width: 100%;
+    height: 100%;
+    background: #030010;
+
+    border: solid 2px #aaaaaa20;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.ctrls {
+    display: flex;
+    height: 80px;
+    width: 100%;
+    gap: 15px;
+
+}
+
+.ctrls button {
+    height: 100%;
+    width: 100%;
+    background: #030010;
+    color: #0f0;
+    font-size: 1.2em;
+
+    border: solid 2px #aaaaaa20;
+}
+
+.pixel {
+    /* border: solid 1px #ff0; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    /* border: solid 1px #ff0; */
+}
+
+.shooter {
+    background-image: url(./assets/img/shooter.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+.alien {
+    background-image: url(./assets/img/alien.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+
+    background-position: 50% 50%;
+}
+
+.laser {
+    background-image: url(./assets/img/beam.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+
+    background-position: 50% 50%;
+}
+
+.boom {
+    background-image: url(./assets/img/blast.gif);
+    background-size: 80%;
+    background-repeat: no-repeat;
+
+    background-position: 50% 50%;
+}

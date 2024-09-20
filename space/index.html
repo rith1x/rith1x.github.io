@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Space Invaders</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1></h1>
+            <div id="grid" class="grid"></div>
+            <div class="ctrls">
+                <button onclick="moveLeft()" class="lft">Left</button>
+                <button onclick="tapShoot()" class="sht">Shoot!</button>
+                <button onclick="moveRight()" class="rgt">Right</button>
+            </div>
+        </div>
+        <div class="hidden" style="display: none;">
+            <audio src="./assets/audio/blast.mp3" id="blast"></audio>
+            <audio src="./assets/audio/shoott.mp3" id="shoot"></audio>
+            <audio src="./assets/audio/type.mp3" id="type"></audio>
+            <audio src="./assets/audio/bg.mp3" id="bg" autoplay="true"></audio>
+            <!-- <audio src="./bbls.mp3" id="bb" autoplay loop></audio> -->
+        </div>
+    </body>
+
+</html>

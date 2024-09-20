@@ -122,7 +122,7 @@ body footer:not(.stars, .twinkling, .back) {
 }
 
 .header p {
-    width: 50%;
+    width: 80%;
     margin-top: 20px;
     text-align: center;
     font-size: 14px;
@@ -143,7 +143,7 @@ body footer:not(.stars, .twinkling, .back) {
 }
 
 .solar-system-overview p {
-    width: 60%;
+    width: 80%;
     text-align: center;
     font-size: 16px;
     text-shadow: 0 0 3px #000;
@@ -392,4 +392,3 @@ body footer:not(.stars, .twinkling, .back) {
         transform: rotate(360deg);
     }
 }
-
