@@ -11,32 +11,47 @@ async function delay(ms) {
 
 async function phraseCreate() {
     const pEl = document.getElementById('introduce')
-    let phrase = "I'm Kiruthik Kumar, crafting intuitive digital experiences from concept to code."
-    phrase.split(" ").forEach(word => {
+    let phrase = "I'm Kiruthik Kumar, crafting intuitive digital experiences from concept to code. I provide professional web design services, creating visually appealing,responsive websites that prioritize user experience. From layout and graphics to interactivity, I ensure seamless navigation and a stunning online presence across all devices."
+    let phrases = phrase.split("")
+
+    for (let i = 0; i < phrases.length; i++) {
+        let word = phrases[i]
+
         const wel = document.createElement('span')
-        wel.setAttribute("fade", true)
-        wel.innerText = word + " "
-        wel.className = "hide"
+        wel.setAttribute("glow", true)
+        wel.innerText = word + ""
+        wel.className = "glow-hide"
         pEl.appendChild(wel)
-    })
+        console.log(word)
+    }
 }
 
 
 document.addEventListener('DOMContentLoaded', async function () {
 
-    await phraseCreate()
-
-
     const observer = new IntersectionObserver(async (entries) => {
 
         for (const entry of entries) {
             entry.target.classList.remove('hide', entry.isIntersecting);
-            await delay(200);
+            await delay(25);
             entry.target.classList.add('show', entry.isIntersecting);
         }
     });
 
     document.querySelectorAll('[fade]').forEach((el) => observer.observe(el));
+});
+document.addEventListener('DOMContentLoaded', async function () {
+    await phraseCreate()
+    const observer = new IntersectionObserver(async (entries) => {
+
+        for (const entry of entries) {
+            entry.target.classList.remove('glow-hide', entry.isIntersecting);
+            await delay(12);
+            entry.target.classList.add('glow-show', entry.isIntersecting);
+        }
+    });
+
+    document.querySelectorAll('[glow]').forEach((el) => observer.observe(el));
 });
 
 
@@ -119,6 +134,7 @@ function appendDesigns() {
 
     for (let i = 0; i < designWorks.length; i++) {
         bgclr = randomBG()
+        // let bgClr2 = randomBG()
         const projectB = document.createElement('div')
         const projectI = document.createElement('img')
         const projectT = document.createElement('h1')
@@ -131,7 +147,8 @@ function appendDesigns() {
         const projectA = document.createElement('a')
         projectA.href = designWorks[i].url
         projectB.className = "project-box"
-        projectA.style.backgroundColor = bgclr
+        projectA.style.background = bgclr
+        // projectA.style.backgroundImage = `linear-gradient(-45deg, ${bgclr},${bgClr2})`
         projectT.style.color = textClr(bgclr)
         projectC.style.color = textClr(bgclr)
         projectB.appendChild(projectT)
@@ -313,8 +330,6 @@ function projectGames() {
         gamesB.appendChild(gamesD)
         gamesB.appendChild(gamesI)
         gamesA.appendChild(gamesB)
-        gamesA.setAttribute('fade', true)
-
         projectEl.appendChild(gamesA)
     }
 }
@@ -332,3 +347,147 @@ function navOps(e) {
     })
     document.getElementById(e.target.id).parentElement.classList.add("active")
 }
+
+const utilProj = [
+    {
+        "title": "BMI Calculator",
+        "url": "https://rith1x.github.io/bmi",
+        "short_desc": "Calculate your Body Mass Index (BMI) based on height and weight.",
+        "desc": "A simple tool to calculate your Body Mass Index (BMI). Enter your height and weight, and the calculator will provide your BMI along with an indication of whether you're underweight, normal weight, overweight, or obese. Ideal for health tracking.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Calculator",
+        "url": "https://rith1x.github.io/calculator",
+        "short_desc": "A basic web-based calculator for simple arithmetic operations.",
+        "desc": "Perform basic arithmetic operations such as addition, subtraction, multiplication, and division using this simple online calculator. The intuitive interface allows for quick and easy calculations, making it useful for day-to-day needs.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "CGPA Calculator",
+        "url": "https://rith1x.github.io/cgpa",
+        "short_desc": "Calculate your CGPA based on your semester grades.",
+        "desc": "Easily calculate your Cumulative Grade Point Average (CGPA) by entering your semester grades. This tool helps students quickly determine their overall academic performance without the need for manual calculations. Simple and efficient.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Character Counter, WPM, Word Frequency",
+        "url": "https://rith1x.github.io/chars",
+        "short_desc": "Count characters, words, and calculate word frequency and WPM.",
+        "desc": "Analyze text with this tool that counts characters and words, calculates your Words Per Minute (WPM) typing speed, and shows word frequency. Perfect for writers, typists, and anyone looking to evaluate their text input.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "End-to-End Encrypted Chat Webapp",
+        "url": "https://rith1x.github.io/chat",
+        "short_desc": "A secure chat webapp with end-to-end encryption.",
+        "desc": "A web-based chat application with end-to-end encryption to ensure privacy. Users can chat securely without worrying about their data being intercepted. Ideal for those looking for a simple, encrypted communication platform.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Clicker Counter",
+        "url": "https://rith1x.github.io/clicker",
+        "short_desc": "A simple web-based clicker counter.",
+        "desc": "Keep track of your counts with this easy-to-use clicker counter. Whether it's for counting events, tracking items, or any other purpose, this tool provides a simple interface for accurate counting.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Unit Converter",
+        "url": "https://rith1x.github.io/converter",
+        "short_desc": "Convert units across different measurement systems.",
+        "desc": "Easily convert units of measurement such as length, weight, temperature, and more with this unit converter. It supports a wide range of units and provides quick results, making it a handy tool for students, professionals, and travelers.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Persistent Grocery List",
+        "url": "https://rith1x.github.io/grocery",
+        "short_desc": "Create a persistent grocery list that saves across sessions.",
+        "desc": "This tool allows users to create a grocery list that persists even after closing the browser. Add items, check them off, and manage your shopping efficiently. Perfect for anyone who needs to organize their shopping in a simple way.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Persistent To-Do List",
+        "url": "https://rith1x.github.io/todo",
+        "short_desc": "A persistent to-do list that saves your tasks across sessions.",
+        "desc": "Stay organized with this persistent to-do list that saves your tasks even after you close the browser. Add, delete, and manage your tasks easily, making it a perfect tool for personal task management and productivity.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Simple HTML CSS Live IDE",
+        "url": "https://rith1x.github.io/ide",
+        "short_desc": "A basic live IDE for HTML and CSS coding.",
+        "desc": "A simple, live web-based Integrated Development Environment (IDE) for coding in HTML and CSS. It allows you to see the results of your code instantly, making it a great tool for beginners or anyone who wants to quickly test their code.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Simple Persistent Notes",
+        "url": "https://rith1x.github.io/keep",
+        "short_desc": "A simple note-taking app with persistent storage.",
+        "desc": "Take notes and save them across sessions with this simple note-taking app. It offers a clean interface for creating, editing, and deleting notes that are stored locally in your browser, ensuring your data stays with you.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Bin-Decimal Converter",
+        "url": "https://rith1x.github.io/num",
+        "short_desc": "Convert numbers between binary and decimal formats.",
+        "desc": "A tool to convert numbers between binary and decimal formats. Ideal for students and professionals dealing with digital systems and computer science-related tasks, providing a quick and accurate conversion between the two number systems.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Password Generator",
+        "url": "https://rith1x.github.io/password",
+        "short_desc": "Generate strong, random passwords.",
+        "desc": "Create secure and strong passwords with this password generator. Users can select the length and complexity, making it ideal for generating passwords for various accounts or services, ensuring online safety.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Pomodoro Timer",
+        "url": "https://rith1x.github.io/pomodoro",
+        "short_desc": "A timer based on the Pomodoro Technique for productivity.",
+        "desc": "Boost your productivity with this Pomodoro timer. The Pomodoro Technique is a time management method that uses short intervals of work followed by breaks. This tool helps users follow that cycle and improve their focus on tasks.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Text to QR",
+        "url": "https://rith1x.github.io/qr",
+        "short_desc": "Convert any text into a scannable QR code.",
+        "desc": "This tool allows users to convert any text into a QR code that can be scanned with a mobile device. It's useful for quickly sharing links, contact information, or any other text-based data in a compact format.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Shareable Random Quotes Generator",
+        "url": "https://rith1x.github.io/quotes",
+        "short_desc": "Generate random, shareable quotes with a simple click.",
+        "desc": "Get inspired with random quotes from various authors and topics. The tool allows users to generate and share motivational or thought-provoking quotes with just one click. Perfect for sharing on social media or with friends.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Temperature Unit Converter",
+        "url": "https://rith1x.github.io/temperature",
+        "short_desc": "Convert between Celsius, Fahrenheit, and Kelvin units.",
+        "desc": "Quickly convert temperatures between Celsius, Fahrenheit, and Kelvin units. This tool provides a simple interface for converting temperature values, making it perfect for students, scientists, or anyone working with different temperature scales.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Creative Thoughts Editor & Export as Image",
+        "url": "https://rith1x.github.io/thoughts",
+        "short_desc": "Write creative thoughts and export them as an image.",
+        "desc": "This tool allows users to write their creative thoughts, quotes, or ideas and export them as an image. Perfect for sharing on social media or keeping as a personal reminder, it helps you turn words into visually appealing images.",
+        "category": "Utility Tools"
+    },
+    {
+        "title": "Simple Static eCommerce",
+        "url": "https://rith1x.github.io/ecommerce",
+        "short_desc": "A basic eCommerce website with static content and shopping cart.",
+        "desc": "A simple static eCommerce website that provides users with a straightforward shopping experience. It includes a shopping cart and product listings, making it ideal for showcasing products in a basic format without dynamic server-side content.",
+        "category": "Utility Tools"
+    }
+];
+
+
+
+(async function projj() {
+    for (let i = 0; i < utilProj.length; i++) {
+        console
+    }
+})();

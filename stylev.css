@@ -419,11 +419,12 @@ body.light {
 #proj {
     overflow: hidden scroll;
     width: 100%;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     border-radius: 11px;
-
+    scroll-snap-type: y mandatory;
 
 }
 
@@ -434,6 +435,7 @@ body.light {
 #proj a {
     min-height: 280px;
     overflow: hidden;
+    scroll-snap-align: start;
     aspect-ratio: 16/9;
     transition: all .3s ease-in-out;
     background-color: #57575750;
@@ -441,6 +443,11 @@ body.light {
     position: relative;
     padding: 15px;
     cursor: pointer;
+}
+
+.projBar {
+    scroll-snap-align: start;
+
 }
 
 #proj img {
@@ -457,6 +464,8 @@ body.light {
     font-size: 20px;
     color: #000;
 }
+
+
 
 #proj a:hover img {
     scale: 1.05;
@@ -676,4 +685,29 @@ body.light {
 
 #proj a img {
     z-index: -1;
+}
+
+/* #home,
+#services {
+    display: none;
+} */
+[glow="true"] {
+    transition: all .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-size: 18px;
+
+
+}
+
+.glow-hide {
+    opacity: 0;
+    filter: blur(3px);
+    font-size: 25px;
+    transform: rotate(405deg);
+}
+
+.glow-show {
+    opacity: 1;
+    font-size: 20px;
+    transform: rotate(0deg);
+
 }

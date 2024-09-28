@@ -10,27 +10,34 @@ let isGoingRght = true
 let dir = 1;
 let lim = 0;
 let lvl = 1;
+let muted = false;
+if (!muted) {
+    plybom.setAttribute('muted', 'muted')
+    plytyp.setAttribute('muted', 'muted')
+    plysht.setAttribute('muted', 'muted')
+    document.getElementById('bg').setAttribute('muted', true)
+}
 var pixels
 let alienShooter = []
 const levels = {
 
     l1: [5, 6, 7, 8, 9, 10, 20, 21, 22, 23, 24, 25, 35, 36, 37, 38, 39, 40],
-    l2: [1, 3, 5, 7, 9, 11, 13, 21, 23, 25, 27, 29, 31, 33, 41, 43, 45],
-    l3: [0, 2, 4, 6, 8, 10, 12, 30, 32, 34, 36, 38, 40, 42, 44, 46],
-    l4: [10, 11, 12, 13, 14, 25, 26, 27, 28, 29, 40, 41, 42, 43, 44],
-    l5: [3, 4, 5, 9, 10, 11, 13, 14, 30, 31, 32, 34, 35, 49, 50],
-    l6: [15, 16, 17, 18, 19, 34, 35, 36, 37, 38, 53, 54, 55, 56, 57],
-    l7: [2, 4, 6, 8, 10, 24, 26, 28, 30, 44, 46, 48],
-    l8: [0, 1, 2, 15, 16, 17, 18, 19, 30, 31, 32, 33, 34, 45, 46, 47, 48, 49],
-    l9: [11, 12, 13, 26, 27, 28, 29, 42, 43, 44],
-    l10: [5, 6, 7, 22, 23, 24, 37, 38, 39],
-    l11: [1, 2, 3, 4, 5, 6, 21, 22, 23, 24, 25, 26],
-    l12: [3, 4, 5, 20, 21, 22, 37, 38, 39],
-    l13: [0, 2, 4, 6, 8, 20, 22, 24, 26, 28, 40, 42, 44],
-    l14: [7, 8, 9, 22, 23, 24, 37, 38, 39],
-    l15: [12, 13, 14, 27, 28, 29, 42, 43, 44],
-    l16: [10, 11, 12, 13, 14, 25, 26, 27, 28, 29],
-    l17: [5, 6, 7, 20, 21, 22, 35, 36, 37],
+    l2: [0, 2, 4, 6, 8, 10, 12, 30, 32, 34, 36, 38, 40, 42, 44, 46],
+    l3: [10, 11, 12, 13, 14, 25, 26, 27, 28, 29, 40, 41, 42, 43, 44],
+    l4: [3, 4, 5, 9, 10, 11, 13, 14, 30, 31, 32, 34, 35, 49, 50],
+    l5: [15, 16, 17, 18, 19, 34, 35, 36, 37, 38, 53, 54, 55, 56, 57],
+    l6: [2, 4, 6, 8, 10, 24, 26, 28, 30, 44, 46, 48],
+    l7: [0, 1, 2, 15, 16, 17, 18, 19, 30, 31, 32, 33, 34, 45, 46, 47, 48, 49],
+    l8: [11, 12, 13, 26, 27, 28, 29, 42, 43, 44],
+    l9: [5, 6, 7, 22, 23, 24, 37, 38, 39],
+    l10: [1, 2, 3, 4, 5, 6, 21, 22, 23, 24, 25, 26],
+    l11: [3, 4, 5, 20, 21, 22, 37, 38, 39],
+    l12: [0, 2, 4, 6, 8, 20, 22, 24, 26, 28, 40, 42, 44],
+    l13: [7, 8, 9, 22, 23, 24, 37, 38, 39],
+    l14: [12, 13, 14, 27, 28, 29, 42, 43, 44],
+    l15: [10, 11, 12, 13, 14, 25, 26, 27, 28, 29],
+    l16: [5, 6, 7, 20, 21, 22, 35, 36, 37],
+    l17: [1, 3, 5, 7, 9, 11, 13, 21, 23, 25, 27, 29, 31, 33, 41, 43, 45],
     l18: [4, 5, 6, 19, 20, 21, 34, 35, 36],
     l19: [3, 4, 5, 18, 19, 20, 33, 34, 35],
     l20: [7, 8, 9, 10, 11, 12, 13, 22, 23, 24, 25, 26, 27],
@@ -198,7 +205,7 @@ function shoot(e) {
             const dead = alienShooter.indexOf(currentLaserIndex)
             deadAliens.push(dead)
             removeIndex(dead)
-            if (plybom.duration > 0 && !plybom.paused) {
+            if (!muted && plybom.duration > 0 && !plybom.paused) {
                 plybom.pause()
                 plybom.currentTime = 0;
                 plybom.play()
@@ -215,7 +222,7 @@ function shoot(e) {
         }
     }
     if (tapps || e.key === 'ArrowUp' || e.key == ' ') {
-        if (plysht.duration > 0 && !plysht.paused) {
+        if (!muted && plysht.duration > 0 && !plysht.paused) {
             if (sdInt) clearInterval(sdInt)
             plysht.pause()
             plysht.currentTime = 0;
@@ -240,12 +247,22 @@ async function typer() {
         temp += contents[i]
         await delay(100)
         ptsd.innerText = temp
-        if (plytyp.duration > 0 && !plytyp.paused) {
+        if (!muted && plytyp.duration > 0 && !plytyp.paused) {
             plytyp.pause()
             plytyp.currentTime = 0;
             plytyp.play()
         } else {
             plytyp.play()
         }
+    }
+}
+
+function mute() {
+    if (muted) {
+        muted = false;
+        document.getElementById('muteIco').src = './assets/img/unmute.svg';
+    } else {
+        muted = true;
+        document.getElementById('muteIco').src = './assets/img/mute.svg';
     }
 }

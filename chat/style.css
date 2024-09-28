@@ -1045,3 +1045,30 @@ input[type="file"] {
     border: none;
     background-color: rgba(222, 222, 222, 0.486);
 }
+
+body.dark * {
+    background-color: #111111;
+    color: #fff;
+}
+
+body.dark .warn * {
+    background-color: transparent;
+}
+
+body.dark .warn {
+    background-color: #af0c0c;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 11px;
+}
+
+.warn p {
+    text-align: justify;
+}
+
+body.dark svg {
+    color: #ff0;
+}

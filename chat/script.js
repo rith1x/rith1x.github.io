@@ -1,13 +1,5 @@
 var chat_media = 0;
-const firebaseConfig = {
-    apiKey: "AIzaSyD6KJ-ZZGsThD1aAxSpaZHsuPMmG-dvYqE",
-    authDomain: "chatx-29ff8.firebaseapp.com",
-    projectId: "chatx-29ff8",
-    databaseURL: "https://chatx-29ff8-default-rtdb.asia-southeast1.firebasedatabase.app",
-    storageBucket: "chatx-29ff8.appspot.com",
-    messagingSenderId: "1007710976666",
-    appId: "1:1007710976666:web:71c3895500b964d816fd23"
-};
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database()
 var currentRoom;
