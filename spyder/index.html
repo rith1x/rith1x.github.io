@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Spyder</title>
+
+        <script async src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="viewport" id="viewport">
+            <div id="web">
+                <iframe id="ifra" src="../designs/ms" frameborder="0" scrolling="yes"></iframe>
+
+            </div>
+        </div>
+        <div id="bottombar">
+            <div class="tab-bar " id="tabBar">
+                <div id="activeTab">rith1x.github.io</div>
+            </div>
+            <div class="fun-bar" id="funBar">
+                <button class="opt"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="opt"><i class="fa-solid fa-chevron-right"></i></button>
+                <button class="opt active"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
+                <button class="opt active"><i class="fa-regular fa-bookmark"></i></button>
+                <button class="opt active"><i class="fa-regular fa-window-restore"></i></button>
+            </div>
+        </div>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+                font-family: 'Inter';
+                font-weight: 500;
+            }
+
+            body {
+                background: #000;
+                width: 100%;
+                height: 100dvh;
+                overflow: hidden;
+
+            }
+
+            .viewport {
+                max-width: 450px;
+                height: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+                overflow: scroll hidden;
+                justify-content: space-between;
+            }
+
+            #web {
+                background-color: #fff;
+                width: 100%;
+                height: 100%;
+                flex-shrink: 0;
+                position: relative;
+            }
+
+
+
+            #bottombar {
+                max-width: 450px;
+                height: fit-content;
+                display: flex;
+                position: absolute;
+                flex-direction: column;
+                background-color: #131215d5;
+                backdrop-filter: blur(5px);
+                align-items: center;
+                justify-content: space-between;
+                /* padding-bottom: 10px; */
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                transition: all .3s ease;
+            }
+
+            .fun-bar {
+                width: 100%;
+                display: flex;
+                background-color: transparent;
+                height: 50px;
+                align-items: center;
+                justify-content: space-around;
+                transition: all .3s ease;
+            }
+
+            .tab-bar {
+                height: 60px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                overflow: scroll;
+                scroll-snap-type: x mandatory;
+                justify-content: space-between;
+                padding-left: 15%;
+                padding-right: 15%;
+                font-size: 14px;
+                transition: all .3s ease;
+            }
+
+            .tab-bar::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-bar div {
+                width: 100%;
+                height: 70%;
+                margin: 0 5%;
+                flex-shrink: 0;
+                scroll-snap-align: center;
+                background: #4B4A4D;
+                box-shadow: 0 0 5px #00000050;
+                display: flex;
+                align-items: center;
+                transition: all .3s ease;
+                justify-content: center;
+                border-radius: 9px;
+                color: #fff;
+            }
+
+            .fun-bar button {
+                height: 100%;
+                aspect-ratio: 1/1;
+
+                font-size: 21px;
+                border: none;
+                background-color: transparent;
+                color: #73777a;
+            }
+
+            .fun-bar button.active {
+                color: #2178e2;
+
+            }
+
+            .tab-bar .scrolled {
+                background-color: transparent;
+                box-shadow: none;
+                font-size: 12px;
+            }
+
+            .tab-bar svg {
+                width: 13px;
+                height: 13px;
+                padding-bottom: 1px;
+                padding-right: 3px;
+            }
+
+            #web iframe {
+                inset: 0;
+                margin: auto;
+                width: 480px !important;
+                height: 100% !important;
+                overflow: scroll;
+            }
+        </style>
+
+        <script src="main.js" defer>
+
+
+        </script>
+    </body>
+
+</html>
