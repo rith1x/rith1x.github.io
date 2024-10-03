@@ -273,10 +273,6 @@
             .btmquote {
                 justify-content: flex-end;
             }
-
-            * {
-                border: dashed 1px #000;
-            }
         </style>
     </head>
 
@@ -418,15 +414,18 @@
             }
 
             let custom = "?minLength=20&maxLength=130"
-            let apiUrl = 'https://api.quotable.io/quotes/random';
+            // let heroku = 'https://cors-anywhere.herokuapp.com/'
+            let heroku = 'https://thingproxy.freeboard.io/fetch/'
+            let apiUrl = 'https://express-api-hn8u.onrender.com/quote/random';
             const meta = document.getElementById("metacl");
             function fetchRandomQuote() {
-                console.log(apiUrl + custom)
-                fetch(apiUrl + custom)
+                console.log(apiUrl)
+                // fetch(heroku + apiUrl)
+                fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        const quoteText = data[0].content;
+                        const quoteText = data[0].quote;
                         const quoteAuthor = data[0].author;
                         document.getElementById("quote").innerText = quoteText;
                         document.getElementById("author").innerText = quoteAuthor;
@@ -538,7 +537,7 @@
                     });
 
             }
-            fetchCategory();
+            // fetchCategory();
             let ital = 0
             function changeItallic() {
                 if (ital == 0) {
