@@ -421,12 +421,12 @@
             function fetchRandomQuote() {
                 console.log(apiUrl)
                 // fetch(heroku + apiUrl)
-                fetch(apiUrl)
+                    fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        const quoteText = data[0].quote;
-                        const quoteAuthor = data[0].author;
+                        const quoteText = data.quote;
+                        const quoteAuthor = data.author;
                         document.getElementById("quote").innerText = quoteText;
                         document.getElementById("author").innerText = quoteAuthor;
 
