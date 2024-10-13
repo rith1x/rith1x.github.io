@@ -92,6 +92,8 @@
                 background-color: #ffffff90;
                 border-radius: 30px;
                 display: flex;
+                position: relative;
+
                 flex-direction: column;
                 align-items: center;
                 transition: all .3s ease-in-out;
@@ -148,6 +150,15 @@
 
 
 
+
+            #quote img {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                filter: drop-shadow(1px 1px 0 #00000030);
+            }
 
 
             #popp {
@@ -285,7 +296,7 @@
                         <i class="fa-solid fa-quote-left"></i>
                     </div>
                     <div id="quote">
-
+                        <img src="./grid.svg">
                     </div>
                     <div id="author">
 
@@ -306,21 +317,17 @@
 
                 </div>
                 <div class="contents">
-                    <div class="field">
+                    <!-- <div class="field">
                         <label for="categories">Category:</label>
                         <select name="" id="categories" oninput="changeGenre()"></select>
-                    </div>
+                    </div> -->
                     <div class="lanx">
                         Designed and Developed by <a target="_blank"
                             href="https://linkedin.com/in/kiruthikkumar">Kiruthik
                             Kumar</a>
                     </div>
                     <div class="lan">
-                        <span>
-                            API by quotable
-                        </span><span>
-                            Version 1.0.3
-                        </span>
+                        <h2>NEW LOOK COMING SOON</h2>
                     </div>
 
                 </div>
@@ -421,7 +428,7 @@
             function fetchRandomQuote() {
                 console.log(apiUrl)
                 // fetch(heroku + apiUrl)
-                    fetch(apiUrl)
+                fetch(apiUrl)
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
