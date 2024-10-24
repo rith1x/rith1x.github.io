@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PassMan</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+        <script src="scirpt.js" defer></script>
+    </head>
+
+    <body>
+        <div class="container">
+
+            <div id="lock">
+                <h2>Enter Access Code</h2>
+                <div class="nums">
+                    <input type="text" name="" id="dig1" class="num" maxlength="1" minlength="1" required
+                        oninput="focii('1')">
+                    <input type="text" name="" id="dig2" class="num" maxlength="1" minlength="1" required
+                        oninput="focii('2')">
+                    <input type="text" name="" id="dig3" class="num" maxlength="1" minlength="1" required
+                        oninput="focii('3')">
+                    <input type="text" name="" id="dig4" class="num" maxlength="1" minlength="1" required
+                        oninput="focii('4')">
+                    <input type="text" name="" id="dig5" class="num" maxlength="1" minlength="1" required
+                        oninput="focii('5')">
+                    <input type="text" name="" id="dig6" class="num" maxlength="1" minlength="1" required
+                        oninput="validateLock()">
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            body {
+                width: 100%;
+                height: 100dvh;
+                background: #000000;
+            }
+
+            .container {
+                max-width: 450px;
+                height: 100dvh;
+                margin: 0 auto;
+                position: relative;
+                background: #130c17;
+            }
+
+            #lock {
+                height: fit-content;
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                width: 80%;
+                background-color: #00000050;
+                padding: 20px;
+                gap: 10px;
+                border-radius: 21px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            #lock h2 {
+                color: #fff;
+                font-family: 'Space Mono';
+                font-weight: 400;
+            }
+
+            .nums {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .nums input {
+                width: 100%;
+                aspect-ratio: 1/1.3;
+                background-color: #000000;
+                border: solid 1px #aaaaaa30;
+                border-radius: 5px;
+                text-align: center;
+                color: #00ab47;
+                font-size: 28px;
+                font-family: 'Space Mono';
+                transition: all .3s ease;
+            }
+
+            #lock input:valid,
+            #lock input:focus {
+                border-color: #00ab47;
+                box-shadow: 0 0 3px;
+                outline: none;
+            }
+        </style>
+    </body>
+
+</html>

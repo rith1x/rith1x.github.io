@@ -5,503 +5,179 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Converter</title>
-
-        <script src="https://kit.fontawesome.com/2f69883659.js" crossorigin="anonymous"></script>
     </head>
 
     <body>
-        <div class="container">
-            <div class="field">
-                <button onclick="toggleD('length')" id="btn-length">Length</button>
-                <div class="conv-length convy" id="length" style="height: 0px;">
-                    <div class="con">
-                        <div class="option">
-                            <div class="op1">
-                                <select name="" id="from-len" oninput="convlength()">
-                                    <option value="mm">millimeter</option>
-                                    <option value="cm">centimeter</option>
-                                    <option value="dm">decimeter </option>
-                                    <option value="m">meter </option>
-                                    <option value="dam">decameter </option>
-                                    <option value="hm">hectometer </option>
-                                    <option value="km">kilometer </option>
-                                </select>
-                            </div>
-                            <div class="inter" onclick="interVal('len')">
-                                <i class="fa-solid fa-right-left"></i>
-                            </div>
-                            <div class="op2">
-                                <select name="" id="to-len" oninput="convlength()">
-                                    <option value="mm">millimeter </option>
-                                    <option value="cm">centimeter </option>
-                                    <option value="dm">decimeter</option>
-                                    <option value="m">meter</option>
-                                    <option value="dam">decameter</option>
-                                    <option value="hm">hectometer</option>
-                                    <option value="km">kilometer</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="conv-field">
-                            <h1 id="out-len"></h1>
-                            <h2 id="unit-len"></h2>
-                        </div>
-                        <div class="conv-field">
-                            <input type="number" placeholder="Enter value to convert" id="in-len"
-                                oninput="convlength()">
+        <div class="box">
 
-                        </div>
-                    </div>
+            <div class="inputs">
+                <div class="fieldc">
+                    <select name="" id="cat" class="category" oninput="update()">
+                        <option value="c1">Area</option>
+                        <option value="c2">Data Transfer Rate</option>
+                        <option value="c3">Digital Storage</option>
+                        <option value="c4">Energy</option>
+                        <option value="c5">Frequency</option>
+                        <option value="c6">Fuel Economy</option>
+                        <option value="c7">Length</option>
+                        <option value="c8">Mass</option>
+                        <option value="c9">Plane Angle</option>
+                        <option value="c10">Pressure</option>
+                        <option value="c11">Speed</option>
+                        <option value="c12">Temperature</option>
+                        <option value="c13">Time</option>
+                        <option value="c14">Volume</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <input type="text" name="" id="">
+                    <select name="" id="fromUnits"></select>
+                    <input type="text" name="" id="">
+                    <select name="" id="toUnits"></select>
                 </div>
             </div>
-
-            <div class="field">
-                <button onclick="toggleD('weight')" id="btn-weight">Weight</button>
-                <div class="conv-weight convy" id="weight" style="height: 0px;">
-                    <div class="con">
-                        <div class="option">
-                            <div class="op1">
-                                <select name="" id="from-wei" oninput="convweight()">
-                                    <option value="mg">milligrams </option>
-                                    <option value="cg">centigrams </option>
-                                    <option value="dg">decigrams</option>
-                                    <option value="g">grams</option>
-                                    <option value="dag">decagrams</option>
-                                    <option value="hg">hectograms</option>
-                                    <option value="kg">kilograms</option>
-                                </select>
-                            </div>
-                            <div class="inter" onclick="interVal('wei')">
-                                <i class="fa-solid fa-right-left"></i>
-                            </div>
-                            <div class="op2">
-                                <select name="" id="to-wei" oninput="convweight()">
-                                    <option value="mg">milligrams </option>
-                                    <option value="cg">centigrams </option>
-                                    <option value="dg">decigrams</option>
-                                    <option value="g">grams</option>
-                                    <option value="dag">decagrams</option>
-                                    <option value="hg">hectograms</option>
-                                    <option value="kg">kilograms</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="conv-field">
-                            <h1 id="out-wei"></h1>
-                            <h2 id="unit-wei"></h2>
-                        </div>
-                        <div class="conv-field">
-                            <input type="number" placeholder="Enter value to convert" id="in-wei"
-                                oninput="convweight()">
-
-                        </div>
-                    </div>
-                
-                </div>
-            </div>
-
-
-            <div class="field">
-                <button onclick="toggleD('power')" id="btn-power">Power</button>
-                <div class="conv-length convy" id="power" style="height: 0px;">
-                </div>
-            </div>
-
         </div>
         <script>
-            function convlength() {
-                const input = document.getElementById('in-len').value;
-                const iunit = document.getElementById('from-len').value;
-                const ounit = document.getElementById('to-len').value;
-                const output = document.getElementById('out-len');
-                const opunit = document.getElementById('unit-len');
-
-                let result;
-
-                if (iunit === 'mm' && ounit === 'cm') {
-                    result = input / 10;
-                } else if (iunit === 'mm' && ounit === 'dm') {
-                    result = input / 100;
-                } else if (iunit === 'mm' && ounit === 'm') {
-                    result = input / 1000;
-                } else if (iunit === 'mm' && ounit === 'dam') {
-                    result = input / 10000;
-                } else if (iunit === 'mm' && ounit === 'hm') {
-                    result = input / 100000;
-                } else if (iunit === 'mm' && ounit === 'km') {
-                    result = input / 1000000;
-                } else if (iunit === 'cm' && ounit === 'mm') {
-                    result = input * 10;
-                } else if (iunit === 'cm' && ounit === 'dm') {
-                    result = input / 10;
-                } else if (iunit === 'cm' && ounit === 'm') {
-                    result = input / 100;
-                } else if (iunit === 'cm' && ounit === 'dam') {
-                    result = input / 1000;
-                } else if (iunit === 'cm' && ounit === 'hm') {
-                    result = input / 10000;
-                } else if (iunit === 'cm' && ounit === 'km') {
-                    result = input / 100000;
-                } else if (iunit === 'dm' && ounit === 'mm') {
-                    result = input * 100;
-                } else if (iunit === 'dm' && ounit === 'cm') {
-                    result = input * 10;
-                } else if (iunit === 'dm' && ounit === 'm') {
-                    result = input / 10;
-                } else if (iunit === 'dm' && ounit === 'dam') {
-                    result = input / 100;
-                } else if (iunit === 'dm' && ounit === 'hm') {
-                    result = input / 1000;
-                } else if (iunit === 'dm' && ounit === 'km') {
-                    result = input / 10000;
-                } else if (iunit === 'm' && ounit === 'mm') {
-                    result = input * 1000;
-                } else if (iunit === 'm' && ounit === 'cm') {
-                    result = input * 100;
-                } else if (iunit === 'm' && ounit === 'dm') {
-                    result = input * 10;
-                } else if (iunit === 'm' && ounit === 'dam') {
-                    result = input / 10;
-                } else if (iunit === 'm' && ounit === 'hm') {
-                    result = input / 100;
-                } else if (iunit === 'm' && ounit === 'km') {
-                    result = input / 1000;
-                } else if (iunit === 'dam' && ounit === 'mm') {
-                    result = input * 10000;
-                } else if (iunit === 'dam' && ounit === 'cm') {
-                    result = input * 1000;
-                } else if (iunit === 'dam' && ounit === 'dm') {
-                    result = input * 100;
-                } else if (iunit === 'dam' && ounit === 'm') {
-                    result = input * 10;
-                } else if (iunit === 'dam' && ounit === 'hm') {
-                    result = input / 10;
-                } else if (iunit === 'dam' && ounit === 'km') {
-                    result = input / 100;
-                } else if (iunit === 'hm' && ounit === 'mm') {
-                    result = input * 100000;
-                } else if (iunit === 'hm' && ounit === 'cm') {
-                    result = input * 10000;
-                } else if (iunit === 'hm' && ounit === 'dm') {
-                    result = input * 1000;
-                } else if (iunit === 'hm' && ounit === 'm') {
-                    result = input * 100;
-                } else if (iunit === 'hm' && ounit === 'dam') {
-                    result = input * 10;
-                } else if (iunit === 'hm' && ounit === 'km') {
-                    result = input / 10;
-                } else if (iunit === 'km' && ounit === 'mm') {
-                    result = input * 1000000;
-                } else if (iunit === 'km' && ounit === 'cm') {
-                    result = input * 100000;
-                } else if (iunit === 'km' && ounit === 'dm') {
-                    result = input * 10000;
-                } else if (iunit === 'km' && ounit === 'm') {
-                    result = input * 1000;
-                } else if (iunit === 'km' && ounit === 'dam') {
-                    result = input * 100;
-                } else if (iunit === 'km' && ounit === 'hm') {
-                    result = input * 10;
-                } else {
-                    result = input;
+            const dbs = {
+                c1: {
+                    name: "Area",
+                    units: ["Square Kilometer", "Square meter", "Square mile", "Square yard", "Square foot", "Square inch", "Hectare", "Acre"]
+                },
+                c2: {
+                    name: "Data Transfer Rate",
+                    units: ["b/s","kb/s","kB/s",]
+                },
+                c3: {
+                    name: "Digital Storage",
+                    units: []
+                },
+                c4: {
+                    name: "Energy",
+                    units: []
+                },
+                c5: {
+                    name: "Frequency",
+                    units: []
+                },
+                c6: {
+                    name: "Fuel Economy",
+                    units: []
+                },
+                c7: {
+                    name: "Length",
+                    units: []
+                },
+                c8: {
+                    name: "Mass",
+                    units: []
+                },
+                c9: {
+                    name: "Plane Angle",
+                    units: []
+                },
+                c10: {
+                    name: "Pressure",
+                    units: []
+                },
+                c11: {
+                    name: "Speed",
+                    units: []
+                },
+                c12: {
+                    name: "Temperature",
+                    units: []
+                },
+                c13: {
+                    name: "Time",
+                    units: []
+                },
+                c14: {
+                    name: "Volume",
+                    units: []
                 }
-                output.innerText = result;
-                opunit.innerText = ounit;
+            };
+
+            function update() {
+                const cat = document.getElementById('cat').value
 
 
-            }
-
-
-            
-function convweight() {
-    const input = document.getElementById('in-wei').value;
-    const iunit = document.getElementById('from-wei').value;
-    const ounit = document.getElementById('to-wei').value;
-    const output = document.getElementById('out-wei');
-    const opunit = document.getElementById('unit-wei');
-
-    let result;
-
-
-
-if (iunit === 'mg' && ounit === 'cg') {
-    result = input / 10;
-} else if (iunit === 'mg' && ounit === 'dg') {
-    result = input / 100;
-} else if (iunit === 'mg' && ounit === 'g') {
-    result = input / 1000;
-} else if (iunit === 'mg' && ounit === 'dag') {
-    result = input / 10000;
-} else if (iunit === 'mg' && ounit === 'hg') {
-    result = input / 100000;
-} else if (iunit === 'mg' && ounit === 'kg') {
-    result = input / 1000000;
-} else if (iunit === 'cg' && ounit === 'mg') {
-    result = input * 10;
-} else if (iunit === 'cg' && ounit === 'dg') {
-    result = input / 10;
-} else if (iunit === 'cg' && ounit === 'g') {
-    result = input / 100;
-} else if (iunit === 'cg' && ounit === 'dag') {
-    result = input / 1000;
-} else if (iunit === 'cg' && ounit === 'hg') {
-    result = input / 10000;
-} else if (iunit === 'cg' && ounit === 'kg') {
-    result = input / 100000;
-} else if (iunit === 'dg' && ounit === 'mg') {
-    result = input * 100;
-} else if (iunit === 'dg' && ounit === 'cg') {
-    result = input * 10;
-} else if (iunit === 'dg' && ounit === 'g') {
-    result = input / 10;
-} else if (iunit === 'dg' && ounit === 'dag') {
-    result = input / 100;
-} else if (iunit === 'dg' && ounit === 'hg') {
-    result = input / 1000;
-} else if (iunit === 'dg' && ounit === 'kg') {
-    result = input / 10000;
-} else if (iunit === 'g' && ounit === 'mg') {
-    result = input * 1000;
-} else if (iunit === 'g' && ounit === 'cg') {
-    result = input * 100;
-} else if (iunit === 'g' && ounit === 'dg') {
-    result = input * 10;
-} else if (iunit === 'g' && ounit === 'dag') {
-    result = input / 10;
-} else if (iunit === 'g' && ounit === 'hg') {
-    result = input / 100;
-} else if (iunit === 'g' && ounit === 'kg') {
-    result = input / 1000;
-} else if (iunit === 'dag' && ounit === 'mg') {
-    result = input * 10000;
-} else if (iunit === 'dag' && ounit === 'cg') {
-    result = input * 1000;
-} else if (iunit === 'dag' && ounit === 'dg') {
-    result = input * 100;
-} else if (iunit === 'dag' && ounit === 'g') {
-    result = input * 10;
-} else if (iunit === 'dag' && ounit === 'hg') {
-    result = input / 10;
-} else if (iunit === 'dag' && ounit === 'kg') {
-    result = input / 100;
-} else if (iunit === 'hg' && ounit === 'mg') {
-    result = input * 100000;
-} else if (iunit === 'hg' && ounit === 'cg') {
-    result = input * 10000;
-} else if (iunit === 'hg' && ounit === 'dg') {
-    result = input * 1000;
-} else if (iunit === 'hg' && ounit === 'g') {
-    result = input * 100;
-} else if (iunit === 'hg' && ounit === 'dag') {
-    result = input * 10;
-} else if (iunit === 'hg' && ounit === 'kg') {
-    result = input / 10;
-} else if (iunit === 'kg' && ounit === 'mg') {
-    result = input * 1000000;
-} else if (iunit === 'kg' && ounit === 'cg') {
-    result = input * 100000;
-} else if (iunit === 'kg' && ounit === 'dg') {
-    result = input * 10000;
-} else if (iunit === 'kg' && ounit === 'g') {
-    result = input * 1000;
-} else if (iunit === 'kg' && ounit === 'dag') {
-    result = input * 100;
-} else if (iunit === 'kg' && ounit === 'hg') {
-    result = input * 10;
-} else {
-    result = input;
-}
-output.innerText = result;
-                opunit.innerText = ounit;
-
-
-            }
-            function toggleD(cate) {
-                const buttonId = `btn-${cate}`;
-                const divconvy = document.getElementById(cate);
-                const theBtn = document.getElementById(buttonId);
-                if (divconvy.style.height === "0px") {
-                    divconvy.style.height = "250px";
-                    divconvy.style.opacity = "1";
-                    divconvy.style.marginTop = "3px";
-                    theBtn.classList.add("selectedbtn");
-                } else {
-                    divconvy.style.height = "0px";
-                    divconvy.style.opacity = "0";
-                    divconvy.style.marginTop = "0px";
-                    theBtn.classList.remove("selectedbtn");
-
-                }
-            }
-
-
-            function interVal(cate) {
-                const froms = `from-${cate}`;
-                const tos = `to-${cate}`;
-
-
-                const from = document.getElementById(froms);
-                const to = document.getElementById(tos);
-                
-                    let temp = from.value;
-                    from.value = to.value;
-                    to.value = temp;
-                
-                convlength();
             }
         </script>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
-
-            .con {
-                width: 100%;
-                height: 250px;
-                background-color: #212121;
-                border-radius: 0 0 31px 31px;
-                padding: 10px;
-                overflow: hidden;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                color: #fff;
-                justify-content: space-between;
-            }
-
-            body {
-                margin: 0;
-                font-family: 'Gantari';
-                padding: 0;
-                background-color: #000000;
-
-            }
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
             * {
                 box-sizing: border-box;
                 margin: 0;
                 padding: 0;
-                font-family: 'Gantari';
-
+                font-family: Inter;
             }
-            
-            .container {
-                max-width: 450px;
+
+            body {
+                background-color: #000;
+                width: 100%;
                 height: 100dvh;
-                margin: 0 auto;
-                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .box {
+                max-width: 450px;
+
+                height: fit-content;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 21px;
+            }
+
+            .inputs {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 5px;
+            }
+
+            .fieldc {
+                height: 40px;
+            }
+
+            .fieldc select {
+                width: 100%;
+                height: 100%;
+                background-color: transparent;
+                border: solid 1px #aaa;
+                border-radius: 6px;
             }
 
             .field {
+                display: grid;
+                gap: 5px;
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .field input,
+            .field select {
                 width: 100%;
-                background-color: transparent;
-                margin-top: 2px ;
-                border-radius: 31px;
-
-            }
-
-            .field button {
-                width: 100%;
-                height: 60px;
-                background-color: #212121;
-                color: #fff;
-                font-size: 21px;
-                text-align: center;
-                padding: 15px;
-                border: none;
-                transition: all 0.3s ease-in-out;
-                border-radius: 11px;
-            }
-            button.selectedbtn{
-                border-radius: 31px 31px 0 0;
-
-
-            }
-
-            .field .convy {
-                height: 0px;
-                overflow: hidden;
-                transition: all 0.3s ease-in-out;
-                border-radius: 0 0 11px 11px;
-            }
-
-            .option {
-                width: 100%;
-                background-color: #303030;
-                display: flex;
-                padding: 10px;
-                height: 60px;
-                border-radius: 21px;
-                align-items: center;
-                gap: 10px;
-                justify-content: space-between;
-            }
-
-            .option div {
-                height: 100%;
-                && select {
-                    height: 100%;
-                    width: 100%;
-                    padding-inline: 5px;
-                    border-radius: 11px;
-                    font-weight: 500;
-                    width: 100%;
-                    border: none;
-                    background-color: #424242;
-                    color: #ffffff;
-                    font-size: 16px;
-                }
-                && select:focus{
-                    outline: none;
-
-                }
-            }
-            .option div :not(.inter){
-                width: 100%;
-            }
-          
-
-            .inter {
                 height: 40px;
-                aspect-ratio: 1/1;
-                display: flex;
-                border-radius: 11px;
-                color: #ffffff;
-                background-color: #424242;
-                align-items: center;
-                justify-content: center;
+                border-radius: 6px;
+                border: solid 1px #aaa;
             }
 
-            .conv-field {
-                /* border: solid 1px #f00; */
-                display: flex;
-                align-items: end;
-                justify-content: center;
-                height: auto;
-                width: 100%;
-
-                && input {
-                    width: 100%;
-                    margin: 0 auto;
-                    height: 60px;
-                    border-radius: 21px;
-                    border: none;
-                    background-color: #303030;
-                    color: #ffffff;
-                    font-size: 20px;
-                    padding: 20px;
-
-                }
-
-                && input::placeholder {
-                    color: #424242;
-                }
-
-                && input:focus {
-                    outline: none;
-                    border: none;
-                    box-shadow: 0 0 30px -10px #303030;
-                }
+            .field input {
+                font-size: 16px;
+                padding-left: 10px;
             }
-            
+
+            .field select,
+            .fieldc select {
+                background-color: #f1f1f1;
+                font-size: 16px;
+                padding-left: 5px;
+
+
+            }
         </style>
     </body>
 
