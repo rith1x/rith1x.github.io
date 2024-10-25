@@ -19,6 +19,7 @@ function validateLock() {
 
         validPass()
         document.getElementById('lock').style.display = 'none'
+        document.getElementById('app').style.display = 'block'
     } else {
         console.log('Failed')
         wrongPass()
@@ -77,44 +78,11 @@ function deCrypt(d, k) {
 console.log()
 
 
-let pass = [{
-    name: "Amazon",
-    email: "laila@123.in",
-    password: "19NBpeW3BHchNHrjIf9d18xxS3vQXxtC60=",
-    notes: "this is a note",
-    url: "https://github.com",
+let pass = []
 
-}, {
-    name: "Samsung",
-    email: "Mohan@123.in",
-    password: "",
-    notes: "",
-    url: "",
-}, {
-    name: "Apple",
-    email: "Supra@123.in",
-    password: "",
-    notes: "",
-    url: "",
-}]
 
-//<div class="pass" >
-//<div class="pass-left">
-//<div class="pass-icon">
-//<img src="https://ui-avatars.com/api/?name=Laila&background=random" alt="">
-//</div>
-//<div class="pass-info">
-//<h3 class="pass-name">Amazon</h3>
-//<p class="pass-email">kiruthikx@gmail.com</p>
-//</div>
-//</div>
-//<div class="pass-rght">
-
-//</div>
-//</div >
 function loadPasswords() {
     const pwBox = document.getElementById('passwords')
-
     pass.forEach((pw, index) => {
         const passDiv = document.createElement('div')
         passDiv.className = "pass"
@@ -141,7 +109,6 @@ function loadPasswords() {
         pwBox.append(passDiv)
     })
 }
-loadPasswords()
 
 function showData(id) {
     document.getElementById('passTitle').innerText = pass[id].name
@@ -152,9 +119,14 @@ function showData(id) {
     document.getElementById('passUrl').innerText = pass[id].url
     document.getElementById('passNotes').value = pass[id].notes
     document.getElementById('passPop').style.transform = 'translateY(0)'
+}
 
+function addPopup() {
+    document.getElementById('addPop').style.transform = 'translateY(0)'
 
-
+}
+function addClose() {
+    document.getElementById('addPop').style.transform = 'translateY(100%)'
 
 }
 function popClose() {
@@ -185,3 +157,28 @@ function togglePass() {
         pvs = false
     }
 }
+
+function addPassword() {
+    const pwTitle = document.getElementById('pwTitle').value
+    const pwEmail = document.getElementById('pwEmail').value
+    const pwPass = enCrypt(document.getElementById('pwPass').value, prompt("Encryption Key (Remember!)"))
+    const pwUrl = document.getElementById('pwUrl').value
+    const pwNotes = document.getElementById('pwNotes').value
+    let nData = {
+        name: pwTitle,
+        email: pwEmail,
+        password: pwPass,
+        url: pwUrl,
+        notes: pwNotes
+    }
+    pass.push(nData)
+    backupData()
+}
+function backupData() {
+    localStorage.setItem('db', enCrypt(JSON.stringify(pass), deCrypt(localStorage.getItem('lockKey'), prompt("Enter Internal Key"))))
+}
+function fetchData() {
+    pass = JSON.parse(deCrypt(localStorage.getItem('db'), deCrypt(localStorage.getItem('lockKey'), prompt("Enter Internal Key"))))
+    loadPasswords()
+}
+fetchData()
