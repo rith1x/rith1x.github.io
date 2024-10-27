@@ -4,14 +4,41 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sudoku</title>
+        <title>SuDoKu</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
     </head>
 
     <body>
+        <div class="screen">
+            <div class="info">
+                <div class="mode">
+                    <span id="mode"><select oninput="setMode()" name="" id="modes">
+                            <option value="0">easy</option>
+                            <option value="1">medium</option>
+                            <option value="2">hard</option>
+                        </select></span>
+                </div>
 
-        <div id="board"></div>
+                <div class="timer">
+
+                    <span id="time">00:00:00</span>
+                </div>
+            </div>
+            <div id="board"></div>
+            <div id="options">
+                <div class="option">1</div>
+                <div class="option">2</div>
+                <div class="option">3</div>
+                <div class="option">4</div>
+                <div class="option">5</div>
+                <div class="option">6</div>
+                <div class="option">7</div>
+                <div class="option">8</div>
+                <div class="option">9</div>
+            </div>
+
+        </div>
     </body>
 
 </html>
