@@ -275,7 +275,6 @@ function checkFilled() {
 }
 
 function showWinner() {
-    duration = 9985
 
     let appm = ''
     let apps = ''
@@ -289,11 +288,10 @@ function showWinner() {
     if (hh < 10) apph = 0
     document.getElementById('ttk').innerText = `Time taken: ${apph}${hh}h ${appm}${mm}m ${apps}${ss}s`
     document.getElementById('winner').style.visibility = 'visible'
-    setTimeout(hideWinner, 6000)
 }
 function hideWinner() {
     document.getElementById('winner').style.visibility = 'hidden'
-    window.location.reload()
+    endGame()
 }
 function winnerFinalize() {
     duration = startTime
@@ -306,8 +304,18 @@ function winnerFinalize() {
     if (flag) showWinner()
 
 }
-function setMode() {
-    lvl = parseInt(document.getElementById('modes').value)
+function endGame() {
+    window.location.reload()
+}
+function showDifficulty() {
+    document.getElementById('diffmenu').style.visibility = 'visible'
+}
+function closeDiffmenu() {
+    document.getElementById('diffmenu').style.visibility = 'hidden'
+
+}
+function setMode(lvl) {
+    lvl = parseInt(lvl)
     document.getElementById('welcome').style.display = 'none'
     document.getElementById('modex').innerText = (lvl == 0) ? 'Easy' : (lvl == 1) ? 'Medium' : 'Hard'
     timerStop()

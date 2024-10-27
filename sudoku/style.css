@@ -44,8 +44,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    background: rgb(69, 63, 172);
-    background: linear-gradient(0deg, rgb(47, 43, 118) 0%, rgba(42, 46, 67, 1) 54%);
+    background: rgb(30, 30, 30);
+    /* background: linear-gradient(0deg, rgb(47, 43, 118) 0%, rgba(42, 46, 67, 1) 54%); */
 }
 
 .welcome * {
@@ -192,7 +192,7 @@ body {
 
 .info {
     width: 90%;
-    height: 50px;
+    height: 60px;
     background-color: #000000;
     border-radius: 11px;
     display: flex;
@@ -229,7 +229,6 @@ body {
 }
 
 
-
 select {
     border: none;
     background-color: #a17037;
@@ -260,7 +259,7 @@ select:focus {
 }
 
 .winner {
-    width: 60%;
+    width: 80%;
     aspect-ratio: 1/1;
     position: absolute;
     inset: 0;
@@ -274,13 +273,36 @@ select:focus {
     justify-content: center;
     gap: 10px;
     border-radius: 31px;
-    background-color: #4158D0;
-    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    background-image: linear-gradient(45deg, #ffffff, #fff8e8);
+    /* background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
 
 }
 
 .winner * {
     font-family: game;
+
+}
+
+.winner img {
+    width: 150px;
+    animation: rev 2s infinite both;
+    filter: drop-shadow(0 0 10px rgb(255, 170, 0));
+
+}
+
+@keyframes rev {
+    0% {
+        transform: rotatey(90deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotatey(90deg);
+
+    }
 
 }
 
@@ -316,7 +338,7 @@ select:focus {
 #rules li {
     line-height: 1.3;
     margin-bottom: 10px;
-    
+
     font-weight: 100;
 }
 
@@ -357,4 +379,88 @@ ul {
     color: #5db1ff;
     text-decoration: none;
     margin-top: 3px;
+}
+
+
+.gameplay button {
+    border: none;
+    display: flex;
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 36px;
+    padding-inline: 12px 2px;
+    align-items: center;
+    background-color: #c4e3ff;
+    justify-content: center;
+
+    font-family: game;
+    border-radius: 21px;
+    color: #00386d;
+    gap: 8px;
+
+}
+
+
+#diffmenu button {
+    position: absolute;
+    right: 10px;
+    border: none;
+    width: 30px;
+    border-radius: 15px;
+    background-color: transparent;
+    height: 30px;
+    top: 10px;
+}
+
+.icox {
+    width: 32px;
+    background-color: #61b3ff;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icox svg {
+    width: 80%;
+    fill: #00284d;
+    height: 80%;
+}
+
+#diffmenu {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 90%;
+    background-color: #d5ac7d;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+
+}
+
+#diffmenu h3 {
+    padding-bottom: 10px;
+    font-size: 24px;
+}
+
+.opt {
+    height: 50px;
+    background-color: #a17037;
+    width: 100%;
+    border-radius: 11px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
