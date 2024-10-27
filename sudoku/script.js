@@ -135,28 +135,32 @@ let game;
 let userBoard;
 let started = false
 let startTime = 0
+let duration = 0
 
 function selected(x, y) {
     if (!started) timerStart()
     unSelectCells()
     if (document.getElementById(`c${x}${y}`).classList.contains('naS')) return
-    for (let i = 0; i < 9; i++) {
-        document.getElementById(`c${i}${y}`).style.background = '#474c61'
-        document.getElementById(`c${x}${i}`).style.background = '#474c61'
+    // for (let i = 0; i < 9; i++) {
+    //     document.getElementById(`c${i}${y}`).style.border = 'solid 1px #aaa'
+    //     document.getElementById(`c${x}${i}`).style.border = 'solid 1px #aaa'
 
-    }
+    // }
     isSelected = true
     elSelected = `c${x}${y}`
     hoSelected = x
     veSelected = y
-    document.getElementById(`c${x}${y}`).style.background = '#5a66c9'
+    document.getElementById(`c${x}${y}`).style.background = '#5965C8'
     manageSelection()
 }
 
 function unSelectCells() {
+
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             document.getElementById(`c${i}${j}`).style.background = '#353A50';
+            if ((i < 3 && j < 3) || (i < 3 && j > 5) || (i > 2 && i < 6 && j > 2 && j < 6) || (i > 5 && j < 3) || (i > 5 && j > 5)) document.getElementById(`c${i}${j}`).style.background = '#454966'
+
         }
     }
 }
@@ -200,8 +204,8 @@ async function fillCell() {
     }
 }
 
+let optionArray = []
 function manageSelection() {
-    let optionArray = []
     for (let i = 0; i < 9; i++) {
         if (arr[hoSelected][i] !== 0 && !optionArray.includes(arr[hoSelected][i])) {
             optionArray.push(arr[hoSelected][i])
@@ -222,19 +226,35 @@ function manageSelection() {
         } else {
             optEl.classList.add('disabled')
         }
+
         optionEl.append(optEl)
 
     }
+    const cancel = document.createElement('div')
+    cancel.classList.add('option', 'cancel')
+    cancel.innerText = "✕"
+    cancel.onclick = () => { assignVal(0, elSelected) }
+    optionEl.append(cancel)
+
 
 
 }
-async function assignVal(val, el) {
-    document.getElementById(el).innerText = val
+function assignVal(val, el) {
+    if (val == 0) {
+        document.getElementById(el).innerText = ''
+
+    } else {
+
+        document.getElementById(el).innerText = val
+    }
     // await delay(300)
     unSelectCells()
     userBoard[parseInt(el[1])][parseInt(el[2])] = val
-    console.log(userBoard)
     checkFilled()
+    elSelected = ''
+    isSelected = false
+    optionArray = []
+
 }
 async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -247,26 +267,49 @@ function checkFilled() {
             if (userBoard[i][j] == 0) total--
         }
     }
-    console.log(((total / 81) * 100).toFixed(2))
-    if (total === 81) {
+    if (Math.floor((total / 81) * 100) == 100 || total === 81) {
         winnerFinalize()
         timerStop()
     }
 
 }
 
+function showWinner() {
+    duration = 9985
+
+    let appm = ''
+    let apps = ''
+    let apph = ''
+    const hh = Math.floor(duration / 3600);
+    const mm = Math.floor((duration % 3600) / 60);
+    const ss = duration % 60;
+
+    if (mm < 10) appm = 0
+    if (ss < 10) apps = 0
+    if (hh < 10) apph = 0
+    document.getElementById('ttk').innerText = `Time taken: ${apph}${hh}h ${appm}${mm}m ${apps}${ss}s`
+    document.getElementById('winner').style.visibility = 'visible'
+    setTimeout(hideWinner, 6000)
+}
+function hideWinner() {
+    document.getElementById('winner').style.visibility = 'hidden'
+    window.location.reload()
+}
 function winnerFinalize() {
-    let duration = startTime
+    duration = startTime
     let flag = true
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            if (userBoard[i][j] !== game[i][j]) flag = false
+            if (userBoard[i][j] != game.solutionGrid[i][j]) flag = false
         }
     }
-    if (flag) console.log("Game Won")
+    if (flag) showWinner()
+
 }
 function setMode() {
     lvl = parseInt(document.getElementById('modes').value)
+    document.getElementById('welcome').style.display = 'none'
+    document.getElementById('modex').innerText = (lvl == 0) ? 'Easy' : (lvl == 1) ? 'Medium' : 'Hard'
     timerStop()
     generateBoard()
 }
@@ -281,7 +324,6 @@ function refreshTime() {
     // let curr = new Date()
     // let diff = Math.floor((curr - startTime) / 1000)
     startTime++
-    console.log(startTime)
     refreshDisplayTime()
 }
 
@@ -294,14 +336,28 @@ function timerStop() {
 }
 
 function refreshDisplayTime() {
-    appm = ''
-    apps = ''
-    apph = ''
-    let min = Math.floor(startTime / 60)
-    let hrs = Math.floor(startTime / 3600)
-    let sec = startTime % 60
-    if (min < 10) appm = 0
-    if (sec < 10) apps = 0
-    if (hrs < 10) apph = 0
-    document.getElementById('time').innerText = `${apph}${hrs}:${appm}${min}:${apps}${sec}`
+    let appm = ''
+    let apps = ''
+    let apph = ''
+    const hh = Math.floor(startTime / 3600);
+    const mm = Math.floor((startTime % 3600) / 60);
+    const ss = startTime % 60;
+    if (mm < 10) appm = 0
+    if (ss < 10) apps = 0
+    if (hh < 10) apph = 0
+    document.getElementById('time').innerText = `${apph}${hh}:${appm}${mm}:${apps}${ss}`
+}
+document.addEventListener('keypress', (e) => {
+
+    let ky = parseInt(e.key)
+    if (isSelected && !optionArray.includes(ky)) {
+        assignVal(ky, elSelected)
+    }
+
+})
+function showRules() {
+    document.getElementById('rules').style.visibility = 'visible'
+}
+function closeRules() {
+    document.getElementById('rules').style.visibility = 'hidden'
 }

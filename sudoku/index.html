@@ -5,37 +5,79 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SuDoKu</title>
+        <meta name="theme-color" content="#272C41">
         <link rel="stylesheet" href="style.css">
         <script src="script.js" defer></script>
     </head>
 
     <body>
+
         <div class="screen">
-            <div class="info">
-                <div class="mode">
-                    <span id="mode"><select oninput="setMode()" name="" id="modes">
-                            <option value="0">easy</option>
-                            <option value="1">medium</option>
-                            <option value="2">hard</option>
-                        </select></span>
+            <div class="welcome" id="welcome">
+                <h1>SUDOKU</h1>
+                <div class="opts">
+                    <div class="field" onclick="setMode()">Start Game<span id="mode"><select oninput="setMode()" name=""
+                                id="modes">
+                                <option value="0">easy</option>
+                                <option value="1">medium</option>
+                                <option value="2">hard</option>
+                            </select></span></div>
+                    <div class="field" onclick="showRules()">Game Rules</div>
+                    <div class="field disabled">Leaderboards(Coming Soon!)</div>
+                    <div class="fieldx">Made with 💖 by <a href="https://linkedin.com/in/kiruthikkumar/">&nbsp;Kiruthik
+                            kumar</a></div>
+                </div>
+                <div id="rules">
+                    <button onclick="closeRules()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path
+                                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
+                        </svg></button>
+                    <h3>- Sudoku Game Rules -</h3>
+                    <ul>
+                        <li>Each puzzle has a 9x9 grid with 81 cells divided into 9 rows, 9 columns, and 9 smaller
+                            3x3 boxes.</li>
+                        <li>The objective: Fill each cell with numbers 1 to 9.</li>
+                        <li>Each row, column, and 3x3 box must contain all numbers from 1 to 9 without repetition.
+                        </li>
+                        <li>Some cells are pre-filled to guide you, but you can’t change these numbers.</li>
+                        <li>Use logic to solve the puzzle, avoiding guesses if possible.</li>
+                        <li>Only one unique solution is allowed for each puzzle.</li>
+                        <li>The game is complete when all cells are correctly filled according to the rules.</li>
+                    </ul>
+
                 </div>
 
-                <div class="timer">
-
-                    <span id="time">00:00:00</span>
-                </div>
             </div>
-            <div id="board"></div>
-            <div id="options">
-                <div class="option">1</div>
-                <div class="option">2</div>
-                <div class="option">3</div>
-                <div class="option">4</div>
-                <div class="option">5</div>
-                <div class="option">6</div>
-                <div class="option">7</div>
-                <div class="option">8</div>
-                <div class="option">9</div>
+            <div class="gameplay">
+                <div class="info">
+                    <div class="mode">
+                        <span id="modex"></span>
+                    </div>
+
+                    <div class="timer">
+
+                        <span id="time">00:00:00</span>
+                    </div>
+                </div>
+                <div id="board"></div>
+                <div id="options">
+                    <div class="option">1</div>
+                    <div class="option">2</div>
+                    <div class="option">3</div>
+                    <div class="option">4</div>
+                    <div class="option">5</div>
+                    <div class="option">6</div>
+                    <div class="option">7</div>
+                    <div class="option">8</div>
+                    <div class="option">9</div>
+                    <div class="option cancel">✕</div>
+                </div>
+                <div class="winner" id="winner">
+                    <h1>Winner!</h1>
+                    <p id="ttk"></p>
+                    <p>"Congrats, Sudoku Champ! 🏆<br>
+                        You cracked the code!"</p>
+                </div>
             </div>
 
         </div>
