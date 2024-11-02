@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Center</title>
+    </head>
+
+    <body>
+        <!-- whackamoleH-ighscore -->
+        <script>
+            fetch('https://3001-idx-express-api-1730105338159.cluster-nx3nmmkbnfe54q3dd4pfbgilpc.cloudworkstations.dev/', {
+                method: 'POST', // Or PUT, PATCH, DELETE
+                body: JSON.stringify({
+                    userId: "123456",
+                    score: 200,
+                    date: "2024-10-28"
+                })
+            })
+                .then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch(error => console.error('Error:', error));
+
+        </script>
+    </body>
+
+</html>
