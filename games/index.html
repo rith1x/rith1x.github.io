@@ -41,7 +41,6 @@
                                 </div>
                             </div>
                             <p class="success" id="unmsg"></p>
-
                             <div class="photoSlider" id="phs"></div>
                         </div>
                     </div>
@@ -72,11 +71,13 @@
 
             }
             let typingTimer;
+            let apiUrl = 'http://127.0.0.1:3001'
             function checkUsername() {
+                document.getElementById('user').value = document.getElementById('user').value.toLowerCase()
                 clearTimeout(typingTimer)
                 typingTimer = setTimeout(() => {
                     let user = document.getElementById('user').value.trim()
-                    fetch(`http://127.0.0.1:3001/game/check/${user}`).then(res => res.json()).then(data => {
+                    fetch(`${apiUrl}/game/check/${user}`).then(res => res.json()).then(data => {
                         document.getElementById('unmsg').innerText = data.msg
                         if (data.msg == 'Available') {
                             document.getElementById('unmsg').className = 'success'
@@ -89,7 +90,7 @@
 
             function createProfile() {
                 let name = document.getElementById('name').value.trim()
-                let user = document.getElementById('user').value.trim()
+                let user = document.getElementById('user').value.trim().toLowerCase()
                 if (name == '' || user == '') {
                     alert("Fill both ame and username")
                     return
@@ -112,17 +113,13 @@
                         alert(JSON.stringify(data));
                     })
                     .catch(err => {
-                        alert(`<p style="color:#f00">${err}</p>`);
+                        alert("Unexpected error occured while creating your account, kindly try again later!")
                     });
             }
         </script>
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&family=Share+Tech+Mono&display=swap');
 
-            @font-face {
-                font-family: triform;
-                src: url(./Triform.ttf);
-            }
 
             * {
                 box-sizing: border-box;
@@ -240,6 +237,8 @@
                 background-color: transparent;
                 border: none;
                 color: #fff;
+                text-shadow: 0 0 2px #1df10a;
+
             }
 
             input:focus {
@@ -263,8 +262,8 @@
             }
 
             .card * {
-                font-family: triform;
-                font-weight: 700;
+                font-family: 'Share Tech Mono';
+                font-weight: 400;
             }
 
 
