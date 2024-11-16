@@ -77,14 +77,23 @@
                 clearTimeout(typingTimer)
                 typingTimer = setTimeout(() => {
                     let user = document.getElementById('user').value.trim()
-                    fetch(`${apiUrl}/game/check/${user}`).then(res => res.json()).then(data => {
-                        document.getElementById('unmsg').innerText = data.msg
-                        if (data.msg == 'Available') {
-                            document.getElementById('unmsg').className = 'success'
-                        } else {
-                            document.getElementById('unmsg').className = 'failed'
-                        }
-                    })
+                    if (user.length < 5) {
+                        document.getElementById('unmsg').className = 'failed'
+
+                        document.getElementById('unmsg').innerText = "Username length should contain atleast 5 letters"
+
+
+                    } else {
+
+                        fetch(`${apiUrl}/game/check/${user}`).then(res => res.json()).then(data => {
+                            document.getElementById('unmsg').innerText = data.msg
+                            if (data.msg == 'Available') {
+                                document.getElementById('unmsg').className = 'success'
+                            } else {
+                                document.getElementById('unmsg').className = 'failed'
+                            }
+                        })
+                    }
                 }, 500);
             }
 
@@ -109,13 +118,15 @@
                     body: JSON.stringify(payload) // Send as JSON
                 })
                     .then(res => res.json())
-                    .then(data => {
-                        alert(JSON.stringify(data));
+                    .then(dat => {
+                        localStorage.setItem('userID', dat.id)
+                        window.location.href = "/player"
                     })
                     .catch(err => {
                         alert("Unexpected error occured while creating your account, kindly try again later!")
                     });
             }
+
         </script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Serif+JP:wght@200..900&family=Share+Tech+Mono&display=swap');

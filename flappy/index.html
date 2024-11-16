@@ -31,7 +31,7 @@
             }
 
             #game {
-                width: 100%;
+                max-width: 450px;
                 height: 100dvh;
                 margin: 0 auto;
                 overflow: hidden;
@@ -107,7 +107,7 @@
                 var holeTop = parseInt(window.getComputedStyle(hole).getPropertyValue("top"));
                 var cTop = -(height - chartop);
                 if ((chartop > height - 30) || ((blockLeft < 20) && (blockLeft > -50) && ((cTop < holeTop) || (cTop > holeTop + 150)))) {
-                    alert('Game Over, Score = ' + scr);
+                    // alert('Game Over, Score = ' + scr);
                     char.style.top = ((Math.floor(Math.random() * 400) + 100) + "px");
                     scr = 0;
                 }

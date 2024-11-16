@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter';
+}
+
+body {
+    background: #000;
+    width: 100%;
+    height: 100dvh;
+}
+
+.screen {
+    max-width: 450px;
+    height: 100%;
+    margin: 0 auto;
+    background: #0f0f0f;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    overflow: scroll;
+    scroll-snap-type: x mandatory;
+    overflow: hidden;
+}
+
+.createBill {
+
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: fit-content;
+    padding-inline: 25px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    background: #fff;
+    box-shadow: 0 0 10px #aaaaaa90;
+}
+
+.scr {
+    min-width: 100%;
+    height: 100%;
+    background: #ffffff;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden scroll;
+    scroll-snap-align: center;
+
+    gap: 15px;
+}
+
+.field {
+    padding: 10px;
+    border: solid 1px #aaaaaa50;
+    border-radius: 6px;
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+
+}
+
+#billScreen::-webkit-scrollbar {
+    display: none;
+}
+
+.field label {
+    color: #7c7c7c;
+    font-size: 12px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    height: 40px;
+    width: 100%;
+    border: solid 1px #aaaaaa50;
+    border-radius: 6px;
+    padding-left: 5px;
+}
+
+.set {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+
+}
+
+.set select {
+    width: 55px;
+}
+
+.field table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    color: #333;
+    border-radius: 1px;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.field th {
+    background-color: #656565;
+    color: white;
+    text-align: center;
+
+    height: 30px;
+    border: solid 1px #ddd;
+}
+
+.field td {
+    border: solid 1px #ddd;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+}
+
+.field tr:hover {
+    background-color: #f1f1f1;
+}
+
+.field tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.field>button {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    font-size: 12px;
+    margin-top: 10px;
+    background-color: #656565;
+    color: #fff;
+
+}
+
+#gen {
+    min-height: 40px;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    font-size: 12px;
+    background-color: #381a47;
+    color: #fff;
+}
+
+.idSet {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+
+}
+
+.idSet button {
+    width: 100px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    font-size: 12px;
+    background-color: #656565;
+    color: #fff;
+}
+
+*:focus {
+    outline: none;
+}
+
+#descTot {
+    font-size: 12px;
+}
+
+/* #billPrintable * {
+    font-family: monospace !important;
+} */
+.banner {
+    text-align: center;
+}
+
+.inv.banner p {
+    font-size: 14px;
+}
+
+.invHead {
+    text-align: center;
+    margin-block: 5px;
+}
+
+.billTo {
+    font-size: 16px;
+    padding-block: 10px;
+}
+
+#invTab {
+    width: 100%;
+    color: #333;
+    font-size: 14px;
+    overflow: hidden;
+    border-spacing: 0px;
+    border-block: dotted 1px #000;
+}
+
+#invTab th {
+    text-align: center;
+
+    height: 30px;
+    border-bottom: dotted 1px #000;
+}
+
+#invTab td {
+    border: none;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+}
+
+#invTab td:first-child,
+#invTab th:first-child {
+    text-align: left;
+    padding-left: 5px;
+}
+
+#invTab td:last-child,
+#invTab th:last-child {
+    text-align: right;
+    padding-right: 5px;
+}
+
+.prev,
+.total {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    padding-right: 5px;
+
+    font-weight: 600;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.invx {
+    /* position: absolute; */
+    scroll-snap-align: center;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+
+    height: fit-content !important;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}

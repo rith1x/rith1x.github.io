@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Billr by rith1x</title>
+        <script defer src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+        <script src="script.js" defer></script>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="screen">
+
+            <div class="scr" id="billScreen">
+                <div class="field">
+                    <label for="">Invoice ID*</label>
+                    <div class="idSet">
+                        <input type="text" id="billId" value="" readonly>
+                        <button class="idG" onclick="generateBillId()">Generate</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="">Date of Purchase*</label>
+                    <input type="date" name="" value="" id="billDate">
+                </div>
+                <div class="field">
+                    <label for="">Bill To*</label>
+                    <div class="set">
+                        <select name="" id="salName">
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                        </select>
+                        <input type="text" id="fullName" value="">
+                    </div>
+                </div>
+                <div class="field desc">
+                    <label for="">Description*</label>
+                    <table id="descTablex">
+                        <tbody id="descTable">
+                            <tr>
+                                <th contenteditable="false">Item</th>
+                                <th contenteditable="false">Quantity</th>
+                                <th contenteditable="false">Price</th>
+                                <th contenteditable="false">Total</th>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" id="i1"></td>
+                                <td contenteditable="true" id="q1"></td>
+                                <td contenteditable="true" id="p1"></td>
+                                <td id="t1"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p id="descTot">Total: ₹<span id="desTot">0.00</span></p>
+                    <button onclick="addItems()">Add Item</button>
+                </div>
+
+                <div class="field">
+                    <label for="">Previous Due</label>
+                    <input type="number" name="" id="prevDue">
+                </div>
+
+
+                <div class="field">
+                    <label for="">Payment Method*</label>
+                    <select name="" id="paymentM">
+                        <option value="Cash" selected>Cash</option>
+                        <option value="Card">Card</option>
+                        <option value="UPI">UPI</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="">Payment Status:</label>
+                    <select name="" id="paymentS">
+                        <option value="paid" selected>Paid</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="">Notes: </label>
+                    <textarea name="" id="notes"></textarea>
+                </div>
+                <button onclick="createBill()" id="gen">Generate Bill</button>
+            </div>
+            <div class="scr invx" id="billPrintable">
+                <div class="inv banner">
+                    <h2>JAI MANU FASHIONS</h2>
+                    <p id="invAddr">NO. 7/8, 1st CROSS STREET, SALAI ROAD, PONNAMMAPET, SALEM - 636001, TN</p>
+                    <p id="invCnt">PHONE : +91 98765 43210</p>
+                </div>
+                <div id="invHead" class=" inv invHead">
+                    <h3>Retail Invoice</h3>
+                </div>
+                <div class="inv billTo">
+                    <p>Bill To : <span id="invName"></span></p>
+                    <p>Bill No : <span id="invId"></span></p>
+                    <p>Bill Date : <span id="invDate"></span></p>
+                    <p>Payment Mode : <span id="invMode"></span></p>
+                </div>
+
+                <div class="inv des">
+                    <table id="invTab">
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Sub Total</th>
+                        </tr>
+
+
+
+                    </table>
+                    <div class="inv prev">
+                        <p>Due Rs <span id="invDue"></span></p>
+                    </div>
+                    <div class="inv total">
+                        <p>Total Rs <span id="invTotal"></span></p>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- <div class="createBill">
+                New Bill
+            </div> -->
+        </div>
+    </body>
+
+</html>
