@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(res => res.json())
         .then(data => {
             document.getElementById('lscr').style.display = 'none'
-            alert("Connection successful!")
         })
 })
 
