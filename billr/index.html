@@ -12,6 +12,63 @@
     </head>
 
     <body>
+        <div class="lscr" id="lscr">
+            <div class="loader"></div>
+            <p>Connecting...</p>
+
+        </div>
+        <style>
+            .lscr {
+                background-color: #fff;
+                position: absolute;
+                inset: 0;
+                margin: auto;
+                z-index: 2;
+                backdrop-filter: blur(5px);
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            /* HTML: <div class="loader"></div> */
+            .loader {
+                width: 50px;
+                height: 50px;
+                aspect-ratio: 1;
+                display: grid;
+                border-radius: 50%;
+                background:
+                    linear-gradient(0deg, rgba(0, 0, 0, 0.5) 30%, #0000 0 70%, rgb(0 0 0/100%) 0) 50%/8% 100%,
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.25) 30%, #0000 0 70%, rgb(0 0 0/75%) 0) 50%/100% 8%;
+                background-repeat: no-repeat;
+                animation: l23 1s infinite steps(12);
+            }
+
+            .loader::before,
+            .loader::after {
+                content: "";
+                grid-area: 1/1;
+                border-radius: 50%;
+                background: inherit;
+                opacity: 0.915;
+                transform: rotate(30deg);
+            }
+
+            .loader::after {
+                opacity: 0.83;
+                transform: rotate(60deg);
+            }
+
+            @keyframes l23 {
+                100% {
+                    transform: rotate(1turn)
+                }
+            }
+        </style>
         <div class="screen">
 
             <div class="scr" id="billScreen">
@@ -87,9 +144,11 @@
             </div>
             <div class="scr invx" id="billPrintable">
                 <div class="inv banner">
-                    <h2>JAI MANU FASHIONS</h2>
-                    <p id="invAddr">NO. 7/8, 1st CROSS STREET, SALAI ROAD, PONNAMMAPET, SALEM - 636001, TN</p>
-                    <p id="invCnt">PHONE : +91 98765 43210</p>
+                    <h2>JAIMANU FASHIONS</h2>
+                    <p id="invAddr">33/1,102/C1/1, VIJAYARAGAVAPURAM,
+                        NEAR SAIBABA MANDAPAM,
+                        MILITARY ROAD, SALEM - 636001, TAMILNADU.</p>
+                    <p id="invCnt">CONTACT : 9489178411, 9789508411</p>
                 </div>
                 <div id="invHead" class=" inv invHead">
                     <h3>Retail Invoice</h3>
@@ -113,7 +172,7 @@
 
 
                     </table>
-                    <div class="inv prev">
+                    <div class="inv prev" id="inDue">
                         <p>Due Rs <span id="invDue"></span></p>
                     </div>
                     <div class="inv total">

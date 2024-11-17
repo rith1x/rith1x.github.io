@@ -1,5 +1,17 @@
 let items = 1
 let serverUrl = 'https://billr-api.onrender.com'
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetch(serverUrl)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('lscr').style.display = 'none'
+            alert("Connection successful!")
+        })
+})
+
+
+
 function addItems() {
     items += 1
     document.getElementById('descTable').innerHTML += `
@@ -142,7 +154,7 @@ function createBill() {
         body: JSON.stringify(payload)
     })
         .then(res => res.json())
-        .then(a => alert(a.msg))
+        .then(a => alert("Data updated in the server!, click 'ok' to proceed with printing."))
         .catch(a => console.log(a))
 
 
@@ -165,7 +177,12 @@ function downloadBill() {
         <td>${billData.description[i].price}</td>
         <td>${parseInt(billData.description[i].total).toFixed(2)}</td></tr>`
     }
-    document.getElementById('invDue').innerText = parseInt(billData.due).toFixed(2)
+    if (parseInt(billData.due) !== 0) {
+        document.getElementById("inDue").style.display = 'flex'
+        document.getElementById('invDue').innerText = parseInt(billData.due).toFixed(2)
+    } else {
+        document.getElementById("inDue").style.display = 'none'
+    }
     document.getElementById('invTotal').innerText = parseInt(billData.bill).toFixed(2)
 
 
