@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Test tube game</title>
+    </head>
+
+    <body>
+        <div id="game">
+
+        </div>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: none;
+                padding: 0;
+
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100dvh;
+
+            }
+
+            #game {
+                max-width: 450px;
+                height: 100dvh;
+                gap: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+            }
+
+            .testTube {
+                border: solid 2px #959595;
+                width: 50px;
+                height: 190px;
+                transition: all .3s ease;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                align-items: center;
+                justify-content: flex-end;
+
+                padding: 5px;
+                border-radius: 0 0 25px 25px;
+            }
+
+            .liquid {
+                width: 100%;
+                aspect-ratio: 1/1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 20px;
+            }
+
+            .c0 {
+                background: #3498dB;
+            }
+
+            .c1 {
+                background: #34495e;
+
+            }
+
+            .c2 {
+                background: #e74c3c;
+            }
+
+            .c3 {
+                background: #f1c40f;
+            }
+
+            .c4 {
+                background: #2ecc71;
+            }
+
+            .tubeClick {
+                transform: translateY(-50px);
+            }
+
+            .tubeDone {
+                border-color: #0f0;
+            }
+        </style>
+        <script>
+
+            function generateGame(color, space, tubes) {
+                const totalSpaces = space * tubes
+                const colorPool = []
+                for (let i = 0; i < color; i++) {
+                    for (let j = 0; j < space; j++) {
+                        colorPool.push(i)
+                    }
+                }
+                while (colorPool.length < totalSpaces) {
+                    colorPool.push(null)
+                }
+                for (let i = colorPool.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1))
+                    let t = colorPool[i]
+                    colorPool[i] = colorPool[j]
+                    colorPool[j] = t
+                }
+
+                let testTubes = []
+                for (let i = 0; i < tubes; i++) {
+                    testTubes.push(colorPool.slice(i * space, (i + 1) * space))
+                }
+                testTubes.push([])
+                if (!isSolvable(testTubes)) {
+                    return generateGame(color, space, tubes)
+
+                }
+
+                return testTubes
+            }
+
+            function isSolvable(tubes) {
+                let clrCt = {}
+                for (const tube of tubes) {
+                    for (const color of tube) {
+                        if (color !== null) {
+                            clrCt[color] = (clrCt[color] || 0) + 1
+                        }
+                    }
+                }
+                return Object.values(clrCt).every(ct => ct % tubes[0].length === 0)
+            }
+
+            let gameArray = []
+            function generateBoard(color, space, tubes) {
+                let tube = generateGame(color, space, tubes) // returns 2d array
+                gameArray = tube
+                console.log(tube)
+                const gameEl = document.getElementById('game')
+                for (let i = 0; i < tube.length; i++) {
+                    const tubeDiv = document.createElement('div')
+                    tubeDiv.className = 'testTube'
+                    tubeDiv.id = `tube${i}`
+
+                    tubeDiv.setAttribute('onclick', `tubeTap(${i})`)
+                    for (let j = tube[i].length - 1; j >= 0; j--) {
+                        const liquid = document.createElement('div')
+                        liquid.className = 'liquid'
+                        liquid.classList.add(`c${tube[i][j]}`)
+                        // liquid.innerText = tube[i][j]
+                        tubeDiv.appendChild(liquid)
+                    }
+                    gameEl.append(tubeDiv)
+                }
+            }
+            function modifyBoard() {
+                for (let i = 0; i < gameArray.length; i++) {
+                    const tubeDiv = document.getElementById(`tube${i}`);
+                    tubeDiv.innerHTML = '';
+                    for (let j = gameArray[i].length - 1; j >= 0; j--) {
+                        const liquid = document.createElement('div');
+                        liquid.className = 'liquid';
+                        liquid.classList.add(`c${gameArray[i][j]}`);
+                        tubeDiv.appendChild(liquid);
+                    }
+                }
+            }
+
+            let clicked = false
+            let from = 0
+            function tubeTap(tube) {
+                if (!clicked) {
+                    clicked = true
+                    from = tube
+                    document.getElementById(`tube${tube}`).classList.add("tubeClick")
+                } else {
+                    clicked = false
+                    document.getElementById(`tube${from}`).classList.remove("tubeClick")
+
+                    if (gameArray[tube].length < 4 && (gameArray[tube][gameArray[tube].length - 1] === gameArray[from][gameArray[from].length - 1] || gameArray[tube].length === 0)) {
+                        let el = gameArray[from].pop()
+                        console.log(el)
+                        gameArray[tube].push(el)
+                        modifyBoard()
+                        checkBoard()
+                    }
+                }
+            }
+
+            function checkBoard() {
+                for (i = 0; i < gameArray.length; i++) {
+                    if (gameArray[i].length == 4 && allEqual(gameArray[i])) {
+                        document.getElementById(`tube${i}`).classList.add("tubeDone")
+                    }
+                }
+            }
+            function allEqual(arr) {
+                return arr.every(val => val === arr[0]);
+            }
+            generateBoard(5, 4, 5)
+        </script>
+
+    </body>
+
+</html>
