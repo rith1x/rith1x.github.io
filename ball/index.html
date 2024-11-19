@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MatterJS</title>
+    </head>
+
+    <body>
+        <style>
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            #wrld {
+                width: 100%;
+                height: 100dvh;
+                overflow: hidden;
+            }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+
+        <div id="wrld"></div>
+        <script>
+            var Engine = Matter.Engine,
+                Render = Matter.Render,
+                Runner = Matter.Runner,
+                Bodies = Matter.Bodies,
+                Composite = Matter.Composite;
+            let mse = Matter.Mouse.create(document.body)
+            var engine = Engine.create();
+            var render = Render.create({
+                element: document.getElementById('wrld'),
+                engine: engine,
+                options: {
+                    width: window.innerWidth, // Match viewport width
+                    height: window.innerHeight, // Match viewport height
+                    wireframes: false // Makes it look clean; set true if you need wireframe style
+                }
+            });
+            var ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight, window.innerWidth, 10, { isStatic: true }); // Bottom
+            var left = Bodies.rectangle(0, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true }); // Left
+            var right = Bodies.rectangle(window.innerWidth, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true }); // Right
+            var top = Bodies.rectangle(300, 600, 100, 100, { isStatic: true }); // Top
+
+            let bubbles = []
+            for (let i = 0; i < 100; i++) {
+                const pebbl = Bodies.circle(Math.floor(Math.random() * 600), Math.floor(Math.random() * 600), Math.floor(Math.random() * 30 + 5), {
+                    restitution: 1.1, // SUPER BOUNCY!
+                })
+                bubbles.push(pebbl)
+            }
+            bubbles.push(ground, left, right, top)
+
+            var mouse = Matter.Mouse.create(render.canvas); // Capture mouse input on the canvas
+            var mouseConstraint = Matter.MouseConstraint.create(engine, {
+                mouse: mouse,
+                constraint: {
+                    stiffness: 0.2,
+                    render: {
+                        visible: false
+                    }
+                }
+            });
+            Composite.add(engine.world, mouseConstraint);
+            render.mouse = mouse;
+            Composite.add(engine.world, bubbles);
+            Render.run(render);
+            var runner = Runner.create();
+            Runner.run(runner, engine);
+
+            window.addEventListener('resize', () => {
+                Composite.remove(engine.world, [ground, left, right, top]);
+
+                // Recalculate walls
+                ground = Bodies.rectangle(window.innerWidth / 2, window.innerHeight, window.innerWidth, 10, { isStatic: true });
+                left = Bodies.rectangle(0, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true });
+                right = Bodies.rectangle(window.innerWidth, window.innerHeight / 2, 10, window.innerHeight, { isStatic: true });
+                top = Bodies.rectangle(window.innerWidth / 2, 0, window.innerWidth, 10, { isStatic: true });
+
+                Composite.add(engine.world, [ground, left, right, top]);
+            });
+
+        </script>
+    </body>
+
+</html>
