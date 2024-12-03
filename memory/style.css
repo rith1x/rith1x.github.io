@@ -30,4 +30,46 @@ body {
     background: #090909;
     aspect-ratio: 1/1;
     border-radius: 11px;
+    gap: 5px;
+}
+
+.tile {
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s ease;
+    perspective: 100px;
+    transform: rotateY(-180deg);
+
+}
+
+.tile svg {
+    width: 40%;
+    height: 40%;
+}
+
+.hide svg {
+    opacity: 0;
+}
+
+.hide {
+    background: #00ab47 !important;
+}
+
+
+@keyframes flippy {
+    0% {
+        transform: rotateY(0deg);
+
+    }
+
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+.flip {
+    animation: flippy 1s forwards ease;
+    transform-style: preserve-3d;
 }
