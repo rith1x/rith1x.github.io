@@ -329,21 +329,25 @@ function projectGames() {
         const gamesI = document.createElement('img')
         const gamesT = document.createElement('h1')
         const gamesD = document.createElement('button')
+        console.log(gamesI)
         const gamesC = document.createElement('p')
+        gamesB.className = "gameBox"
         gamesC.innerText = games[i].category
         gamesD.innerHTML = arr
+        gamesB.classList.add('show')
         gamesT.innerText = games[i].title
-        gamesI.src = `./i/g${i}.png`
+        gamesI.src = `../i/g${i}.png`
+        gamesI.alt = `../i/g${i}.png`
         const gamesA = document.createElement('a')
         gamesA.href = games[i].url
         gamesA.style.backgroundColor = clr9
         gamesT.style.color = textClr(clr9)
         gamesC.style.color = textClr(clr9)
-        gamesB.appendChild(gamesT)
-        gamesB.appendChild(gamesC)
-        gamesB.appendChild(gamesD)
-        gamesB.appendChild(gamesI)
-        gamesA.appendChild(gamesB)
+        gamesB.append(gamesI)
+        gamesB.append(gamesT)
+        gamesB.append(gamesC)
+        gamesB.append(gamesD)
+        gamesA.append(gamesB)
         projectEl.appendChild(gamesA)
     }
 }
