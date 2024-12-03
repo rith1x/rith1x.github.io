@@ -23,7 +23,7 @@ body {
     justify-content: space-between;
     overflow: scroll;
     scroll-snap-type: x mandatory;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .createBill {

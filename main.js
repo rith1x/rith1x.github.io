@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', async function () {
+
+    const observer = new IntersectionObserver(async (entries) => {
+
+        for (const entry of entries) {
+            entry.target.classList.remove('hide', entry.isIntersecting);
+            await delay(30);
+            entry.target.classList.add('show', entry.isIntersecting);
+        }
+    });
+
+    document.querySelectorAll('[fade]').forEach((el) => observer.observe(el));
+});
 document.addEventListener("mousemove", async (e) => {
     await delay(50)
     document.getElementById('blob').style.visibility = "visible"
@@ -22,36 +35,37 @@ async function phraseCreate() {
         wel.innerText = word + ""
         wel.className = "glow-hide"
         pEl.appendChild(wel)
-        console.log(word)
     }
 }
 
 
 document.addEventListener('DOMContentLoaded', async function () {
-
-    const observer = new IntersectionObserver(async (entries) => {
-
-        for (const entry of entries) {
-            entry.target.classList.remove('hide', entry.isIntersecting);
-            await delay(25);
-            entry.target.classList.add('show', entry.isIntersecting);
-        }
-    });
-
-    document.querySelectorAll('[fade]').forEach((el) => observer.observe(el));
-});
-document.addEventListener('DOMContentLoaded', async function () {
     await phraseCreate()
     const observer = new IntersectionObserver(async (entries) => {
 
         for (const entry of entries) {
-            entry.target.classList.remove('glow-hide', entry.isIntersecting);
-            await delay(12);
-            entry.target.classList.add('glow-show', entry.isIntersecting);
+            // entry.target.classList.remove('glow-hide', entry.isIntersecting);
+            // await delay(20);
+
+            // entry.target.classList.add('glow-show', entry.isIntersecting);
+            if (entry.isIntersecting) {
+                const spans = entry.target.querySelectorAll('span');
+                for (let i = 0; i < spans.length; i++) {
+                    await delay(20); // Delay between glowing each character
+                    spans[i].classList.remove('glow-hide');
+                    spans[i].classList.add('shads');
+                    setTimeout(() => {
+                        spans[i].classList.remove('shads');
+                    }, 200)
+                    spans[i].classList.add('glow-show');
+                }
+            }
         }
     });
 
-    document.querySelectorAll('[glow]').forEach((el) => observer.observe(el));
+    const introduceEl = document.getElementById('introduce');
+    observer.observe(introduceEl); // Observe the main element
+    // document.querySelectorAll('[glow]').forEach((el) => observer.observe(el));
 });
 
 

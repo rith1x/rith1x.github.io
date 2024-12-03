@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100dvh;
+    background: #000;
+    color: #fff;
+}
+
+.screen {
+    max-width: 450px;
+    margin: 0 auto;
+    height: 100dvh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+#game {
+    width: 100%;
+    padding: 10px;
+    background: #090909;
+    aspect-ratio: 1/1;
+    border-radius: 11px;
+}

@@ -140,7 +140,7 @@
                     <label for="">Notes: </label>
                     <textarea name="" id="notes"></textarea>
                 </div>
-                <button onclick="createBill()" id="gen">Generate Bill</button>
+                <button onclick="screenshot()" id="gen">Generate Bill</button>
             </div>
             <div class="scr invx" id="billPrintable">
                 <div class="inv banner">
@@ -177,6 +177,9 @@
                     </div>
                     <div class="inv total">
                         <p>Total Rs <span id="invTotal"></span></p>
+                    </div>
+                    <div class="qr">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=XNXX" alt="">
                     </div>
 
                 </div>

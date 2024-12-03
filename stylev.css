@@ -698,16 +698,25 @@ body.light {
 
 }
 
+
 .glow-hide {
     opacity: 0;
     filter: blur(3px);
-    font-size: 25px;
-    transform: rotate(405deg);
+    font-size: 10px;
+    transition: all .3s ease;
 }
 
 .glow-show {
     opacity: 1;
     font-size: 20px;
-    transform: rotate(0deg);
+
+}
+
+.shads {
+    --sha: #fff;
+    filter: blur(1px);
+
+    --sha-len: 10px;
+    text-shadow: 2px 2px var(--sha-len) var(--sha), -2px -2px var(--sha-len) var(--sha), -2px 2px var(--sha-len) var(--sha), 2px -2px var(--sha-len) var(--sha);
 
 }

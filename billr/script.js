@@ -184,7 +184,7 @@ function downloadBill() {
     }
     document.getElementById('invTotal').innerText = parseInt(billData.bill).toFixed(2)
 
-
+    screenshot()
     const elementToSave = document.getElementById('billPrintable');
     html2canvas(elementToSave, {
         scale: 5,
@@ -200,4 +200,126 @@ function downloadBill() {
 
 }
 
+let canvaas = document.getElementById('billPrintable')
+function capture() {
+    // domtoimage.toBlob(document.getElementById('canvas'), {
+    //     quality: 2,
+    // })
+    //     .then(function (blob) {
+    //         saveAs(blob, 'export.png');
+    //     });
 
+    document.fonts.ready.then(() => {
+        requestAnimationFrame(() => {
+
+            // domtoimage
+            //     .toJpeg(document.getElementById('canvas'), { quality: 1.0, width: canvaas.offsetWidth * 3, height: canvaas.offsetHeight * 3 })
+            //     .then(function (dataUrl) {
+            //         var link = document.createElement('a');
+            //         link.download = 'my-image-name.jpeg';
+            //         link.href = dataUrl;
+            //         link.click();
+            //     });
+
+            // Select all elements inside the body
+            // const allElements = document.querySelectorAll('body *');
+
+            // Loop through each element and apply the scale
+            // allElements.forEach((element) => {
+            //     element.style.transform = 'scale(3)';
+            //     element.style.transformOrigin = 'top left'; // Ensure the scale happens from the top-left
+            // });
+
+
+            // domtoimage.toBlob(document.getElementById('canvas'), {
+            //     quality: 2, width: canvaas.offsetWidth * 3, height: canvaas.offsetHeight * 3
+            // })
+            //     .then(function (blob) {
+            //         saveAs(blob, 'export.png');
+            //     });
+            // allElements.forEach((element) => {
+            //     element.style.transform = 'scale(1)'; // Reset the scale back to normal
+            // });
+
+            // html2canvas(canvaas, {
+            //     scale: 5,
+            //     width: canvaas.scrollWidth - 1,
+            //     height: canvaas.scrollHeight - 1
+            // }).then(canvas => {
+            //     var dataUrl = canvas.toDataURL("image/jpeg");
+            //     const a = document.createElement('a');
+            //     a.href = dataUrl;
+            //     a.download = 'quote.png';
+
+            //     a.click();
+            // });
+
+
+
+            screenshot(canvaas).download()
+
+            // domtoimage.toPng(canvaas)
+            //     .then(function (dataUrl) {
+            //         var img = new Image();
+            //         img.src = dataUrl;
+
+            //         // Convert the data URL to a Blob
+            //         var byteString = atob(dataUrl.split(',')[1]);
+            //         var mimeString = dataUrl.split(',')[0].split(':')[1].split(';')[0];
+
+            //         var ab = new ArrayBuffer(byteString.length);
+            //         var ia = new Uint8Array(ab);
+            //         for (var i = 0; i < byteString.length; i++) {
+            //             ia[i] = byteString.charCodeAt(i);
+            //         }
+
+            //         var blob = new Blob([ab], { type: mimeString });
+
+            //         // Use FileSaver.js to save the blob as an image file
+            //         saveAs(blob, 'image.png');
+            //     })
+            //     .catch(function (error) {
+            //         console.error('oops, something went wrong!', error);
+            //     });
+
+
+        })
+    })
+
+
+
+}
+
+function download(url, fullName) {
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.style.display = 'none';
+    anchor.setAttribute('download', fullName);
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+}
+
+function screenshot(imgNode, format = 'png', quality = 1) {
+    const canva = document.createElement('canva');
+    canva.width = imgNode.width;
+    canva.height = imgNode.height;
+
+    const context = canva.getContext('2d');
+    context.filter = getComputedStyle(imgNode).filter;
+
+    imgNode.setAttribute('crossOrigin', 'anonymous');
+
+    context.drawImage(imgNode, 0, 0, canva.width, canva.height);
+    const url = canva.toDataURL(`image/${format}`, quality);
+
+    return {
+        url: url,
+        then: function (cb) {
+            cb(url);
+        },
+        download: function (name = 'image') {
+            download(url, `${name}.${format}`);
+        }
+    };
+}
