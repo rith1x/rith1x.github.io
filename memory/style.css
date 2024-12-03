@@ -1,3 +1,8 @@
+@font-face {
+    font-family: digi;
+    src: url(../digi/font.ttf);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,7 +21,7 @@ body {
     max-width: 450px;
     margin: 0 auto;
     height: 100dvh;
-    background: #000;
+    background: #1e1e1e;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,36 +45,60 @@ body {
     justify-content: center;
     transition: all .3s ease;
     perspective: 100px;
-    transform: rotateY(-180deg);
 
 }
 
 .tile svg {
     width: 40%;
     height: 40%;
+    transition: all .3s ease;
 }
 
 .hide svg {
     opacity: 0;
+    scale: .8;
 }
 
 .hide {
     background: #00ab47 !important;
+    transform: rotateY(-180deg);
+
 }
 
 
 @keyframes flippy {
     0% {
-        transform: rotateY(0deg);
+        transform: rotateY(-180deg);
 
     }
 
     100% {
-        transform: rotateY(180deg);
+        transform: rotateY(0deg);
     }
 }
 
 .flip {
-    animation: flippy 1s forwards ease;
+    animation: flippy 1s 1 forwards ease;
     transform-style: preserve-3d;
+}
+
+.score {
+    margin-bottom: 20px;
+    height: 50px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: digi;
+    padding-inline: 15px;
+    background: #000;
+    font-size: 21px;
+
+}
+
+.score h1 {
+    font-size: inherit;
+    font-weight: 100;
+    color: #ffffff90;
+    text-shadow: 0 0 2px #fff;
 }
