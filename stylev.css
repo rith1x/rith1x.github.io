@@ -735,3 +735,11 @@ body.light {
     scale: .98;
     box-shadow: 0 0 10px #ffffff40;
 }
+
+#introduce {
+    transition: all .3s ease;
+}
+
+.ser-h h3 {
+    color: #0057ab;
+}
