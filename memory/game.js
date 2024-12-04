@@ -28,8 +28,8 @@ let icons = {
 
 }
 let score = 0;
-let width = 4;
-let height = 6;
+let width = parseInt(prompt("Enter Columns (rows x columns should not exceed 54")) || 4;
+let height = parseInt(prompt("Enter Rows")) || 4;
 let used_icons = []
 const elems = []
 const clrs = []
