@@ -33,7 +33,7 @@ body {
     width: 100%;
     padding: 10px;
     background: #090909;
-    aspect-ratio: 1/1;
+    height: fit-content;
     border-radius: 11px;
     gap: 5px;
 }
@@ -41,6 +41,7 @@ body {
 .tile {
     border-radius: 6px;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     transition: all .3s ease;
@@ -62,6 +63,8 @@ body {
 .hide {
     background: #00ab47 !important;
     transform: rotateY(-180deg);
+    transition: all .3s ease;
+
 
 }
 
@@ -78,9 +81,15 @@ body {
 }
 
 .flip {
-    animation: flippy 1s 1 forwards ease;
+    animation: flippy 1s 1 both ease;
     transform-style: preserve-3d;
+    transition: all .3s ease;
+
 }
+
+
+
+
 
 .score {
     margin-bottom: 20px;
@@ -101,4 +110,18 @@ body {
     font-weight: 100;
     color: #ffffff90;
     text-shadow: 0 0 2px #fff;
+}
+
+@media only screen and (min-width: 992px) {
+    .screen {
+        min-width: 90%;
+        flex-direction: row;
+
+    }
+
+    #game {
+        scale: .6;
+    }
+
+
 }
