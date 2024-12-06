@@ -68,6 +68,11 @@ body {
 
 }
 
+.ans {
+    opacity: .5;
+    scale: .95;
+    border-radius: 21px;
+}
 
 @keyframes flippy {
     0% {

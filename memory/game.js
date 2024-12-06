@@ -28,8 +28,8 @@ let icons = {
 
 }
 let score = 0;
-let width = parseInt(prompt("Enter Columns (rows x columns should not exceed 54")) || 4;
-let height = parseInt(prompt("Enter Rows")) || 4;
+let width = 3 || parseInt(prompt("Enter Columns (rows x columns should not exceed 54")) || 4;
+let height = 6 || parseInt(prompt("Enter Rows")) || 4;
 let used_icons = []
 const elems = []
 const clrs = []
@@ -43,6 +43,7 @@ for (let i = 0; i < (width * height) / 2; i++) {
     const gen = randomBG()
     clrs.push(gen)
     tile.setAttribute('match', i + 1)
+    tile.setAttribute('opt', 'x')
     tile.addEventListener('click', tapped)
 
     tile.style.background = gen
@@ -58,6 +59,7 @@ for (let i = 0; i < (width * height) / 2; i++) {
     const gen = clrs[i]
     tile.addEventListener('click', tapped)
     tile.setAttribute('match', i + 1)
+    tile.setAttribute('opt', 'y')
     tile.style.background = gen
     tile.style.fill = textClr(gen)
     elems.push(tile)
@@ -66,6 +68,8 @@ for (let i = 0; i < (width * height) / 2; i++) {
 gameArea.style.display = 'grid'
 gameArea.style.gridTemplateColumns = `repeat(${width},1fr)`
 gameArea.style.gridTemplateRows = `repeat(${height},1fr)`
+shuffleArray(elems)
+shuffleArray(elems)
 shuffleArray(elems)
 elems.forEach(el => {
     gameArea.append(el)
@@ -106,7 +110,7 @@ function textClr(lightHex) {
 
     return darkHex;
 }
-
+let xory = ''
 let alreadyClicked = false
 function tapped(e) {
     let elem = e.target
@@ -136,6 +140,8 @@ function tapped(e) {
 
 
     selected = elem.getAttribute('match')
+    xory = elem.getAttribute('opt')
+
 }
 let crct = []
 function checkPair(e) {
@@ -146,8 +152,8 @@ function checkPair(e) {
     if (elem.tagName == 'path') {
         elem = elem.parentElement.parentElement
     }
-    if (elem.getAttribute('match') == selected) {
-
+    if (elem.getAttribute('match') == selected && xory != elem.getAttribute('opt')) {
+        // elem.classList.add('ans')
         crct.push(selected)
         score += 10;
         document.getElementById('score').innerText = score
@@ -162,15 +168,19 @@ async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 async function makeAllHide() {
-    await delay(1500)
-    elems.forEach(el => {
+    elems.forEach(async (el) => {
         if (crct.includes(el.getAttribute('match'))) {
+            await delay(600)
             if (el.classList.contains('flip')) {
                 el.classList.remove('flip')
-
+            }
+            if (!el.classList.contains('ans')) {
+                el.classList.add('ans')
             }
 
         } else {
+            await delay(1500)
+
             if (!el.classList.contains('hide')) {
                 el.classList.add('hide')
 
