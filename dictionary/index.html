@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dictionary</title>
+    </head>
+
+    <body>
+        <div class="screen">
+            <div class="dictHead">
+                <input type="text" name="" id="query">
+                <button onclick="searchWord()">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                    </svg>
+
+                </button>
+            </div>
+            <div class="dictBody" id="dictBody">
+
+            </div>
+        </div>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+            * {
+                box-sizing: border-box;
+                margin: 0px;
+                font-family: "Inter", serif;
+                padding: 0px;
+            }
+
+            :root {
+                --bg-cl0: #000000;
+                --bg-cl1: #121212;
+                --tx-clr: #fff;
+            }
+
+            body {
+
+                height: 100dvh;
+                width: 100%;
+                background: var(--bg-cl1);
+                color: var(--tx-clr);
+            }
+
+            .screen {
+                max-width: 450px;
+                margin: 0 auto;
+                height: 100dvh;
+                padding: 15px;
+                gap: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .dictHead {
+                height: 50px;
+                background: var(--bg-cl1);
+                width: 100%;
+                border: solid 1px #fff;
+                border-radius: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .dictHead input {
+                height: 100%;
+                width: 100%;
+                background: transparent;
+                border-radius: 25px 0 0 25px;
+                border: none;
+                padding-left: 15px;
+                font-size: 20px;
+                color: var(--tx-clr);
+            }
+
+            .dictHead input:focus,
+            .dictHead button:focus {
+                outline: none;
+
+            }
+
+            .dictHead button {
+                height: 100%;
+                aspect-ratio: 1/1;
+                padding: 12px;
+                background: transparent;
+                border: none;
+                fill: #fff;
+                border-radius: 0 25px 25px 0;
+            }
+
+            .dictBody {
+                height: 100%;
+                padding: 10px 0;
+                overflow: hidden scroll;
+            }
+
+            .dictBody::-webkit-scrollbar {
+                display: none;
+            }
+
+            .dict-word {
+                font-weight: bold;
+                font-size: 2.5em;
+                width: fit-content;
+                padding-inline: 5px;
+
+                text-transform: capitalize;
+                margin-bottom: .5em;
+            }
+
+            .dict-phone {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 5px 5px 10px;
+                margin-top: 10px;
+                border-radius: 6px;
+                /* border: solid 1px rgb(51, 51, 51); */
+            }
+
+            .dict-phone audio {
+                height: 30px;
+                background: #000;
+
+            }
+
+            .dict-tag {
+                width: fit-content;
+                padding: 2px 4px;
+                border-radius: 3px;
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: 600;
+                background: #fff;
+                color: #1f1f1f;
+            }
+
+            .dict-mdiv {
+                border-radius: 6px;
+                border: solid 1px rgb(51, 51, 51);
+                padding: 5px;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 15px;
+            }
+
+            .dict-example {
+                font-family: 'Times New Roman', Times, serif;
+                font-style: italic;
+                margin-bottom: 10px;
+                color: #b8bdff;
+            }
+
+            .dict-lic {
+                border-radius: 6px;
+                margin-top: 15px;
+                padding: 5px;
+                font-size: 13px;
+                font-family: 'Times New Roman', Times, serif;
+                font-style: italic;
+                color: #aaaaaa80;
+            }
+
+            .dict-def {
+                padding: 5px;
+            }
+        </style>
+
+        <script>
+
+            init()
+
+            function init() {
+                const randomWords = ["hello", "world", "love", "friend", "family", "home", "happy", "school", "book", "food", "water", "music", "phone", "peace", "smile", "dream", "sun", "cloud", "time", "fun"];
+                queryWord(randomWords[Math.floor(Math.random() * randomWords.length)])
+            }
+            function searchWord() {
+                const word = document.getElementById('query').value
+                queryWord(word)
+            }
+            document.addEventListener('keydown', enterPress)
+            function enterPress(e) {
+                if (e.key == 'Enter') {
+                    searchWord()
+                }
+            }
+            function queryWord(word) {
+                const base = "https://api.dictionaryapi.dev/api/v2/entries/en/"
+                fetch(base + word)
+                    .then(res => res.json())
+                    .then(data => {
+                        formBody(data[0])
+                    })
+            }
+
+
+
+            function formBody(data) {
+                const main = document.getElementById('dictBody')
+                let title = document.createElement('h1')
+                main.innerText = ''
+                title.innerText = data.word
+                title.className = 'dict-word'
+                main.appendChild(title)
+
+
+                data.phonetics.forEach((phone, i) => {
+                    if (phone.text && phone.audio != '') {
+
+                        const phDiv = document.createElement('div')
+                        phDiv.className = "dict-phone"
+                        const phwrd = document.createElement('p')
+                        phwrd.innerText = phone.text
+                        const phosnd = document.createElement('audio')
+                        phosnd.setAttribute('controls', true)
+                        phosnd.src = phone.audio
+                        phDiv.append(phwrd)
+                        phDiv.append(phosnd)
+                        main.append(phDiv)
+                    }
+                })
+                let lic = `Data Provided by dictionaryapi \nLicense ${data.license.name} - ${data.license.url}`
+                data.meanings.forEach(meaning => {
+                    const mdiv = document.createElement('div')
+                    const pos = document.createElement('p')
+                    pos.innerText = meaning.partOfSpeech
+                    mdiv.className = "dict-mdiv"
+                    pos.className = "dict-tag"
+                    mdiv.append(pos)
+
+                    if (meaning.definitions.length > 0) {
+                        const defn = document.createElement('p')
+                        meaning.definitions.forEach((def, i) => {
+                            const defdiv = document.createElement('div')
+                            defdiv.className = "dict-def"
+                            const defphr = document.createElement('p')
+                            defphr.innerText = `${i + 1}. ${def.definition}`
+                            defdiv.append(defphr)
+                            if (def.example) {
+                                const examp = document.createElement('p')
+                                examp.className = "dict-example"
+                                examp.innerText = "Example: " + def.example
+                                defdiv.append(examp)
+                            }
+                            defn.append(defdiv)
+                        })//defn.innerText += def)
+                        mdiv.append(defn)
+                    }
+                    if (meaning.synonyms.length > 0) {
+                        const syns = document.createElement('p')
+                        syns.innerText = "Synonyms: "
+                        meaning.synonyms.forEach((syn, i) => syns.innerText += (i + 1 == meaning.synonyms.length) ? syn : syn + ", ")
+                        mdiv.append(syns)
+                    }
+                    if (meaning.antonyms.length > 0) {
+                        const ants = document.createElement('p')
+                        ants.innerText = "Antonyms: "
+                        meaning.antonyms.forEach((ant, i) => ants.innerText += (i + 1 == meaning.antonyms.length) ? ant : ant + ", ")
+                        mdiv.append(ants)
+                    }
+
+
+                    main.append(mdiv)
+                })
+                const licp = document.createElement('p')
+                licp.innerText = lic
+                licp.className = "dict-lic"
+                main.appendChild(licp)
+
+            }
+        </script>
+
+    </body>
+
+</html>
