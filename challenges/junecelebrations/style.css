@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@font-face {
+    font-family: testimonia;
+    src: url(Testimonia.otf);
+}
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    width: 100%;
+    height: 100dvh;
+    background: #121212;
+    overflow: hidden scroll;
+}
+.bg{
+    width: 100%;
+transition: all .3s ease;
+    font-family: "Noto Emoji" !important;
+    height: 100dvh;
+    position: fixed;
+    background: rgb(95, 69, 20);
+    background-size: cover;
+}
+.screen{
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+#content{
+    width: 100%;
+    height: 100dvh;
+    position: relative;
+    position: sticky;
+    top: 0;
+
+    inset: 0;
+    margin: auto;
+    z-index: 2;
+}
+.card{
+    padding: 30px;
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    font-family: "Inter";
+    width: 80%;
+    transition: all .3s ease;
+    box-shadow: 0 0 10px #00000050;
+    height: 90dvh;
+    border-radius: 21px;
+    transform-origin: 50% 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.card h1{
+    font-size: 36px;
+    margin-block: 30px;
+}
+.card a{
+    text-decoration: none;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 21px;
+    margin-top: 20px;
+}
+.away{
+    transform-origin: 0% 100%;
+    transition: all 1s ease;
+}
+.emoji{
+    font-family: "Noto Color Emoji";
+    font-size: 10vw;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.tags{
+    width: fit-content;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: flex;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+.tags span{
+    border: solid 1px;
+    padding: 5px 10px;
+    border-radius: 31px;
+}
+.date{
+    text-transform: uppercase;
+}
+.thanks-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+}
+
+.thanks-card h1{
+    font-family: "testimonia" !important;
+    font-size: 10vw;
+    font-weight: 100;
+}
+.thanks-card a{
+    text-decoration: none;
+    padding: 2px 10px;
+    border-radius: 21px;
+}
+
+.thanks-card p{
+    line-height: 1.5;
+}
+.thanks-card img{
+    border-radius: 21px;
+}
+.welcome-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .welcome-card h1 {
+    font-size: 4rem;
+    color: #333;
+    font-family: "testimonia" !important;
+
+    margin-bottom: 0.5rem;
+  }
+  
+  .welcome-card div {
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+
+  }
+  
+  .welcome-card p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0.75rem 0;
+  }
+  
+  .welcome-card a {
+    background: #36005c;
+    color: #FFE5B4;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 21px;
+    font-weight: bold;
+  }
+  
+  .welcome-card a:hover {
+    text-decoration: underline;
+  }
+  
