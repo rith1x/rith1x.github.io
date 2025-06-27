@@ -4,7 +4,7 @@ let len = 0;
 let stackArea = document.querySelector('.screen')
 const bgEl = document.querySelector('.bg')
 
-fetch('/data.json')
+fetch('data.json')
     .then(res=> res.json())
     .then(data => fetchedData(data))
     .catch(e => console.error(e))
@@ -133,7 +133,7 @@ function rotateCards(){
     if(buffer != visible){
         buffer = visible
         // document.querySelector('.bg').style.background = textClr(eventData[buffer+1].bgColor)
-        bgEl.style.backgroundImage = `url(${generateEmojiImage(eventData[buffer+1].emoji, 20, bgEl.getBoundingClientRect().height, bgEl.getBoundingClientRect().width ,textClr(eventData[buffer+1].bgColor))})`
+        bgEl.style.backgroundImage = `url(${generateEmojiImage(eventData[buffer+1].emoji, 20, bgEl.getBoundingClientRect().height, bgEl.getBoundingClientRect().width ,textClr(eventData[buffer+1].bgColor),eventData[buffer+1].bgColor)})`
 
     }
 
@@ -186,15 +186,14 @@ function generateEmojiImage(emoji = '🧘', count = 100, width = 512, height = 5
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   
-    // Emoji style
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
     ctx.fillStyle = textClr(bgColor);
-    ctx.font = `${baseSize}px 'Noto Emoji', serif`;
+    ctx.font = `${baseSize}px 'Noto Color Emoji', serif`;
   
     for (let i = 0; i < count; i++) {
-      const scale = 0.8 + Math.random() * 0.6;  // 0.8x to 1.4x
-      const angle = (Math.random() - 0.5) * (Math.PI / 6); // ±30°
+      const scale = 0.8 + Math.random() * 0.6;  
+      const angle = (Math.random() - 0.5) * (Math.PI / 6); 
       const x = Math.random() * width;
       const y = Math.random() * height;
   
@@ -206,5 +205,5 @@ function generateEmojiImage(emoji = '🧘', count = 100, width = 512, height = 5
       ctx.restore();
     }
   
-    return canvas.toDataURL(); // base64 encoded image
+    return canvas.toDataURL(); 
   }
