@@ -132,8 +132,7 @@ function rotateCards(){
     })
     if(buffer != visible){
         buffer = visible
-        // document.querySelector('.bg').style.background = textClr(eventData[buffer+1].bgColor)
-        bgEl.style.backgroundImage = `url(${generateEmojiImage(eventData[buffer+1].emoji, 20, bgEl.getBoundingClientRect().height, bgEl.getBoundingClientRect().width ,textClr(eventData[buffer+1].bgColor),eventData[buffer+1].bgColor)})`
+        document.querySelector('.bg').style.background = textClr(eventData[buffer+1].bgColor)
 
     }
 
@@ -174,36 +173,3 @@ function textClr(lightHex) {
 }
   
   
-
-function generateEmojiImage(emoji = '🧘', count = 100, width = 512, height = 512, bgColor = '#ffffff') {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const baseSize = 48;
-  
-    canvas.width = width;
-    canvas.height = height;
-  
-    ctx.fillStyle = bgColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-    ctx.textBaseline = 'middle';
-    ctx.textAlign = 'center';
-    ctx.fillStyle = textClr(bgColor);
-    ctx.font = `${baseSize}px 'Noto Color Emoji', serif`;
-  
-    for (let i = 0; i < count; i++) {
-      const scale = 0.8 + Math.random() * 0.6;  
-      const angle = (Math.random() - 0.5) * (Math.PI / 6); 
-      const x = Math.random() * width;
-      const y = Math.random() * height;
-  
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
-      ctx.scale(scale, scale);
-      ctx.fillText(emoji, 0, 0);
-      ctx.restore();
-    }
-  
-    return canvas.toDataURL(); 
-  }
