@@ -157,20 +157,19 @@ document.getElementById("menuBtn").onclick = () => {
 };
 
 document.getElementById("loadBtn").onclick = () => {
-    try {
-        const text = document.getElementById("input").value;
-        const arr = eval(text);   // expects ["",""]
-        if (!Array.isArray(arr) || arr.length === 0) {
-            alert("Invalid array");
-            return;
-        }
-        images = arr;
-        index = 0;
-        show();
-        panel.classList.remove("open");
-    } catch (e) {
-        alert("Invalid input format");
+    const raw = document.getElementById("input").value.trim();
+
+    // Split by comma that is outside quotes
+    const matches = raw.match(/"([^"]+)"/g);
+    if (!matches || matches.length === 0) {
+        alert("Invalid format. Use \"url1\",\"url2\"");
+        return;
     }
+
+    images = matches.map(s => s.slice(1, -1));
+    index = 0;
+    show();
+    panel.classList.remove("open");
 };
 
 document.addEventListener("keydown", e => {
@@ -178,6 +177,7 @@ document.addEventListener("keydown", e => {
     if (e.key === "ArrowLeft") prev();
 });
 </script>
+
 
 </body>
 </html>
