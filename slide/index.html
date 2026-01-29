@@ -1,104 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Image URL Slideshow</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<title>Dynamic Image Slideshow</title>
 
-        body {
-            background: #000;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
+body {
+    background: black;
+    height: 100vh;
+    overflow: hidden;
+    font-family: monospace;
+}
 
-        .btn {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 40px;
-            color: white;
-            background: rgba(0,0,0,0.6);
-            border: none;
-            cursor: pointer;
-            padding: 20px;
-            user-select: none;
-        }
+#viewer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .left {
-            left: 10px;
-        }
+#slide {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
 
-        .right {
-            right: 10px;
-        }
+.btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    padding: 20px;
+    cursor: pointer;
+}
 
-        .counter {
-            position: fixed;
-            bottom: 10px;
-            right: 15px;
-            color: #ccc;
-            font-family: monospace;
-        }
-    </style>
+.left { left: 10px; }
+.right { right: 10px; }
+
+#menuBtn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 28px;
+    padding: 10px 14px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#counter {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    color: #aaa;
+}
+
+/* Side Panel */
+#panel {
+    position: fixed;
+    top: 0;
+    left: -400px;
+    width: 400px;
+    height: 100vh;
+    background: #111;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+#panel.open {
+    left: 0;
+}
+
+textarea {
+    width: 100%;
+    height: 70%;
+    background: #000;
+    color: #0f0;
+    border: 1px solid #444;
+    padding: 10px;
+    font-size: 13px;
+}
+
+#loadBtn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+</style>
 </head>
+
 <body>
 
+<button id="menuBtn">☰</button>
+
+<div id="panel">
+<h3 style="color:white;margin-bottom:10px;">Paste Image URL Array</h3>
+
+<textarea id="input">
+[
+  "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bint%20x=10;%7D"
+]
+</textarea>
+
+<button id="loadBtn">Load Slideshow</button>
+</div>
+
 <button class="btn left" onclick="prev()">&#10094;</button>
-<img id="slide" />
 <button class="btn right" onclick="next()">&#10095;</button>
 
-<div class="counter" id="counter"></div>
+<div id="viewer">
+    <img id="slide">
+</div>
+
+<div id="counter"></div>
 
 <script>
-    const images = [
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bint%20x=10;%20public%20static%20void%20main(String[]%20a){A%20o1=new%20A();A%20o2=o1;o2.x=20;System.out.print(o1.x);}}",
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bint%20x;%20public%20static%20void%20main(String[]%20a){A%20o=new%20A();System.out.print(o.x);}}",
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bstatic%20int%20x=10;%20A(){x++;}%20public%20static%20void%20main(String[]%20a){new%20A();new%20A();System.out.print(x);}}",
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bint%20x=5;%20void%20m(){int%20x=10;}%20public%20static%20void%20main(String[]%20a){A%20o=new%20A();o.m();System.out.print(o.x);}}",
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7Bint%20x=10;%20void%20m(int%20x){this.x=x;}%20public%20static%20void%20main(String[]%20a){A%20o=new%20A();o.m(50);System.out.print(o.x);}}",
-        "https://sourcecodeshots.com/api/image?language=java&theme=dark-plus&code=class%20A%7BA(){System.out.print(1);}%20A(int%20x){System.out.print(2);}%20public%20static%20void%20main(String[]%20a){new%20A(10);}}"
-        // keep adding URLs here
-    ];
+let images = [];
+let index = 0;
 
-    let index = 0;
-    const img = document.getElementById("slide");
-    const counter = document.getElementById("counter");
+const img = document.getElementById("slide");
+const counter = document.getElementById("counter");
+const panel = document.getElementById("panel");
 
-    function show() {
-        img.src = images[index];
-        counter.textContent = (index + 1) + " / " + images.length;
-    }
+function show() {
+    if (images.length === 0) return;
+    img.src = images[index];
+    counter.textContent = (index + 1) + " / " + images.length;
+}
 
-    function next() {
-        index = (index + 1) % images.length;
-        show();
-    }
-
-    function prev() {
-        index = (index - 1 + images.length) % images.length;
-        show();
-    }
-
-    document.addEventListener("keydown", e => {
-        if (e.key === "ArrowRight") next();
-        if (e.key === "ArrowLeft") prev();
-    });
-
+function next() {
+    if (!images.length) return;
+    index = (index + 1) % images.length;
     show();
+}
+
+function prev() {
+    if (!images.length) return;
+    index = (index - 1 + images.length) % images.length;
+    show();
+}
+
+document.getElementById("menuBtn").onclick = () => {
+    panel.classList.toggle("open");
+};
+
+document.getElementById("loadBtn").onclick = () => {
+    try {
+        const text = document.getElementById("input").value;
+        const arr = eval(text);   // expects ["",""]
+        if (!Array.isArray(arr) || arr.length === 0) {
+            alert("Invalid array");
+            return;
+        }
+        images = arr;
+        index = 0;
+        show();
+        panel.classList.remove("open");
+    } catch (e) {
+        alert("Invalid input format");
+    }
+};
+
+document.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight") next();
+    if (e.key === "ArrowLeft") prev();
+});
 </script>
 
 </body>
